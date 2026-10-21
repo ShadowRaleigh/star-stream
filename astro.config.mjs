@@ -1,10 +1,14 @@
 // @ts-check
 import { defineConfig } from 'astro/config';
 import starlight from '@astrojs/starlight';
+import fs from 'node:fs';
+
+const seletorTema = fs.readFileSync('./src/scripts/seletor-tema.js', 'utf8');
 
 export default defineConfig({
 	site: 'https://shadowraleigh.github.io',
 	base: '/star-stream',
+	devToolbar: { enabled: false },
 	integrations: [
 		starlight({
 			title: 'Star Stream',
@@ -13,6 +17,7 @@ export default defineConfig({
 			head: [
 				{ tag: 'link', attrs: { rel: 'icon', type: 'image/png', sizes: '32x32', href: '/star-stream/icone-32.png' } },
 				{ tag: 'link', attrs: { rel: 'apple-touch-icon', sizes: '180x180', href: '/star-stream/icone-180.png' } },
+				{ tag: 'script', content: seletorTema },
 			],
 			defaultLocale: 'root',
 			locales: { root: { label: 'Português', lang: 'pt-BR' } },
@@ -22,7 +27,27 @@ export default defineConfig({
 				alt: 'Star Stream',
 				replacesTitle: true,
 			},
-			customCss: ['./src/styles/star-stream.css'],
+			components: { ThemeSelect: './src/components/SeletorDeTema.astro' },
+			customCss: [
+				'@fontsource-variable/eb-garamond',
+				'@fontsource-variable/eb-garamond/wght-italic.css',
+				'@fontsource/cormorant-garamond/500.css',
+				'@fontsource/cormorant-garamond/600.css',
+				'@fontsource-variable/orbitron',
+				'@fontsource-variable/jetbrains-mono',
+				'@fontsource/cinzel-decorative/700.css',
+				'./src/styles/star-stream.css',
+				'./src/styles/temas/comum.css',
+				'./src/styles/temas/constelacao.css',
+				'./src/styles/temas/observatorio.css',
+				'./src/styles/temas/holograma.css',
+				'./src/styles/temas/nebulosa.css',
+				'./src/styles/temas/codex.css',
+				'./src/styles/temas/grimorio.css',
+				'./src/styles/temas/astrolabio.css',
+				'./src/styles/temas/carta.css',
+				'./src/styles/temas/banners.css',
+			],
 			lastUpdated: false,
 			pagination: true,
 			tableOfContents: { minHeadingLevel: 2, maxHeadingLevel: 3 },

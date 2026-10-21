@@ -1,0 +1,210 @@
+/* Capas próprias de cada tema. Constelação e Holograma usam a galáxia; os outros ganham composições do próprio mundo. */
+
+/* Observatório: um instrumento gravado em latão, sem foto. */
+[data-ss-tema='observatorio'] .ss-capa {
+	background:
+		url('/star-stream/temas/astrolabio-anel-dourado.svg') center / min(640px, 120%) no-repeat,
+		url('/star-stream/temas/estrelas-douradas.svg') 0 0 / 420px,
+		radial-gradient(ellipse at center, #2a2216 0%, #15130f 62%, #0e0d0b 100%);
+	background-blend-mode: normal;
+	border: 1px solid #c9a15d;
+	outline: 1px solid rgb(201 161 93 / 0.35);
+	outline-offset: 6px;
+	box-shadow: inset 0 0 140px rgb(0 0 0 / 0.85);
+	position: relative;
+	isolation: isolate;
+}
+
+[data-ss-tema='observatorio'] .ss-capa::before {
+	content: '';
+	position: absolute;
+	inset: 0;
+	z-index: -1;
+	background: radial-gradient(circle at center, rgb(14 13 11 / 0.15) 0 22%, rgb(14 13 11 / 0.7) 60%);
+	pointer-events: none;
+}
+
+[data-ss-tema='observatorio'] .ss-capa img {
+	filter: drop-shadow(0 2px 0 rgb(0 0 0 / 0.6)) drop-shadow(0 0 24px rgb(201 161 93 / 0.35));
+}
+
+[data-ss-tema='observatorio'][data-theme='light'] .ss-capa {
+	background:
+		url('/star-stream/temas/astrolabio-anel-tinta.svg') center / min(640px, 120%) no-repeat,
+		radial-gradient(ellipse at center, #fbf5e6, #ead9b4 90%);
+	box-shadow: inset 0 0 120px rgb(120 80 30 / 0.3);
+}
+
+:root[data-ss-tema='observatorio'][data-theme='light'] .ss-capa :is(p, .ss-acoes a:not(.ss-principal)) {
+	color: #2c2214;
+	border-color: rgb(44 34 20 / 0.5);
+	background: rgb(255 255 255 / 0.35);
+}
+
+[data-ss-tema='observatorio'][data-theme='light'] .ss-capa .logo-claro {
+	display: none;
+}
+
+[data-ss-tema='observatorio'][data-theme='light'] .ss-capa .logo-escuro {
+	display: block;
+}
+
+/* Nebulosa: a galáxia desfocada e saturada vira névoa, com o logo brilhando no centro. */
+[data-ss-tema='nebulosa'] .ss-capa {
+	position: relative;
+	isolation: isolate;
+	overflow: hidden;
+	background: #120a24;
+}
+
+[data-ss-tema='nebulosa'] .ss-capa::before {
+	content: '';
+	position: absolute;
+	inset: -40px;
+	z-index: -2;
+	background: url('/star-stream/galaxia.webp') center 40% / cover;
+	filter: blur(22px) saturate(1.8) hue-rotate(-12deg);
+	opacity: 0.85;
+}
+
+[data-ss-tema='nebulosa'] .ss-capa::after {
+	content: '';
+	position: absolute;
+	inset: 0;
+	z-index: -1;
+	background:
+		radial-gradient(circle at 50% 46%, rgb(255 225 242 / 0.28) 0, transparent 34%),
+		radial-gradient(ellipse 60% 70% at 20% 90%, rgb(185 166 255 / 0.45), transparent 70%),
+		radial-gradient(ellipse 60% 70% at 85% 10%, rgb(255 207 168 / 0.35), transparent 70%),
+		url('/star-stream/temas/estrelas-claras.svg') 0 0 / 380px,
+		linear-gradient(180deg, rgb(18 10 36 / 0.2), rgb(18 10 36 / 0.55));
+}
+
+/* Codex Celeste: frontispício de livro, em papel marfim e tinta azul-noite. */
+[data-ss-tema='codex'] .ss-capa {
+	position: relative;
+	isolation: isolate;
+	background:
+		url('/star-stream/temas/astrolabio-anel-tinta.svg') center / min(560px, 110%) no-repeat,
+		url('/star-stream/temas/estrelas-tinta.svg') 0 0 / 420px,
+		#f7f1e3;
+	color: #1b2a3e;
+	border: 1px solid #a8823f;
+	outline: 1px solid #a8823f;
+	outline-offset: 6px;
+	box-shadow: none;
+}
+
+[data-ss-tema='codex'] .ss-capa::before {
+	content: '';
+	position: absolute;
+	inset: 0;
+	z-index: -1;
+	background: radial-gradient(circle at center, rgb(247 241 227 / 0.55) 0 30%, rgb(247 241 227 / 0.88) 62%);
+}
+
+[data-ss-tema='codex'] .ss-capa .logo-claro {
+	display: none;
+}
+
+[data-ss-tema='codex'] .ss-capa .logo-escuro {
+	display: block;
+	filter: none;
+}
+
+:root[data-ss-tema='codex'] .ss-capa p {
+	opacity: 1;
+	font-weight: 600;
+	color: #1b2a3e;
+	font-family: 'Cinzel', serif;
+}
+
+:root[data-ss-tema='codex'] .ss-capa p::after {
+	content: '';
+	display: block;
+	width: 220px;
+	height: 18px;
+	margin: 0.9rem auto 0;
+	background: url('/star-stream/temas/florao-dourado.svg') center / contain no-repeat;
+}
+
+:root[data-ss-tema='codex'] .ss-capa .ss-acoes a.ss-principal {
+	background: #1b2a3e;
+	border-color: #1b2a3e;
+	color: #f7f1e3;
+}
+
+:root[data-ss-tema='codex'] .ss-capa .ss-acoes a:not(.ss-principal) {
+	color: #1b2a3e;
+	border-color: #1b2a3e;
+	background: transparent;
+	backdrop-filter: none;
+}
+
+[data-ss-tema='codex']:not([data-theme='light']) .ss-capa {
+	background:
+		url('/star-stream/temas/astrolabio-anel-dourado.svg') center / min(560px, 110%) no-repeat,
+		url('/star-stream/temas/estrelas-douradas.svg') 0 0 / 420px,
+		#0f1626;
+}
+
+[data-ss-tema='codex']:not([data-theme='light']) .ss-capa::before {
+	background: radial-gradient(circle at center, rgb(15 22 38 / 0.45) 0 30%, rgb(15 22 38 / 0.85) 62%);
+}
+
+[data-ss-tema='codex']:not([data-theme='light']) .ss-capa .logo-claro {
+	display: block;
+}
+
+[data-ss-tema='codex']:not([data-theme='light']) .ss-capa .logo-escuro {
+	display: none;
+}
+
+:root[data-ss-tema='codex']:not([data-theme='light']) .ss-capa :is(p, .ss-acoes a:not(.ss-principal)) {
+	color: #f2dcae;
+	border-color: #d7b46d;
+}
+
+:root[data-ss-tema='codex']:not([data-theme='light']) .ss-capa .ss-acoes a.ss-principal {
+	background: #f2dcae;
+	border-color: #f2dcae;
+	color: #0f1626;
+}
+
+/* Grimório: capa de couro com ferros dourados, cantos e um medalhão; o logo em ouro. */
+[data-ss-tema='grimorio'] .ss-capa {
+	position: relative;
+	isolation: isolate;
+	background:
+		url('/star-stream/temas/canto-ouro-se.svg') 14px 14px / 90px no-repeat,
+		url('/star-stream/temas/canto-ouro-sd.svg') calc(100% - 14px) 14px / 90px no-repeat,
+		url('/star-stream/temas/canto-ouro-ie.svg') 14px calc(100% - 14px) / 90px no-repeat,
+		url('/star-stream/temas/canto-ouro-id.svg') calc(100% - 14px) calc(100% - 14px) / 90px no-repeat,
+		url('/star-stream/temas/selo-dourado.svg') center / min(480px, 95%) no-repeat,
+		url('/star-stream/temas/couro.svg') 0 0 / 300px,
+		radial-gradient(ellipse at center, #4a2c16, #24150a 75%);
+	border: 2px solid #c69a52;
+	box-shadow:
+		inset 0 0 0 6px #2a190c,
+		inset 0 0 0 7px rgb(198 154 82 / 0.7),
+		inset 0 0 90px rgb(0 0 0 / 0.75),
+		0 0 0 4px #ecdcb8,
+		0 0 0 5px rgb(122 90 50 / 0.6);
+}
+
+[data-ss-tema='grimorio'] .ss-capa::before {
+	content: '';
+	position: absolute;
+	inset: 0;
+	z-index: -1;
+	background: radial-gradient(circle at center, rgb(36 21 10 / 0.35) 0 25%, rgb(36 21 10 / 0.8) 60%);
+}
+
+[data-ss-tema='grimorio'] .ss-capa img {
+	filter: sepia(1) saturate(3.2) hue-rotate(-14deg) brightness(0.82) contrast(1.15) drop-shadow(0 2px 0 rgb(0 0 0 / 0.7));
+}
+
+:root[data-ss-tema='grimorio'] .ss-capa p {
+	color: #e9c98a;
+	font-family: 'Cinzel', serif;
+}

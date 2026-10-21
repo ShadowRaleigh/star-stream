@@ -8,7 +8,7 @@ Este repositório é a **fonte oficial das regras**. O antigo Google Doc "System
 
 - `src/content/docs/`: as páginas, em Markdown. A pasta e o nome do arquivo definem o endereço (`personagem/atributos.md` vira `/personagem/atributos/`).
 - `astro.config.mjs`: título do site e ordem do menu lateral. Uma página nova só aparece no menu depois de entrar aqui.
-- `src/styles/star-stream.css`: cores, fontes e estilo das tabelas.
+- `src/styles/star-stream.css` e `src/styles/temas/`: estilos base e os temas visuais (um arquivo por tema; a lista fica em `src/temas.mjs` e em `src/scripts/seletor-tema.js`).
 - `src/assets/`: imagens usadas nas páginas.
 - `GUIA_DE_ESTILO.md`: como o texto das regras é escrito.
 
@@ -27,3 +27,11 @@ Avisos de seção incompleta:
 Texto do aviso.
 :::
 ```
+
+## Temas visuais
+
+O livro tem vários temas visuais. O padrão é o Constelação, e o leitor escolhe outro no seletor do topo da página (no celular, no fim do menu). A escolha fica salva no navegador.
+
+O mestre pode mandar aos jogadores um link já com o tema da campanha, acrescentando `?tema=` ao endereço, por exemplo `https://shadowraleigh.github.io/star-stream/?tema=grimorio`. Temas: `constelacao`, `observatorio`, `holograma`, `nebulosa`, `codex`, `grimorio` e, em teste, `astrolabio` e `carta`.
+
+Os ornamentos dos temas (estrelas, constelação, astrolábio, selo, pergaminho, couro, cantos e florões) são gerados por `node tools/gerar-assets-temas.mjs`.

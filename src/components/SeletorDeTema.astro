@@ -1,0 +1,41 @@
+---
+// Substitui o seletor de claro/escuro do Starlight: acrescenta, antes dele, o seletor de tema visual do livro.
+import Select from '@astrojs/starlight/components/Select.astro';
+import ThemeSelect from '@astrojs/starlight/components/ThemeSelect.astro';
+import { TEMAS } from '../temas.mjs';
+
+const opcoes = TEMAS.map((t, i) => ({
+	value: t.id,
+	label: t.teste ? `${t.nome} (teste)` : t.nome,
+	selected: i === 0,
+}));
+---
+
+<ss-seletor-tema>
+	<Select icon="star" label="Tema visual do livro" options={opcoes} width="10.5em" />
+</ss-seletor-tema>
+<ThemeSelect />
+
+<script>
+	class SeletorDeTema extends HTMLElement {
+		connectedCallback() {
+			const select = this.querySelector('select');
+			if (!select) return;
+			select.value = document.documentElement.dataset.ssTema || select.options[0].value;
+			select.addEventListener('change', () => {
+				document.documentElement.dataset.ssTema = select.value;
+				try {
+					localStorage.setItem('ss-tema', select.value);
+				} catch {}
+				for (const outro of document.querySelectorAll<HTMLSelectElement>('ss-seletor-tema select')) outro.value = select.value;
+			});
+		}
+	}
+	customElements.define('ss-seletor-tema', SeletorDeTema);
+</script>
+
+<style>
+	ss-seletor-tema {
+		display: contents;
+	}
+</style>

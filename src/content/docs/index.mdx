@@ -6,9 +6,11 @@ template: splash
 
 import { CardGrid, LinkCard } from '@astrojs/starlight/components';
 import logo from '../../assets/marca/logo-star-stream.svg';
+import logoEscuro from '../../assets/marca/logo-star-stream-escuro.svg';
 
 <div class="ss-capa not-content">
-	<img src={logo.src} alt="Star Stream" width="2040" height="429" />
+	<img class="logo-claro" src={logo.src} alt="Star Stream" width="2040" height="429" />
+	<img class="logo-escuro" src={logoEscuro.src} alt="" width="2040" height="429" />
 	<p>Livro de regras · Versão 0.9</p>
 	<div class="ss-acoes">
 		<a class="ss-principal" href="personagem/criacao/">Criar um personagem</a>
