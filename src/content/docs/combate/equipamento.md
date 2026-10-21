@@ -5,9 +5,9 @@ title: "Armas, Armaduras e Geradores"
 
 ### Funcionamento
 
-* Armas concedem pra você um dano para seu ataque básico, baseado na **categoria** da arma  
-* Armas dão pra você um bônus de **Precisão** baseado na **categoria** e na **raridade** da arma  
-* Finalmente, armas também podem conceder pra você habilidades, caso ela seja encantada ou tenha alguma propriedade específica.
+* A arma define o dano do ataque básico do personagem, conforme a **categoria** dela (ver [Fórmula de Dano](../ataque-e-dano/#fórmula-de-dano) e os multiplicadores dos [Estilos de Combate](../../personagem/estilos-de-combate/)).
+* A arma dá um bônus de **[Precisão](../../personagem/stats/#precisão)**, conforme a **categoria** e a **raridade** dela.
+* Armas encantadas, ou com alguma propriedade específica, também podem conceder habilidades.
 
 ### Precisão e Dano base por categoria
 
@@ -31,10 +31,10 @@ As habilidades de uma arma vêm descritas no próprio item e não ocupam [Slots 
 
 ### Funcionamento
 
-* O jogador pode equipar até **5 peças de armadura**: Capacete, Peitoral, Calças, Botas e Manoplas  
-* Além dos equipamentos mencionados, o jogador pode equipar até 2 anéis, um colar e um par de brincos que não são armaduras.  
-* Por conveniência, armaduras não estão restritas apenas à estilos convencionais. Por exemplo, roupas e acessórios podem ser considerados armadura, e você pode mudar a aparência dos itens que você tem pra aparências de outros itens que você já teve, por uma singela taxa de **300C** por peça  
-* Todas as armaduras do jogo dão um bônus de deflexão **por peça equipada**, que escalam com o nível e raridade do equipamento, seguindo a tabela abaixo.
+* O personagem pode equipar até **5 peças de armadura**: Capacete, Peitoral, Calças, Botas e Manoplas.
+* Além delas, pode equipar até 2 anéis, um colar e um par de brincos, que não são armadura.
+* Por conveniência, armaduras não se limitam aos estilos convencionais: roupas e acessórios podem contar como armadura. O personagem também pode trocar a aparência dos seus itens pela de outros itens que já teve, por uma singela taxa de **300C** por peça.
+* Toda armadura dá um bônus de **[Deflexão](../../personagem/stats/#deflexão)** **por peça equipada**, que cresce com o nível e a raridade do equipamento, conforme a tabela abaixo.
 
 | Categoria | Requisito (Nível) | Deflexão (Comum) | Deflexão (Incomum) | Deflexão (Rara) | Deflexão (Épica) | Deflexão (Lendária) |
 | ----- | :---: | :---: | :---: | :---: | :---: | :---: |
@@ -50,9 +50,9 @@ As habilidades de uma arma vêm descritas no próprio item e não ocupam [Slots 
 
 ## Gerador
 
-Todo personagem tem **1 slot de Gerador**. O gerador equipado **ativa no início de cada combate**. Os geradores **não escalam** por categoria: novos geradores, com efeitos mais diversos e interessantes, são desbloqueados pela party ao longo do tempo. Os geradores iniciais são:
+Todo personagem tem **1 slot de Gerador**. O gerador equipado **ativa no início de cada combate**. Os geradores **não escalam** por categoria: a [Party](../../exploracao/party/) desbloqueia geradores novos, com efeitos mais variados, ao longo do tempo. Os geradores iniciais são:
 
-* **Escudo:** gera HP temporário instável igual a **15%** do HP médio de um personagem com HitDie d10 no mesmo nível  
-* **Defletor:** o **1º ataque à distância ou a 1ª habilidade com rolagem** contra o portador em cada combate cai **uma faixa de resultado** (Acerto vira Raspão, e assim por diante)  
-* **Propulsor:** nas **3 primeiras rodadas** do portador, **movimento ×2** e **+10 de Deflexão**  
-* **Filtro:** o **1º golpe** recebido do **tipo de dano principal do inimigo** (a critério do mestre) causa **−50%** de dano
+* **Escudo:** gera [HP Temporário Instável](../../personagem/stats/#hp-temporário-instável) igual a **15%** do HP médio de um personagem com [HitDie](../../personagem/stats/#health-points-hp) d10 no mesmo nível.
+* **Defletor:** o **1º ataque à distância ou a 1ª habilidade com rolagem** contra o portador em cada combate cai **uma faixa de resultado** (Acerto vira Raspão, e assim por diante; ver [Execução do Ataque](../ataque-e-dano/#execução-do-ataque)).
+* **Propulsor:** nas **3 primeiras rodadas** do portador, **[movimento](../rodadas-e-acoes/#movimentação) ×2** e **+10 de Deflexão**.
+* **Filtro:** o **1º golpe** recebido do **tipo de dano principal do inimigo** (a critério do mestre) causa **−50%** de dano.
