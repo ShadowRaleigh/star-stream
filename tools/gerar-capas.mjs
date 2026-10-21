@@ -3,10 +3,11 @@
 // Uso: node tools/gerar-capas.mjs
 import fs from 'node:fs';
 import { CORES } from '../src/cores.mjs';
-import { arteFantasia, capaAstra, capaScifi, ornamentoFantasia } from './paletas.mjs';
+import { arteFantasia, capaAstra, capaScifi, mistura, ornamentoFantasia } from './paletas.mjs';
 
 const W = 1800, H = 520;
 const PALETAS = {
+	constelacao: { fundo: ['#18213c', '#0c1222', '#060914'], acento: '#e3c38f', marfim: '#f8f3e7', violeta: '#8a6ac0', azul: '#3a5a9a' },
 	'classico-escuro': { fundo: ['#18213a', '#10172b', '#0c1120'], linha: '#e3b88f', fraca: '#9298aa', estrela: '#f8f3e7', brilho: '#e3b88f' },
 	'classico-claro': { fundo: ['#fcf9f1', '#f3ede0', '#e9e1cf'], linha: '#1b2a3e', fraca: '#8a8c93', estrela: '#1b2a3e', brilho: '#6b4a80' },
 	'astrolabio-escuro': { fundo: ['#16203a', '#0c1222', '#080b16'], linha: '#e3c38f', fraca: '#9fb0d0', estrela: '#f8f3e7', brilho: '#e3c38f' },
@@ -341,12 +342,7 @@ function mapa(p) {
 	// Rota pontilhada até o X.
 	g += `<path d="M 230 250 C 420 170, 640 120, 900 110 S 1350 160, 1600 260" fill="none" stroke="${p.rota}" stroke-width="3" stroke-dasharray="2 10" stroke-linecap="round"/>`;
 	g += `<circle cx="230" cy="250" r="7" fill="${p.rota}"/><g stroke="${p.rota}" stroke-width="5" stroke-linecap="round"><line x1="1588" y1="248" x2="1612" y2="272"/><line x1="1612" y1="248" x2="1588" y2="272"/></g>`;
-	// Rosa dos ventos, embaixo à direita, no mar.
-	const rx = 1290, ry = 410;
-	g += `<g transform="translate(${rx} ${ry})"><circle r="44" fill="none" stroke="${p.tinta}" stroke-width="1.4"/><circle r="36" fill="none" stroke="${p.tinta}" stroke-width=".8"/>`;
-	for (const a of [0, 90, 180, 270]) g += `<path d="M 0 -58 L 7 -7 L 0 0 Z" transform="rotate(${a})" fill="${p.tinta}"/><path d="M 0 -58 L -7 -7 L 0 0 Z" transform="rotate(${a})" fill="${p.fundo[0]}" stroke="${p.tinta}" stroke-width="1"/>`;
-	for (const a of [45, 135, 225, 315]) g += `<path d="M 0 -34 L 5 -5 L 0 0 L -5 -5 Z" transform="rotate(${a})" fill="${p.mar}" opacity=".8"/>`;
-	g += `<text y="-64" font-family="Georgia, serif" font-size="16" text-anchor="middle" fill="${p.tinta}">N</text></g>`;
+	// A rosa dos ventos é uma camada à parte (rosaDosVentos), que gira por cima da capa.
 	// Um navio e uma serpente marinha.
 	g += `<g transform="translate(560 420)" stroke="${p.tinta}" stroke-width="1.6" fill="${p.fundo[0]}"><path d="M -26 0 Q 0 14 26 0 Z"/><line x1="0" y1="0" x2="0" y2="-34"/><path d="M 2 -32 Q 20 -20 2 -6 Z"/></g>`;
 	g += `<path d="M 1120 470 q 14 -26 28 0 q 14 26 28 0 q 14 -26 28 0" fill="none" stroke="${p.mar}" stroke-width="5" stroke-linecap="round"/><circle cx="1200" cy="462" r="3" fill="${p.tinta}"/>`;
@@ -421,15 +417,29 @@ function forja(p) {
 	return g;
 }
 
-// Esfera armilar grande, deslocada para a direita.
+// Rosa dos ventos do Mapa, centrada na origem: vai num arquivo à parte, que gira por cima da capa.
+function rosaDosVentos(p) {
+	let g = `<circle r="44" fill="${p.fundo[0]}" fill-opacity=".55" stroke="${p.tinta}" stroke-width="1.4"/><circle r="36" fill="none" stroke="${p.tinta}" stroke-width=".8"/>`;
+	for (const a of [0, 90, 180, 270]) g += `<path d="M 0 -58 L 7 -7 L 0 0 Z" transform="rotate(${a})" fill="${p.tinta}"/><path d="M 0 -58 L -7 -7 L 0 0 Z" transform="rotate(${a})" fill="${p.fundo[0]}" stroke="${p.tinta}" stroke-width="1"/>`;
+	for (const a of [45, 135, 225, 315]) g += `<path d="M 0 -34 L 5 -5 L 0 0 L -5 -5 Z" transform="rotate(${a})" fill="${p.mar}" opacity=".8"/>`;
+	return g + `<text y="-64" font-family="Georgia, serif" font-size="16" text-anchor="middle" fill="${p.tinta}">N</text>`;
+}
+
+// Esfera armilar grande, deslocada para a direita. A esfera vai num arquivo à parte (esferaArmilar), que balança por cima.
+const ESFERA = { cx: 1390, cy: 262 };
 function armilar(p) {
-	const cx = 1390, cy = 262, R = 300, Ri = R - 24;
-	const anel = (rx, ry, rot, larg, op) => `<ellipse cx="${cx}" cy="${cy}" rx="${rx}" ry="${ry}" transform="rotate(${rot} ${cx} ${cy})" stroke-width="${larg}" opacity="${op}"/>`;
+	const { cx } = ESFERA;
 	let g = fundo(p, 'f');
 	g += `<defs><radialGradient id="halo" cx="${f(cx / W * 100)}%" cy="50%" r="30%"><stop offset="0" stop-color="${p.brilho}" stop-opacity=".22"/><stop offset="1" stop-color="${p.brilho}" stop-opacity="0"/></radialGradient></defs><rect width="${W}" height="${H}" fill="url(#halo)"/>`;
 	g += estrelas(p, 380, 41);
 	[[80, 80, 2, 1], [260, 360, 0, 0.9], [760, 410, 3, 0.8]].forEach(([x, y, i, e], k) => (g += constelacao(p, FIGURAS[i], x, y, e, 51 + k)));
-	g += `<g fill="none" stroke="${p.linha}">`;
+	return g;
+}
+
+function esferaArmilar(p) {
+	const { cx, cy } = ESFERA, R = 300, Ri = R - 24;
+	const anel = (rx, ry, rot, larg, op) => `<ellipse cx="${cx}" cy="${cy}" rx="${rx}" ry="${ry}" transform="rotate(${rot} ${cx} ${cy})" stroke-width="${larg}" opacity="${op}"/>`;
+	let g = `<g fill="none" stroke="${p.linha}">`;
 	// Meridiano: aro duplo graduado.
 	g += `<circle cx="${cx}" cy="${cy}" r="${R}" stroke-width="2"/><circle cx="${cx}" cy="${cy}" r="${Ri}" stroke-width="1.2"/>`;
 	for (let a = 0; a < 360; a += 2.5) {
@@ -457,6 +467,52 @@ function armilar(p) {
 	return g;
 }
 
+// Constelação: um rio de estrelas (o "Star Stream") cruza o céu em curva, com o brilho dourado no meio, constelações
+// nos cantos e estrelas de quatro pontas como a do logo. O centro fica limpo para o nome.
+function rio(p) {
+	const r = sorteio(701);
+	const curva = (t) => [-120 + 2040 * t, 300 - 185 * Math.sin(Math.PI * (t - 0.5)) + 42 * Math.sin(4 * Math.PI * t)];
+	let d = '';
+	for (let t = 0; t <= 1.0001; t += 0.02) { const [x, y] = curva(t); d += `${d ? ' L' : 'M'} ${f(x)} ${f(y)}`; }
+	let g = `<defs><radialGradient id="ceu" cx="50%" cy="50%" r="75%"><stop offset="0" stop-color="${p.fundo[0]}"/><stop offset=".6" stop-color="${p.fundo[1]}"/><stop offset="1" stop-color="${p.fundo[2]}"/></radialGradient>
+	<radialGradient id="neb1"><stop offset="0" stop-color="${p.violeta}" stop-opacity=".38"/><stop offset="1" stop-color="${p.violeta}" stop-opacity="0"/></radialGradient>
+	<radialGradient id="neb2"><stop offset="0" stop-color="${p.azul}" stop-opacity=".4"/><stop offset="1" stop-color="${p.azul}" stop-opacity="0"/></radialGradient>
+	<radialGradient id="neb3"><stop offset="0" stop-color="${p.acento}" stop-opacity=".22"/><stop offset="1" stop-color="${p.acento}" stop-opacity="0"/></radialGradient>
+	<radialGradient id="faisca"><stop offset="0" stop-color="${p.marfim}" stop-opacity=".9"/><stop offset=".35" stop-color="${p.acento}" stop-opacity=".35"/><stop offset="1" stop-color="${p.acento}" stop-opacity="0"/></radialGradient>
+	<radialGradient id="veu"><stop offset="0" stop-color="${p.fundo[2]}" stop-opacity=".42"/><stop offset="1" stop-color="${p.fundo[2]}" stop-opacity="0"/></radialGradient>
+	<linearGradient id="fluxo" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="${p.violeta}"/><stop offset=".5" stop-color="${p.acento}"/><stop offset="1" stop-color="${p.marfim}"/></linearGradient>
+	<filter id="nevoa" x="-20%" y="-50%" width="140%" height="200%"><feGaussianBlur stdDeviation="26"/></filter>
+	<filter id="nevoa2" x="-20%" y="-50%" width="140%" height="200%"><feGaussianBlur stdDeviation="9"/></filter></defs>
+	<rect width="${W}" height="${H}" fill="url(#ceu)"/>
+	<ellipse cx="420" cy="400" rx="620" ry="260" fill="url(#neb1)"/><ellipse cx="1380" cy="120" rx="640" ry="250" fill="url(#neb2)"/><ellipse cx="900" cy="290" rx="700" ry="200" fill="url(#neb3)"/>`;
+	g += estrelas({ estrela: p.marfim }, 620, 703);
+	// O brilho difuso do rio.
+	g += `<path d="${d}" fill="none" stroke="url(#fluxo)" stroke-width="170" opacity=".26" filter="url(#nevoa)"/><path d="${d}" fill="none" stroke="url(#fluxo)" stroke-width="54" opacity=".32" filter="url(#nevoa2)"/>`;
+	// As estrelas do rio: mais densas no meio da faixa, da cor violeta no começo ao ouro e ao marfim no fim.
+	const cor = (t) => (t < 0.5 ? mistura(p.violeta, p.acento, t * 2) : mistura(p.acento, p.marfim, (t - 0.5) * 2));
+	for (let i = 0; i < 2600; i++) {
+		const t = r(), [x, y] = curva(t);
+		const gauss = (r() + r() + r() - 1.5) / 1.5, larg = 70 * (0.55 + 0.45 * Math.abs(Math.sin(Math.PI * t)));
+		const yy = y + gauss * larg, xx = x + (r() - 0.5) * 24;
+		const raio = 0.5 + Math.pow(r(), 3) * 2.2;
+		g += `<circle cx="${f(xx)}" cy="${f(yy)}" r="${f(raio)}" fill="${cor(t)}" opacity="${f(0.3 + r() * 0.65)}"/>`;
+	}
+	// Nós de luz ao longo do rio.
+	for (let i = 0; i < 26; i++) {
+		const t = 0.04 + r() * 0.92, [x, y] = curva(t), yy = y + (r() - 0.5) * 50;
+		if (x > 560 && x < 1240 && yy > 170 && yy < 360) continue;
+		g += `<circle cx="${f(x)}" cy="${f(yy)}" r="${f(6 + r() * 8)}" fill="url(#faisca)"/><circle cx="${f(x)}" cy="${f(yy)}" r="${f(1.4 + r())}" fill="${p.marfim}"/>`;
+	}
+	// Constelações nos cantos.
+	[[70, 50, 0, 1.15], [1500, 360, 1, 1.1], [1180, 40, 2, 0.95], [150, 380, 3, 0.9]].forEach(([x, y, i, e], k) => (g += constelacao({ linha: p.acento }, FIGURAS[i], x, y, e, 711 + k)));
+	// Estrelas de quatro pontas, como a do logo.
+	const quatro = (x, y, s) => `<circle cx="${x}" cy="${y}" r="${f(s * 2.4)}" fill="url(#faisca)"/><path d="M ${x} ${f(y - s)} Q ${f(x + s * 0.16)} ${f(y - s * 0.16)} ${f(x + s)} ${y} Q ${f(x + s * 0.16)} ${f(y + s * 0.16)} ${x} ${f(y + s)} Q ${f(x - s * 0.16)} ${f(y + s * 0.16)} ${f(x - s)} ${y} Q ${f(x - s * 0.16)} ${f(y - s * 0.16)} ${x} ${f(y - s)} Z" fill="${p.marfim}"/>`;
+	for (const [x, y, s] of [[300, 120, 16], [520, 440, 11], [1320, 420, 13], [1620, 90, 20], [1050, 70, 9], [80, 260, 10], [1740, 300, 12]]) g += quatro(x, y, s);
+	// Véu escuro atrás do nome.
+	g += `<ellipse cx="${W / 2}" cy="${H / 2}" rx="560" ry="160" fill="url(#veu)"/>`;
+	return g;
+}
+
 const SAIDAS = [
 	['planisferio', 'classico-escuro'], ['planisferio', 'classico-claro'],
 	['armilar', 'astrolabio-escuro'], ['armilar', 'astrolabio-claro'],
@@ -465,6 +521,7 @@ const SAIDAS = [
 	['circuito', 'circuito-escuro'], ['circuito', 'circuito-claro'],
 	['navegacao', 'navegacao-escuro'], ['navegacao', 'navegacao-claro'],
 	['bosque', 'bosque'], ['vitral', 'vitral'], ['forja', 'forja'], ['mapa', 'mapa'], ['abissal', 'abissal'],
+	['rio', 'constelacao'],
 ];
 // As paletas de cor do sci-fi: uma capa por paleta e por modo.
 const ARTE_SCIFI = { holograma: 'hud', radar: 'radar', circuito: 'circuito', navegacao: 'navegacao' };
@@ -492,13 +549,42 @@ for (const [tema, arte] of [['classico', 'planisferio'], ['astrolabio', 'armilar
 		}
 	}
 }
-const ARTES = { planisferio, armilar, hud, radar, circuito, navegacao, bosque, vitral, forja, mapa, abissal };
-// Cada capa sai com o nome do tema e do modo: capa-<tema>-<modo>.svg.
+// O rio de estrelas do Constelação: a capa é a mesma no claro e no escuro, nas cores escuras de cada paleta.
+for (const cor of CORES.constelacao.slice(1)) {
+	PALETAS[`constelacao-${cor}`] = capaAstra('constelacao', cor, 'escuro');
+	SAIDAS.push(['rio', `constelacao-${cor}`]);
+}
+const ARTES = { planisferio, armilar, hud, radar, circuito, navegacao, bosque, vitral, forja, mapa, abissal, rio };
+// Cada capa sai com o nome do tema e do modo: capa-<tema>-<modo>.svg. A esfera do Astrolábio e a rosa dos ventos do Mapa
+// saem em arquivos à parte (esfera-*.svg e rosa-*.svg), porque se mexem por cima da capa.
 for (const [nome, paleta] of SAIDAS) {
-	const svg = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${W} ${H}" preserveAspectRatio="xMidYMid slice">${ARTES[nome](PALETAS[paleta])}</svg>
+	const p = PALETAS[paleta];
+	const svg = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${W} ${H}" preserveAspectRatio="xMidYMid slice">${ARTES[nome](p)}</svg>
 `;
 	fs.writeFileSync(`public/temas/capa-${paleta}.svg`, svg);
+	if (nome === 'armilar') fs.writeFileSync(`public/temas/esfera-${paleta}.svg`, `<svg xmlns="http://www.w3.org/2000/svg" viewBox="${ESFERA.cx - 400} ${ESFERA.cy - 400} 800 800">${esferaArmilar(p)}</svg>\n`);
+	if (nome === 'mapa') fs.writeFileSync(`public/temas/rosa-${paleta}.svg`, `<svg xmlns="http://www.w3.org/2000/svg" viewBox="-82 -82 164 164">${rosaDosVentos(p)}</svg>\n`);
 	console.log(nome, paleta, svg.length);
+}
+
+// Máscaras de partículas para as animações (brancas: a cor vem do CSS de cada tema e paleta). Cada uma é um ladrilho
+// que se repete sem emenda, para a camada poder deslizar em loop só com transform.
+const PARTICULAS = {
+	poeira: { t: 320, n: 26, forma: (x, y, r) => `<circle cx="${x}" cy="${y}" r="${f(0.6 + r() * 1.5)}" opacity="${f(0.35 + r() * 0.65)}"/>` },
+	vagalumes: { t: 420, n: 9, forma: (x, y, r) => `<circle cx="${x}" cy="${y}" r="${f(5 + r() * 5)}" fill="url(#halo)"/><circle cx="${x}" cy="${y}" r="1.6"/>` },
+	brasas: { t: 300, n: 18, forma: (x, y, r) => `<ellipse cx="${x}" cy="${y}" rx="${f(0.8 + r() * 1.2)}" ry="${f(2 + r() * 3)}" opacity="${f(0.45 + r() * 0.55)}"/>` },
+	bolhas: { t: 340, n: 12, forma: (x, y, r) => `<circle cx="${x}" cy="${y}" r="${f(2 + r() * 5)}" fill="none" stroke="#fff" stroke-width="1.2" opacity="${f(0.45 + r() * 0.5)}"/>` },
+	brilhos: { t: 380, n: 10, forma: (x, y, r) => { const s = f(3 + r() * 5); return `<path d="M ${x} ${f(y - s)} Q ${f(x + s * 0.18)} ${f(y - s * 0.18)} ${f(x + s)} ${y} Q ${f(x + s * 0.18)} ${f(y + s * 0.18)} ${x} ${f(y + s)} Q ${f(x - s * 0.18)} ${f(y + s * 0.18)} ${f(x - s)} ${y} Q ${f(x - s * 0.18)} ${f(y - s * 0.18)} ${x} ${f(y - s)} Z" opacity="${f(0.5 + r() * 0.5)}"/>`; } },
+	luzes: { t: 400, n: 10, forma: (x, y, r) => `<circle cx="${x}" cy="${y}" r="${f(6 + r() * 10)}" fill="url(#halo)"/>` },
+};
+for (const [nome, { t, n, forma }] of Object.entries(PARTICULAS)) {
+	const r = sorteio(900 + t);
+	let g = '';
+	for (let i = 0; i < n; i++) {
+		const x = f(8 + r() * (t - 16)), y = f(8 + r() * (t - 16));
+		g += forma(x, y, r);
+	}
+	fs.writeFileSync(`public/temas/particulas-${nome}.svg`, `<svg xmlns="http://www.w3.org/2000/svg" width="${t}" height="${t}" viewBox="0 0 ${t} ${t}" fill="#fff"><defs><radialGradient id="halo"><stop offset="0" stop-color="#fff"/><stop offset=".35" stop-color="#fff" stop-opacity=".45"/><stop offset="1" stop-color="#fff" stop-opacity="0"/></radialGradient></defs>${g}</svg>\n`);
 }
 
 // Marcas d'água dos temas sci-fi novos, no canto da página, como o selo rúnico do Holograma.

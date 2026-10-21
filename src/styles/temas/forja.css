@@ -2,6 +2,7 @@
 
 :root[data-ss-tema='forja'],
 :root[data-ss-tema='forja'][data-theme='light'] {
+	--ss-luz: #ff6a1f;
 	--ss-ouro: #b87333;
 	--ss-ouro-rgb: 184 115 51;
 	--ss-ouro-claro: #e0a868;

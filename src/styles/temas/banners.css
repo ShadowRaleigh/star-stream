@@ -3,7 +3,6 @@
 /* Observatório: um instrumento gravado em latão, sem foto. */
 [data-ss-tema='observatorio'] .ss-capa {
 	background:
-		var(--ss-capa-anel, url('/star-stream/temas/astrolabio-anel-dourado.svg')) center / min(640px, 120%) no-repeat,
 		var(--ss-capa-estrelas, url('/star-stream/temas/estrelas-douradas.svg')) 0 0 / 420px,
 		radial-gradient(ellipse at center, var(--ss-capa-1, #2a2216) 0%, var(--ss-capa-2, #15130f) 62%, var(--ss-capa-3, #0e0d0b) 100%);
 	background-blend-mode: normal;
@@ -35,7 +34,6 @@
 
 [data-ss-tema='observatorio'][data-theme='light'] .ss-capa {
 	background:
-		var(--ss-capa-anel-claro, url('/star-stream/temas/astrolabio-anel-tinta.svg')) center / min(640px, 120%) no-repeat,
 		radial-gradient(ellipse at center, var(--ss-capa-claro-1, #fbf5e6), var(--ss-capa-claro-2, #ead9b4) 90%);
 	box-shadow: inset 0 0 120px rgb(120 80 30 / 0.3);
 }
@@ -61,7 +59,8 @@
 	position: absolute;
 	inset: -40px;
 	z-index: -2;
-	background: var(--ss-galaxia) center 40% / cover;
+	/* A galáxia vai borrada: uma versão de 480 px fica igual depois do desfoque e pesa um oitavo. */
+	background: url('/star-stream/galaxia-borrada.webp') center 40% / cover;
 	filter: blur(22px) saturate(1.8) hue-rotate(var(--ss-matiz));
 	opacity: 0.85;
 }
@@ -84,7 +83,6 @@
 	position: relative;
 	isolation: isolate;
 	background:
-		var(--ss-capa-anel-claro) center / min(560px, 110%) no-repeat,
 		var(--ss-capa-estrelas-claro) 0 0 / 420px,
 		var(--ss-papel);
 	color: var(--ss-tinta);
@@ -119,7 +117,6 @@
 
 [data-ss-tema='codex']:not([data-theme='light']) .ss-capa {
 	background:
-		var(--ss-capa-anel-escuro) center / min(560px, 110%) no-repeat,
 		var(--ss-capa-estrelas-escuro) 0 0 / 420px,
 		var(--ss-noite);
 }
@@ -151,7 +148,6 @@
 		var(--ss-canto-sd) calc(100% - 14px) 14px / 90px no-repeat,
 		var(--ss-canto-ie) 14px calc(100% - 14px) / 90px no-repeat,
 		var(--ss-canto-id) calc(100% - 14px) calc(100% - 14px) / 90px no-repeat,
-		var(--ss-selo-capa) center / min(480px, 95%) no-repeat,
 		var(--ss-material) 0 0 / 300px,
 		radial-gradient(ellipse at center, var(--ss-capa-centro), var(--ss-couro) 75%);
 	border: 2px solid var(--ss-ouro);

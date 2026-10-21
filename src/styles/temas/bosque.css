@@ -2,6 +2,7 @@
 
 :root[data-ss-tema='bosque'],
 :root[data-ss-tema='bosque'][data-theme='light'] {
+	--ss-luz: #e8f59a;
 	--ss-ouro: #c8b46a;
 	--ss-ouro-rgb: 200 180 106;
 	--ss-ouro-claro: #e6dca0;

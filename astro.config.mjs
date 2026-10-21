@@ -63,6 +63,7 @@ export default defineConfig({
 				'./src/styles/temas/navegacao.css',
 				// Capas que não cabem nos arquivos dos temas
 				'./src/styles/temas/banners.css',
+				'./src/styles/temas/animacoes.css',
 			],
 			lastUpdated: false,
 			pagination: true,

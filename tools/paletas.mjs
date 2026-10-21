@@ -148,6 +148,10 @@ export function varsFantasia(tema, cor) {
 		'--sl-color-hairline': `rgb(${rgb(p.ouro)} / 0.25)`,
 		'--sl-color-hairline-light': `rgb(${rgb(p.ouro)} / 0.4)`,
 	};
+	// As partículas das animações (vaga-lumes, brasas, bolhas) e a rosa dos ventos do Mapa, nas cores da paleta.
+	const luz = { bosque: p.luz, forja: p.brasa, abissal: p.luzAgua }[tema];
+	if (luz) vars['--ss-luz'] = luz;
+	if (tema === 'mapa') vars['--ss-rosa'] = arq(`rosa-mapa-${cor}`);
 	// O Grimório monta a capa com o selo, os cantos e o couro: aqui vão as peças recoloridas e o filtro do nome.
 	if (tema === 'grimorio') {
 		vars['--ss-selo-capa'] = arq(`selo-grimorio-${cor}`);
@@ -228,6 +232,7 @@ export function varsAstra(tema, cor, modo) {
 				'--ss-botao-tinta': mistura(e.acento, '#000000', 0.88),
 				'--ss-fundo': claro ? ceuClaro : ceuEscuro,
 			});
+			regras.push(['.ss-capa', { 'background-image': arqT(`capa-constelacao-${cor}`) }]);
 			break;
 		}
 		case 'classico': {
@@ -271,7 +276,7 @@ export function varsAstra(tema, cor, modo) {
 				'--ss-vidro': claro ? `rgb(${rgb(mistura(b.bg, '#ffffff', 0.6))} / 0.72)` : `rgb(${rgb(mistura(b.bg, '#ffffff', 0.04))} / 0.62)`,
 				'--sl-color-bg-nav': `rgb(${rgb(b.bg)} / ${claro ? 0.7 : 0.55})`,
 				'--sl-color-bg-sidebar': `rgb(${rgb(b.bg)} / ${claro ? 0.55 : 0.45})`,
-				'--ss-fundo': `linear-gradient(180deg, rgb(${rgb(b.bg)} / ${claro ? 0.84 : 0.55}), rgb(${rgb(b.bg)} / ${claro ? 0.92 : 0.82})), var(--ss-galaxia) center / cover, ${b.bg}`,
+				'--ss-fundo': `linear-gradient(180deg, rgb(${rgb(b.bg)} / ${claro ? 0.84 : 0.55}), rgb(${rgb(b.bg)} / ${claro ? 0.92 : 0.82})), var(--ss-galaxia-fundo) center / cover, ${b.bg}`,
 			});
 			break;
 		}
@@ -302,6 +307,7 @@ export function varsAstra(tema, cor, modo) {
 				'--ss-botao-tinta': mistura(b.acento, '#000000', 0.88),
 				'--ss-fundo': claro ? b.bg : ceuEscuro,
 			});
+			v['--ss-esfera'] = arqT(`esfera-astrolabio-${cor}-${modo}`);
 			regras.push(['.ss-capa', { 'background-image': arqT(`capa-astrolabio-${cor}-${modo}`) }]);
 			break;
 	}
@@ -312,6 +318,7 @@ export function varsAstra(tema, cor, modo) {
 export function capaAstra(tema, cor, modo) {
 	const b = baseAstra(tema, cor, modo), claro = modo === 'claro';
 	const fundo = claro ? [mistura(b.bg, '#ffffff', 0.5), b.bg, mistura(b.bg, b.acento, 0.12)] : [mistura(b.bg, b.acento, 0.1), mistura(b.bg, b.acento, 0.03), mistura(b.bg, '#000000', 0.25)];
+	if (tema === 'constelacao') return { fundo: [mistura(b.bg, b.acento, 0.1), mistura(b.bg, '#ffffff', 0.02), mistura(b.bg, '#000000', 0.4)], acento: b.acento, marfim: b.tinta, violeta: mistura(b.acento, '#8a6ac0', 0.55), azul: mistura(b.acento, '#3a5a9a', 0.65) };
 	if (tema === 'classico') return { fundo, linha: claro ? b.tinta : b.acento, fraca: mistura(b.tinta, b.bg, 0.5), estrela: b.tinta, brilho: claro ? b.acento : mistura(b.acento, '#ffffff', 0.2) };
 	if (tema === 'astrolabio') return { fundo, linha: claro ? b.tinta : b.acento, fraca: mistura(b.tinta, b.bg, 0.45), estrela: b.tinta, brilho: b.acento };
 	// Observatório e Codex: só a cor do anel e das estrelas.

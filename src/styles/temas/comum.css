@@ -72,3 +72,12 @@
 		backdrop-filter: blur(10px);
 	}
 }
+
+/* A folha da fantasia e o vidro da Nebulosa acompanham a coluna de texto: em telas largas, não viram uma folha
+   enorme com o texto perdido no meio. */
+@media (min-width: 72rem) {
+	:root:is([data-ss-familia='fantasia'], [data-ss-tema='nebulosa']) .main-pane > main {
+		max-width: calc(var(--sl-content-width) + 2 * var(--sl-content-pad-x) + 4rem);
+		margin-inline: auto;
+	}
+}

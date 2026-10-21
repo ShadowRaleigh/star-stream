@@ -28,7 +28,7 @@
 	--sl-color-hairline-light: rgb(var(--ss-rosa-rgb) / 0.26);
 	--ss-fundo:
 		linear-gradient(180deg, rgb(var(--ss-noite-rgb) / 0.55), rgb(var(--ss-noite-rgb) / 0.82)),
-		var(--ss-galaxia) center / cover,
+		var(--ss-galaxia-fundo) center / cover,
 		#0c0818;
 	--ss-tabela-cabecalho: rgb(var(--ss-rosa-rgb) / 0.12);
 	--ss-tabela-listra: rgb(255 255 255 / 0.03);
@@ -57,7 +57,7 @@
 	--sl-color-hairline-light: rgb(168 64 127 / 0.26);
 	--ss-fundo:
 		linear-gradient(180deg, rgb(248 242 252 / 0.84), rgb(248 242 252 / 0.92)),
-		var(--ss-galaxia) center / cover,
+		var(--ss-galaxia-fundo) center / cover,
 		#f3edf8;
 	--ss-tabela-cabecalho: rgb(168 64 127 / 0.08);
 	--ss-tabela-listra: rgb(91 70 184 / 0.03);

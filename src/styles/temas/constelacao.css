@@ -211,7 +211,9 @@
 	color: var(--ss-ouro-forte);
 }
 
+/* A capa é o rio de estrelas (tools/gerar-capas.mjs), igual no claro e no escuro. */
 [data-ss-tema='constelacao'] .ss-capa {
+	background: url('/star-stream/temas/capa-constelacao.svg') center / cover, #0c1222;
 	border: 1px solid var(--sl-color-hairline-light);
 	box-shadow: inset 0 0 120px rgb(0 0 0 / 0.6), 0 20px 60px -30px rgb(0 0 0 / 0.8);
 }

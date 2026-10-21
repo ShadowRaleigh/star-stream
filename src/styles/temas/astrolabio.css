@@ -1,6 +1,7 @@
 /* Astrolábio: a estrutura do Observatório (títulos gravados, serifa de livro, astrolábio, filetes duplos) com o céu azul-noite, as estrelas e o ouro do Constelação no escuro, e a Ardósia no claro. Gerado de observatorio.css; as cores ficam no fim. */
 
 :root[data-ss-tema='astrolabio'] {
+	--ss-esfera: url('/star-stream/temas/esfera-astrolabio-escuro.svg');
 	--ss-latao: #c9a15d;
 	--ss-latao-claro: #e8c88c;
 	--ss-serifa: 'EB Garamond Variable', 'EB Garamond', Georgia, serif;
@@ -382,6 +383,7 @@
 
 /* Modo claro: Ardósia (papel cinza-pedra, tinta grafite e azul-petróleo). */
 :root[data-ss-tema='astrolabio'][data-theme='light'] {
+	--ss-esfera: url('/star-stream/temas/esfera-astrolabio-claro.svg');
 	--ss-latao: #1f6f78;
 	--ss-latao-claro: #0e3c42;
 	--sl-color-accent-low: #dce7e8;

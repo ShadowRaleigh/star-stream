@@ -4,6 +4,8 @@
 :root {
 	/* A foto da galáxia: no celular, uma versão de 1000 px, para não disputar a rede com as fontes. */
 	--ss-galaxia: url('/star-stream/galaxia.webp');
+	/* A foto inteira, em retrato, para o fundo de página da Nebulosa: cobre a tela sem esticar. */
+	--ss-galaxia-fundo: url('/star-stream/galaxia-retrato.webp');
 	--ss-font-titulo: 'Cinzel', Georgia, serif;
 	--sl-font: 'Segoe UI', system-ui, -apple-system, Roboto, Arial, sans-serif;
 
@@ -29,6 +31,7 @@
 @media (max-width: 50rem) {
 	:root {
 		--ss-galaxia: url('/star-stream/galaxia-1000.webp');
+		--ss-galaxia-fundo: url('/star-stream/galaxia-retrato-celular.webp');
 	}
 }
 
@@ -169,6 +172,8 @@ h1#_top {
 
 .ss-capa {
 	position: relative;
+	isolation: isolate;
+	overflow: hidden;
 	display: grid;
 	justify-items: center;
 	gap: 1.25rem;
@@ -243,4 +248,29 @@ h1#_top {
 /* A capa tem os dois logos; os temas de capa clara mostram o escuro. */
 .ss-capa .logo-escuro {
 	display: none;
+}
+
+/* Em telas largas, o Starlight centraliza o texto na tela inteira e dá toda a sobra à coluna "Nesta página", que fica
+   enorme e vazia, com o texto deslocado para a esquerda. Aqui o índice tem largura fixa e o texto fica no centro do
+   espaço entre as duas barras; em telas bem largas, a coluna de texto cresce um pouco, ainda confortável para ler. */
+@media (min-width: 72rem) {
+	:root {
+		--ss-largura-indice: 17rem;
+	}
+
+	.right-sidebar-container {
+		width: var(--ss-largura-indice);
+	}
+
+	[data-has-sidebar][data-has-toc] .main-pane {
+		--sl-content-margin-inline: auto;
+		width: calc(100% - var(--ss-largura-indice));
+	}
+}
+
+@media (min-width: 100rem) {
+	:root {
+		--sl-content-width: 50rem;
+		--ss-largura-indice: 19rem;
+	}
 }

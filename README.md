@@ -54,4 +54,6 @@ O mestre pode mandar aos jogadores um link já com o tema e a paleta da campanha
 
 `gerar-assets-temas.mjs` gera os ornamentos originais (estrelas, constelação, astrolábio, selos, pergaminho, couro, cantos e florões do Grimório).
 
+**Animações:** cada tema tem um movimento de ambiente na página e um na capa, todos em `src/styles/temas/animacoes.css` (partículas em ladrilho que deslizam, peças que giram ou balançam). Só `transform` e `opacity` animam, e quem pede menos movimento no sistema não vê nenhuma.
+
 **Desempenho:** as fontes são só do alfabeto latino e pré-carregadas, a foto da galáxia tem uma versão menor para o celular, o fundo de cada tema fica numa camada fixa (nada de `background-attachment: fixed`), o desfoque de vidro só aparece no cabeçalho do computador, e as animações só giram ou deslocam camadas (`transform`), nunca redesenham as capas. Quem pede menos movimento no sistema não vê animação nenhuma.

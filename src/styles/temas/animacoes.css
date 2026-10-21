@@ -1,0 +1,391 @@
+/* Animações dos temas: um movimento de ambiente na página e um na capa, em cada tema.
+   Regras para não pesar: só transform e opacity animam (a placa de vídeo move as camadas sem redesenhar nada), as
+   partículas são máscaras em ladrilho que deslizam em loop, e quem pede menos movimento no sistema não vê nenhuma. */
+
+@keyframes ss-subir {
+	to {
+		transform: translateY(calc(-1 * var(--ss-ladrilho)));
+	}
+}
+
+@keyframes ss-derivar {
+	to {
+		transform: translateX(calc(-1 * var(--ss-ladrilho)));
+	}
+}
+
+@keyframes ss-pulsar {
+	from {
+		opacity: var(--ss-opacidade);
+	}
+
+	to {
+		opacity: calc(var(--ss-opacidade) * 0.35);
+	}
+}
+
+@keyframes ss-rodar {
+	to {
+		rotate: 360deg;
+	}
+}
+
+@keyframes ss-balancar {
+	from {
+		rotate: calc(-1 * var(--ss-giro, 5deg));
+	}
+
+	to {
+		rotate: var(--ss-giro, 5deg);
+	}
+}
+
+/* ---- Página: partículas de ambiente numa camada fixa, entre o fundo e o texto ---- */
+
+:root:is([data-ss-tema='constelacao'], [data-ss-tema='classico'], [data-ss-familia='fantasia'])::after {
+	content: '';
+	position: fixed;
+	inset: 0 0 calc(-1 * var(--ss-ladrilho)) 0;
+	z-index: -1;
+	pointer-events: none;
+	background: var(--ss-particula);
+	-webkit-mask: var(--ss-mascara) 0 0 / var(--ss-ladrilho) var(--ss-ladrilho) repeat;
+	mask: var(--ss-mascara) 0 0 / var(--ss-ladrilho) var(--ss-ladrilho) repeat;
+	opacity: var(--ss-opacidade);
+	animation:
+		ss-subir var(--ss-duracao) linear infinite,
+		ss-pulsar var(--ss-pulso) ease-in-out infinite alternate;
+	will-change: transform, opacity;
+}
+
+:root:is([data-ss-tema='constelacao'], [data-ss-tema='classico']) {
+	--ss-mascara: url('/star-stream/temas/particulas-brilhos.svg');
+	--ss-ladrilho: 380px;
+	--ss-particula: var(--sl-color-accent);
+	--ss-opacidade: 0.5;
+	--ss-duracao: 240s;
+	--ss-pulso: 5s;
+}
+
+:root[data-ss-tema='grimorio'] {
+	--ss-mascara: url('/star-stream/temas/particulas-poeira.svg');
+	--ss-ladrilho: 320px;
+	--ss-particula: var(--ss-ouro-claro);
+	--ss-opacidade: 0.55;
+	--ss-duracao: 120s;
+	--ss-pulso: 8s;
+}
+
+:root[data-ss-tema='bosque'] {
+	--ss-mascara: url('/star-stream/temas/particulas-vagalumes.svg');
+	--ss-ladrilho: 420px;
+	--ss-particula: var(--ss-luz, #e8f59a);
+	--ss-opacidade: 0.8;
+	--ss-duracao: 150s;
+	--ss-pulso: 3.5s;
+}
+
+:root[data-ss-tema='vitral'] {
+	--ss-mascara: url('/star-stream/temas/particulas-luzes.svg');
+	--ss-ladrilho: 400px;
+	--ss-particula: var(--ss-ouro-claro);
+	--ss-opacidade: 0.4;
+	--ss-duracao: 200s;
+	--ss-pulso: 9s;
+}
+
+:root[data-ss-tema='forja'] {
+	--ss-mascara: url('/star-stream/temas/particulas-brasas.svg');
+	--ss-ladrilho: 300px;
+	--ss-particula: var(--ss-luz, #ff6a1f);
+	--ss-opacidade: 0.75;
+	--ss-duracao: 45s;
+	--ss-pulso: 2.5s;
+}
+
+:root[data-ss-tema='mapa'] {
+	--ss-mascara: url('/star-stream/temas/particulas-poeira.svg');
+	--ss-ladrilho: 320px;
+	--ss-particula: var(--ss-ouro);
+	--ss-opacidade: 0.45;
+	--ss-duracao: 200s;
+	--ss-pulso: 10s;
+}
+
+:root[data-ss-tema='abissal'] {
+	--ss-mascara: url('/star-stream/temas/particulas-bolhas.svg');
+	--ss-ladrilho: 340px;
+	--ss-particula: var(--ss-luz, #c9f3f0);
+	--ss-opacidade: 0.55;
+	--ss-duracao: 70s;
+	--ss-pulso: 6s;
+}
+
+/* Nebulosa: a névoa colorida deriva devagar por trás do vidro. */
+:root[data-ss-tema='nebulosa']::after {
+	content: '';
+	position: fixed;
+	inset: -10%;
+	z-index: -1;
+	pointer-events: none;
+	background:
+		radial-gradient(ellipse 40% 35% at 25% 70%, rgb(var(--ss-rosa-rgb) / 0.16), transparent 70%),
+		radial-gradient(ellipse 45% 35% at 75% 25%, rgb(var(--ss-lilas-rgb) / 0.16), transparent 70%);
+	animation: ss-nevoa 38s ease-in-out infinite alternate;
+	will-change: transform;
+}
+
+@keyframes ss-nevoa {
+	to {
+		transform: translate(4%, -3%) scale(1.08);
+	}
+}
+
+/* Observatório, Codex e Astrolábio: o astrolábio em marca d'água gira devagar. */
+:root:is([data-ss-tema='observatorio'], [data-ss-tema='codex'], [data-ss-tema='astrolabio']) body::after {
+	animation: ss-rodar 300s linear infinite;
+}
+
+/* ---- Capa ---- */
+
+/* Constelação: estrelas cintilando sobre o rio, e uma estrela cadente de vez em quando. */
+[data-ss-tema='constelacao'] .ss-capa::before {
+	content: '';
+	position: absolute;
+	inset: 0;
+	z-index: -1;
+	background: #fff8ea;
+	-webkit-mask: url('/star-stream/temas/particulas-brilhos.svg') 0 0 / 300px 300px repeat;
+	mask: url('/star-stream/temas/particulas-brilhos.svg') 0 0 / 300px 300px repeat;
+	--ss-opacidade: 0.75;
+	animation: ss-pulsar 3.2s ease-in-out infinite alternate;
+}
+
+[data-ss-tema='constelacao'] .ss-capa::after {
+	content: '';
+	position: absolute;
+	z-index: -1;
+	top: 18%;
+	left: -15%;
+	width: 140px;
+	height: 2px;
+	border-radius: 2px;
+	background: linear-gradient(90deg, transparent, #fff8ea);
+	box-shadow: 0 0 8px rgb(255 248 234 / 0.8);
+	opacity: 0;
+	animation: ss-cadente 11s ease-in infinite 2s;
+}
+
+@keyframes ss-cadente {
+	0%,
+	82% {
+		transform: rotate(14deg) translateX(0);
+		opacity: 0;
+	}
+
+	84% {
+		opacity: 1;
+	}
+
+	94%,
+	100% {
+		transform: rotate(14deg) translateX(min(1300px, 110vw));
+		opacity: 0;
+	}
+}
+
+/* Clássico: brilhos cintilando sobre a carta celeste. */
+[data-ss-tema='classico'] .ss-capa::after {
+	content: '';
+	position: absolute;
+	inset: 0;
+	z-index: -1;
+	background: var(--sl-color-accent);
+	-webkit-mask: url('/star-stream/temas/particulas-brilhos.svg') 0 0 / 300px 300px repeat;
+	mask: url('/star-stream/temas/particulas-brilhos.svg') 0 0 / 300px 300px repeat;
+	--ss-opacidade: 0.7;
+	animation: ss-pulsar 4s ease-in-out infinite alternate;
+}
+
+/* Observatório e Codex: o anel do astrolábio gira no centro da capa. */
+:is([data-ss-tema='observatorio'], [data-ss-tema='codex']) .ss-capa::after {
+	content: '';
+	position: absolute;
+	z-index: -1;
+	left: 50%;
+	top: 50%;
+	width: min(640px, 120%);
+	aspect-ratio: 1;
+	translate: -50% -50%;
+	background: var(--ss-capa-anel, url('/star-stream/temas/astrolabio-anel-dourado.svg')) center / contain no-repeat;
+	animation: ss-rodar 180s linear infinite;
+}
+
+[data-ss-tema='observatorio'][data-theme='light'] .ss-capa::after {
+	background-image: var(--ss-capa-anel-claro, url('/star-stream/temas/astrolabio-anel-tinta.svg'));
+}
+
+[data-ss-tema='codex'] .ss-capa::after {
+	width: min(560px, 110%);
+	background-image: var(--ss-capa-anel-claro);
+}
+
+[data-ss-tema='codex']:not([data-theme='light']) .ss-capa::after {
+	background-image: var(--ss-capa-anel-escuro);
+}
+
+/* Astrolábio: a esfera armilar balança devagar, como um instrumento pendurado. */
+[data-ss-tema='astrolabio'] .ss-capa::after {
+	content: '';
+	position: absolute;
+	z-index: -1;
+	left: 55%;
+	top: 50%;
+	width: 44.5%;
+	aspect-ratio: 1;
+	translate: 0 -50%;
+	background: var(--ss-esfera) center / contain no-repeat;
+	--ss-giro: 6deg;
+	animation: ss-balancar 9s ease-in-out infinite alternate;
+}
+
+/* Nebulosa: a galáxia borrada da capa deriva. */
+[data-ss-tema='nebulosa'] .ss-capa::before {
+	animation: ss-nevoa 26s ease-in-out infinite alternate;
+	will-change: transform;
+}
+
+/* Grimório: o selo gira devagar no centro da capa de couro. */
+[data-ss-tema='grimorio'] .ss-capa::after {
+	content: '';
+	position: absolute;
+	z-index: -1;
+	left: 50%;
+	top: 50%;
+	width: min(480px, 95%);
+	aspect-ratio: 1;
+	translate: -50% -50%;
+	background: var(--ss-selo-capa) center / contain no-repeat;
+	animation: ss-rodar 240s linear infinite;
+}
+
+/* Bosque, Forja e Abissal: partículas sobem pela capa (vaga-lumes, fagulhas e bolhas). */
+:is([data-ss-tema='bosque'], [data-ss-tema='forja'], [data-ss-tema='abissal']) .ss-capa::after {
+	content: '';
+	position: absolute;
+	inset: 0 0 calc(-1 * var(--ss-ladrilho)) 0;
+	z-index: -1;
+	background: var(--ss-particula);
+	-webkit-mask: var(--ss-mascara) 0 0 / var(--ss-ladrilho) var(--ss-ladrilho) repeat;
+	mask: var(--ss-mascara) 0 0 / var(--ss-ladrilho) var(--ss-ladrilho) repeat;
+	opacity: var(--ss-opacidade);
+	animation:
+		ss-subir calc(var(--ss-duracao) / 8) linear infinite,
+		ss-pulsar var(--ss-pulso) ease-in-out infinite alternate;
+}
+
+/* Vitral: feixes de luz atravessam a capa e pulsam. */
+[data-ss-tema='vitral'] .ss-capa::after {
+	content: '';
+	position: absolute;
+	inset: 0 -25%;
+	z-index: -1;
+	background: repeating-linear-gradient(110deg, transparent 0 9%, rgb(255 244 214 / 0.1) 12%, transparent 16%);
+	animation: ss-feixes 14s ease-in-out infinite alternate;
+}
+
+@keyframes ss-feixes {
+	from {
+		transform: translateX(-6%);
+		opacity: 0.35;
+	}
+
+	to {
+		transform: translateX(6%);
+		opacity: 1;
+	}
+}
+
+/* Mapa: a rosa dos ventos oscila como uma bússola procurando o norte. */
+[data-ss-tema='mapa'] .ss-capa::after {
+	content: '';
+	position: absolute;
+	z-index: -1;
+	left: 71.7%;
+	top: 78.8%;
+	width: 9.1%;
+	aspect-ratio: 1;
+	translate: -50% -50%;
+	background: var(--ss-rosa, url('/star-stream/temas/rosa-mapa.svg')) center / contain no-repeat;
+	--ss-giro: 12deg;
+	animation: ss-balancar 3.5s ease-in-out infinite alternate;
+}
+
+/* Holograma: uma faixa de varredura desce pela tela da capa. */
+[data-ss-tema='holograma'] .ss-capa::before {
+	content: '';
+	position: absolute;
+	z-index: -1;
+	left: 0;
+	right: 0;
+	top: -22%;
+	height: 20%;
+	background: linear-gradient(180deg, transparent, rgb(var(--ss-ciano-rgb) / 0.16) 70%, rgb(var(--ss-ciano-rgb) / 0.45) 96%, transparent);
+	animation: ss-varrer-tela 5.5s linear infinite;
+}
+
+@keyframes ss-varrer-tela {
+	to {
+		transform: translateY(620%);
+	}
+}
+
+/* Circuito: um brilho de dados atravessa a placa em diagonal, de tempos em tempos. */
+[data-ss-tema='circuito'] .ss-capa::before {
+	content: '';
+	position: absolute;
+	z-index: -1;
+	top: -20%;
+	bottom: -20%;
+	left: 0;
+	width: 22%;
+	background: linear-gradient(90deg, transparent, rgb(var(--ss-violeta-rgb) / 0.14), rgb(var(--ss-ciano-rgb) / 0.22), transparent);
+	transform: translateX(-120%) skewX(-18deg);
+	animation: ss-dados 7s ease-in-out infinite;
+}
+
+@keyframes ss-dados {
+	0%,
+	15% {
+		transform: translateX(-120%) skewX(-18deg);
+	}
+
+	60%,
+	100% {
+		transform: translateX(560%) skewX(-18deg);
+	}
+}
+
+/* Navegação: o campo de estrelas passa devagar, como visto da janela da nave. */
+[data-ss-tema='navegacao'] .ss-capa::before {
+	content: '';
+	position: absolute;
+	inset: 0 calc(-1 * var(--ss-ladrilho)) 0 0;
+	z-index: -1;
+	--ss-ladrilho: 320px;
+	background: var(--sl-color-white);
+	-webkit-mask: url('/star-stream/temas/particulas-poeira.svg') 0 0 / 320px 320px repeat;
+	mask: url('/star-stream/temas/particulas-poeira.svg') 0 0 / 320px 320px repeat;
+	opacity: 0.55;
+	animation: ss-derivar 30s linear infinite;
+}
+
+/* Quem pede menos movimento não vê animação nenhuma: as camadas ficam paradas, na posição inicial. */
+@media (prefers-reduced-motion: reduce) {
+	:root[data-ss-tema]::after,
+	:root[data-ss-tema] body::after,
+	:root[data-ss-tema] .ss-capa::before,
+	:root[data-ss-tema] .ss-capa::after {
+		animation: none !important;
+	}
+}
