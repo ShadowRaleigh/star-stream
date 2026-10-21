@@ -1,33 +1,129 @@
 ---
-// Substitui o seletor de claro/escuro do Starlight: acrescenta, antes dele, o seletor de tema visual do livro.
-import Select from '@astrojs/starlight/components/Select.astro';
+// Substitui o seletor de claro/escuro do Starlight: acrescenta, antes dele, o seletor de tema visual do livro
+// (com os temas agrupados por família) e o de paleta de cor do tema. Reproduz a aparência do Select do Starlight,
+// que não aceita grupos nem opções que mudam conforme o tema.
+import { Icon } from '@astrojs/starlight/components';
 import ThemeSelect from '@astrojs/starlight/components/ThemeSelect.astro';
-import { TEMAS } from '../temas.mjs';
+import { FAMILIAS, TEMAS } from '../temas.mjs';
+import { coresDoTema } from '../cores.mjs';
 
-const opcoes = TEMAS.map((t, i) => ({
-	value: t.id,
-	label: t.teste ? `${t.nome} (teste)` : t.nome,
-	selected: i === 0,
-}));
+const grupos = FAMILIAS.map((familia) => ({ ...familia, temas: TEMAS.filter((t) => t.familia === familia.id) }));
+const familiaDe = Object.fromEntries(TEMAS.map((t) => [t.id, t.familia]));
+const coresDe = Object.fromEntries(TEMAS.map((t) => [t.id, coresDoTema(t.id)]));
+const coresIniciais = coresDe[TEMAS[0].id];
 ---
 
-<ss-seletor-tema>
-	<Select icon="star" label="Tema visual do livro" options={opcoes} width="10.5em" />
+<ss-seletor-tema data-familias={JSON.stringify(familiaDe)} data-cores={JSON.stringify(coresDe)}>
+	<label class="tema">
+		<span class="sr-only">Tema visual do livro</span>
+		<Icon name="star" class="icone rotulo" />
+		<select class="tema" autocomplete="off">
+			{
+				grupos.map((g) => (
+					<optgroup label={g.nome}>
+						{g.temas.map((t) => (
+							<option value={t.id} selected={t.id === TEMAS[0].id}>
+								{t.teste ? `${t.nome} (teste)` : t.nome}
+							</option>
+						))}
+					</optgroup>
+				))
+			}
+		</select>
+		<Icon name="down-caret" class="icone seta" />
+	</label>
+	<label class="cor" hidden={coresIniciais.length === 0}>
+		<span class="sr-only">Paleta de cor do tema</span>
+		<svg class="icone rotulo" viewBox="0 0 24 24" width="1em" height="1em" fill="currentColor" aria-hidden="true">
+			<path d="M12 3a9 9 0 0 0 0 18c1.1 0 1.8-.8 1.8-1.7 0-.5-.2-.9-.5-1.2-.3-.3-.5-.7-.5-1.2 0-.9.8-1.7 1.8-1.7H17a4 4 0 0 0 4-4c0-4.4-4-8.2-9-8.2Zm-5.5 9a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3Zm3-4a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3Zm5 0a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3Zm3 4a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3Z" />
+		</svg>
+		<select class="cor" autocomplete="off">
+			{coresIniciais.map((c, i) => <option value={c.id} selected={i === 0}>{c.nome}</option>)}
+		</select>
+		<Icon name="down-caret" class="icone seta" />
+	</label>
 </ss-seletor-tema>
 <ThemeSelect />
 
 <script>
+	type Cor = { id: string; nome: string };
+	const raiz = document.documentElement;
+
+	// As paletas de cada tema ficam num arquivo à parte (public/cores/<tema>.css), baixado só quando preciso.
+	// Espera o arquivo chegar antes de trocar a cor, para a página não piscar na paleta padrão.
+	const base = import.meta.env.BASE_URL.endsWith('/') ? import.meta.env.BASE_URL : `${import.meta.env.BASE_URL}/`;
+	const arquivosDeCor = new Map<string, Promise<void>>();
+	const carregarCores = (tema: string) => {
+		if (!arquivosDeCor.has(tema)) {
+			const existente = document.querySelector<HTMLLinkElement>(`link[data-ss-cores="${tema}"]`);
+			arquivosDeCor.set(
+				tema,
+				existente
+					? Promise.resolve()
+					: new Promise((pronto) => {
+							const link = Object.assign(document.createElement('link'), { rel: 'stylesheet', href: `${base}cores/${tema}.css` });
+							link.dataset.ssCores = tema;
+							link.onload = link.onerror = () => pronto();
+							document.head.append(link);
+						}),
+			);
+		}
+		return arquivosDeCor.get(tema)!;
+	};
+
 	class SeletorDeTema extends HTMLElement {
 		connectedCallback() {
-			const select = this.querySelector('select');
-			if (!select) return;
-			select.value = document.documentElement.dataset.ssTema || select.options[0].value;
-			select.addEventListener('change', () => {
-				document.documentElement.dataset.ssTema = select.value;
+			const tema = this.querySelector<HTMLSelectElement>('select.tema');
+			const cor = this.querySelector<HTMLSelectElement>('select.cor');
+			const rotuloCor = this.querySelector<HTMLLabelElement>('label.cor');
+			if (!tema || !cor || !rotuloCor) return;
+			const familias = JSON.parse(this.dataset.familias || '{}');
+			const cores: Record<string, Cor[]> = JSON.parse(this.dataset.cores || '{}');
+
+			// Monta as opções de cor do tema atual e marca a paleta em uso.
+			const montarCores = () => {
+				const lista = cores[raiz.dataset.ssTema || ''] || [];
+				rotuloCor.hidden = lista.length === 0;
+				cor.replaceChildren(...lista.map((c) => new Option(c.nome, c.id)));
+				if (lista.length) cor.value = raiz.dataset.ssCor || lista[0].id;
+			};
+			const sincronizar = () => {
+				for (const outro of document.querySelectorAll('ss-seletor-tema')) outro.dispatchEvent(new Event('ss-sincronizar'));
+			};
+			this.addEventListener('ss-sincronizar', () => {
+				tema.value = raiz.dataset.ssTema || tema.options[0].value;
+				montarCores();
+			});
+
+			tema.value = raiz.dataset.ssTema || tema.options[0].value;
+			montarCores();
+
+			tema.addEventListener('change', async () => {
+				const novo = tema.value;
+				// Cada tema lembra a sua última paleta.
+				const lista = cores[novo] || [];
+				let salva: string | null = null;
 				try {
-					localStorage.setItem('ss-tema', select.value);
+					localStorage.setItem('ss-tema', novo);
+					salva = localStorage.getItem(`ss-cor-${novo}`);
 				} catch {}
-				for (const outro of document.querySelectorAll<HTMLSelectElement>('ss-seletor-tema select')) outro.value = select.value;
+				const escolhida = lista.find((c) => c.id === salva)?.id || lista[0]?.id;
+				if (escolhida && escolhida !== lista[0].id) await carregarCores(novo);
+				raiz.dataset.ssTema = novo;
+				raiz.dataset.ssFamilia = familias[novo];
+				if (escolhida) raiz.dataset.ssCor = escolhida;
+				else delete raiz.dataset.ssCor;
+				sincronizar();
+			});
+
+			cor.addEventListener('change', async () => {
+				const lista = cores[tema.value] || [];
+				if (cor.value !== lista[0]?.id) await carregarCores(tema.value);
+				raiz.dataset.ssCor = cor.value;
+				try {
+					localStorage.setItem(`ss-cor-${tema.value}`, cor.value);
+				} catch {}
+				sincronizar();
 			});
 		}
 	}
@@ -37,5 +133,95 @@ const opcoes = TEMAS.map((t, i) => ({
 <style>
 	ss-seletor-tema {
 		display: contents;
+	}
+
+	label {
+		--rotulo: 0.875rem;
+		--seta: 1.25rem;
+		--folga: 0.5rem;
+		position: relative;
+		display: flex;
+		align-items: center;
+		gap: 0.25rem;
+		color: var(--sl-color-gray-2);
+	}
+
+	label.tema {
+		--largura: var(--largura-tema, 10.5em);
+	}
+
+	label.cor {
+		--largura: var(--largura-cor, 7em);
+	}
+
+	label[hidden] {
+		display: none;
+	}
+
+	label:hover {
+		color: var(--sl-color-white);
+	}
+
+	.icone {
+		position: absolute;
+		top: 50%;
+		transform: translateY(-50%);
+		pointer-events: none;
+	}
+
+	.rotulo {
+		font-size: var(--rotulo);
+		inset-inline-start: 0;
+	}
+
+	.seta {
+		font-size: var(--seta);
+		inset-inline-end: 0;
+	}
+
+	select {
+		border: 0;
+		padding-block: 0.625rem;
+		padding-inline: calc(var(--rotulo) + var(--folga) + 0.25rem) calc(var(--seta) + var(--folga) + 0.25rem);
+		margin-inline: calc(var(--folga) * -1);
+		width: calc(var(--largura) + var(--folga) * 2);
+		background-color: transparent;
+		text-overflow: ellipsis;
+		color: inherit;
+		cursor: pointer;
+		appearance: none;
+	}
+
+	:is(option, optgroup) {
+		background-color: var(--sl-color-bg-nav);
+		color: var(--sl-color-gray-1);
+	}
+
+	@media (min-width: 50rem) {
+		select {
+			font-size: var(--sl-text-sm);
+		}
+	}
+
+	/* Com espaço sobrando, o nome do tema aparece inteiro; entre o celular e o computador largo, os seletores encolhem
+	   para caber ao lado da busca sem empurrar o seletor de modo para fora da tela. */
+	@media (min-width: 72rem) {
+		label {
+			--largura-tema: 12.5em;
+		}
+	}
+
+	@media (min-width: 50rem) and (max-width: 64rem) {
+		label {
+			--largura-tema: 8.5em;
+			--largura-cor: 6.5em;
+		}
+	}
+
+	@media (min-width: 50rem) and (max-width: 56rem) {
+		label {
+			--largura-tema: 6.5em;
+			--largura-cor: 6em;
+		}
 	}
 </style>

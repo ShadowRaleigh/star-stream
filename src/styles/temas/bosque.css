@@ -1,0 +1,93 @@
+/* Bosque Feérico (família fantasia): um herbário das fadas. Capa de musgo, página verde-clara, tinta de floresta e folha de ouro pálido. A estrutura vem de familia-fantasia.css; o tema é o mesmo no claro e no escuro. */
+
+:root[data-ss-tema='bosque'],
+:root[data-ss-tema='bosque'][data-theme='light'] {
+	--ss-ouro: #c8b46a;
+	--ss-ouro-rgb: 200 180 106;
+	--ss-ouro-claro: #e6dca0;
+	--ss-rubrica: #2e6b3a;
+	--ss-rubrica-rgb: 46 107 58;
+	--ss-tinta: #1e2a1a;
+	--ss-tinta-forte: #0f1a0c;
+	--ss-tinta-suave: #34452c;
+	--ss-pergaminho: #e8ebd2;
+	--ss-couro: #13261a;
+	--ss-couro-escuro: #0c1a10;
+	--ss-material: url('/star-stream/temas/material-bosque.svg');
+	--ss-capa-fundo: linear-gradient(180deg, #1d3524, #122219);
+	--ss-papel-textura: url('/star-stream/temas/papel-bosque.svg');
+	--ss-papel-claro: #f4f5e6;
+	--ss-papel-escuro: #d6ddb9;
+	--ss-sepia-rgb: 70 95 60;
+	--ss-realce-rgb: 250 252 235;
+	--ss-canto-se: url('/star-stream/temas/canto-bosque-se.svg');
+	--ss-canto-sd: url('/star-stream/temas/canto-bosque-sd.svg');
+	--ss-canto-ie: url('/star-stream/temas/canto-bosque-ie.svg');
+	--ss-canto-id: url('/star-stream/temas/canto-bosque-id.svg');
+	--ss-florao: url('/star-stream/temas/florao-bosque.svg');
+	--ss-fita: linear-gradient(180deg, #3d7f4b, #265a33);
+	--ss-fita-texto: #f2f4dc;
+	--ss-capitular-1: #3d7f4b;
+	--ss-capitular-2: #1f4a2a;
+	--ss-botao: linear-gradient(180deg, #3d7f4b, #265a33);
+	--ss-marcador: '\2766  ';
+	--ss-fonte-deco: 'IM Fell English SC', Georgia, serif;
+	--ss-fonte-cabeca: 'IM Fell English SC', Georgia, serif;
+	--ss-fonte-rotulo: 'IM Fell English SC', Georgia, serif;
+	--ss-serifa: 'EB Garamond Variable', 'EB Garamond', Georgia, serif;
+	--sl-font: var(--ss-serifa);
+	--sl-text-body: 1.16rem;
+	--sl-line-height: 1.7;
+	/* Cores da página: a tinta sobre o papel. */
+	--sl-color-accent-low: #d8e2bd;
+	--sl-color-accent: #2e6b3a;
+	--sl-color-accent-high: #1a4024;
+	--sl-color-white: #162013;
+	--sl-color-gray-1: #1e2a1a;
+	--sl-color-gray-2: #2f3f29;
+	--sl-color-gray-3: #55694c;
+	--sl-color-gray-4: #86997a;
+	--sl-color-gray-5: #b9c79f;
+	--sl-color-gray-6: #d3ddb8;
+	--sl-color-gray-7: #e0e7c8;
+	--sl-color-black: var(--ss-pergaminho);
+	--sl-color-text: #1e2a1a;
+	--sl-color-text-accent: #2e6b3a;
+	--sl-color-bg-nav: var(--ss-couro);
+	--sl-color-bg-sidebar: transparent;
+	--sl-color-hairline: rgb(70 95 60 / 0.3);
+	--sl-color-hairline-light: rgb(70 95 60 / 0.45);
+	--ss-fundo:
+		url('/star-stream/temas/material-bosque.svg') 0 0 / 300px,
+		radial-gradient(ellipse at 50% 0%, #23402b, #0c1a10 70%),
+		#0c1a10;
+	--ss-tabela-cabecalho: rgb(46 107 58 / 0.08);
+	--ss-tabela-listra: rgb(70 95 60 / 0.06);
+}
+
+/* Fora da página (cabeçalho, barras laterais), a tinta clara sobre a capa. */
+[data-ss-tema='bosque'] :is(header.header, .sidebar-pane, .right-sidebar, starlight-menu-button, mobile-starlight-toc) {
+	--sl-color-white: #eaf0d0;
+	--sl-color-gray-1: #dbe4bf;
+	--sl-color-gray-2: #c2cfa0;
+	--sl-color-gray-3: #98a878;
+	--sl-color-gray-4: #63744d;
+	--sl-color-gray-5: #2e4430;
+	--sl-color-gray-6: #1a2e1f;
+	--sl-color-black: #0c1a10;
+	--sl-color-text: #dbe4bf;
+	--sl-color-text-accent: #e6dca0;
+	--sl-color-accent: #e6dca0;
+	--sl-color-accent-high: #f4eec4;
+	--sl-color-accent-low: #23402b;
+	--sl-color-hairline: rgb(200 180 106 / 0.25);
+	--sl-color-hairline-light: rgb(200 180 106 / 0.4);
+}
+
+[data-ss-tema='bosque'] .ss-capa {
+	background: url('/star-stream/temas/capa-bosque.svg') center / cover;
+}
+
+[data-ss-tema='bosque'] .ss-capa img {
+	filter: drop-shadow(0 2px 0 rgb(0 0 0 / 0.6)) drop-shadow(0 0 22px rgb(232 245 154 / 0.35));
+}

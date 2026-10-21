@@ -1,0 +1,70 @@
+/* Circuito Neon (família sci-fi): placa de circuito em violeta ultravioleta, com pulsos de dados em verde-lima. A estrutura vem de familia-scifi.css. */
+
+:root[data-ss-tema='circuito'] {
+	--ss-ciano: #a98bff;
+	--ss-violeta: #c4ff4d;
+	--ss-ciano-rgb: 169 139 255;
+	--ss-violeta-rgb: 196 255 77;
+	--ss-painel-rgb: 22 18 44;
+	--ss-tinta-botao: #14111f;
+	--ss-selo: url('/star-stream/temas/selo-circuito-escuro.svg');
+	--ss-capa-escuro: url('/star-stream/temas/capa-circuito-escuro.svg');
+	--ss-capa-claro: url('/star-stream/temas/capa-circuito-claro.svg');
+	--ss-tecnica: 'Chakra Petch', 'Segoe UI', sans-serif;
+	--ss-mono: 'JetBrains Mono Variable', 'JetBrains Mono', Consolas, monospace;
+	--sl-color-accent-low: #292148;
+	--sl-color-accent: #a98bff;
+	--sl-color-accent-high: #d8cbff;
+	--sl-color-white: #efeaff;
+	--sl-color-gray-1: #d3cfe4;
+	--sl-color-gray-2: #a5a1b6;
+	--sl-color-gray-3: #777488;
+	--sl-color-gray-4: #49475a;
+	--sl-color-gray-5: #29273a;
+	--sl-color-gray-6: #19172a;
+	--sl-color-black: #09071a;
+	--sl-color-bg-nav: rgb(9 7 26 / 0.9);
+	--sl-color-bg-sidebar: rgb(9 7 26 / 0.72);
+	--sl-color-hairline: rgb(169 139 255 / 0.14);
+	--sl-color-hairline-light: rgb(169 139 255 / 0.26);
+	--ss-fundo:
+		radial-gradient(ellipse 60% 50% at 85% 0%, rgb(169 139 255 / 0.14), transparent 70%),
+		radial-gradient(ellipse 50% 40% at 5% 100%, rgb(196 255 77 / 0.08), transparent 70%),
+		linear-gradient(rgb(169 139 255 / 0.035) 1px, transparent 1px) 0 0 / 24px 24px,
+		linear-gradient(90deg, rgb(169 139 255 / 0.035) 1px, transparent 1px) 0 0 / 24px 24px,
+		#09071a;
+	--ss-tabela-cabecalho: rgb(169 139 255 / 0.08);
+	--ss-tabela-listra: rgb(169 139 255 / 0.03);
+}
+
+:root[data-ss-tema='circuito'][data-theme='light'] {
+	--ss-selo: url('/star-stream/temas/selo-circuito-claro.svg');
+	--ss-ciano: #5b36c9;
+	--ss-violeta: #4f7a00;
+	--ss-ciano-rgb: 91 54 201;
+	--ss-violeta-rgb: 79 122 0;
+	--ss-painel-rgb: 255 255 255;
+	--ss-tinta-botao: #0b0618;
+	--sl-color-accent-low: #e0d8f5;
+	--sl-color-accent: #5b36c9;
+	--sl-color-accent-high: #29185a;
+	--sl-color-white: #140f2a;
+	--sl-color-gray-1: #26213b;
+	--sl-color-gray-2: #4d495f;
+	--sl-color-gray-3: #7a7789;
+	--sl-color-gray-4: #a8a5b3;
+	--sl-color-gray-5: #d5d3dd;
+	--sl-color-gray-6: #e7e5ee;
+	--sl-color-gray-7: #eeecf5;
+	--sl-color-black: #f7f5fd;
+	--sl-color-bg-nav: rgb(247 245 253 / 0.9);
+	--sl-color-bg-sidebar: rgb(247 245 253 / 0.72);
+	--sl-color-hairline: rgb(91 54 201 / 0.18);
+	--sl-color-hairline-light: rgb(91 54 201 / 0.3);
+	--ss-fundo:
+		linear-gradient(rgb(91 54 201 / 0.05) 1px, transparent 1px) 0 0 / 24px 24px,
+		linear-gradient(90deg, rgb(91 54 201 / 0.05) 1px, transparent 1px) 0 0 / 24px 24px,
+		#f7f5fd;
+	--ss-tabela-cabecalho: rgb(91 54 201 / 0.08);
+	--ss-tabela-listra: rgb(91 54 201 / 0.03);
+}

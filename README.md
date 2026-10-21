@@ -30,8 +30,28 @@ Texto do aviso.
 
 ## Temas visuais
 
-O livro tem vários temas visuais. O padrão é o Constelação, e o leitor escolhe outro no seletor do topo da página (no celular, no fim do menu). A escolha fica salva no navegador.
+O livro tem 16 temas visuais em três famílias, e cada tema tem 6 paletas de cor. O tema cuida da estética (estrutura, fontes, ornamentos e capa) e a paleta, das cores. O padrão é o Constelação, e o leitor escolhe tema, paleta e modo claro ou escuro nos seletores do topo da página (no celular, no fim do menu). A escolha fica salva no navegador, e cada tema lembra a última paleta usada.
 
-O mestre pode mandar aos jogadores um link já com o tema da campanha, acrescentando `?tema=` ao endereço, por exemplo `https://shadowraleigh.github.io/star-stream/?tema=grimorio`. Temas: `constelacao`, `observatorio`, `holograma`, `nebulosa`, `codex`, `grimorio` e, em teste, `astrolabio` e `carta`.
+- **Astra:** `constelacao`, `classico`, `observatorio`, `nebulosa`, `codex` e `astrolabio`.
+- **Fantasia:** `grimorio`, `bosque`, `vitral`, `forja`, `mapa` e `abissal`.
+- **Sci-fi:** `holograma`, `radar`, `circuito` e `navegacao`.
 
-Os ornamentos dos temas (estrelas, constelação, astrolábio, selo, pergaminho, couro, cantos e florões) são gerados por `node tools/gerar-assets-temas.mjs`.
+O mestre pode mandar aos jogadores um link já com o tema e a paleta da campanha, por exemplo `https://shadowraleigh.github.io/star-stream/?tema=grimorio&cor=carmesim`. Os nomes das paletas de cada tema estão em `src/cores.mjs`.
+
+**Onde fica cada coisa:**
+
+- A lista de temas fica em `src/temas.mjs`, e a de paletas em `src/cores.mjs`.
+- Os temas de fantasia e de sci-fi compartilham uma base por família (`familia-fantasia.css` e `familia-scifi.css`), e o arquivo de cada tema só define cores, fontes, texturas e capa.
+- A paleta padrão de cada tema está no arquivo do tema. As outras ficam em `public/cores/<tema>.css`, fora do CSS principal: o navegador só baixa as do tema em uso, e só quando a paleta escolhida não é a padrão.
+
+**Scripts de geração em `tools/`:** depois de mudar uma paleta, rode-os nesta ordem.
+
+1. `gerar-cores.mjs`: o CSS das paletas.
+2. `gerar-ornamentos.mjs`: texturas, cantos e florões da fantasia.
+3. `gerar-capas.mjs`: as capas desenhadas, as marcas d'água e as peças recoloridas de cada paleta.
+
+`copiar-fontes.mjs` copia as fontes dos pacotes @fontsource para `public/fontes/` (só o alfabeto latino, com as licenças) e gera `src/styles/fontes.css`; rode-o ao trocar ou atualizar uma fonte. O script do topo pré-carrega as fontes de título e de texto do tema em uso (lista em `src/temas.mjs`).
+
+`gerar-assets-temas.mjs` gera os ornamentos originais (estrelas, constelação, astrolábio, selos, pergaminho, couro, cantos e florões do Grimório).
+
+**Desempenho:** as fontes são só do alfabeto latino e pré-carregadas, a foto da galáxia tem uma versão menor para o celular, o fundo de cada tema fica numa camada fixa (nada de `background-attachment: fixed`), o desfoque de vidro só aparece no cabeçalho do computador, e as animações só giram ou deslocam camadas (`transform`), nunca redesenham as capas. Quem pede menos movimento no sistema não vê animação nenhuma.

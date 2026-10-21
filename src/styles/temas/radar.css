@@ -1,0 +1,97 @@
+/* Radar (família sci-fi): tela de radar em verde-fósforo, com alertas em âmbar e fonte de terminal. A estrutura vem de familia-scifi.css. */
+
+:root[data-ss-tema='radar'] {
+	--ss-ciano: #6dff9a;
+	--ss-violeta: #ffb000;
+	--ss-ciano-rgb: 109 255 154;
+	--ss-violeta-rgb: 255 176 0;
+	--ss-painel-rgb: 10 26 16;
+	--ss-tinta-botao: #021006;
+	--ss-selo: url('/star-stream/temas/selo-radar-escuro.svg');
+	--ss-capa-escuro: url('/star-stream/temas/capa-radar-escuro.svg');
+	--ss-capa-claro: url('/star-stream/temas/capa-radar-claro.svg');
+	--ss-tecnica: 'Share Tech Mono', Consolas, monospace;
+	--ss-mono: 'Share Tech Mono', Consolas, monospace;
+	--sl-color-accent-low: #0b2a17;
+	--sl-color-accent: #6dff9a;
+	--sl-color-accent-high: #c8ffd8;
+	--sl-color-white: #e3ffe9;
+	--sl-color-gray-1: #c4e8cd;
+	--sl-color-gray-2: #93bfa0;
+	--sl-color-gray-3: #5f8a6b;
+	--sl-color-gray-4: #3a5a44;
+	--sl-color-gray-5: #163222;
+	--sl-color-gray-6: #0a1a10;
+	--sl-color-black: #030a06;
+	--sl-color-bg-nav: rgb(3 10 6 / 0.88);
+	--sl-color-bg-sidebar: rgb(3 10 6 / 0.7);
+	--sl-color-hairline: rgb(109 255 154 / 0.14);
+	--sl-color-hairline-light: rgb(109 255 154 / 0.26);
+	--ss-fundo:
+		radial-gradient(ellipse 70% 50% at 50% 0%, rgb(109 255 154 / 0.08), transparent 70%),
+		linear-gradient(rgb(109 255 154 / 0.04) 1px, transparent 1px) 0 0 / 40px 40px,
+		linear-gradient(90deg, rgb(109 255 154 / 0.04) 1px, transparent 1px) 0 0 / 40px 40px,
+		#030a06;
+	--ss-tabela-cabecalho: rgb(109 255 154 / 0.08);
+	--ss-tabela-listra: rgb(109 255 154 / 0.03);
+}
+
+:root[data-ss-tema='radar'][data-theme='light'] {
+	--ss-ciano: #11803f;
+	--ss-violeta: #a86400;
+	--ss-ciano-rgb: 17 128 63;
+	--ss-violeta-rgb: 168 100 0;
+	--ss-painel-rgb: 255 255 255;
+	--ss-selo: url('/star-stream/temas/selo-radar-claro.svg');
+	--sl-color-accent-low: #d9f3e1;
+	--sl-color-accent: #11803f;
+	--sl-color-accent-high: #0a4a24;
+	--sl-color-white: #06200f;
+	--sl-color-gray-1: #0d2c17;
+	--sl-color-gray-2: #2a4a33;
+	--sl-color-gray-3: #50705a;
+	--sl-color-gray-4: #8aa592;
+	--sl-color-gray-5: #c6dccc;
+	--sl-color-gray-6: #e3f1e7;
+	--sl-color-gray-7: #ecf6ef;
+	--sl-color-black: #f3faf5;
+	--sl-color-bg-nav: rgb(243 250 245 / 0.9);
+	--sl-color-bg-sidebar: rgb(243 250 245 / 0.75);
+	--sl-color-hairline: rgb(17 128 63 / 0.18);
+	--sl-color-hairline-light: rgb(17 128 63 / 0.3);
+	--ss-fundo:
+		linear-gradient(rgb(17 128 63 / 0.05) 1px, transparent 1px) 0 0 / 32px 32px,
+		linear-gradient(90deg, rgb(17 128 63 / 0.05) 1px, transparent 1px) 0 0 / 32px 32px,
+		#f3faf5;
+	--ss-tabela-cabecalho: rgb(17 128 63 / 0.08);
+	--ss-tabela-listra: rgb(17 128 63 / 0.03);
+}
+
+/* O feixe de varredura gira por cima da capa. Só a rotação anima, então a placa de vídeo cuida dele sem redesenhar nada;
+   para quem pede menos movimento, comum.css desliga a animação e o feixe fica parado. */
+[data-ss-tema='radar'] .ss-capa {
+	isolation: isolate;
+	overflow: hidden;
+}
+
+[data-ss-tema='radar'] .ss-capa::before {
+	content: '';
+	position: absolute;
+	z-index: -1;
+	left: 50%;
+	top: 50%;
+	/* Basta cobrir a diagonal da capa (cerca de 1,1 vez a largura): uma camada maior só gastaria memória de vídeo. */
+	width: 115%;
+	aspect-ratio: 1;
+	translate: -50% -50%;
+	border-radius: 50%;
+	background: conic-gradient(from 90deg, transparent 0deg 305deg, rgb(var(--ss-ciano-rgb) / 0.3) 359deg, rgb(var(--ss-ciano-rgb) / 0.75) 360deg);
+	pointer-events: none;
+	animation: ss-varrer 7s linear infinite;
+}
+
+@keyframes ss-varrer {
+	to {
+		rotate: 360deg;
+	}
+}

@@ -1,0 +1,291 @@
+/* Família sci-fi: interface de nave. Cantos chanfrados, títulos técnicos, leituras em fonte mono, brilho de projeção.
+   Cada tema da família (Holograma, Radar, Circuito, Navegação) define só as cores, as fontes, o selo e a capa. */
+
+/* Selo rúnico girando devagar atrás do conteúdo, e linhas de varredura bem leves. */
+[data-ss-familia='scifi'] body::before {
+	content: '';
+	position: fixed;
+	right: -180px;
+	bottom: -180px;
+	width: 620px;
+	height: 620px;
+	pointer-events: none;
+	z-index: -1;
+	background: var(--ss-selo) center / contain no-repeat;
+	opacity: 0.12;
+	animation: ss-girar 160s linear infinite;
+}
+
+[data-ss-familia='scifi'] body::after {
+	content: '';
+	position: fixed;
+	inset: 0;
+	pointer-events: none;
+	z-index: 0;
+	background: repeating-linear-gradient(0deg, rgb(var(--ss-ciano-rgb) / 0.025) 0 1px, transparent 1px 3px);
+	mix-blend-mode: screen;
+}
+
+[data-ss-familia='scifi'][data-theme='light'] body::after {
+	display: none;
+}
+
+@keyframes ss-girar {
+	to {
+		transform: rotate(360deg);
+	}
+}
+
+[data-ss-familia='scifi'] header.header {
+	border-bottom: 1px solid var(--sl-color-hairline-light);
+	box-shadow: 0 0 24px -8px rgb(var(--ss-ciano-rgb) / 0.4);
+}
+
+[data-ss-familia='scifi'] .sidebar-pane {
+	border-inline-end: 1px solid var(--sl-color-hairline-light);
+}
+
+[data-ss-familia='scifi'] .sidebar-content summary .large {
+	font-family: var(--ss-tecnica);
+	font-size: 0.78rem;
+	font-weight: 600;
+	letter-spacing: 0.18em;
+	text-transform: uppercase;
+	color: var(--ss-ciano);
+}
+
+[data-ss-familia='scifi'] .sidebar-content a[aria-current='page'] {
+	background: linear-gradient(90deg, rgb(var(--ss-ciano-rgb) / 0.18), rgb(var(--ss-violeta-rgb) / 0.06));
+	color: var(--sl-color-white);
+	box-shadow: inset 2px 0 0 var(--ss-ciano);
+	border-radius: 0;
+}
+
+/* Títulos técnicos, com brilho de projeção. */
+[data-ss-familia='scifi'] h1#_top {
+	font-family: var(--ss-tecnica);
+	font-weight: 700;
+	font-size: clamp(2rem, 4vw, 2.8rem);
+	letter-spacing: 0.12em;
+	text-transform: uppercase;
+	color: var(--sl-color-white);
+	text-shadow: 0 0 18px rgb(var(--ss-ciano-rgb) / 0.55), 0 0 2px rgb(var(--ss-ciano-rgb) / 0.9);
+}
+
+[data-ss-familia='scifi'][data-theme='light'] h1#_top {
+	text-shadow: none;
+}
+
+[data-ss-familia='scifi'] .content-panel:has(h1#_top) {
+	position: relative;
+}
+
+[data-ss-familia='scifi'] .content-panel:has(h1#_top)::before {
+	content: '// LIVRO DE REGRAS · STAR STREAM';
+	position: absolute;
+	left: var(--sl-content-pad-x);
+	top: 0.9rem;
+	font-family: var(--ss-mono);
+	font-size: 0.68rem;
+	letter-spacing: 0.2em;
+	color: var(--ss-violeta);
+	opacity: 0.85;
+}
+
+[data-ss-familia='scifi'] .sl-markdown-content :is(h2, h3, h4) {
+	font-family: var(--ss-tecnica);
+	text-transform: uppercase;
+	letter-spacing: 0.1em;
+}
+
+/* inline-block: o Starlight deixa o título inline (para o link de âncora ficar ao lado), e o recorte chanfrado só
+   valeria para a primeira linha; no celular, os títulos longos sumiam em vez de quebrar. */
+[data-ss-familia='scifi'] .sl-markdown-content h2 {
+	display: inline-block;
+	max-width: 100%;
+	font-size: 1.35rem;
+	font-weight: 600;
+	color: var(--sl-color-white);
+	border-bottom: none;
+	padding: 0.5rem 0.9rem;
+	background: linear-gradient(90deg, rgb(var(--ss-ciano-rgb) / 0.14), transparent 80%);
+	border-inline-start: 3px solid var(--ss-ciano);
+	clip-path: polygon(0 0, 100% 0, 100% 100%, 10px 100%, 0 calc(100% - 10px));
+}
+
+[data-ss-familia='scifi'] .sl-markdown-content h3 {
+	font-size: 1.05rem;
+	color: var(--ss-ciano);
+}
+
+[data-ss-familia='scifi'] .sl-markdown-content h3::before {
+	content: '▸ ';
+	color: var(--ss-violeta);
+}
+
+[data-ss-familia='scifi'] .sl-markdown-content h4 {
+	font-size: 0.92rem;
+	color: var(--ss-violeta);
+}
+
+[data-ss-familia='scifi'] .sl-markdown-content a:not(.sl-anchor-link) {
+	color: var(--ss-ciano);
+	text-decoration: none;
+	border-bottom: 1px solid rgb(var(--ss-ciano-rgb) / 0.35);
+}
+
+[data-ss-familia='scifi'] .sl-markdown-content a:not(.sl-anchor-link):hover {
+	text-shadow: 0 0 10px rgb(var(--ss-ciano-rgb) / 0.7);
+}
+
+[data-ss-familia='scifi'] .sl-markdown-content strong {
+	color: var(--sl-color-white);
+}
+
+/* Números em fonte mono, como leituras de painel. */
+[data-ss-familia='scifi'] .sl-markdown-content :is(td, code) {
+	font-family: var(--ss-mono);
+	font-size: 0.9em;
+}
+
+[data-ss-familia='scifi'] .sl-markdown-content table {
+	clip-path: var(--ss-chanfro);
+	background: rgb(var(--ss-painel-rgb) / 0.6);
+	border: none;
+}
+
+[data-ss-familia='scifi'][data-theme='light'] .sl-markdown-content table {
+	background: rgb(255 255 255 / 0.7);
+}
+
+[data-ss-familia='scifi'] .sl-markdown-content :is(th, td) {
+	border: none;
+	border-bottom: 1px solid var(--sl-color-hairline);
+}
+
+[data-ss-familia='scifi'] .sl-markdown-content th {
+	font-family: var(--ss-tecnica);
+	font-size: 0.7rem;
+	letter-spacing: 0.14em;
+	text-transform: uppercase;
+	color: var(--ss-ciano);
+	border-bottom: 1px solid var(--ss-ciano);
+}
+
+[data-ss-familia='scifi'] .sl-markdown-content blockquote {
+	border: none;
+	clip-path: var(--ss-chanfro);
+	background: linear-gradient(135deg, rgb(var(--ss-violeta-rgb) / 0.16), rgb(var(--ss-ciano-rgb) / 0.06));
+	font-family: var(--ss-mono);
+	font-size: 0.95em;
+	color: var(--sl-color-gray-1);
+	padding: 1rem 1.2rem;
+}
+
+[data-ss-familia='scifi'] .starlight-aside {
+	clip-path: var(--ss-chanfro);
+	background: rgb(var(--ss-ciano-rgb) / 0.07);
+	border: none;
+	border-inline-start: 3px solid var(--ss-violeta);
+}
+
+[data-ss-familia='scifi'] .starlight-aside__title {
+	font-family: var(--ss-tecnica);
+	letter-spacing: 0.1em;
+	text-transform: uppercase;
+	font-size: 0.8rem;
+}
+
+/* Cartões chanfrados com borda luminosa. */
+[data-ss-familia='scifi'] .sl-link-card,
+[data-ss-familia='scifi'] .pagination-links a {
+	border: none;
+	border-radius: 0;
+	clip-path: var(--ss-chanfro);
+	background:
+		linear-gradient(135deg, rgb(var(--ss-ciano-rgb) / 0.12), rgb(var(--ss-violeta-rgb) / 0.08)),
+		var(--sl-color-gray-6);
+	box-shadow: inset 0 0 0 1px var(--sl-color-hairline-light);
+	transition: box-shadow 0.2s, background 0.2s;
+}
+
+[data-ss-familia='scifi'] .sl-link-card:hover,
+[data-ss-familia='scifi'] .pagination-links a:hover {
+	box-shadow: inset 0 0 0 1px var(--ss-ciano), inset 0 0 24px rgb(var(--ss-ciano-rgb) / 0.18);
+}
+
+[data-ss-familia='scifi'] .sl-link-card .title {
+	font-family: var(--ss-tecnica);
+	font-size: 0.95rem;
+	letter-spacing: 0.12em;
+	text-transform: uppercase;
+	color: var(--ss-ciano);
+}
+
+[data-ss-familia='scifi'] .ss-capa {
+	border-radius: 0;
+	clip-path: polygon(0 0, calc(100% - 28px) 0, 100% 28px, 100% 100%, 28px 100%, 0 calc(100% - 28px));
+	background: var(--ss-capa-escuro) center / cover no-repeat, var(--sl-color-gray-6);
+	box-shadow: inset 0 0 0 1px var(--sl-color-hairline-light);
+}
+
+[data-ss-familia='scifi'][data-theme='light'] .ss-capa {
+	background: var(--ss-capa-claro) center / cover no-repeat, var(--sl-color-gray-6);
+}
+
+/* Linhas de varredura de tela por cima da capa, bem leves. */
+[data-ss-familia='scifi'] .ss-capa::after {
+	content: '';
+	position: absolute;
+	inset: 0;
+	pointer-events: none;
+	background: repeating-linear-gradient(0deg, rgb(var(--ss-ciano-rgb) / 0.045) 0 1px, transparent 1px 3px);
+}
+
+/* O nome com o desvio de cor de uma tela: vermelho de um lado, a cor do tema do outro. */
+[data-ss-familia='scifi'] .ss-capa img {
+	filter: drop-shadow(-2px 0 0 rgb(255 70 140 / 0.55)) drop-shadow(2px 0 0 rgb(var(--ss-ciano-rgb) / 0.65)) drop-shadow(0 0 18px rgb(var(--ss-ciano-rgb) / 0.4));
+}
+
+[data-ss-familia='scifi'][data-theme='light'] .ss-capa img {
+	filter: drop-shadow(-1.5px 0 0 rgb(220 40 110 / 0.45)) drop-shadow(1.5px 0 0 rgb(var(--ss-ciano-rgb) / 0.55));
+}
+
+[data-ss-familia='scifi'][data-theme='light'] .ss-capa .logo-claro {
+	display: none;
+}
+
+[data-ss-familia='scifi'][data-theme='light'] .ss-capa .logo-escuro {
+	display: block;
+}
+
+[data-ss-familia='scifi'] .ss-abertura .ss-versao {
+	font-family: var(--ss-mono);
+	letter-spacing: 0.3em;
+	color: var(--ss-ciano);
+}
+
+[data-ss-familia='scifi'] .ss-abertura .ss-acoes a {
+	border-radius: 0;
+	clip-path: polygon(0 0, calc(100% - 10px) 0, 100% 10px, 100% 100%, 10px 100%, 0 calc(100% - 10px));
+	font-family: var(--ss-tecnica);
+	font-size: 0.8rem;
+	letter-spacing: 0.12em;
+	text-transform: uppercase;
+	border-color: var(--ss-ciano);
+}
+
+[data-ss-familia='scifi'] .ss-abertura .ss-acoes a.ss-principal {
+	background: var(--ss-ciano);
+	color: var(--ss-tinta-botao);
+	border-color: var(--ss-ciano);
+}
+
+:root[data-ss-familia='scifi'][data-theme='light'] .ss-abertura .ss-acoes a.ss-principal {
+	color: var(--sl-color-black);
+}
+
+/* Na página inicial o título fica escondido (a capa faz o papel dele), então o rótulo técnico também sai. */
+[data-ss-familia='scifi'] .content-panel:has(+ .content-panel .ss-capa)::before {
+	display: none;
+}

@@ -1,0 +1,272 @@
+/* Família fantasia: o livro de regras como um tomo. Capa de material em volta, página emoldurada no meio, rubricas, florões e capitulares.
+   Cada tema da família (Grimório, Bosque Feérico, Vitral, Forja Rúnica) define só as cores, as texturas, os ornamentos, as fontes e a capa. */
+
+[data-ss-familia='fantasia'] header.header {
+	background: var(--ss-material) 0 0 / 300px, var(--ss-capa-fundo);
+	border-bottom: 1px solid var(--ss-ouro);
+	box-shadow: 0 3px 0 -1px var(--ss-couro-escuro), 0 4px 0 -1px rgb(var(--ss-ouro-rgb) / 0.5), 0 10px 24px rgb(0 0 0 / 0.5);
+}
+
+[data-ss-familia='fantasia'] .sidebar-pane {
+	border-inline-end: none;
+	background: transparent;
+}
+
+[data-ss-familia='fantasia'] .sidebar-content summary .large {
+	font-family: var(--ss-fonte-rotulo);
+	font-size: 0.86rem;
+	letter-spacing: 0.16em;
+	color: var(--ss-ouro-claro);
+}
+
+[data-ss-familia='fantasia'] .sidebar-content a {
+	font-size: 1.02rem;
+}
+
+/* O item atual vira uma fita marcadora. */
+[data-ss-familia='fantasia'] .sidebar-content a[aria-current='page'] {
+	background: var(--ss-fita);
+	color: var(--ss-fita-texto);
+	border-radius: 0;
+	clip-path: polygon(0 0, 100% 0, calc(100% - 10px) 50%, 100% 100%, 0 100%);
+	padding-inline-end: 1.4rem;
+	box-shadow: inset 0 1px 0 rgb(255 255 255 / 0.15);
+}
+
+/* A página de pergaminho, com moldura dupla e cantos ornamentados. */
+[data-ss-familia='fantasia'] .main-pane {
+	padding: 1.5rem 1.25rem 2.5rem;
+}
+
+[data-ss-familia='fantasia'] .main-pane > main {
+	position: relative;
+	color: var(--ss-tinta);
+	background:
+		var(--ss-canto-se) 10px 10px / 78px no-repeat,
+		var(--ss-canto-sd) calc(100% - 10px) 10px / 78px no-repeat,
+		var(--ss-canto-ie) 10px calc(100% - 10px) / 78px no-repeat,
+		var(--ss-canto-id) calc(100% - 10px) calc(100% - 10px) / 78px no-repeat,
+		var(--ss-papel-textura) 0 0 / 400px,
+		radial-gradient(ellipse at center, var(--ss-papel-claro) 40%, var(--ss-papel-escuro) 100%);
+	border-radius: 3px;
+	box-shadow:
+		inset 0 0 0 6px var(--ss-pergaminho),
+		inset 0 0 0 7px rgb(var(--ss-sepia-rgb) / 0.55),
+		inset 0 0 0 10px var(--ss-pergaminho),
+		inset 0 0 0 11px rgb(var(--ss-sepia-rgb) / 0.35),
+		inset 0 0 90px rgb(var(--ss-sepia-rgb) / 0.35),
+		0 18px 50px rgb(0 0 0 / 0.65);
+	padding-block: 1.5rem 2rem;
+}
+
+@media (max-width: 50rem) {
+	[data-ss-familia='fantasia'] .main-pane {
+		padding: 0.75rem 0.5rem 1.5rem;
+	}
+
+	[data-ss-familia='fantasia'] .main-pane > main {
+		background-size: 46px, 46px, 46px, 46px, 400px, auto;
+	}
+}
+
+[data-ss-familia='fantasia'] .content-panel {
+	border-top-color: transparent;
+}
+
+[data-ss-familia='fantasia'] .content-panel:has(h1#_top) {
+	text-align: center;
+	border-bottom: none;
+	padding-top: 2.5rem;
+}
+
+[data-ss-familia='fantasia'] h1#_top {
+	font-family: var(--ss-fonte-deco);
+	font-weight: 700;
+	font-size: clamp(2.2rem, 5vw, 3.2rem);
+	color: var(--ss-rubrica);
+	letter-spacing: 0.04em;
+	text-shadow: 0 1px 0 rgb(255 255 255 / 0.4);
+}
+
+[data-ss-familia='fantasia'] h1#_top::after {
+	content: '';
+	display: block;
+	height: 22px;
+	width: 260px;
+	margin: 1rem auto 0;
+	background: var(--ss-florao) center / contain no-repeat;
+}
+
+/* Capitular iluminada: letra em ouro sobre quadro vermelho. */
+[data-ss-familia='fantasia'] .sl-markdown-content > p:first-child::first-letter {
+	float: left;
+	font-family: var(--ss-fonte-deco);
+	font-weight: 700;
+	font-size: 3.2em;
+	line-height: 1;
+	padding: 0.12em 0.16em 0.06em;
+	margin: 0.08em 0.14em 0 0;
+	color: var(--ss-ouro-claro);
+	background: radial-gradient(circle at 30% 30%, var(--ss-capitular-1), var(--ss-capitular-2));
+	border: 2px solid var(--ss-ouro);
+	box-shadow: 0 0 0 2px var(--ss-pergaminho), 0 0 0 3px rgb(var(--ss-sepia-rgb) / 0.6);
+}
+
+[data-ss-familia='fantasia'] .sl-markdown-content :is(h2, h3, h4) {
+	font-family: var(--ss-fonte-cabeca);
+}
+
+[data-ss-familia='fantasia'] .sl-markdown-content h2 {
+	font-size: 1.65rem;
+	font-weight: 700;
+	color: var(--ss-rubrica);
+	text-align: center;
+	border-bottom: none;
+	padding-bottom: 0;
+	margin-top: 2.6rem;
+}
+
+[data-ss-familia='fantasia'] .sl-markdown-content h2::after {
+	content: '';
+	display: block;
+	height: 16px;
+	width: 180px;
+	margin: 0.4rem auto 0;
+	background: var(--ss-florao) center / contain no-repeat;
+	opacity: 0.8;
+}
+
+[data-ss-familia='fantasia'] .sl-markdown-content h3 {
+	font-size: 1.25rem;
+	color: var(--ss-tinta);
+	border-bottom: 1px solid var(--sl-color-hairline);
+	padding-bottom: 0.2rem;
+}
+
+[data-ss-familia='fantasia'] .sl-markdown-content h3::before {
+	content: var(--ss-marcador);
+	color: var(--ss-rubrica);
+}
+
+[data-ss-familia='fantasia'] .sl-markdown-content h4 {
+	font-family: var(--ss-serifa);
+	font-style: italic;
+	font-size: 1.25rem;
+	color: var(--ss-rubrica);
+}
+
+[data-ss-familia='fantasia'] .sl-markdown-content a:not(.sl-anchor-link) {
+	color: var(--ss-rubrica);
+	text-decoration-color: rgb(var(--ss-rubrica-rgb) / 0.4);
+	text-underline-offset: 0.18em;
+}
+
+[data-ss-familia='fantasia'] .sl-markdown-content strong {
+	color: var(--ss-tinta-forte);
+}
+
+[data-ss-familia='fantasia'] .sl-markdown-content table {
+	background: rgb(var(--ss-realce-rgb) / 0.35);
+	border: 1px solid var(--sl-color-hairline-light);
+	outline: 1px solid var(--sl-color-hairline);
+	outline-offset: 3px;
+}
+
+[data-ss-familia='fantasia'] .sl-markdown-content :is(th, td) {
+	border-color: var(--sl-color-hairline);
+}
+
+[data-ss-familia='fantasia'] .sl-markdown-content th {
+	font-family: var(--ss-fonte-cabeca);
+	color: var(--ss-rubrica);
+	font-size: 0.85rem;
+}
+
+[data-ss-familia='fantasia'] .sl-markdown-content blockquote {
+	border: none;
+	background: none;
+	text-align: center;
+	font-style: italic;
+	font-size: 1.3em;
+	color: var(--ss-tinta-suave);
+	padding: 0.4rem 2rem;
+}
+
+[data-ss-familia='fantasia'] .sl-markdown-content blockquote::after {
+	content: '';
+	display: block;
+	height: 16px;
+	width: 160px;
+	margin: 0.5rem auto 0;
+	background: var(--ss-florao) center / contain no-repeat;
+	opacity: 0.7;
+}
+
+[data-ss-familia='fantasia'] .starlight-aside {
+	background: rgb(var(--ss-rubrica-rgb) / 0.07);
+	border: 1px dashed rgb(var(--ss-rubrica-rgb) / 0.5);
+	border-radius: 2px;
+}
+
+[data-ss-familia='fantasia'] .sl-link-card,
+[data-ss-familia='fantasia'] .pagination-links a {
+	border-radius: 2px;
+	background: rgb(var(--ss-realce-rgb) / 0.4);
+	border: 1px solid var(--sl-color-hairline-light);
+	transition: background 0.2s, border-color 0.2s;
+}
+
+[data-ss-familia='fantasia'] .sl-link-card:hover,
+[data-ss-familia='fantasia'] .pagination-links a:hover {
+	background: rgb(var(--ss-realce-rgb) / 0.7);
+	border-color: var(--ss-rubrica);
+}
+
+[data-ss-familia='fantasia'] .sl-link-card .title {
+	font-family: var(--ss-fonte-cabeca);
+	font-weight: 700;
+	color: var(--ss-rubrica);
+}
+
+[data-ss-familia='fantasia'] .ss-capa {
+	border-radius: 2px;
+	margin-inline: 0;
+	border: 2px solid var(--ss-ouro);
+	box-shadow: 0 0 0 4px var(--ss-pergaminho), 0 0 0 5px rgb(var(--ss-sepia-rgb) / 0.6), inset 0 0 80px rgb(0 0 0 / 0.6);
+}
+
+[data-ss-familia='fantasia'] .ss-abertura .ss-acoes a {
+	border-radius: 2px;
+	font-family: var(--ss-fonte-cabeca);
+}
+
+[data-ss-familia='fantasia'] .ss-abertura .ss-acoes a.ss-principal {
+	background: var(--ss-botao);
+	border-color: var(--ss-ouro);
+	color: var(--ss-fita-texto);
+}
+
+/* O cabeçalho é sempre couro escuro, então o logo é sempre o marfim. */
+[data-ss-familia='fantasia'] .site-title img[class*='light:sl-hidden'] {
+	display: block !important;
+}
+
+[data-ss-familia='fantasia'] .site-title img[class*='dark:sl-hidden'] {
+	display: none !important;
+}
+
+[data-ss-familia='fantasia'] mobile-starlight-toc nav {
+	background: var(--ss-material) 0 0 / 300px, var(--ss-couro-escuro);
+	border-bottom: 1px solid var(--ss-ouro);
+}
+
+/* No celular, o "Nesta página" fica sobre a faixa escura, mas mora dentro da página: não herda a cor da tinta. */
+[data-ss-familia='fantasia'] mobile-starlight-toc {
+	color: var(--sl-color-white);
+}
+
+/* A cor de base da página é a da capa de material, que aparece em volta da folha: assim o fundo nunca pisca claro
+   ao rolar além do fim, e os verificadores de contraste leem a cor certa atrás do cabeçalho e das barras laterais. */
+:root[data-ss-familia='fantasia'][data-ss-tema] {
+	background-color: var(--ss-couro-escuro);
+}

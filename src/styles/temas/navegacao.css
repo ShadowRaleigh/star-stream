@@ -1,0 +1,67 @@
+/* Navegação (família sci-fi): painel de missão espacial: grafite, branco e laranja de sinalização. A estrutura vem de familia-scifi.css. */
+
+:root[data-ss-tema='navegacao'] {
+	--ss-ciano: #ff8a3d;
+	--ss-violeta: #e9edf2;
+	--ss-ciano-rgb: 255 138 61;
+	--ss-violeta-rgb: 233 237 242;
+	--ss-painel-rgb: 21 24 28;
+	--ss-tinta-botao: #1a0d04;
+	--ss-selo: url('/star-stream/temas/selo-navegacao-escuro.svg');
+	--ss-capa-escuro: url('/star-stream/temas/capa-navegacao-escuro.svg');
+	--ss-capa-claro: url('/star-stream/temas/capa-navegacao-claro.svg');
+	--ss-tecnica: 'Exo 2 Variable', 'Exo 2', 'Segoe UI', sans-serif;
+	--ss-mono: 'JetBrains Mono Variable', 'JetBrains Mono', Consolas, monospace;
+	--sl-color-accent-low: #3a2212;
+	--sl-color-accent: #ff8a3d;
+	--sl-color-accent-high: #ffd2b3;
+	--sl-color-white: #f2f4f7;
+	--sl-color-gray-1: #d9dde3;
+	--sl-color-gray-2: #a9b0ba;
+	--sl-color-gray-3: #77808c;
+	--sl-color-gray-4: #4c535d;
+	--sl-color-gray-5: #24282e;
+	--sl-color-gray-6: #15181c;
+	--sl-color-black: #0c0e11;
+	--sl-color-bg-nav: rgb(12 14 17 / 0.88);
+	--sl-color-bg-sidebar: rgb(12 14 17 / 0.7);
+	--sl-color-hairline: rgb(255 138 61 / 0.14);
+	--sl-color-hairline-light: rgb(255 138 61 / 0.26);
+	--ss-fundo:
+		radial-gradient(ellipse 70% 40% at 50% 0%, rgb(255 138 61 / 0.08), transparent 70%),
+		url('/star-stream/temas/estrelas-claras.svg') 0 0 / 600px,
+		#0c0e11;
+	--ss-tabela-cabecalho: rgb(255 138 61 / 0.08);
+	--ss-tabela-listra: rgb(255 138 61 / 0.03);
+}
+
+:root[data-ss-tema='navegacao'][data-theme='light'] {
+	--ss-ciano: #c2510f;
+	--ss-violeta: #2a3038;
+	--ss-ciano-rgb: 194 81 15;
+	--ss-violeta-rgb: 42 48 56;
+	--ss-painel-rgb: 255 255 255;
+	--ss-selo: url('/star-stream/temas/selo-navegacao-claro.svg');
+	--sl-color-accent-low: #fbe3d3;
+	--sl-color-accent: #c2510f;
+	--sl-color-accent-high: #7a3006;
+	--sl-color-white: #111418;
+	--sl-color-gray-1: #1b1f24;
+	--sl-color-gray-2: #353b42;
+	--sl-color-gray-3: #5c636c;
+	--sl-color-gray-4: #8f959c;
+	--sl-color-gray-5: #d3d6da;
+	--sl-color-gray-6: #e9ebee;
+	--sl-color-gray-7: #f0f2f4;
+	--sl-color-black: #f7f8f9;
+	--sl-color-bg-nav: rgb(247 248 249 / 0.9);
+	--sl-color-bg-sidebar: rgb(247 248 249 / 0.75);
+	--sl-color-hairline: rgb(194 81 15 / 0.18);
+	--sl-color-hairline-light: rgb(194 81 15 / 0.3);
+	--ss-fundo:
+		linear-gradient(rgb(194 81 15 / 0.05) 1px, transparent 1px) 0 0 / 32px 32px,
+		linear-gradient(90deg, rgb(194 81 15 / 0.05) 1px, transparent 1px) 0 0 / 32px 32px,
+		#f7f8f9;
+	--ss-tabela-cabecalho: rgb(194 81 15 / 0.08);
+	--ss-tabela-listra: rgb(194 81 15 / 0.03);
+}

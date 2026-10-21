@@ -1,6 +1,15 @@
 /* Tema 5, Codex Celeste: livro de regras impresso, claro e editorial. Papel marfim, tinta azul-noite, folha de ouro e cartas celestes. */
 
 :root[data-ss-tema='codex'] {
+	--ss-papel: #f7f1e3;
+	--ss-papel-rgb: 247 241 227;
+	--ss-noite: #0f1626;
+	--ss-noite-rgb: 15 22 38;
+	--ss-link-claro: #23406b;
+	--ss-capa-anel-claro: url('/star-stream/temas/astrolabio-anel-tinta.svg');
+	--ss-capa-anel-escuro: url('/star-stream/temas/astrolabio-anel-dourado.svg');
+	--ss-capa-estrelas-claro: url('/star-stream/temas/estrelas-tinta.svg');
+	--ss-capa-estrelas-escuro: url('/star-stream/temas/estrelas-douradas.svg');
 	--ss-ouro: #a8823f;
 	--ss-tinta: #1b2a3e;
 	--ss-serifa: 'EB Garamond Variable', 'EB Garamond', Georgia, serif;
@@ -48,10 +57,6 @@
 	--ss-fundo:
 		url('/star-stream/temas/estrelas-tinta.svg') 0 0 / 600px,
 		#f7f1e3;
-}
-
-[data-ss-tema='codex'] body {
-	background-attachment: fixed;
 }
 
 [data-ss-tema='codex'][data-theme='light'] main {
@@ -173,7 +178,7 @@
 }
 
 [data-ss-tema='codex'][data-theme='light'] .sl-markdown-content a:not(.sl-anchor-link) {
-	color: #23406b;
+	color: var(--ss-link-claro);
 }
 
 [data-ss-tema='codex'] .sl-markdown-content strong {
@@ -250,16 +255,16 @@
 	margin-block: 0.5rem 1.5rem;
 }
 
-[data-ss-tema='codex'] .ss-capa .ss-acoes a {
+[data-ss-tema='codex'] .ss-abertura .ss-acoes a {
 	border-radius: 0;
 	font-family: 'Cinzel', serif;
 	letter-spacing: 0.08em;
 }
 
-[data-ss-tema='codex'] .ss-capa .ss-acoes a.ss-principal {
-	background: #f2dcae;
-	border-color: #f2dcae;
-	color: #1b2a3e;
+[data-ss-tema='codex'] .ss-abertura .ss-acoes a.ss-principal {
+	background: var(--sl-color-accent-high);
+	border-color: var(--sl-color-accent-high);
+	color: var(--ss-tinta);
 }
 
 /* Carta celeste em marca d'água no canto. */

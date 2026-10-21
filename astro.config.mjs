@@ -2,8 +2,16 @@
 import { defineConfig } from 'astro/config';
 import starlight from '@astrojs/starlight';
 import fs from 'node:fs';
+import { FONTES_DO_TEMA, TEMAS } from './src/temas.mjs';
+import { CORES } from './src/cores.mjs';
 
-const seletorTema = fs.readFileSync('./src/scripts/seletor-tema.js', 'utf8');
+// O script do seletor recebe a família e as paletas de cada tema a partir das listas únicas em src/temas.mjs e src/cores.mjs.
+const seletorTema = fs
+	.readFileSync('./src/scripts/seletor-tema.js', 'utf8')
+	.replace('__FAMILIAS_DOS_TEMAS__', JSON.stringify(Object.fromEntries(TEMAS.map((t) => [t.id, t.familia]))))
+	.replace('__CORES_DOS_TEMAS__', JSON.stringify(CORES))
+	.replace('__FONTES_DOS_TEMAS__', JSON.stringify(FONTES_DO_TEMA))
+	.replaceAll('__BASE__', '/star-stream/');
 
 export default defineConfig({
 	site: 'https://shadowraleigh.github.io',
@@ -29,23 +37,31 @@ export default defineConfig({
 			},
 			components: { ThemeSelect: './src/components/SeletorDeTema.astro' },
 			customCss: [
-				'@fontsource-variable/eb-garamond',
-				'@fontsource-variable/eb-garamond/wght-italic.css',
-				'@fontsource/cormorant-garamond/500.css',
-				'@fontsource/cormorant-garamond/600.css',
-				'@fontsource-variable/orbitron',
-				'@fontsource-variable/jetbrains-mono',
-				'@fontsource/cinzel-decorative/700.css',
+				// Fontes dos temas, só o alfabeto latino, servidas de public/fontes (tools/copiar-fontes.mjs)
+				'./src/styles/fontes.css',
 				'./src/styles/star-stream.css',
 				'./src/styles/temas/comum.css',
+				// Astra
 				'./src/styles/temas/constelacao.css',
 				'./src/styles/temas/observatorio.css',
-				'./src/styles/temas/holograma.css',
 				'./src/styles/temas/nebulosa.css',
 				'./src/styles/temas/codex.css',
-				'./src/styles/temas/grimorio.css',
 				'./src/styles/temas/astrolabio.css',
-				'./src/styles/temas/carta.css',
+				// Fantasia: a base da família e as cores de cada tema
+				'./src/styles/temas/familia-fantasia.css',
+				'./src/styles/temas/grimorio.css',
+				'./src/styles/temas/bosque.css',
+				'./src/styles/temas/vitral.css',
+				'./src/styles/temas/forja.css',
+				'./src/styles/temas/mapa.css',
+				'./src/styles/temas/abissal.css',
+				// Sci-fi: a base da família e as cores de cada tema
+				'./src/styles/temas/familia-scifi.css',
+				'./src/styles/temas/holograma.css',
+				'./src/styles/temas/radar.css',
+				'./src/styles/temas/circuito.css',
+				'./src/styles/temas/navegacao.css',
+				// Capas que não cabem nos arquivos dos temas
 				'./src/styles/temas/banners.css',
 			],
 			lastUpdated: false,

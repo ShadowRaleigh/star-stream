@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 24" fill="none" stroke="#361c49" stroke-width="1">
+<path d="M0 12 H100 M140 12 H240" stroke-width=".8"/>
+<g transform="translate(120 12)"><circle cx="0" cy="-5.5" r="5.5" transform="rotate(0)"/><circle cx="0" cy="-5.5" r="5.5" transform="rotate(90)"/><circle cx="0" cy="-5.5" r="5.5" transform="rotate(180)"/><circle cx="0" cy="-5.5" r="5.5" transform="rotate(270)"/><circle r="2" fill="#361c49"/></g>
+<path d="M100 12 L106 8 L106 16 Z M140 12 L134 8 L134 16 Z" fill="#361c49"/>
+</svg>

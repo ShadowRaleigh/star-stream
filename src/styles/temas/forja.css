@@ -1,0 +1,94 @@
+/* Forja Rúnica (família fantasia): a oficina dos anões. Capa de ferro, página de pedra, bronze e o brilho das brasas. A estrutura vem de familia-fantasia.css; o tema é o mesmo no claro e no escuro. */
+
+:root[data-ss-tema='forja'],
+:root[data-ss-tema='forja'][data-theme='light'] {
+	--ss-ouro: #b87333;
+	--ss-ouro-rgb: 184 115 51;
+	--ss-ouro-claro: #e0a868;
+	--ss-rubrica: #b0401a;
+	--ss-rubrica-rgb: 176 64 26;
+	--ss-tinta: #22201d;
+	--ss-tinta-forte: #12110f;
+	--ss-tinta-suave: #3d3830;
+	--ss-pergaminho: #e2ddd2;
+	--ss-couro: #1a1918;
+	--ss-couro-escuro: #0f0e0d;
+	--ss-material: url('/star-stream/temas/material-forja.svg');
+	--ss-capa-fundo: linear-gradient(180deg, #2a2724, #1a1918);
+	--ss-papel-textura: url('/star-stream/temas/papel-forja.svg');
+	--ss-papel-claro: #efebe3;
+	--ss-papel-escuro: #d0c8b9;
+	--ss-sepia-rgb: 90 80 68;
+	--ss-realce-rgb: 255 250 240;
+	--ss-canto-se: url('/star-stream/temas/canto-forja-se.svg');
+	--ss-canto-sd: url('/star-stream/temas/canto-forja-sd.svg');
+	--ss-canto-ie: url('/star-stream/temas/canto-forja-ie.svg');
+	--ss-canto-id: url('/star-stream/temas/canto-forja-id.svg');
+	--ss-florao: url('/star-stream/temas/florao-forja.svg');
+	--ss-fita: linear-gradient(180deg, #c4521f, #8a3510);
+	--ss-fita-texto: #fff0e0;
+	--ss-capitular-1: #c4521f;
+	--ss-capitular-2: #7a2c0c;
+	--ss-botao: linear-gradient(180deg, #c4521f, #8a3510);
+	--ss-marcador: '\25C8  ';
+	--ss-fonte-deco: 'Uncial Antiqua', 'Cinzel', serif;
+	--ss-fonte-cabeca: 'Uncial Antiqua', 'Cinzel', serif;
+	--ss-fonte-rotulo: 'Cinzel', serif;
+	--ss-serifa: 'EB Garamond Variable', 'EB Garamond', Georgia, serif;
+	--sl-font: var(--ss-serifa);
+	--sl-text-body: 1.16rem;
+	--sl-line-height: 1.7;
+	/* Cores da página: a tinta sobre o papel. */
+	--sl-color-accent-low: #ecd3c4;
+	--sl-color-accent: #b0401a;
+	--sl-color-accent-high: #6a240c;
+	--sl-color-white: #1b1916;
+	--sl-color-gray-1: #22201d;
+	--sl-color-gray-2: #36322c;
+	--sl-color-gray-3: #5f584e;
+	--sl-color-gray-4: #8f877a;
+	--sl-color-gray-5: #c4bcae;
+	--sl-color-gray-6: #d9d3c7;
+	--sl-color-gray-7: #e3ded4;
+	--sl-color-black: var(--ss-pergaminho);
+	--sl-color-text: #22201d;
+	--sl-color-text-accent: #b0401a;
+	--sl-color-bg-nav: var(--ss-couro);
+	--sl-color-bg-sidebar: transparent;
+	--sl-color-hairline: rgb(90 80 68 / 0.3);
+	--sl-color-hairline-light: rgb(90 80 68 / 0.45);
+	--ss-fundo:
+		radial-gradient(ellipse 60% 40% at 50% 100%, rgb(196 82 31 / 0.22), transparent 70%),
+		url('/star-stream/temas/material-forja.svg') 0 0 / 300px,
+		radial-gradient(ellipse at 50% 0%, #2a2724, #0f0e0d 70%),
+		#0f0e0d;
+	--ss-tabela-cabecalho: rgb(176 64 26 / 0.08);
+	--ss-tabela-listra: rgb(90 80 68 / 0.06);
+}
+
+/* Fora da página (cabeçalho, barras laterais), a tinta clara sobre a capa. */
+[data-ss-tema='forja'] :is(header.header, .sidebar-pane, .right-sidebar, starlight-menu-button, mobile-starlight-toc) {
+	--sl-color-white: #efe9df;
+	--sl-color-gray-1: #e0d8cb;
+	--sl-color-gray-2: #c8bdae;
+	--sl-color-gray-3: #a09584;
+	--sl-color-gray-4: #6e655a;
+	--sl-color-gray-5: #3c3631;
+	--sl-color-gray-6: #26231f;
+	--sl-color-black: #0f0e0d;
+	--sl-color-text: #e0d8cb;
+	--sl-color-text-accent: #e0a868;
+	--sl-color-accent: #e0a868;
+	--sl-color-accent-high: #f6d2a6;
+	--sl-color-accent-low: #3a2a1e;
+	--sl-color-hairline: rgb(184 115 51 / 0.25);
+	--sl-color-hairline-light: rgb(184 115 51 / 0.4);
+}
+
+[data-ss-tema='forja'] .ss-capa {
+	background: url('/star-stream/temas/capa-forja.svg') center / cover;
+}
+
+[data-ss-tema='forja'] .ss-capa img {
+	filter: drop-shadow(0 2px 0 rgb(0 0 0 / 0.7)) drop-shadow(0 0 22px rgb(255 106 31 / 0.45));
+}

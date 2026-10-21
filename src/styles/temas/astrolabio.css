@@ -1,4 +1,4 @@
-/* Teste, Astrolábio: a estrutura do Observatório (títulos gravados, serifa de livro, astrolábio, filetes duplos) com o céu azul-noite, as estrelas e o ouro do Constelação. Gerado de observatorio.css; as cores ficam no fim. */
+/* Astrolábio: a estrutura do Observatório (títulos gravados, serifa de livro, astrolábio, filetes duplos) com o céu azul-noite, as estrelas e o ouro do Constelação no escuro, e a Ardósia no claro. Gerado de observatorio.css; as cores ficam no fim. */
 
 :root[data-ss-tema='astrolabio'] {
 	--ss-latao: #c9a15d;
@@ -259,35 +259,79 @@
 	color: var(--ss-latao-claro);
 }
 
+/* Capa: uma esfera armilar à direita e o nome à esquerda. */
 [data-ss-tema='astrolabio'] .ss-capa {
+	isolation: isolate;
+	justify-items: start;
+	padding-inline: clamp(1.5rem, 6%, 5rem);
 	border-radius: 2px;
 	border: 1px solid var(--ss-latao);
 	outline: 1px solid var(--sl-color-hairline-light);
 	outline-offset: 5px;
-	background:
-		url('/star-stream/temas/astrolabio-dourado.svg') center / 560px no-repeat,
-		radial-gradient(ellipse at center, rgb(18 17 16 / 0.35), rgb(18 17 16 / 0.92)),
-		url('/star-stream/galaxia.webp') center / cover;
-	background-blend-mode: soft-light, normal, normal;
+	background: url('/star-stream/temas/capa-astrolabio-escuro.svg') right center / cover;
 }
 
-:root[data-ss-tema='astrolabio'] .ss-capa p {
+[data-ss-tema='astrolabio'][data-theme='light'] .ss-capa {
+	background-image: url('/star-stream/temas/capa-astrolabio-claro.svg');
+}
+
+[data-ss-tema='astrolabio'] .ss-capa img {
+	width: min(30rem, 56%);
+	filter: drop-shadow(0 2px 0 rgb(0 0 0 / 0.6)) drop-shadow(0 0 24px rgb(201 161 93 / 0.35));
+}
+
+[data-ss-tema='astrolabio'][data-theme='light'] .ss-capa img {
+	filter: none;
+}
+
+[data-ss-tema='astrolabio'][data-theme='light'] .ss-capa .logo-claro {
+	display: none;
+}
+
+[data-ss-tema='astrolabio'][data-theme='light'] .ss-capa .logo-escuro {
+	display: block;
+}
+
+/* No celular não cabe lado a lado: o nome volta ao centro e a esfera fica atrás, mais apagada. */
+@media (max-width: 50rem) {
+	[data-ss-tema='astrolabio'] .ss-capa {
+		justify-items: center;
+	}
+
+	[data-ss-tema='astrolabio'] .ss-capa img {
+		width: 88%;
+	}
+
+	[data-ss-tema='astrolabio'] .ss-capa::before {
+		content: '';
+		position: absolute;
+		inset: 0;
+		z-index: -1;
+		background: rgb(12 18 34 / 0.55);
+	}
+
+	[data-ss-tema='astrolabio'][data-theme='light'] .ss-capa::before {
+		background: rgb(238 240 242 / 0.6);
+	}
+}
+
+:root[data-ss-tema='astrolabio'] .ss-abertura .ss-versao {
 	font-family: var(--ss-display);
 	font-size: 1.05rem;
 	letter-spacing: 0.3em;
 }
 
-:root[data-ss-tema='astrolabio'] .ss-capa .ss-acoes a {
+:root[data-ss-tema='astrolabio'] .ss-abertura .ss-acoes a {
 	border-radius: 2px;
 	font-family: var(--ss-display);
 	font-size: 1.1rem;
 	letter-spacing: 0.08em;
 }
 
-:root[data-ss-tema='astrolabio'] .ss-capa .ss-acoes a.ss-principal {
+:root[data-ss-tema='astrolabio'] .ss-abertura .ss-acoes a.ss-principal {
 	background: var(--ss-latao);
 	border-color: var(--ss-latao);
-	color: #17130c;
+	color: var(--ss-botao-tinta, #17130c);
 }
 
 /* Astrolábio em marca d'água, bem leve, atrás de tudo. */
@@ -308,56 +352,6 @@
 	background-image: url('/star-stream/temas/astrolabio-tinta.svg');
 	opacity: 0.07;
 }
-
-/* Capa (do Observatório) */
-[data-ss-tema='astrolabio'] .ss-capa {
-	background:
-		url('/star-stream/temas/astrolabio-anel-dourado.svg') center / min(640px, 120%) no-repeat,
-		url('/star-stream/temas/estrelas-douradas.svg') 0 0 / 420px,
-		radial-gradient(ellipse at center, #2a2216 0%, #15130f 62%, #0e0d0b 100%);
-	background-blend-mode: normal;
-	border: 1px solid #c9a15d;
-	outline: 1px solid rgb(201 161 93 / 0.35);
-	outline-offset: 6px;
-	box-shadow: inset 0 0 140px rgb(0 0 0 / 0.85);
-	position: relative;
-	isolation: isolate;
-}
-
-[data-ss-tema='astrolabio'] .ss-capa::before {
-	content: '';
-	position: absolute;
-	inset: 0;
-	z-index: -1;
-	background: radial-gradient(circle at center, rgb(14 13 11 / 0.15) 0 22%, rgb(14 13 11 / 0.7) 60%);
-	pointer-events: none;
-}
-
-[data-ss-tema='astrolabio'] .ss-capa img {
-	filter: drop-shadow(0 2px 0 rgb(0 0 0 / 0.6)) drop-shadow(0 0 24px rgb(201 161 93 / 0.35));
-}
-
-[data-ss-tema='astrolabio'][data-theme='light'] .ss-capa {
-	background:
-		url('/star-stream/temas/astrolabio-anel-tinta.svg') center / min(640px, 120%) no-repeat,
-		radial-gradient(ellipse at center, #fbf5e6, #ead9b4 90%);
-	box-shadow: inset 0 0 120px rgb(120 80 30 / 0.3);
-}
-
-:root[data-ss-tema='astrolabio'][data-theme='light'] .ss-capa :is(p, .ss-acoes a:not(.ss-principal)) {
-	color: #2c2214;
-	border-color: rgb(44 34 20 / 0.5);
-	background: rgb(255 255 255 / 0.35);
-}
-
-[data-ss-tema='astrolabio'][data-theme='light'] .ss-capa .logo-claro {
-	display: none;
-}
-
-[data-ss-tema='astrolabio'][data-theme='light'] .ss-capa .logo-escuro {
-	display: block;
-}
-
 
 /* Pele do Constelação */
 :root[data-ss-tema='astrolabio'] {
@@ -386,33 +380,30 @@
 	--ss-tabela-listra: rgb(248 243 231 / 0.025);
 }
 
+/* Modo claro: Ardósia (papel cinza-pedra, tinta grafite e azul-petróleo). */
 :root[data-ss-tema='astrolabio'][data-theme='light'] {
-	--ss-latao: #9a7440;
-	--ss-latao-claro: #7a5729;
-	--sl-color-accent-low: #efe5d0;
-	--sl-color-accent: #8f6a37;
-	--sl-color-accent-high: #4f3818;
-	--sl-color-white: #111724;
-	--sl-color-gray-1: #1b2a3e;
-	--sl-color-gray-2: #2f3a4f;
-	--sl-color-gray-3: #5a6274;
-	--sl-color-gray-4: #8b8b88;
-	--sl-color-gray-5: #d8cfbb;
-	--sl-color-gray-6: #ece5d6;
-	--sl-color-gray-7: #f3eee3;
-	--sl-color-black: #f8f3e7;
-	--sl-color-bg-nav: rgb(248 243 231 / 0.92);
-	--sl-color-bg-sidebar: rgb(248 243 231 / 0.6);
-	--sl-color-hairline: rgb(154 116 64 / 0.22);
-	--sl-color-hairline-light: rgb(154 116 64 / 0.32);
-	--ss-fundo: url('/star-stream/temas/estrelas-tinta.svg') 0 0 / 600px, #f8f3e7;
-	--ss-tabela-listra: rgb(27 42 62 / 0.03);
+	--ss-latao: #1f6f78;
+	--ss-latao-claro: #0e3c42;
+	--sl-color-accent-low: #dce7e8;
+	--sl-color-accent: #1f6f78;
+	--sl-color-accent-high: #0e3c42;
+	--sl-color-white: #15181c;
+	--sl-color-gray-1: #1d2126;
+	--sl-color-gray-2: #353b42;
+	--sl-color-gray-3: #5a626b;
+	--sl-color-gray-4: #8d949b;
+	--sl-color-gray-5: #ccd1d5;
+	--sl-color-gray-6: #e1e4e7;
+	--sl-color-gray-7: #e8ebed;
+	--sl-color-black: #eef0f2;
+	--sl-color-bg-nav: #eef0f2;
+	--sl-color-bg-sidebar: #e8ebed;
+	--sl-color-hairline: rgb(53 59 66 / 0.2);
+	--sl-color-hairline-light: rgb(53 59 66 / 0.32);
+	--ss-fundo: #eef0f2;
+	--ss-tabela-listra: rgb(53 59 66 / 0.05);
 }
 
-[data-ss-tema='astrolabio'] .ss-capa {
-	background:
-		url('/star-stream/temas/astrolabio-anel-dourado.svg') center / min(640px, 120%) no-repeat,
-		url('/star-stream/temas/estrelas-claras.svg') 0 0 / 420px,
-		radial-gradient(ellipse at 50% 40%, #1d2440 0%, #0d1222 60%, #080b15 100%);
-	border-color: #e3c38f;
+:root[data-ss-tema='astrolabio'][data-theme='light'] .ss-abertura .ss-acoes a.ss-principal {
+	color: var(--sl-color-black);
 }

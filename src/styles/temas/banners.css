@@ -1,14 +1,14 @@
-/* Capas próprias de cada tema. Constelação e Holograma usam a galáxia; os outros ganham composições do próprio mundo. */
+/* Capas próprias de cada tema. O Constelação usa a galáxia como no banner oficial; Holograma e Nebulosa usam versões modificadas dela; os outros ganham composições do próprio mundo. */
 
 /* Observatório: um instrumento gravado em latão, sem foto. */
 [data-ss-tema='observatorio'] .ss-capa {
 	background:
-		url('/star-stream/temas/astrolabio-anel-dourado.svg') center / min(640px, 120%) no-repeat,
-		url('/star-stream/temas/estrelas-douradas.svg') 0 0 / 420px,
-		radial-gradient(ellipse at center, #2a2216 0%, #15130f 62%, #0e0d0b 100%);
+		var(--ss-capa-anel, url('/star-stream/temas/astrolabio-anel-dourado.svg')) center / min(640px, 120%) no-repeat,
+		var(--ss-capa-estrelas, url('/star-stream/temas/estrelas-douradas.svg')) 0 0 / 420px,
+		radial-gradient(ellipse at center, var(--ss-capa-1, #2a2216) 0%, var(--ss-capa-2, #15130f) 62%, var(--ss-capa-3, #0e0d0b) 100%);
 	background-blend-mode: normal;
-	border: 1px solid #c9a15d;
-	outline: 1px solid rgb(201 161 93 / 0.35);
+	border: 1px solid rgb(var(--ss-capa-metal-rgb, 201 161 93));
+	outline: 1px solid rgb(var(--ss-capa-metal-rgb, 201 161 93) / 0.35);
 	outline-offset: 6px;
 	box-shadow: inset 0 0 140px rgb(0 0 0 / 0.85);
 	position: relative;
@@ -24,21 +24,20 @@
 	pointer-events: none;
 }
 
+/* No claro, a vinheta escura deixava uma névoa cinza nas bordas do papel. */
+[data-ss-tema='observatorio'][data-theme='light'] .ss-capa::before {
+	background: none;
+}
+
 [data-ss-tema='observatorio'] .ss-capa img {
-	filter: drop-shadow(0 2px 0 rgb(0 0 0 / 0.6)) drop-shadow(0 0 24px rgb(201 161 93 / 0.35));
+	filter: drop-shadow(0 2px 0 rgb(0 0 0 / 0.6)) drop-shadow(0 0 24px rgb(var(--ss-capa-metal-rgb, 201 161 93) / 0.35));
 }
 
 [data-ss-tema='observatorio'][data-theme='light'] .ss-capa {
 	background:
-		url('/star-stream/temas/astrolabio-anel-tinta.svg') center / min(640px, 120%) no-repeat,
-		radial-gradient(ellipse at center, #fbf5e6, #ead9b4 90%);
+		var(--ss-capa-anel-claro, url('/star-stream/temas/astrolabio-anel-tinta.svg')) center / min(640px, 120%) no-repeat,
+		radial-gradient(ellipse at center, var(--ss-capa-claro-1, #fbf5e6), var(--ss-capa-claro-2, #ead9b4) 90%);
 	box-shadow: inset 0 0 120px rgb(120 80 30 / 0.3);
-}
-
-:root[data-ss-tema='observatorio'][data-theme='light'] .ss-capa :is(p, .ss-acoes a:not(.ss-principal)) {
-	color: #2c2214;
-	border-color: rgb(44 34 20 / 0.5);
-	background: rgb(255 255 255 / 0.35);
 }
 
 [data-ss-tema='observatorio'][data-theme='light'] .ss-capa .logo-claro {
@@ -62,8 +61,8 @@
 	position: absolute;
 	inset: -40px;
 	z-index: -2;
-	background: url('/star-stream/galaxia.webp') center 40% / cover;
-	filter: blur(22px) saturate(1.8) hue-rotate(-12deg);
+	background: var(--ss-galaxia) center 40% / cover;
+	filter: blur(22px) saturate(1.8) hue-rotate(var(--ss-matiz));
 	opacity: 0.85;
 }
 
@@ -74,8 +73,8 @@
 	z-index: -1;
 	background:
 		radial-gradient(circle at 50% 46%, rgb(255 225 242 / 0.28) 0, transparent 34%),
-		radial-gradient(ellipse 60% 70% at 20% 90%, rgb(185 166 255 / 0.45), transparent 70%),
-		radial-gradient(ellipse 60% 70% at 85% 10%, rgb(255 207 168 / 0.35), transparent 70%),
+		radial-gradient(ellipse 60% 70% at 20% 90%, rgb(var(--ss-lilas-rgb) / 0.45), transparent 70%),
+		radial-gradient(ellipse 60% 70% at 85% 10%, rgb(var(--ss-pessego-rgb) / 0.35), transparent 70%),
 		url('/star-stream/temas/estrelas-claras.svg') 0 0 / 380px,
 		linear-gradient(180deg, rgb(18 10 36 / 0.2), rgb(18 10 36 / 0.55));
 }
@@ -85,12 +84,12 @@
 	position: relative;
 	isolation: isolate;
 	background:
-		url('/star-stream/temas/astrolabio-anel-tinta.svg') center / min(560px, 110%) no-repeat,
-		url('/star-stream/temas/estrelas-tinta.svg') 0 0 / 420px,
-		#f7f1e3;
-	color: #1b2a3e;
-	border: 1px solid #a8823f;
-	outline: 1px solid #a8823f;
+		var(--ss-capa-anel-claro) center / min(560px, 110%) no-repeat,
+		var(--ss-capa-estrelas-claro) 0 0 / 420px,
+		var(--ss-papel);
+	color: var(--ss-tinta);
+	border: 1px solid var(--ss-ouro);
+	outline: 1px solid var(--ss-ouro);
 	outline-offset: 6px;
 	box-shadow: none;
 }
@@ -100,7 +99,7 @@
 	position: absolute;
 	inset: 0;
 	z-index: -1;
-	background: radial-gradient(circle at center, rgb(247 241 227 / 0.55) 0 30%, rgb(247 241 227 / 0.88) 62%);
+	background: radial-gradient(circle at center, rgb(var(--ss-papel-rgb) / 0.55) 0 30%, rgb(var(--ss-papel-rgb) / 0.88) 62%);
 }
 
 [data-ss-tema='codex'] .ss-capa .logo-claro {
@@ -112,44 +111,21 @@
 	filter: none;
 }
 
-:root[data-ss-tema='codex'] .ss-capa p {
-	opacity: 1;
-	font-weight: 600;
-	color: #1b2a3e;
-	font-family: 'Cinzel', serif;
-}
-
-:root[data-ss-tema='codex'] .ss-capa p::after {
-	content: '';
-	display: block;
-	width: 220px;
-	height: 18px;
-	margin: 0.9rem auto 0;
-	background: url('/star-stream/temas/florao-dourado.svg') center / contain no-repeat;
-}
-
-:root[data-ss-tema='codex'] .ss-capa .ss-acoes a.ss-principal {
-	background: #1b2a3e;
-	border-color: #1b2a3e;
-	color: #f7f1e3;
-}
-
-:root[data-ss-tema='codex'] .ss-capa .ss-acoes a:not(.ss-principal) {
-	color: #1b2a3e;
-	border-color: #1b2a3e;
-	background: transparent;
-	backdrop-filter: none;
+:root[data-ss-tema='codex'] .ss-abertura .ss-acoes a.ss-principal {
+	background: var(--ss-tinta);
+	border-color: var(--ss-tinta);
+	color: var(--ss-papel);
 }
 
 [data-ss-tema='codex']:not([data-theme='light']) .ss-capa {
 	background:
-		url('/star-stream/temas/astrolabio-anel-dourado.svg') center / min(560px, 110%) no-repeat,
-		url('/star-stream/temas/estrelas-douradas.svg') 0 0 / 420px,
-		#0f1626;
+		var(--ss-capa-anel-escuro) center / min(560px, 110%) no-repeat,
+		var(--ss-capa-estrelas-escuro) 0 0 / 420px,
+		var(--ss-noite);
 }
 
 [data-ss-tema='codex']:not([data-theme='light']) .ss-capa::before {
-	background: radial-gradient(circle at center, rgb(15 22 38 / 0.45) 0 30%, rgb(15 22 38 / 0.85) 62%);
+	background: radial-gradient(circle at center, rgb(var(--ss-noite-rgb) / 0.45) 0 30%, rgb(var(--ss-noite-rgb) / 0.85) 62%);
 }
 
 [data-ss-tema='codex']:not([data-theme='light']) .ss-capa .logo-claro {
@@ -160,15 +136,10 @@
 	display: none;
 }
 
-:root[data-ss-tema='codex']:not([data-theme='light']) .ss-capa :is(p, .ss-acoes a:not(.ss-principal)) {
-	color: #f2dcae;
-	border-color: #d7b46d;
-}
-
-:root[data-ss-tema='codex']:not([data-theme='light']) .ss-capa .ss-acoes a.ss-principal {
-	background: #f2dcae;
-	border-color: #f2dcae;
-	color: #0f1626;
+:root[data-ss-tema='codex']:not([data-theme='light']) .ss-abertura .ss-acoes a.ss-principal {
+	background: var(--sl-color-accent-high);
+	border-color: var(--sl-color-accent-high);
+	color: var(--ss-noite);
 }
 
 /* Grimório: capa de couro com ferros dourados, cantos e um medalhão; o logo em ouro. */
@@ -176,20 +147,20 @@
 	position: relative;
 	isolation: isolate;
 	background:
-		url('/star-stream/temas/canto-ouro-se.svg') 14px 14px / 90px no-repeat,
-		url('/star-stream/temas/canto-ouro-sd.svg') calc(100% - 14px) 14px / 90px no-repeat,
-		url('/star-stream/temas/canto-ouro-ie.svg') 14px calc(100% - 14px) / 90px no-repeat,
-		url('/star-stream/temas/canto-ouro-id.svg') calc(100% - 14px) calc(100% - 14px) / 90px no-repeat,
-		url('/star-stream/temas/selo-dourado.svg') center / min(480px, 95%) no-repeat,
-		url('/star-stream/temas/couro.svg') 0 0 / 300px,
-		radial-gradient(ellipse at center, #4a2c16, #24150a 75%);
-	border: 2px solid #c69a52;
+		var(--ss-canto-se) 14px 14px / 90px no-repeat,
+		var(--ss-canto-sd) calc(100% - 14px) 14px / 90px no-repeat,
+		var(--ss-canto-ie) 14px calc(100% - 14px) / 90px no-repeat,
+		var(--ss-canto-id) calc(100% - 14px) calc(100% - 14px) / 90px no-repeat,
+		var(--ss-selo-capa) center / min(480px, 95%) no-repeat,
+		var(--ss-material) 0 0 / 300px,
+		radial-gradient(ellipse at center, var(--ss-capa-centro), var(--ss-couro) 75%);
+	border: 2px solid var(--ss-ouro);
 	box-shadow:
-		inset 0 0 0 6px #2a190c,
-		inset 0 0 0 7px rgb(198 154 82 / 0.7),
+		inset 0 0 0 6px var(--ss-couro-escuro),
+		inset 0 0 0 7px rgb(var(--ss-ouro-rgb) / 0.7),
 		inset 0 0 90px rgb(0 0 0 / 0.75),
-		0 0 0 4px #ecdcb8,
-		0 0 0 5px rgb(122 90 50 / 0.6);
+		0 0 0 4px var(--ss-pergaminho),
+		0 0 0 5px rgb(var(--ss-sepia-rgb) / 0.6);
 }
 
 [data-ss-tema='grimorio'] .ss-capa::before {
@@ -197,14 +168,54 @@
 	position: absolute;
 	inset: 0;
 	z-index: -1;
-	background: radial-gradient(circle at center, rgb(36 21 10 / 0.35) 0 25%, rgb(36 21 10 / 0.8) 60%);
+	background: radial-gradient(circle at center, rgb(var(--ss-couro-rgb) / 0.35) 0 25%, rgb(var(--ss-couro-rgb) / 0.8) 60%);
 }
 
 [data-ss-tema='grimorio'] .ss-capa img {
-	filter: sepia(1) saturate(3.2) hue-rotate(-14deg) brightness(0.82) contrast(1.15) drop-shadow(0 2px 0 rgb(0 0 0 / 0.7));
+	filter: var(--ss-filtro-logo);
 }
 
-:root[data-ss-tema='grimorio'] .ss-capa p {
-	color: #e9c98a;
-	font-family: 'Cinzel', serif;
+/* Clássico: uma página de atlas estelar, com régua graduada na moldura e o centro limpo para o nome. */
+[data-ss-tema='classico'] .ss-capa {
+	isolation: isolate;
+	border: 1px solid var(--sl-color-gray-5);
+	background:
+		url('/star-stream/temas/regua-cima-classico-escuro.svg') left top / auto 12px repeat-x,
+		url('/star-stream/temas/regua-baixo-classico-escuro.svg') left bottom / auto 12px repeat-x,
+		url('/star-stream/temas/regua-esq-classico-escuro.svg') left top / 12px auto repeat-y,
+		url('/star-stream/temas/regua-dir-classico-escuro.svg') right top / 12px auto repeat-y,
+		url('/star-stream/temas/capa-classico-escuro.svg') center / cover;
+}
+
+[data-ss-tema='classico'] .ss-capa::before {
+	content: '';
+	position: absolute;
+	inset: 0;
+	z-index: -1;
+	background: radial-gradient(ellipse 38% 46% at center, rgb(12 17 32 / 0.85), rgb(12 17 32 / 0) 100%);
+}
+
+[data-ss-tema='classico'][data-theme='light'] .ss-capa {
+	background:
+		url('/star-stream/temas/regua-cima-classico-claro.svg') left top / auto 12px repeat-x,
+		url('/star-stream/temas/regua-baixo-classico-claro.svg') left bottom / auto 12px repeat-x,
+		url('/star-stream/temas/regua-esq-classico-claro.svg') left top / 12px auto repeat-y,
+		url('/star-stream/temas/regua-dir-classico-claro.svg') right top / 12px auto repeat-y,
+		url('/star-stream/temas/capa-classico-claro.svg') center / cover;
+}
+
+[data-ss-tema='classico'][data-theme='light'] .ss-capa::before {
+	background: radial-gradient(ellipse 38% 46% at center, rgb(248 243 231 / 0.9), rgb(248 243 231 / 0) 100%);
+}
+
+[data-ss-tema='classico'][data-theme='light'] .ss-capa img {
+	filter: none;
+}
+
+[data-ss-tema='classico'][data-theme='light'] .ss-capa .logo-claro {
+	display: none;
+}
+
+[data-ss-tema='classico'][data-theme='light'] .ss-capa .logo-escuro {
+	display: block;
 }
