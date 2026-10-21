@@ -4,10 +4,10 @@ title: "Uso de Dados"
 O uso de dados pra definir resultados é essencial, ainda que muitas mecânicas em **Star Stream** tornem o sistema bem enxuto nesse sentido, quando eles aparecem, podem ser a diferença entre o seu personagem ser bem ou mal sucedido nos objetivos dele, ou mesmo ser a diferença entre a vida e a morte de personagens.  
 ## Características
 
-* O sistema é da base D20, isso quer dizer que, por padrão, o dado rolado pra resolver uma situação deve possuir 20 lados, mas pode ser de um tipo diferente quando especificado  
+* O sistema usa dois dados principais. Ataques, Testes de Concentração e qualquer rolagem contra uma Defesa usam **1d100**. Testes de perícia, testes de atributo e a iniciativa usam **1d20**. Outros dados aparecem quando a regra pede (dano, duração, HitDie)  
 * Tirar o maior resultado em um dado é considerado um **Sucesso Crítico**, nem em todos os contextos esse evento é relevante, mas, muitas vezes, tirar o valor máximo no dado é motivo de comemoração e tem características especiais  
 * Tirar o menor resultado em um dado é considerado uma **Falha Crítica**, nem em todos os contextos esse evento é relevante, mas, muitas vezes, tirar o valor mínimo no dado é razão de medo e tem consequências  
-* Todo evento que exigir o roll de um dado pra determinar o resultado deve ter uma **Classe de Dificuldade** (**DC**). O valor dessa classe é igual ao maior valor no qual você falha aquele roll. Isso quer dizer que um **DC16** exige um dado de pelo menos 17 para ser bem sucedido
+* Todo teste em 1d20 que exigir uma rolagem deve ter uma **Classe de Dificuldade** (**DC**). O valor dessa classe é igual ao maior valor no qual você falha aquele roll. Isso quer dizer que um **DC16** exige um dado de pelo menos 17 para ser bem sucedido
 
 ## Vantagens e Desvantagens
 

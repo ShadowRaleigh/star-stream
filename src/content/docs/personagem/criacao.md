@@ -34,6 +34,8 @@ Além disso, todo personagem pode ter:
 * Companions/Familiares/Invocações;  
 * Etc…
 
+A **Classe** é a profissão ou a vocação do personagem no mundo (caçador de recompensas, médico de campo, engenheira de golens). O mestre a define com o jogador a partir da história, e ela não tem regras próprias.
+
 Na hora de se elaborar um personagem, uma raça para ele deve ser escolhida dentre as disponíveis na **[página de raças](../../racas/)**, levando em conta todas as características mencionadas, sistemas acessíveis àquela raça e modificadores relevantes.
 
 Em seguida, um **[histórico](../../historicos/)** da sessão específica abaixo deve ser selecionado para o seu personagem, preferencialmente um que combine com a backstory que você criará em seguida.
@@ -64,6 +66,6 @@ Como recompensa por quebrar um limite, em adição as recompensas normais, o per
 * **1 Ponto de Habilidade extra**  
 * **+2** na **Defesa Principal** do seu arquétipo
 
-Ao subir de nível, toda a vida, mana, qi, plasma e pontos de éter são recuperados, mas os atributos permanecem intocados. Durante uma quebra de limite, personagens tem licença poética pra fazer coisas além das suas capacidades normais, dependendo do que for mais legal na hora da quebra e do árbitro do mestre
+Ao subir de nível, toda a vida e a **Energia** são recuperadas, mas os atributos permanecem intocados. Durante uma quebra de limite, personagens tem licença poética pra fazer coisas além das suas capacidades normais, dependendo do que for mais legal na hora da quebra e do árbitro do mestre
 
 O nível 10 é um marco simbólico importante, já que é o primeiro onde o jogador entra nos dígitos duplos e é o que introduz o conceito das **Quebras de Limite**. Para além dele, o nível 100 é outro marco, que representa a entrada nos dígitos triplos, e desse nível em diante, cada subir de nível exige uma quebra de limite, com dificuldade cada vez maiores. A partir desse ponto, só aqueles que conseguem se provar constantemente diante da vida e superar obstáculos cada vez maiores conseguem continuar avançando nos níveis.

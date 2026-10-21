@@ -18,7 +18,7 @@ Este repositório é a **fonte oficial das regras**. O antigo Google Doc "System
 2. Para ver o resultado: `npm install` (só na primeira vez) e depois `npm run dev`, e abra `http://localhost:4321/star-stream/`.
 3. Faça o commit e envie. O GitHub Actions publica o site sozinho em alguns minutos.
 
-Links entre páginas são relativos, por exemplo `[Atributos](../atributos/)` ou `[Defesas](../stats/#defesas)`. O `npm run build` falha se uma imagem não existir.
+Links entre páginas são relativos, por exemplo `[Atributos](../atributos/)` ou `[Defesas](../stats/#defesas)`. O `npm run build` falha se uma imagem não existir, e depois dele o `npm run check:links` confere todos os links internos e âncoras.
 
 Avisos de seção incompleta:
 

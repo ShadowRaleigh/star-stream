@@ -90,7 +90,7 @@ title: "Fatores de Raça"
 * <span id="regeneração-natural"></span>**Regeneração Natural:** Machucados que te deixariam debilitados permanentemente, como membros amputados ou órgãos danificados se regeneram em 2 semanas  
 * <span id="resistência-x"></span>**Resistência (X):** Seu personagem tem um recebe um fator de dano de -50% contra o tipo de resistência que ele tenha  
 * <span id="sentidos-apurados"></span>**Sentidos Apurados:** Caso você não atinja os requisitos pra uma interação de percepção, você tem vantagem ao rolar e pode tentar a interação **independente da diferença de nível**  
-* <span id="talento-nato"></span>**Talento Nato:** Ganha 5 pontos de capacidade extra no nível e +2 a cada **QL**
+* <span id="talento-nato"></span>**Talento Nato:** Ganha **5** **Pontos de Capacidade** extras no nível 1 e **+2** a cada **QL**. Pontos de Capacidade desbloqueiam efeitos nas árvores de habilidade (ver [Capacidades](../../habilidades/criacao/#capacidades))
 
 ## Desvantagens
 

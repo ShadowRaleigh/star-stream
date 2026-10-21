@@ -83,7 +83,7 @@ Depois de definir o resultado do ataque, o dano causado é calculado assim:
 
 **Fórmula:** [ **Dano base** × **Forma do ataque** × (1 + **Bônus externos**) × (1 + **Bônus de POD**) × (1 − **RD do alvo**) ]
 
-* **Dano base:** o dano do ataque básico da arma do personagem, já com o multiplicador do estilo de combate. No caso das habilidades, vale o multiplicador próprio das habilidades (ver Habilidades).  
+* **Dano base:** o dano do ataque básico da arma do personagem, já com o multiplicador do estilo de combate. No caso das habilidades, vale o multiplicador próprio das habilidades (ver [Habilidades](../../habilidades/criacao/#dano)).  
 * **Forma do ataque:** ataque básico 1×; habilidade simples 1,5×; habilidade especial 2,5×. Em área, simples 0,75× e especial 1,75×.  
 * **Bônus externos:** somam entre si. São o **resultado do ataque** (Raspão −50%, Acerto 0%, Crítico +50%, Crítico Duplo +100%), consumíveis, buffs, títulos, fraquezas (+50%), resistências (−50%), Vulnerável, Escalada e outros. **Não há teto.**  
 * **Bônus de POD:** ±2% por ponto acima ou abaixo de 10, multiplicado à parte.  

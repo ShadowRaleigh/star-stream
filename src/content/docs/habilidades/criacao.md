@@ -6,7 +6,7 @@ Ao criar uma habilidade, o jogador gasta **2** de **PH** e precisa ficar atento 
 
 * Habilidades tem alguns parâmetros definidos por padrão.
 
-**Ex:** Habilidades que causam dano ou cura direta, por exemplo, tem seus dados de dano ou cura definidos pelo nível, de forma que eles sempre escalam conforme o jogador evolui. Isso quer dizer que o jogador não precisa gastar PH só pra manter impedir suas habilidades antigas de virarem inúteis, mas também quer dizer que o jogador não pode escolher quanto de dano ou cura seus feitiços causam
+**Ex:** Habilidades que causam dano ou cura direta, por exemplo, tem seus dados de dano ou cura definidos pelo tier, de forma que eles sempre escalam conforme o jogador evolui. Isso quer dizer que o jogador não precisa gastar PH só pra manter impedir suas habilidades antigas de virarem inúteis, mas também quer dizer que o jogador não pode escolher quanto de dano ou cura seus feitiços causam
 
 * Outros parâmetros da habilidade podem ser escolhidos de uma lista de opções:
 
@@ -44,7 +44,7 @@ Toda habilidade deve ter:
 
 * **Fator de Custo:** É a soma dos fatores de custo que você ganha ao escolher cada opção de customização da habilidade, adicionado com 1
 
-* **Custo Final:** É o valor em energia que será efetivamente pago ao usar a sua habilidade. É o valor do seu custo base vezes o seu Fator de Custo total
+* **Custo Final:** É o valor em **Energia** que será efetivamente pago ao usar a sua habilidade. É o valor do seu custo base vezes o seu Fator de Custo total
 
 * **Custo Material:** Caso a sua habilidade tenha algum efeito especial, ela certamente terá um custo material, qual item será consumido deve estar presente aqui. Caso a sua habilidade não tenha um custo desses, o campo não precisa estar presente
 
@@ -78,18 +78,13 @@ Toda habilidade deve ter:
 
 ### Dano
 
-* O dano é definido pelo tipo de habilidade e escala com o tier  
-* Por padrão, o dano de habilidades simples **target** são de 1.5x o dano de um **ataque básico** de **armas** na mesma categoria. Os de habilidades especiais são de 2.5x esse valor  
-* Para ataques em área, o dano das habilidades simples é é de 0.75x do causado por **ataques básicos** de **armas** no mesmo nível, enquanto as especiais são de 1.75x esse dano  
-* O dano base usado nessas contas é o do ataque básico da arma da categoria, com um multiplicador próprio das habilidades de 1.65x, no lugar do multiplicador do estilo de combate
-
+* O dano é definido pelo tipo de habilidade e escala com o tier.
+* **Dano base:** o dano do ataque básico de uma arma da mesma categoria do tier da habilidade, multiplicado por **1,65** (no lugar do multiplicador do estilo de combate).
+* Sobre o dano base vale a **Forma do ataque** da [Fórmula de Dano](../../combate/ataque-e-dano/#fórmula-de-dano).
 
 ### Cura
 
-* A cura é definida pelo tipo de habilidade e escala com o nível  
-* Por padrão, a cura de habilidades simples **target** são de 1.5x o dano de um **ataque básico** de armas na mesma categoria. Os de habilidades especiais são de 2.5x esse valor  
-* Para ataques em área, a cura das habilidades simples é de 0.75x do causado por **ataques básicos** de **armas** no mesmo nível, enquanto as especiais são de 1.75x esse dano
-
+* A cura escala com o tier e usa a mesma conta do dano (ver [Fórmula de Dano](../../combate/ataque-e-dano/#fórmula-de-dano)).
 
 ### Área
 
@@ -124,7 +119,7 @@ Toda habilidade deve ter:
 * O custo base da habilidade escala com o nível seguindo as seguintes tabelas:  
 **Simples:**
 
-| Tier | Custo Base de Mana |
+| Tier | Custo Base de Energia |
 | :---: | :---: |
 | Tier 1 | 1,4 |
 | Tier 2 | 4,2 |
@@ -138,7 +133,7 @@ Toda habilidade deve ter:
 
 **Especial:**
 
-| Tier | Custo Base de Mana |
+| Tier | Custo Base de Energia |
 | :---: | :---: |
 | **Tier 1** | 2,8 |
 | **Tier 2** | 8,3 |
@@ -164,7 +159,7 @@ Toda habilidade deve ter:
 
 ### Velocidade
 
-* Você tem 3 opções pra decidir o quão rápido suas habilidades são usadas
+* Você tem **4** opções para decidir o quão rápido suas habilidades são usadas
 
 | Tier de Velocidade | Velocidade | Fator de custo |
 | ----- | :---: | :---: |

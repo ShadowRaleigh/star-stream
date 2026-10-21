@@ -3,7 +3,7 @@ title: "Stats"
 ---
 Stats são uma série de números que representam uma abstração menor das características e estatísticas do seu personagem que os atributos principais.
 
-Eles podem ser divididos com relação ao tipo: **Intrínsecos** e **Extrínsecos**, e essas categorias ainda podem ser divididas entre **obrigatórios**, que todos os personagens tem, e **situacionais**, que um personagem pode ou não ter dependendo de fatores diversos como classe, raça e eventos.
+Eles podem ser divididos com relação ao tipo: **Intrínsecos** e **Extrínsecos**, e essas categorias ainda podem ser divididas entre **obrigatórios**, que todos os personagens tem, e **situacionais**, que um personagem pode ou não ter dependendo de fatores diversos como raça e eventos.
 
 Vale a pena enfatizar que **quase** **todos** os stats são influenciados pelos **[atributos](../atributos/)** base do personagem
 
@@ -21,6 +21,12 @@ Representa a sua vida máxima. Esse stat é definido por um HitDie que é rolado
 
 Representa a sanidade máxima de um personagem. Ela possui um valor fixo base de 100, mas recebe **+1** por nível do personagem, mais um bônus ou penalidade de **± 1** para cada ponto de **[DET](../atributos/#determinação-det)**  do personagem **acima ou abaixo** de **10**. Caso a sanidade de um jogador fique **abaixo da metade**, ele ganha uma **Aflição Mental temporária**, caso ela chegue a **0**, o jogador ganha uma **Característica de Insanidade permanente**. A SAN, ainda, pode chegar a valores negativos, se ela por acaso chegar em **-100**, o personagem morre instantaneamente
 
+**Aflição Mental:** Quando a SAN fica abaixo da metade, o personagem ganha uma aflição ligada ao que abalou a mente dele, escolhida pelo mestre (um medo, uma paranoia, uma compulsão, um apagão de memória). Quando a cena toca na aflição, a critério do mestre, ele tem **desvantagem** em todas as rolagens, inclusive ataques e Testes de Concentração, até o fim da cena. A aflição temporária acaba quando a SAN deixa de estar abaixo da metade.
+
+**Característica de Insanidade:** Quando a SAN chega a 0, o personagem ganha uma aflição permanente, com o mesmo efeito da Aflição Mental, que não acaba quando a SAN se recupera. Ela só sai com tratamento (ver o histórico [Médico](../../historicos/medico/)) ou por um evento da história.
+
+**Recuperação:** a SAN não se recupera com descansos. Ela só volta com tratamento especializado, como o do histórico [Médico](../../historicos/medico/), ou com itens de cura próprios, que são raros e caros.
+
 #### Life Force (LF)
 
 É a energia vital máxima de um indivíduo. Representa a sua vitalidade, longevidade e saúde geral desse personagem. Pode ser consumida em alguns tipos de magia ou equipamentos tecnológicos. Esse valor, a princípio, é definido durante a construção da ficha do personagem baseada em múltiplos fatores e não varia muito ao longo da campanha. Personagens maiores, mais saudáveis ou mais longevos tendem a ter uma **LF** maior. Esse stat é influenciado pelo **[RES](../atributos/#resistência-res)** do personagem e não costuma participar de muitos eventos, mas se ele for **0**, o personagem morre imediatamente
@@ -29,17 +35,17 @@ Representa a sanidade máxima de um personagem. Ela possui um valor fixo base de
 
 #### Mana Points (MP)
 
-É a energia elemental que um mago ou um personagem tecnomágico consegue acumular nos seu núcleo para manifestar externamente, construir feitiços e alimentar equipamentos tecnológicos. Esse status cresce a cada nível baseado no valor de um dado especificado na classe do personagem.
+É a energia elemental que um mago ou um personagem tecnomágico consegue acumular nos seu núcleo para manifestar externamente, construir feitiços e alimentar equipamentos tecnológicos. Cresce a cada nível conforme a [origem](../origens/).
 
 #### QI
 
-É a energia elemental acumulada e refinada dentro do núcleo de Qi que é utilizada por artistas marciais pra fortalecer seus corpos e executarem técnicas marciais. Esse status cresce a cada nível baseado no valor de um dado especificado na classe.  
+É a energia elemental acumulada e refinada dentro do núcleo de Qi que é utilizada por artistas marciais pra fortalecer seus corpos e executarem técnicas marciais. Cresce a cada nível conforme a [origem](../origens/).  
 
 #### Plasma Estelar (PE)
 
-A mistura da energia elemental com energia da vida gera um tipo peculiar de energia, com propriedades de subverter a causalidade e relações de causa e consequência, permitindo a manifestação de eventos que contrariam qualquer lógica e estão além da compreensão. Geralmente está associada a seres superiores ou divindades e cresce a cada nível com um dado específico. Esse valor cresce em uma taxa constante de +2 de **PE** por nível.  
+A mistura da energia elemental com energia da vida gera um tipo peculiar de energia, com propriedades de subverter a causalidade e relações de causa e consequência, permitindo a manifestação de eventos que contrariam qualquer lógica e estão além da compreensão. Geralmente está associada a seres superiores ou divindades. Cresce **+2** de PE por nível, sem rolagem (ver [Origens](../origens/)).  
 
-**Nota:** Além desses stats, existem outros, mas que são muito específicos ou raros e dependem ou de classes ou de eventos específicos ocorrendo dentro do jogo. Portanto, serão explicados em detalhes pelo mestre quando forem descobertos ou adquiridos por um player
+**Nota:** Além desses stats, existem outros, mas que são muito específicos ou raros e dependem de eventos específicos ocorrendo dentro do jogo. Portanto, serão explicados em detalhes pelo mestre quando forem descobertos ou adquiridos por um player
 
 ## Extrínsecos
 

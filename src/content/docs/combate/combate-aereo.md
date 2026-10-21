@@ -22,7 +22,7 @@ Um personagem engaja e é engajado por quem está numa casa vizinha, na mesma ca
 
 Um personagem que está voando cai quando:
 
-* fica **Caído**, **Morrendo** ou **Desmaiado**;  
+* fica **Caído**, **Morrendo**, **Desmaiado** ou **Atordoado**;  
 * perde a movimentação (como **Congelado**, **Paralizado** ou **Agarrado** por quem não voa) ou a Ação Bônus (como **Restringido**);  
 * não gasta a Ação Bônus pra se manter no ar;  
 * falha na rolagem de queda.

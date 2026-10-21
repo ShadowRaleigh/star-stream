@@ -1,6 +1,10 @@
 ---
 title: "Funcionamento das Habilidades"
 ---
+:::note
+As regras de habilidades valem para as origens Tecnomágica e Marcial. A Origem Transcendental terá um sistema de habilidades próprio, ainda em construção.
+:::
+
 O sistema foi construído com o objetivo de permitir que os personagens acumulem múltiplas técnicas e tenham grande variedade de opções, mas preservando o espírito tático, tendo que fazer escolhas de que parte dos seus kits são mais apropriadas para as próximas partes da aventura.  
 Pensando em explicar isso, essa seção será dividida em 2 partes:
 
