@@ -1,0 +1,89 @@
+/* Abissal (família fantasia): o reino dos Povos do Oceano. Capa de água profunda, página cor de pérola, tinta azul-petróleo e coral. A estrutura vem de familia-fantasia.css; o tema é o mesmo no claro e no escuro. */
+
+:root[data-ss-tema='abissal'],
+:root[data-ss-tema='abissal'][data-theme='light'] {
+	--ss-ouro: #7fb7b3;
+	--ss-ouro-rgb: 127 183 179;
+	--ss-ouro-claro: #c9ece8;
+	--ss-rubrica: #b04a36;
+	--ss-rubrica-rgb: 176 74 54;
+	--ss-tinta: #0e2e36;
+	--ss-tinta-forte: #06191e;
+	--ss-tinta-suave: #2a4a50;
+	--ss-pergaminho: #e6efed;
+	--ss-couro: #071c24;
+	--ss-couro-escuro: #03121a;
+	--ss-material: url('/star-stream/temas/material-abissal.svg');
+	--ss-capa-fundo: linear-gradient(180deg, #0c2f3a, #071c24);
+	--ss-papel-textura: url('/star-stream/temas/papel-abissal.svg');
+	--ss-papel-claro: #f2f7f6;
+	--ss-papel-escuro: #d2e2e0;
+	--ss-sepia-rgb: 40 90 96;
+	--ss-realce-rgb: 255 255 255;
+	--ss-canto-se: url('/star-stream/temas/canto-abissal-se.svg');
+	--ss-canto-sd: url('/star-stream/temas/canto-abissal-sd.svg');
+	--ss-canto-ie: url('/star-stream/temas/canto-abissal-ie.svg');
+	--ss-canto-id: url('/star-stream/temas/canto-abissal-id.svg');
+	--ss-florao: url('/star-stream/temas/florao-abissal.svg');
+	--ss-fita: linear-gradient(180deg, #1f7f86, #12565c);
+	--ss-fita-texto: #eafaf8;
+	--ss-capitular-1: #1f7f86;
+	--ss-capitular-2: #0e4a52;
+	--ss-botao: linear-gradient(180deg, #c05a44, #8e3a28);
+	--ss-marcador: '\2756  ';
+	--ss-fonte-deco: 'Marcellus SC', 'Cinzel', serif;
+	--ss-fonte-cabeca: 'Marcellus SC', 'Cinzel', serif;
+	--ss-fonte-rotulo: 'Marcellus SC', 'Cinzel', serif;
+	--ss-serifa: 'EB Garamond Variable', 'EB Garamond', Georgia, serif;
+	--sl-font: var(--ss-serifa);
+	--sl-text-body: 1.16rem;
+	--sl-line-height: 1.7;
+	/* Cores da página: a tinta sobre o papel. */
+	--sl-color-accent-low: #f2dcd5;
+	--sl-color-accent: #b04a36;
+	--sl-color-accent-high: #6e2a1c;
+	--sl-color-white: #0a252c;
+	--sl-color-gray-1: #0e2e36;
+	--sl-color-gray-2: #1f4048;
+	--sl-color-gray-3: #456870;
+	--sl-color-gray-4: #7d9a9e;
+	--sl-color-gray-5: #b6cecd;
+	--sl-color-gray-6: #d0e0de;
+	--sl-color-gray-7: #dce9e7;
+	--sl-color-black: var(--ss-pergaminho);
+	--sl-color-text: #0e2e36;
+	--sl-color-text-accent: #b04a36;
+	--sl-color-bg-nav: var(--ss-couro);
+	--sl-color-bg-sidebar: transparent;
+	--sl-color-hairline: rgb(40 90 96 / 0.3);
+	--sl-color-hairline-light: rgb(40 90 96 / 0.45);
+	--ss-fundo:
+		radial-gradient(ellipse 70% 50% at 50% 0%, rgb(29 107 120 / 0.35), transparent 70%),
+		url('/star-stream/temas/material-abissal.svg') 0 0 / 300px,
+		#03121a;
+	--ss-tabela-cabecalho: rgb(176 74 54 / 0.08);
+	--ss-tabela-listra: rgb(40 90 96 / 0.06);
+}
+
+/* Fora da página (cabeçalho, barras laterais), a tinta clara sobre a capa. */
+[data-ss-tema='abissal'] :is(header.header, .sidebar-pane, .right-sidebar, starlight-menu-button, mobile-starlight-toc) {
+	--sl-color-white: #e4f4f2;
+	--sl-color-gray-1: #cfe8e5;
+	--sl-color-gray-2: #b0d2ce;
+	--sl-color-gray-3: #86aeaa;
+	--sl-color-gray-4: #557d7c;
+	--sl-color-gray-5: #22474c;
+	--sl-color-gray-6: #0f2f38;
+	--sl-color-black: #03121a;
+	--sl-color-text: #cfe8e5;
+	--sl-color-text-accent: #c9ece8;
+	--sl-color-accent: #c9ece8;
+	--sl-color-accent-high: #e8faf8;
+	--sl-color-accent-low: #0f3540;
+	--sl-color-hairline: rgb(127 183 179 / 0.25);
+	--sl-color-hairline-light: rgb(127 183 179 / 0.4);
+}
+
+[data-ss-tema='abissal'] .ss-capa {
+	background: url('/star-stream/temas/capa-abissal.svg') center / cover;
+}

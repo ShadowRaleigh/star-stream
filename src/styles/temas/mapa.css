@@ -1,0 +1,98 @@
+/* Mapa do Aventureiro (família fantasia): a carta de um explorador. Estojo de lona azul-petróleo, papel de mapa, tinta sépia, o azul do mar e a rota em vermelho. A estrutura vem de familia-fantasia.css; o tema é o mesmo no claro e no escuro. */
+
+:root[data-ss-tema='mapa'],
+:root[data-ss-tema='mapa'][data-theme='light'] {
+	--ss-ouro: #a88a5a;
+	--ss-ouro-rgb: 168 138 90;
+	--ss-ouro-claro: #e3cf9c;
+	--ss-rubrica: #2a5f7c;
+	--ss-rubrica-rgb: 42 95 124;
+	--ss-tinta: #3b2a18;
+	--ss-tinta-forte: #24180b;
+	--ss-tinta-suave: #4a3822;
+	--ss-pergaminho: #efe2c0;
+	--ss-couro: #132a2c;
+	--ss-couro-escuro: #0b1c1e;
+	--ss-material: url('/star-stream/temas/material-mapa.svg');
+	--ss-capa-fundo: linear-gradient(180deg, #1a3638, #10242a);
+	--ss-papel-textura: url('/star-stream/temas/papel-mapa.svg');
+	--ss-papel-claro: #f5ead0;
+	--ss-papel-escuro: #e0c99a;
+	--ss-sepia-rgb: 107 76 42;
+	--ss-realce-rgb: 255 250 235;
+	--ss-canto-se: url('/star-stream/temas/canto-mapa-se.svg');
+	--ss-canto-sd: url('/star-stream/temas/canto-mapa-sd.svg');
+	--ss-canto-ie: url('/star-stream/temas/canto-mapa-ie.svg');
+	--ss-canto-id: url('/star-stream/temas/canto-mapa-id.svg');
+	--ss-florao: url('/star-stream/temas/florao-mapa.svg');
+	--ss-fita: linear-gradient(180deg, #a3321f, #7a2214);
+	--ss-fita-texto: #fbf0dc;
+	--ss-capitular-1: #2f6e8e;
+	--ss-capitular-2: #1b4459;
+	--ss-botao: linear-gradient(180deg, #a3321f, #7a2214);
+	--ss-marcador: '\2726  ';
+	--ss-fonte-deco: 'Almendra SC', 'Cinzel', serif;
+	--ss-fonte-cabeca: 'Almendra SC', 'Cinzel', serif;
+	--ss-fonte-rotulo: 'Almendra SC', 'Cinzel', serif;
+	--ss-serifa: 'EB Garamond Variable', 'EB Garamond', Georgia, serif;
+	--sl-font: var(--ss-serifa);
+	--sl-text-body: 1.16rem;
+	--sl-line-height: 1.7;
+	/* Cores da página: a tinta sobre o papel. */
+	--sl-color-accent-low: #d9e3e3;
+	--sl-color-accent: #2a5f7c;
+	--sl-color-accent-high: #163a4d;
+	--sl-color-white: #2a1d0f;
+	--sl-color-gray-1: #3b2a18;
+	--sl-color-gray-2: #4f3c26;
+	--sl-color-gray-3: #76603f;
+	--sl-color-gray-4: #a08a64;
+	--sl-color-gray-5: #cdb98f;
+	--sl-color-gray-6: #e2d0a6;
+	--sl-color-gray-7: #eadcb6;
+	--sl-color-black: var(--ss-pergaminho);
+	--sl-color-text: #3b2a18;
+	--sl-color-text-accent: #2a5f7c;
+	--sl-color-bg-nav: var(--ss-couro);
+	--sl-color-bg-sidebar: transparent;
+	--sl-color-hairline: rgb(107 76 42 / 0.3);
+	--sl-color-hairline-light: rgb(107 76 42 / 0.45);
+	--ss-fundo:
+		url('/star-stream/temas/material-mapa.svg') 0 0 / 300px,
+		radial-gradient(ellipse at 50% 0%, #1f4246, #0b1c1e 70%),
+		#0b1c1e;
+	--ss-tabela-cabecalho: rgb(42 95 124 / 0.08);
+	--ss-tabela-listra: rgb(107 76 42 / 0.06);
+}
+
+/* Fora da página (cabeçalho, barras laterais), a tinta clara sobre a capa. */
+[data-ss-tema='mapa'] :is(header.header, .sidebar-pane, .right-sidebar, starlight-menu-button, mobile-starlight-toc) {
+	--sl-color-white: #f1e6cc;
+	--sl-color-gray-1: #e6d9b8;
+	--sl-color-gray-2: #cfc19c;
+	--sl-color-gray-3: #a8a078;
+	--sl-color-gray-4: #6e7258;
+	--sl-color-gray-5: #2f4a48;
+	--sl-color-gray-6: #1a3638;
+	--sl-color-black: #0b1c1e;
+	--sl-color-text: #e6d9b8;
+	--sl-color-text-accent: #e3cf9c;
+	--sl-color-accent: #e3cf9c;
+	--sl-color-accent-high: #f5e8c4;
+	--sl-color-accent-low: #1f3d40;
+	--sl-color-hairline: rgb(168 138 90 / 0.25);
+	--sl-color-hairline-light: rgb(168 138 90 / 0.4);
+}
+
+[data-ss-tema='mapa'] .ss-capa {
+	background: url('/star-stream/temas/capa-mapa.svg') center / cover;
+}
+
+[data-ss-tema='mapa'] .ss-capa .logo-claro {
+	display: none;
+}
+
+[data-ss-tema='mapa'] .ss-capa .logo-escuro {
+	display: block;
+	filter: drop-shadow(0 1px 0 rgb(255 250 235 / 0.6));
+}

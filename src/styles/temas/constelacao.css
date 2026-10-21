@@ -1,6 +1,11 @@
 /* Tema 1, Constelação: o céu escuro do logo, com estrelas discretas em todas as páginas e filetes de ouro. */
 
 :root[data-ss-tema='constelacao'] {
+	--ss-ouro-rgb: 227 195 143;
+	--ss-cartao-rgb: 20 27 46;
+	--ss-botao-1: #f6e3bd;
+	--ss-botao-2: #d9b47a;
+	--ss-botao-tinta: #1b1408;
 	--ss-ouro: #e3c38f;
 	--ss-ouro-forte: #f2d9ab;
 	--sl-color-accent-low: #2a2232;
@@ -16,14 +21,14 @@
 	--sl-color-black: #0a0e1a;
 	--sl-color-bg-nav: rgb(10 14 26 / 0.86);
 	--sl-color-bg-sidebar: rgb(10 14 26 / 0.55);
-	--sl-color-hairline: rgb(227 195 143 / 0.16);
-	--sl-color-hairline-light: rgb(227 195 143 / 0.24);
+	--sl-color-hairline: rgb(var(--ss-ouro-rgb) / 0.16);
+	--sl-color-hairline-light: rgb(var(--ss-ouro-rgb) / 0.24);
 	--ss-fundo:
 		radial-gradient(ellipse 80% 50% at 70% -10%, rgb(110 80 140 / 0.22), transparent 70%),
 		radial-gradient(ellipse 60% 40% at 0% 100%, rgb(40 70 120 / 0.25), transparent 70%),
 		url('/star-stream/temas/estrelas-claras.svg') 0 0 / 600px,
 		#0a0e1a;
-	--ss-tabela-cabecalho: rgb(227 195 143 / 0.1);
+	--ss-tabela-cabecalho: rgb(var(--ss-ouro-rgb) / 0.1);
 	--ss-tabela-listra: rgb(248 243 231 / 0.025);
 }
 
@@ -52,14 +57,12 @@
 }
 
 [data-ss-tema='constelacao'] header.header {
-	backdrop-filter: blur(10px);
 	border-bottom: 1px solid var(--sl-color-hairline-light);
 	box-shadow: 0 1px 0 rgb(0 0 0 / 0.25);
 }
 
 [data-ss-tema='constelacao'] .sidebar-pane {
 	border-inline-end: 1px solid var(--sl-color-hairline);
-	backdrop-filter: blur(6px);
 }
 
 /* Título da página: ouro em degradê e uma constelação embaixo. */
@@ -117,7 +120,7 @@
 
 [data-ss-tema='constelacao'] .sl-markdown-content a:not(.sl-anchor-link) {
 	color: var(--sl-color-accent-high);
-	text-decoration-color: rgb(227 195 143 / 0.45);
+	text-decoration-color: rgb(var(--ss-ouro-rgb) / 0.45);
 	text-underline-offset: 0.18em;
 }
 
@@ -157,7 +160,7 @@
 [data-ss-tema='constelacao'] .sl-markdown-content blockquote {
 	border: none;
 	border-inline-start: 2px solid var(--ss-ouro);
-	background: linear-gradient(90deg, rgb(227 195 143 / 0.1), transparent);
+	background: linear-gradient(90deg, rgb(var(--ss-ouro-rgb) / 0.1), transparent);
 	font-family: 'Cormorant Garamond', serif;
 	font-size: 1.25em;
 	font-style: italic;
@@ -166,7 +169,7 @@
 [data-ss-tema='constelacao'] .starlight-aside {
 	border-radius: 0.5rem;
 	border-inline-start-width: 2px;
-	background: rgb(227 195 143 / 0.07);
+	background: rgb(var(--ss-ouro-rgb) / 0.07);
 	border-color: var(--ss-ouro);
 }
 
@@ -177,7 +180,7 @@
 }
 
 [data-ss-tema='constelacao'] .sidebar-content a[aria-current='page'] {
-	background: linear-gradient(90deg, rgb(227 195 143 / 0.22), transparent);
+	background: linear-gradient(90deg, rgb(var(--ss-ouro-rgb) / 0.22), transparent);
 	color: var(--sl-color-white);
 	border-inline-start: 2px solid var(--ss-ouro);
 	border-radius: 0 0.3rem 0.3rem 0;
@@ -185,10 +188,9 @@
 
 [data-ss-tema='constelacao'] .sl-link-card,
 [data-ss-tema='constelacao'] .pagination-links a {
-	background: rgb(20 27 46 / 0.55);
+	background: rgb(var(--ss-cartao-rgb) / 0.55);
 	border: 1px solid var(--sl-color-hairline-light);
 	border-radius: 0.6rem;
-	backdrop-filter: blur(4px);
 	transition: border-color 0.2s, box-shadow 0.2s, transform 0.2s;
 }
 
@@ -200,7 +202,7 @@
 [data-ss-tema='constelacao'] .sl-link-card:hover,
 [data-ss-tema='constelacao'] .pagination-links a:hover {
 	border-color: var(--ss-ouro);
-	box-shadow: 0 0 0 1px rgb(227 195 143 / 0.25), 0 10px 30px -12px rgb(227 195 143 / 0.35);
+	box-shadow: 0 0 0 1px rgb(var(--ss-ouro-rgb) / 0.25), 0 10px 30px -12px rgb(var(--ss-ouro-rgb) / 0.35);
 	transform: translateY(-1px);
 }
 
@@ -214,16 +216,9 @@
 	box-shadow: inset 0 0 120px rgb(0 0 0 / 0.6), 0 20px 60px -30px rgb(0 0 0 / 0.8);
 }
 
-[data-ss-tema='constelacao'] .ss-capa .ss-acoes a.ss-principal {
-	background: linear-gradient(180deg, #f6e3bd, #d9b47a);
-	border-color: #f6e3bd;
-	color: #1b1408;
+[data-ss-tema='constelacao'] .ss-abertura .ss-acoes a.ss-principal {
+	background: linear-gradient(180deg, var(--ss-botao-1), var(--ss-botao-2));
+	border-color: var(--ss-botao-1);
+	color: var(--ss-botao-tinta);
 }
 
-/* Na capa, uma constelação liga as estrelas por trás do logo. */
-[data-ss-tema='constelacao'] .ss-capa {
-	background:
-		url('/star-stream/temas/constelacao-dourada.svg') center 18% / 70% no-repeat,
-		radial-gradient(ellipse at center, rgb(10 14 26 / 0.1), rgb(10 14 26 / 0.8)),
-		url('/star-stream/galaxia.webp') center / cover;
-}

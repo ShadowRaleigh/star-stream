@@ -9,7 +9,9 @@ const EDGE = 'C:/Program Files (x86)/Microsoft/Edge/Application/msedge.exe';
 const BASE = 'http://localhost:4321/star-stream/';
 const [, , saida = 'capturas', temasArg, paginasArg, inverter] = process.argv;
 
-const temas = (temasArg || 'atual,constelacao,observatorio,holograma,nebulosa,codex,grimorio').split(',');
+// Modo em que cada tema é capturado por padrão (o argumento "alt" inverte).
+const MODOS = { classico: 'escuro', constelacao: 'escuro', observatorio: 'escuro', nebulosa: 'escuro', codex: 'claro', astrolabio: 'escuro', grimorio: 'claro', bosque: 'claro', vitral: 'claro', forja: 'claro', mapa: 'claro', abissal: 'claro', holograma: 'escuro', radar: 'escuro', circuito: 'escuro', navegacao: 'escuro' };
+const temas = (temasArg || Object.keys(MODOS).join(',')).split(',');
 const PAGINAS = {
 	inicio: { url: '', tam: '1440,1100' },
 	arquetipo: { url: 'arquetipos/vanguarda/', tam: '1440,1100' },
@@ -18,18 +20,18 @@ const PAGINAS = {
 	celular: { url: 'combate/ataque-e-dano/', tam: '390,844' },
 };
 const paginas = (paginasArg || Object.keys(PAGINAS).join(',')).split(',');
-const MODOS = { constelacao: 'escuro', observatorio: 'escuro', holograma: 'escuro', nebulosa: 'escuro', codex: 'claro', grimorio: 'claro', atual: 'escuro', astrolabio: 'escuro', carta: 'claro' };
 const esperar = (ms) => Atomics.wait(new Int32Array(new SharedArrayBuffer(4)), 0, 0, ms);
 
 fs.mkdirSync(saida, { recursive: true });
 for (const tema of temas) {
 	for (const nome of paginas) {
 		const p = PAGINAS[nome];
-		const arquivo = path.resolve(saida, `${tema}-${nome}${inverter ? '-alt' : ''}.png`);
+		const cor = process.env.COR;
+		const arquivo = path.resolve(saida, `${tema}${cor ? `-${cor}` : ''}-${nome}${inverter ? '-alt' : ''}.png`);
 		// Um perfil novo por captura: com o mesmo perfil, o Edge repassa a URL a uma instância já aberta e não salva nada.
 		const perfil = fs.mkdtempSync(path.join(os.tmpdir(), 'edge-temas-'));
 		fs.rmSync(arquivo, { force: true });
-		const url = `${BASE}${p.url}?tema=${tema}&modo=${(MODOS[tema] === 'claro') !== Boolean(inverter) ? 'claro' : 'escuro'}&captura`;
+		const url = `${BASE}${p.url}?tema=${tema}&modo=${(MODOS[tema] === 'claro') !== Boolean(inverter) ? 'claro' : 'escuro'}${cor ? `&cor=${cor}` : ''}&captura`;
 		execFileSync(EDGE, [
 			'--headless=new', '--disable-gpu', '--hide-scrollbars', '--no-first-run', `--user-data-dir=${perfil}`,
 			`--window-size=${p.tam}`, '--virtual-time-budget=8000', `--screenshot=${arquivo}`, url,

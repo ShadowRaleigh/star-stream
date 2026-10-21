@@ -1,18 +1,32 @@
 /* Peças comuns aos temas do rework visual. */
 
-/* Os temas novos desligam a faixa de galáxia do cabeçalho do tema atual. */
-:root[data-ss-tema]:not([data-ss-tema='atual']) header.header {
+/* Os temas novos desligam a faixa de galáxia do cabeçalho do Clássico. */
+:root[data-ss-tema]:not([data-ss-tema='classico']) header.header {
 	background: var(--sl-color-bg-nav);
 }
 
-/* Fundo de página por camadas: cada tema define --ss-fundo. */
-:root[data-ss-tema]:not([data-ss-tema='atual']) body {
-	background: var(--ss-fundo, var(--sl-color-bg));
-	background-attachment: fixed;
+/* Fundo de página por camadas: cada tema define --ss-fundo. Ele fica numa camada fixa própria, que a placa de vídeo
+   só desloca na rolagem; background-attachment: fixed obrigaria o navegador a repintar a página inteira a cada quadro. */
+:root[data-ss-tema]:not([data-ss-tema='classico']) {
+	background-color: var(--sl-color-black);
 }
 
-:root[data-ss-tema]:not([data-ss-tema='atual']) .page,
-:root[data-ss-tema]:not([data-ss-tema='atual']) .main-frame {
+:root[data-ss-tema]:not([data-ss-tema='classico'])::before {
+	content: '';
+	position: fixed;
+	inset: 0;
+	z-index: -1;
+	pointer-events: none;
+	background: var(--ss-fundo, var(--sl-color-bg));
+	will-change: transform;
+}
+
+:root[data-ss-tema]:not([data-ss-tema='classico']) body {
+	background: transparent;
+}
+
+:root[data-ss-tema]:not([data-ss-tema='classico']) .page,
+:root[data-ss-tema]:not([data-ss-tema='classico']) .main-frame {
 	background: transparent;
 }
 
@@ -25,20 +39,36 @@
 	}
 }
 
-/* Os botões da capa ficam sempre sobre a galáxia: texto em marfim, sem o estilo de link do tema. */
-:root[data-ss-tema] .ss-capa .ss-acoes a:not(.ss-principal) {
-	color: #f8f3e7;
+/* Os atalhos da página inicial não herdam o estilo de link do tema. */
+:root[data-ss-tema] .ss-abertura .ss-acoes a:not(.ss-principal) {
+	color: var(--sl-color-white);
 	text-decoration: none;
 	border-bottom-width: 1px;
 }
 
-:root[data-ss-tema] .ss-capa .ss-acoes a.ss-principal {
+:root[data-ss-tema] .ss-abertura .ss-acoes a.ss-principal {
 	text-decoration: none;
 }
 
 /* No celular, o ícone de âncora quebrava para a linha de baixo nos títulos decorados. */
 @media (max-width: 50rem) {
-	:root[data-ss-tema]:not([data-ss-tema='atual']) .sl-markdown-content .sl-anchor-link {
+	:root[data-ss-tema]:not([data-ss-tema='classico']) .sl-markdown-content .sl-anchor-link {
 		display: none;
+	}
+}
+
+/* No celular, a nota da versão cabe numa linha só em qualquer tema. */
+@media (max-width: 50rem) {
+	:root[data-ss-tema] body .ss-abertura .ss-versao {
+		font-size: var(--sl-text-xs);
+		letter-spacing: 0.12em;
+	}
+}
+
+/* Vidro fosco só no cabeçalho, só no computador e só para quem não pediu menos transparência:
+   é uma área pequena, e o desfoque em áreas grandes pesa na rolagem, sobretudo no celular. */
+@media (min-width: 50rem) and (prefers-reduced-transparency: no-preference) {
+	:root:is([data-ss-tema='constelacao'], [data-ss-tema='nebulosa'], [data-ss-familia='scifi']) header.header {
+		backdrop-filter: blur(10px);
 	}
 }

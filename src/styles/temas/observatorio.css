@@ -267,27 +267,27 @@
 	background:
 		url('/star-stream/temas/astrolabio-dourado.svg') center / 560px no-repeat,
 		radial-gradient(ellipse at center, rgb(18 17 16 / 0.35), rgb(18 17 16 / 0.92)),
-		url('/star-stream/galaxia.webp') center / cover;
+		var(--ss-galaxia) center / cover;
 	background-blend-mode: soft-light, normal, normal;
 }
 
-[data-ss-tema='observatorio'] .ss-capa p {
+[data-ss-tema='observatorio'] .ss-abertura .ss-versao {
 	font-family: var(--ss-display);
 	font-size: 1.05rem;
 	letter-spacing: 0.3em;
 }
 
-[data-ss-tema='observatorio'] .ss-capa .ss-acoes a {
+[data-ss-tema='observatorio'] .ss-abertura .ss-acoes a {
 	border-radius: 2px;
 	font-family: var(--ss-display);
 	font-size: 1.1rem;
 	letter-spacing: 0.08em;
 }
 
-[data-ss-tema='observatorio'] .ss-capa .ss-acoes a.ss-principal {
+[data-ss-tema='observatorio'] .ss-abertura .ss-acoes a.ss-principal {
 	background: var(--ss-latao);
 	border-color: var(--ss-latao);
-	color: #17130c;
+	color: var(--ss-botao-tinta, #17130c);
 }
 
 /* Astrolábio em marca d'água, bem leve, atrás de tudo. */

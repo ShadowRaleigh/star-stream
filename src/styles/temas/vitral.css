@@ -1,0 +1,89 @@
+/* Vitral (família fantasia): uma catedral à noite. Capa de pedra escura, página de pedra clara, vinho e safira discretos, e janelas góticas na capa. A estrutura vem de familia-fantasia.css; o tema é o mesmo no claro e no escuro. */
+
+:root[data-ss-tema='vitral'],
+:root[data-ss-tema='vitral'][data-theme='light'] {
+	--ss-ouro: #9ea3b2;
+	--ss-ouro-rgb: 158 163 178;
+	--ss-ouro-claro: #d9dce4;
+	--ss-rubrica: #7d1d2e;
+	--ss-rubrica-rgb: 125 29 46;
+	--ss-tinta: #1d1a24;
+	--ss-tinta-forte: #0e0c13;
+	--ss-tinta-suave: #3b3646;
+	--ss-pergaminho: #e9e6df;
+	--ss-couro: #16141c;
+	--ss-couro-escuro: #0e0c13;
+	--ss-material: url('/star-stream/temas/material-vitral.svg');
+	--ss-capa-fundo: linear-gradient(180deg, #221f2b, #16141c);
+	--ss-papel-textura: url('/star-stream/temas/papel-vitral.svg');
+	--ss-papel-claro: #f4f2ed;
+	--ss-papel-escuro: #d9d5cb;
+	--ss-sepia-rgb: 80 76 92;
+	--ss-realce-rgb: 255 255 255;
+	--ss-canto-se: url('/star-stream/temas/canto-vitral-se.svg');
+	--ss-canto-sd: url('/star-stream/temas/canto-vitral-sd.svg');
+	--ss-canto-ie: url('/star-stream/temas/canto-vitral-ie.svg');
+	--ss-canto-id: url('/star-stream/temas/canto-vitral-id.svg');
+	--ss-florao: url('/star-stream/temas/florao-vitral.svg');
+	--ss-fita: linear-gradient(180deg, #34508f, #1f3266);
+	--ss-fita-texto: #eef1fa;
+	--ss-capitular-1: #34508f;
+	--ss-capitular-2: #1f3266;
+	--ss-botao: linear-gradient(180deg, #8f2638, #631522);
+	--ss-marcador: '\2720  ';
+	--ss-fonte-deco: 'Cormorant Unicase', 'Cinzel', serif;
+	--ss-fonte-cabeca: 'Cormorant Unicase', 'Cinzel', serif;
+	--ss-fonte-rotulo: 'Cinzel', serif;
+	--ss-serifa: 'EB Garamond Variable', 'EB Garamond', Georgia, serif;
+	--sl-font: var(--ss-serifa);
+	--sl-text-body: 1.16rem;
+	--sl-line-height: 1.7;
+	/* Cores da página: a tinta sobre o papel. */
+	--sl-color-accent-low: #e6d6d9;
+	--sl-color-accent: #7d1d2e;
+	--sl-color-accent-high: #4d0f1a;
+	--sl-color-white: #17141d;
+	--sl-color-gray-1: #1d1a24;
+	--sl-color-gray-2: #2f2b38;
+	--sl-color-gray-3: #57526a;
+	--sl-color-gray-4: #8a859b;
+	--sl-color-gray-5: #c2bfca;
+	--sl-color-gray-6: #d8d5dd;
+	--sl-color-gray-7: #e2e0e6;
+	--sl-color-black: var(--ss-pergaminho);
+	--sl-color-text: #1d1a24;
+	--sl-color-text-accent: #7d1d2e;
+	--sl-color-bg-nav: var(--ss-couro);
+	--sl-color-bg-sidebar: transparent;
+	--sl-color-hairline: rgb(80 76 92 / 0.3);
+	--sl-color-hairline-light: rgb(80 76 92 / 0.45);
+	--ss-fundo:
+		url('/star-stream/temas/material-vitral.svg') 0 0 / 300px,
+		radial-gradient(ellipse at 50% 0%, #24202f, #0e0c13 70%),
+		#0e0c13;
+	--ss-tabela-cabecalho: rgb(125 29 46 / 0.08);
+	--ss-tabela-listra: rgb(80 76 92 / 0.06);
+}
+
+/* Fora da página (cabeçalho, barras laterais), a tinta clara sobre a capa. */
+[data-ss-tema='vitral'] :is(header.header, .sidebar-pane, .right-sidebar, starlight-menu-button, mobile-starlight-toc) {
+	--sl-color-white: #ecebf2;
+	--sl-color-gray-1: #dcdbe6;
+	--sl-color-gray-2: #c2c0d0;
+	--sl-color-gray-3: #9894aa;
+	--sl-color-gray-4: #66627a;
+	--sl-color-gray-5: #3a3648;
+	--sl-color-gray-6: #221f2b;
+	--sl-color-black: #0e0c13;
+	--sl-color-text: #dcdbe6;
+	--sl-color-text-accent: #d9dce4;
+	--sl-color-accent: #d9dce4;
+	--sl-color-accent-high: #f4f6fb;
+	--sl-color-accent-low: #2a2536;
+	--sl-color-hairline: rgb(158 163 178 / 0.25);
+	--sl-color-hairline-light: rgb(158 163 178 / 0.4);
+}
+
+[data-ss-tema='vitral'] .ss-capa {
+	background: url('/star-stream/temas/capa-vitral.svg') center / cover;
+}

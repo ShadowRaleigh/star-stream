@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 24" fill="none" stroke="#542b14" stroke-width="1">
+<path d="M0 12 H96 M144 12 H240" stroke-width=".8"/>
+<ellipse cx="70" cy="9" rx="6" ry="2.4" transform="rotate(-25 70 9)" fill="#542b14" fill-opacity=".5"/><ellipse cx="82" cy="15" rx="6" ry="2.4" transform="rotate(25 82 15)" fill="#542b14" fill-opacity=".5"/><ellipse cx="158" cy="9" rx="6" ry="2.4" transform="rotate(-25 158 9)" fill="#542b14" fill-opacity=".5"/><ellipse cx="170" cy="15" rx="6" ry="2.4" transform="rotate(25 170 15)" fill="#542b14" fill-opacity=".5"/>
+<g transform="translate(120 12)"><ellipse cx="0" cy="-5" rx="2.6" ry="5" transform="rotate(0)" fill="#542b14" fill-opacity=".55"/><ellipse cx="0" cy="-5" rx="2.6" ry="5" transform="rotate(72)" fill="#542b14" fill-opacity=".55"/><ellipse cx="0" cy="-5" rx="2.6" ry="5" transform="rotate(144)" fill="#542b14" fill-opacity=".55"/><ellipse cx="0" cy="-5" rx="2.6" ry="5" transform="rotate(216)" fill="#542b14" fill-opacity=".55"/><ellipse cx="0" cy="-5" rx="2.6" ry="5" transform="rotate(288)" fill="#542b14" fill-opacity=".55"/><circle r="1.8" fill="#542b14"/></g>
+<path d="M96 12 C104 6 108 6 112 10 M144 12 C136 6 132 6 128 10"/>
+</svg>

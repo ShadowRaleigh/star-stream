@@ -1,14 +1,9 @@
 /* Identidade visual do Star Stream (assets/star-stream): galáxia escura, marfim, azul-noite e Cinzel. */
 
-@font-face {
-	font-family: 'Cinzel';
-	src: url('../fonts/Cinzel-Variable.ttf') format('truetype');
-	font-weight: 400 900;
-	font-display: swap;
-}
-
 /* Tema escuro (padrão): o céu da galáxia, com letras em marfim. */
 :root {
+	/* A foto da galáxia: no celular, uma versão de 1000 px, para não disputar a rede com as fontes. */
+	--ss-galaxia: url('/star-stream/galaxia.webp');
 	--ss-font-titulo: 'Cinzel', Georgia, serif;
 	--sl-font: 'Segoe UI', system-ui, -apple-system, Roboto, Arial, sans-serif;
 
@@ -31,6 +26,12 @@
 	--ss-tabela-listra: #111830;
 }
 
+@media (max-width: 50rem) {
+	:root {
+		--ss-galaxia: url('/star-stream/galaxia-1000.webp');
+	}
+}
+
 /* Tema claro: papel marfim com a tinta azul-noite do logo escuro. */
 :root[data-theme='light'] {
 	--sl-color-accent-low: #ece2ef;
@@ -51,11 +52,11 @@
 }
 
 /* Cabeçalho com uma faixa da galáxia no tema escuro. */
-:root[data-ss-tema='atual']:not([data-theme='light']) header.header,
+:root[data-ss-tema='classico']:not([data-theme='light']) header.header,
 :root:not([data-ss-tema]):not([data-theme='light']) header.header {
 	background:
 		linear-gradient(rgb(12 17 32 / 0.78), rgb(12 17 32 / 0.9)),
-		url('/star-stream/galaxia.webp') center 40% / cover;
+		var(--ss-galaxia) center 40% / cover;
 	border-bottom-color: rgb(248 243 231 / 0.12);
 }
 
@@ -172,11 +173,11 @@ h1#_top {
 	justify-items: center;
 	gap: 1.25rem;
 	margin-inline: calc(-1 * var(--sl-content-pad-x, 1rem));
-	padding: clamp(3rem, 10vw, 6.5rem) 1.25rem clamp(2.5rem, 7vw, 4.5rem);
+	padding: clamp(3rem, 9vw, 6rem) 1.25rem;
 	border-radius: 0.75rem;
 	background:
 		radial-gradient(ellipse at center, rgb(12 17 32 / 0.15), rgb(12 17 32 / 0.75)),
-		url('/star-stream/galaxia.webp') center / cover;
+		var(--ss-galaxia) center / cover;
 	text-align: center;
 	color: var(--ss-marfim);
 }
@@ -188,48 +189,55 @@ h1#_top {
 	filter: drop-shadow(0 4px 24px rgb(0 0 0 / 0.55));
 }
 
-.ss-capa p {
+/* Abaixo da capa: a versão do livro como nota e os atalhos, sobre o fundo da página e nas cores do tema. */
+.ss-abertura {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	justify-content: space-between;
+	gap: 1rem 1.5rem;
+	margin-top: 1.25rem;
+	padding-bottom: 1.25rem;
+	border-bottom: 1px solid var(--sl-color-hairline);
+}
+
+.ss-abertura .ss-versao {
 	margin: 0;
 	font-family: var(--ss-font-titulo);
 	letter-spacing: 0.12em;
 	text-transform: uppercase;
-	font-size: var(--sl-text-sm);
-	color: var(--ss-marfim);
-	opacity: 0.9;
+	font-size: var(--sl-text-xs);
+	color: var(--sl-color-gray-3);
 }
 
-.ss-capa .ss-acoes {
+.ss-abertura .ss-acoes {
 	display: flex;
 	flex-wrap: wrap;
-	justify-content: center;
 	gap: 0.75rem;
-	margin-top: 0.5rem;
 }
 
-.ss-capa .ss-acoes a {
-	padding: 0.6rem 1.2rem;
+.ss-abertura .ss-acoes a {
+	padding: 0.55rem 1.15rem;
 	border-radius: 999px;
-	border: 1px solid rgb(248 243 231 / 0.55);
-	color: var(--ss-marfim);
+	border: 1px solid var(--sl-color-gray-4);
+	color: var(--sl-color-white);
 	text-decoration: none;
 	font-weight: 600;
-	backdrop-filter: blur(4px);
-	background: rgb(12 17 32 / 0.35);
 }
 
-.ss-capa .ss-acoes a.ss-principal {
-	background: var(--ss-marfim);
-	color: var(--ss-noite);
-	border-color: var(--ss-marfim);
+.ss-abertura .ss-acoes a.ss-principal {
+	background: var(--sl-color-accent);
+	color: var(--sl-color-black);
+	border-color: var(--sl-color-accent);
 }
 
-.ss-capa .ss-acoes a:hover {
-	border-color: var(--ss-marfim);
-	background: rgb(248 243 231 / 0.15);
+.ss-abertura .ss-acoes a:hover {
+	border-color: var(--sl-color-accent);
 }
 
-.ss-capa .ss-acoes a.ss-principal:hover {
-	background: #ffffff;
+.ss-abertura .ss-acoes a.ss-principal:hover {
+	background: var(--sl-color-accent-high);
+	border-color: var(--sl-color-accent-high);
 }
 
 /* A capa tem os dois logos; os temas de capa clara mostram o escuro. */
