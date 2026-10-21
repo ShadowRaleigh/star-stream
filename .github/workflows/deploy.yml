@@ -16,6 +16,9 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - uses: withastro/action@v3
+        with:
+          node-version: 24
+          package-manager: npm
   deploy:
     needs: build
     runs-on: ubuntu-latest
