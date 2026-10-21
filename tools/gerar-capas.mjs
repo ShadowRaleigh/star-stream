@@ -316,113 +316,164 @@ function vitral(p) {
 	return g;
 }
 
-// Mapa do Aventureiro: um mapa desenhado à mão, com mar, costas, montanhas, florestas, rosa dos ventos e a rota até o X.
+// Mapa do Aventureiro: uma carta de navegação. Duas costas com morros em hachura, florestas, rio e vila; no canal, ilhas
+// onde a rota faz escala, passando por trás do nome até o X. As ondas e o barco são camadas à parte (mapaOndas e
+// mapaBarco), que se mexem por cima.
+const MAPA_ROTA = [[392, 296], [560, 410], [760, 330], [1040, 170], [1250, 360], [1556, 238]];
+const MAPA_ILHAS = [[560, 410, 46, 26], [1040, 170, 54, 30], [1250, 360, 40, 24]];
 function mapa(p) {
-	const r = sorteio(501);
+	const r = sorteio(511);
 	let g = `<defs><radialGradient id="papel" cx="50%" cy="50%" r="75%"><stop offset="0" stop-color="${p.fundo[0]}"/><stop offset=".75" stop-color="${p.fundo[1]}"/><stop offset="1" stop-color="${p.fundo[2]}"/></radialGradient></defs>
 	<rect width="${W}" height="${H}" fill="url(#papel)"/>`;
-	// Costas: uma terra de cada lado, com o contorno recortado e suavizado.
-	const costa = (xBase, lado) => {
-		const pts = [];
-		for (let y = -20; y <= H + 20; y += 18) pts.push([xBase + Math.sin(y / 55) * 34 + Math.sin(y / 19) * 12 + (r() - 0.5) * 16, y]);
+	// Contorno recortado de uma costa (lado -1 = esquerda, 1 = direita).
+	const costa = (xBase, lado, sem) => {
+		const rr = sorteio(sem), pts = [];
+		for (let y = -20; y <= H + 20; y += 16) pts.push([xBase + Math.sin(y / 60) * 30 + Math.sin(y / 17) * 10 + (rr() - 0.5) * 14, y]);
 		let d = `M ${lado < 0 ? -20 : W + 20} -20 L ${f(pts[0][0])} ${pts[0][1]}`;
 		for (let i = 1; i < pts.length - 1; i++) d += ` Q ${f(pts[i][0])} ${pts[i][1]} ${f((pts[i][0] + pts[i + 1][0]) / 2)} ${(pts[i][1] + pts[i + 1][1]) / 2}`;
-		return d + ` L ${lado < 0 ? -20 : W + 20} ${H + 20} Z`;
+		return { d: d + ` L ${lado < 0 ? -20 : W + 20} ${H + 20} Z`, pts };
 	};
-	const terras = [costa(390, -1), costa(1410, 1)];
-	// Ondas de mar desenhadas no meio.
-	for (let i = 0; i < 60; i++) { const x = 440 + r() * 920, y = 30 + r() * 460; if (x > 560 && x < 1240 && y > 170 && y < 350) continue; g += `<path d="M ${f(x)} ${f(y)} q 8 -6 16 0 t 16 0" fill="none" stroke="${p.mar}" stroke-width="1.6" opacity=".6"/>`; }
-	for (const d of terras) g += `<path d="${d}" fill="${p.terra}" stroke="${p.tinta}" stroke-width="2.4"/><path d="${d}" fill="none" stroke="${p.mar}" stroke-width="10" opacity=".18"/>`;
-	// Montanhas e florestas nas terras.
-	const montanha = (x, y, s) => `<path d="M ${x - 22 * s} ${y} L ${x} ${y - 30 * s} L ${x + 22 * s} ${y}" fill="${p.fundo[0]}" stroke="${p.tinta}" stroke-width="1.8"/><path d="M ${x} ${y - 30 * s} L ${x + 6 * s} ${y}" stroke="${p.tinta}" stroke-width="1" opacity=".6"/>`;
-	const arvore = (x, y) => `<circle cx="${x}" cy="${y - 7}" r="6.5" fill="${p.floresta}" stroke="${p.tinta}" stroke-width="1.2"/><line x1="${x}" y1="${y}" x2="${x}" y2="${y + 5}" stroke="${p.tinta}" stroke-width="1.2"/>`;
-	for (const [x, y, s] of [[120, 120, 1.2], [160, 130, 0.9], [90, 150, 0.8], [210, 100, 1], [1560, 120, 1.1], [1610, 140, 1.3], [1660, 118, 0.9], [1520, 150, 0.8]]) g += montanha(x, y, s);
-	for (let i = 0; i < 26; i++) g += arvore(f(60 + r() * 250), f(300 + r() * 160));
-	for (let i = 0; i < 22; i++) g += arvore(f(1520 + r() * 230), f(300 + r() * 170));
-	// Rota pontilhada até o X.
-	g += `<path d="M 230 250 C 420 170, 640 120, 900 110 S 1350 160, 1600 260" fill="none" stroke="${p.rota}" stroke-width="3" stroke-dasharray="2 10" stroke-linecap="round"/>`;
-	g += `<circle cx="230" cy="250" r="7" fill="${p.rota}"/><g stroke="${p.rota}" stroke-width="5" stroke-linecap="round"><line x1="1588" y1="248" x2="1612" y2="272"/><line x1="1612" y1="248" x2="1588" y2="272"/></g>`;
-	// A rosa dos ventos é uma camada à parte (rosaDosVentos), que gira por cima da capa.
-	// Um navio e uma serpente marinha.
-	g += `<g transform="translate(560 420)" stroke="${p.tinta}" stroke-width="1.6" fill="${p.fundo[0]}"><path d="M -26 0 Q 0 14 26 0 Z"/><line x1="0" y1="0" x2="0" y2="-34"/><path d="M 2 -32 Q 20 -20 2 -6 Z"/></g>`;
-	g += `<path d="M 1120 470 q 14 -26 28 0 q 14 26 28 0 q 14 -26 28 0" fill="none" stroke="${p.mar}" stroke-width="5" stroke-linecap="round"/><circle cx="1200" cy="462" r="3" fill="${p.tinta}"/>`;
+	const ilha = ([x, y, rx, ry], sem) => {
+		const rr = sorteio(sem);
+		let d = '';
+		for (let k = 0; k <= 16; k++) { const a = (k / 16) * Math.PI * 2, j = 0.8 + rr() * 0.35; d += `${k ? ' L' : 'M'} ${f(x + Math.cos(a) * rx * j)} ${f(y + Math.sin(a) * ry * j)}`; }
+		return d + ' Z';
+	};
+	const esq = costa(380, -1, 61), dir = costa(1420, 1, 67);
+	const terras = [esq.d, dir.d, ...MAPA_ILHAS.map((i, k) => ilha(i, 71 + k))];
+	// Sombreado da costa: linhas paralelas no mar, como nas cartas antigas.
+	for (const d of terras) for (const [w, op] of [[22, 0.1], [12, 0.16], [5, 0.24]]) g += `<path d="${d}" fill="none" stroke="${p.mar}" stroke-width="${w}" opacity="${op}"/>`;
+	for (const d of terras) g += `<path d="${d}" fill="${p.terra}" stroke="${p.tinta}" stroke-width="2"/>`;
+	// Morros: corcovas arredondadas com hachura no lado da sombra.
+	const morro = (x, y, s) => {
+		let m = `<path d="M ${f(x - 30 * s)} ${y} Q ${x} ${f(y - 44 * s)} ${f(x + 30 * s)} ${y}" fill="${p.fundo[0]}" fill-opacity=".5" stroke="${p.tinta}" stroke-width="1.6"/>`;
+		for (let k = 1; k <= 5; k++) { const xx = x + k * 5 * s; m += `<line x1="${f(xx)}" y1="${f(y - 36 * s + k * 6 * s)}" x2="${f(xx + 3 * s)}" y2="${f(y - 2)}" stroke="${p.tinta}" stroke-width=".9" opacity=".7"/>`; }
+		return m;
+	};
+	for (const [x, y, s] of [[110, 130, 1.1], [170, 110, 1.3], [235, 140, 0.9], [140, 175, 0.8], [1580, 110, 1.2], [1650, 140, 1], [1530, 150, 0.85], [1700, 100, 0.9]]) g += morro(x, y, s);
+	// Florestas: grupos densos de copas.
+	const floresta = (cx, cy, n, sem) => {
+		const rr = sorteio(sem);
+		let s = '';
+		for (let i = 0; i < n; i++) { const x = cx + (rr() - 0.5) * 120, y = cy + (rr() - 0.5) * 60; s += `<circle cx="${f(x)}" cy="${f(y - 6)}" r="${f(5 + rr() * 3)}" fill="${p.floresta}" stroke="${p.tinta}" stroke-width="1"/><line x1="${f(x)}" y1="${f(y)}" x2="${f(x)}" y2="${f(y + 5)}" stroke="${p.tinta}" stroke-width="1"/>`; }
+		return s;
+	};
+	g += floresta(150, 330, 26, 81) + floresta(250, 440, 14, 82) + floresta(1620, 330, 24, 83) + floresta(1690, 430, 12, 84) + floresta(1040, 172, 6, 85);
+	// Rio descendo dos morros até a costa da esquerda, e uma vila na foz.
+	g += `<path d="M 175 150 C 200 210, 260 220, 300 260 S 360 290, ${f(esq.pts[20][0])} 300" fill="none" stroke="${p.mar}" stroke-width="2.6" opacity=".8"/>`;
+	for (const [x, y] of [[330, 290], [346, 280], [338, 302]]) g += `<rect x="${x}" y="${y}" width="9" height="7" fill="${p.fundo[0]}" stroke="${p.tinta}" stroke-width="1"/><path d="M ${x - 1} ${y} L ${x + 4.5} ${y - 6} L ${x + 10} ${y}" fill="${p.tinta}"/>`;
+	// Rota pontilhada com escalas nas ilhas, até o X.
+	let d = `M ${MAPA_ROTA[0].join(' ')}`;
+	for (let i = 1; i < MAPA_ROTA.length; i++) { const [x0, y0] = MAPA_ROTA[i - 1], [x1, y1] = MAPA_ROTA[i]; d += ` C ${f(x0 + (x1 - x0) * 0.5)} ${y0}, ${f(x0 + (x1 - x0) * 0.5)} ${y1}, ${x1} ${y1}`; }
+	g += `<path d="${d}" fill="none" stroke="${p.rota}" stroke-width="3" stroke-dasharray="2 10" stroke-linecap="round"/>`;
+	for (const [x, y] of MAPA_ROTA.slice(1, -1)) g += `<circle cx="${x}" cy="${y}" r="6" fill="${p.fundo[0]}" stroke="${p.rota}" stroke-width="2.4"/>`;
+	g += `<circle cx="${MAPA_ROTA[0][0]}" cy="${MAPA_ROTA[0][1]}" r="7" fill="${p.rota}"/>`;
+	const [xx, yx] = MAPA_ROTA.at(-1);
+	g += `<g stroke="${p.rota}" stroke-width="5" stroke-linecap="round"><line x1="${xx - 12}" y1="${yx - 12}" x2="${xx + 12}" y2="${yx + 12}"/><line x1="${xx + 12}" y1="${yx - 12}" x2="${xx - 12}" y2="${yx + 12}"/></g>`;
 	// Borda de mapa com graus.
 	g += `<rect x="12" y="12" width="${W - 24}" height="${H - 24}" fill="none" stroke="${p.tinta}" stroke-width="2"/><rect x="22" y="22" width="${W - 44}" height="${H - 44}" fill="none" stroke="${p.tinta}" stroke-width=".8"/>`;
 	for (let x = 22; x < W - 22; x += 60) g += `<rect x="${x}" y="12" width="30" height="10" fill="${p.tinta}" opacity=".8"/><rect x="${x}" y="${H - 22}" width="30" height="10" fill="${p.tinta}" opacity=".8"/>`;
-	// Um véu claro atrás do nome.
-	g += `<defs><radialGradient id="veu"><stop offset="0" stop-color="${p.fundo[0]}" stop-opacity=".85"/><stop offset="1" stop-color="${p.fundo[0]}" stop-opacity="0"/></radialGradient></defs><ellipse cx="${W / 2}" cy="${H / 2}" rx="520" ry="150" fill="url(#veu)"/>`;
+	// Véu claro atrás do nome.
+	g += `<defs><radialGradient id="veu"><stop offset="0" stop-color="${p.fundo[0]}" stop-opacity=".8"/><stop offset="1" stop-color="${p.fundo[0]}" stop-opacity="0"/></radialGradient></defs><ellipse cx="${W / 2}" cy="${H / 2}" rx="500" ry="140" fill="url(#veu)"/>`;
+	r();
 	return g;
 }
 
-// Abissal: o fundo do mar, com raios de luz vindos da superfície, algas, bolhas e águas-vivas brilhando.
+// Camadas do Mapa (máscaras brancas, no mesmo quadro da capa): as ondas do canal e o barco.
+function mapaOndas() {
+	const r = sorteio(521);
+	let g = '';
+	for (let i = 0; i < 70; i++) {
+		const x = 440 + r() * 920, y = 40 + r() * 440;
+		if (MAPA_ILHAS.some(([ix, iy, rx, ry]) => Math.hypot((x - ix) / (rx + 30), (y - iy) / (ry + 24)) < 1)) continue;
+		g += `<path d="M ${f(x)} ${f(y)} q 8 -6 16 0 t 16 0" stroke-width="1.8" stroke-linecap="round" opacity="${f(0.5 + r() * 0.5)}"/>`;
+	}
+	return g;
+}
+function mapaBarco() {
+	return '<g transform="translate(900 452)" stroke-width="2" stroke-linejoin="round"><path d="M -34 0 Q 0 18 34 0 Z" fill="#fff"/><line x1="0" y1="0" x2="0" y2="-48"/><path d="M 3 -46 Q 30 -30 3 -10 Z" fill="#fff" opacity=".85"/><path d="M -3 -40 Q -22 -28 -3 -14 Z" fill="#fff" opacity=".6"/><path d="M -46 10 q 10 -6 20 0 t 20 0 M 26 10 q 10 -6 20 0" stroke-linecap="round" opacity=".7"/></g>';
+}
+
+// Abissal: o fundo do mar, com raios de luz, areia e corais variados (galhos, leques, cérebro e tubos). As algas e as
+// três águas-vivas são camadas à parte (abissalAlgas e abissalMedusa), que balançam e flutuam por cima.
 function abissal(p) {
 	const r = sorteio(601);
 	let g = `<defs><linearGradient id="agua" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="${p.fundo[0]}"/><stop offset=".55" stop-color="${p.fundo[1]}"/><stop offset="1" stop-color="${p.fundo[2]}"/></linearGradient>
-	<linearGradient id="raio" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="${p.luz}" stop-opacity=".22"/><stop offset="1" stop-color="${p.luz}" stop-opacity="0"/></linearGradient>
-	<radialGradient id="brilho"><stop offset="0" stop-color="${p.medusa}" stop-opacity=".55"/><stop offset="1" stop-color="${p.medusa}" stop-opacity="0"/></radialGradient></defs>
+	<linearGradient id="raio" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="${p.luz}" stop-opacity=".22"/><stop offset="1" stop-color="${p.luz}" stop-opacity="0"/></linearGradient></defs>
 	<rect width="${W}" height="${H}" fill="url(#agua)"/>`;
-	// Raios de luz.
 	for (const [x, w, inc] of [[260, 90, 120], [520, 60, 160], [820, 120, 140], [1120, 70, 180], [1420, 100, 150], [1640, 60, 120]]) g += `<path d="M ${x} -10 L ${x + w} -10 L ${x + w + inc} ${H} L ${x + inc - 40} ${H} Z" fill="url(#raio)"/>`;
-	// Algas dos dois lados.
-	const alga = (x, alt, fase) => {
-		let d = `M ${x} ${H + 10}`;
-		for (let y = H + 10, k = 0; y > H - alt; y -= 20, k++) d += ` Q ${f(x + Math.sin(k + fase) * 22)} ${y - 10} ${f(x + Math.sin(k + 1 + fase) * 10)} ${y - 20}`;
-		return `<path d="${d}" fill="none" stroke="${p.alga}" stroke-width="${f(6 + r() * 6)}" stroke-linecap="round" opacity="${f(0.6 + r() * 0.35)}"/>`;
-	};
-	for (let i = 0; i < 14; i++) g += alga(f(10 + r() * 380), 160 + r() * 260, r() * 6);
-	for (let i = 0; i < 14; i++) g += alga(f(1410 + r() * 380), 160 + r() * 260, r() * 6);
-	// Areia e corais no fundo.
-	g += `<path d="M -10 ${H - 26} Q 400 ${H - 46} 900 ${H - 30} T 1810 ${H - 34} V ${H + 10} H -10 Z" fill="${p.areia}"/>`;
-	for (const [x, s] of [[460, 1], [1330, 1.2], [1260, 0.7]]) g += `<g transform="translate(${x} ${H - 30}) scale(${s})" stroke="${p.coral}" stroke-width="6" stroke-linecap="round" fill="none"><path d="M 0 0 V -40 M 0 -22 L -16 -40 M 0 -30 L 14 -50 M -16 -40 V -54 M 14 -50 L 22 -60"/></g>`;
-	// Águas-vivas.
-	for (const [x, y, s] of [[250, 140, 1], [1560, 110, 1.2], [1470, 260, 0.7]]) {
-		g += `<circle cx="${x}" cy="${y}" r="${70 * s}" fill="url(#brilho)"/><g transform="translate(${x} ${y}) scale(${s})"><path d="M -30 0 Q -30 -34 0 -34 Q 30 -34 30 0 Q 15 6 0 0 Q -15 6 -30 0 Z" fill="${p.medusa}" opacity=".75"/>`;
-		for (const tx of [-20, -8, 4, 16]) g += `<path d="M ${tx} 2 q 6 18 0 34 t 0 34" fill="none" stroke="${p.medusa}" stroke-width="2" opacity=".6"/>`;
-		g += '</g>';
-	}
-	// Bolhas subindo.
+	g += `<path d="M -10 ${H - 30} Q 400 ${H - 52} 900 ${H - 34} T 1810 ${H - 38} V ${H + 10} H -10 Z" fill="${p.areia}"/>`;
+	const tons = [p.coral, mistura(p.coral, p.medusa, 0.5), mistura(p.coral, '#ffd27a', 0.45), mistura(p.coral, p.luz, 0.35)];
+	// Coral em galhos.
+	const galhos = (x, y, s, cor) => `<g transform="translate(${x} ${y}) scale(${s})" stroke="${cor}" stroke-width="6" stroke-linecap="round" fill="none"><path d="M 0 0 V -44 M 0 -24 L -18 -44 V -60 M 0 -34 L 16 -56 L 26 -66 M -18 -48 L -28 -56 M 16 -52 L 10 -68"/></g>`;
+	// Leque: um semicírculo de nervuras.
+	const leque = (x, y, s, cor) => { let l = `<g transform="translate(${x} ${y}) scale(${s})" stroke="${cor}" fill="none" stroke-linecap="round"><path d="M -40 -10 Q 0 -70 40 -10" stroke-width="3"/>`; for (let k = -4; k <= 4; k++) l += `<path d="M 0 0 L ${k * 9} ${-50 + Math.abs(k) * 6}" stroke-width="2"/>`; return l + `<path d="M -30 -24 Q 0 -54 30 -24" stroke-width="1.6"/></g>`; };
+	// Cérebro: uma cúpula com sulcos.
+	const cerebro = (x, y, s, cor) => `<g transform="translate(${x} ${y}) scale(${s})"><path d="M -34 0 Q -34 -40 0 -40 Q 34 -40 34 0 Z" fill="${cor}" opacity=".85"/><path d="M -24 -8 q 6 -10 12 0 t 12 0 t 12 0 M -20 -22 q 6 -10 12 0 t 12 0 t 10 0" stroke="${p.areia}" stroke-width="2" fill="none" opacity=".7"/></g>`;
+	// Tubos: esponjas em colunas.
+	const tubos = (x, y, s, cor) => `<g transform="translate(${x} ${y}) scale(${s})" fill="${cor}">${[[-14, 46], [0, 64], [14, 38]].map(([dx, h]) => `<rect x="${dx - 6}" y="${-h}" width="12" height="${h}" rx="6"/><ellipse cx="${dx}" cy="${-h}" rx="6" ry="3" fill="${p.fundo[2]}"/>`).join('')}</g>`;
+	const corais = [[galhos, 120, 1, 0], [leque, 230, 1.1, 1], [cerebro, 330, 1, 2], [tubos, 420, 0.9, 3], [galhos, 520, 0.8, 1], [leque, 1290, 1, 0], [tubos, 1380, 1.1, 2], [galhos, 1470, 1.2, 3], [cerebro, 1580, 1.2, 0], [leque, 1690, 0.9, 2], [galhos, 960, 0.7, 2], [tubos, 820, 0.7, 1]];
+	for (const [fn, x, s, k] of corais) g += fn(x, H - 34 + r() * 6, s, tons[k]);
+	// Bolhas.
 	for (let i = 0; i < 70; i++) { const x = r() * W, y = r() * H; if (x > 520 && x < 1280 && y > 150 && y < 370) continue; g += `<circle cx="${f(x)}" cy="${f(y)}" r="${f(1.5 + r() * 5)}" fill="none" stroke="${p.luz}" stroke-width="1.2" opacity="${f(0.25 + r() * 0.45)}"/>`; }
 	return g;
 }
+function abissalAlgas() {
+	const r = sorteio(611);
+	const alga = (x, alt, fase) => {
+		let d = `M ${x} ${H + 10}`;
+		for (let y = H + 10, k = 0; y > H - alt; y -= 20, k++) d += ` Q ${f(x + Math.sin(k + fase) * 22)} ${y - 10} ${f(x + Math.sin(k + 1 + fase) * 10)} ${y - 20}`;
+		return `<path d="${d}" stroke-width="${f(6 + r() * 6)}" stroke-linecap="round" opacity="${f(0.6 + r() * 0.35)}"/>`;
+	};
+	let g = '';
+	for (let i = 0; i < 12; i++) g += alga(f(10 + r() * 360), 160 + r() * 260, r() * 6);
+	for (let i = 0; i < 12; i++) g += alga(f(1430 + r() * 360), 160 + r() * 260, r() * 6);
+	return g;
+}
+// Três águas-vivas diferentes: redonda, alongada de tentáculos longos e pequena.
+const MEDUSAS = [[250, 150, 1, 'redonda'], [1570, 120, 1.25, 'longa'], [1460, 300, 0.7, 'pequena']];
+function abissalMedusa(k) {
+	const [x, y, s, tipo] = MEDUSAS[k];
+	const halo = `<circle cx="${x}" cy="${y}" r="${70 * s}" fill="url(#h)" stroke="none"/>`;
+	let corpo;
+	if (tipo === 'longa') corpo = `<path d="M -26 0 Q -28 -46 0 -48 Q 28 -46 26 0 Q 13 6 0 0 Q -13 6 -26 0 Z" fill="#fff" opacity=".8"/>` + [-18, -6, 6, 18].map((tx) => `<path d="M ${tx} 2 q 8 24 0 48 t 0 48 t 0 40" fill="none" stroke="#fff" stroke-width="1.8" opacity=".6"/>`).join('');
+	else if (tipo === 'pequena') corpo = `<path d="M -22 0 Q -22 -22 0 -24 Q 22 -22 22 0 Z" fill="#fff" opacity=".75"/>` + [-12, 0, 12].map((tx) => `<path d="M ${tx} 0 q 5 12 0 24 t 0 24" fill="none" stroke="#fff" stroke-width="1.6" opacity=".6"/>`).join('');
+	else corpo = `<path d="M -30 0 Q -30 -34 0 -34 Q 30 -34 30 0 Q 15 6 0 0 Q -15 6 -30 0 Z" fill="#fff" opacity=".78"/><path d="M -18 -14 Q 0 -30 18 -14" fill="none" stroke="#fff" stroke-width="1.4" opacity=".5"/>` + [-20, -8, 4, 16].map((tx) => `<path d="M ${tx} 2 q 6 18 0 34 t 0 34" fill="none" stroke="#fff" stroke-width="2" opacity=".6"/>`).join('');
+	return `<defs><radialGradient id="h"><stop offset="0" stop-color="#fff" stop-opacity=".55"/><stop offset="1" stop-color="#fff" stop-opacity="0"/></radialGradient></defs>${halo}<g transform="translate(${x} ${y}) scale(${s})">${corpo}</g>`;
+}
 
-// Forja Rúnica: pedra escura, faixas de runas acesas em brasa em cima e embaixo, e fagulhas subindo.
+// Forja Rúnica: pedra escura, faixas de runas em cima e embaixo e fagulhas. As runas aparecem apagadas; as acesas são
+// três camadas à parte (forjaRunas), que cintilam alternadas.
 const RUNAS = ['M6 0V34M6 6L18 0M6 14L18 8', 'M4 34V0L16 10V34', 'M6 0V34M6 10L16 17L6 24', 'M6 0V34M6 6L16 12M6 14L16 20', 'M6 34V0L16 8L6 16L16 34', 'M16 4L6 17L16 30', 'M2 2L18 32M18 2L2 32', 'M6 34V0L16 8L6 16', 'M4 0V34M16 0V34M4 12L16 22', 'M10 0V34M4 12L16 22', 'M10 0V34', 'M8 4L2 12L8 20M12 14L18 22L12 30', 'M10 0V34M10 0L16 6M10 34L4 28', 'M10 0V34M10 12L2 2M10 12L18 2', 'M14 0L4 12L16 22L6 34', 'M10 0V34M10 0L2 10M10 0L18 10', 'M5 0V34M5 0L15 8L5 17L15 26L5 34', 'M3 34V0L10 10L17 0V34', 'M3 34V0L17 14M17 34V0L3 14', 'M6 0V34M6 0L16 10', 'M10 0L18 10L10 20L2 10Z', 'M2 0V34L18 0V34L2 0'];
+// As posições e os glifos das runas das faixas, sorteados uma vez só, para a base e as camadas acesas coincidirem.
+const FORJA_RUNAS = (() => {
+	const r = sorteio(4011), lista = [];
+	for (const y of [26, H - 86]) for (let x = 30, k = 0; x < W - 20; x += 44, k++) if (k % 9 !== 8) lista.push([x, y + 13, RUNAS[Math.floor(r() * RUNAS.length)]]);
+	return lista;
+})();
 function forja(p) {
 	const r = sorteio(401);
 	let g = `<defs><radialGradient id="pedra" cx="50%" cy="40%" r="80%"><stop offset="0" stop-color="${p.fundo[0]}"/><stop offset=".7" stop-color="${p.fundo[1]}"/><stop offset="1" stop-color="${p.fundo[2]}"/></radialGradient>
-	<radialGradient id="brasa" cx="50%" cy="100%" r="70%"><stop offset="0" stop-color="${p.brasa}" stop-opacity=".55"/><stop offset=".5" stop-color="${p.brasa}" stop-opacity=".12"/><stop offset="1" stop-color="${p.brasa}" stop-opacity="0"/></radialGradient>
-	<filter id="acesa" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="3" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter></defs>
+	<radialGradient id="brasa" cx="50%" cy="100%" r="70%"><stop offset="0" stop-color="${p.brasa}" stop-opacity=".55"/><stop offset=".5" stop-color="${p.brasa}" stop-opacity=".12"/><stop offset="1" stop-color="${p.brasa}" stop-opacity="0"/></radialGradient></defs>
 	<rect width="${W}" height="${H}" fill="url(#pedra)"/><rect width="${W}" height="${H}" fill="url(#brasa)"/>`;
-	// Blocos de pedra: juntas irregulares.
 	g += `<g stroke="${p.junta}" stroke-width="2" fill="none" opacity=".6">`;
 	for (let y = 120; y < 420; y += 75) { g += `<line x1="0" y1="${y}" x2="${W}" y2="${y + (r() - 0.5) * 6}"/>`; for (let x = (y / 75) % 2 ? 0 : 110; x < W; x += 220) g += `<line x1="${f(x + r() * 20)}" y1="${y}" x2="${f(x + r() * 20)}" y2="${y + 75}"/>`; }
 	g += '</g>';
-	// Faixas de runas.
 	for (const y of [26, H - 86]) {
 		g += `<rect x="-4" y="${y}" width="${W + 8}" height="60" fill="${p.fundo[2]}" stroke="${p.linha}" stroke-width="2"/><line x1="0" y1="${y + 6}" x2="${W}" y2="${y + 6}" stroke="${p.linha}" stroke-width="1" opacity=".6"/><line x1="0" y1="${y + 54}" x2="${W}" y2="${y + 54}" stroke="${p.linha}" stroke-width="1" opacity=".6"/>`;
-		g += `<g fill="none" stroke="${p.brasa}" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" filter="url(#acesa)">`;
-		for (let x = 30, k = 0; x < W - 20; x += 44, k++) {
-			if (k % 9 === 8) { g += `</g><circle cx="${x + 10}" cy="${y + 30}" r="4" fill="${p.linha}"/><g fill="none" stroke="${p.brasa}" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" filter="url(#acesa)">`; continue; }
-			g += `<path transform="translate(${x} ${y + 13})" d="${RUNAS[Math.floor(r() * RUNAS.length)]}" opacity="${f(0.7 + r() * 0.3)}"/>`;
-		}
-		g += '</g>';
+		for (let x = 30, k = 0; x < W - 20; x += 44, k++) if (k % 9 === 8) g += `<circle cx="${x + 10}" cy="${y + 30}" r="4" fill="${p.linha}"/>`;
 	}
-	// Fagulhas subindo, mais densas embaixo, longe do centro.
+	// Runas apagadas, como entalhes na pedra.
+	g += `<g fill="none" stroke="${p.brasa}" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" opacity=".28">${FORJA_RUNAS.map(([x, y, d]) => `<path transform="translate(${x} ${y})" d="${d}"/>`).join('')}</g>`;
 	for (let i = 0; i < 120; i++) {
 		const x = r() * W, y = 100 + Math.pow(r(), 0.6) * (H - 190);
 		if (x > 520 && x < 1280 && y > 150 && y < 370) continue;
-		const s = f(1 + r() * 2.6);
-		g += `<circle cx="${f(x)}" cy="${f(y)}" r="${s}" fill="${r() < 0.3 ? p.brilho : p.brasa}" opacity="${f(0.35 + r() * 0.6)}"/>`;
+		g += `<circle cx="${f(x)}" cy="${f(y)}" r="${f(1 + r() * 2.6)}" fill="${r() < 0.3 ? p.brilho : p.brasa}" opacity="${f(0.35 + r() * 0.6)}"/>`;
 	}
 	return g;
 }
-
-// Rosa dos ventos do Mapa, centrada na origem: vai num arquivo à parte, que gira por cima da capa.
-function rosaDosVentos(p) {
-	let g = `<circle r="44" fill="${p.fundo[0]}" fill-opacity=".55" stroke="${p.tinta}" stroke-width="1.4"/><circle r="36" fill="none" stroke="${p.tinta}" stroke-width=".8"/>`;
-	for (const a of [0, 90, 180, 270]) g += `<path d="M 0 -58 L 7 -7 L 0 0 Z" transform="rotate(${a})" fill="${p.tinta}"/><path d="M 0 -58 L -7 -7 L 0 0 Z" transform="rotate(${a})" fill="${p.fundo[0]}" stroke="${p.tinta}" stroke-width="1"/>`;
-	for (const a of [45, 135, 225, 315]) g += `<path d="M 0 -34 L 5 -5 L 0 0 L -5 -5 Z" transform="rotate(${a})" fill="${p.mar}" opacity=".8"/>`;
-	return g + `<text y="-64" font-family="Georgia, serif" font-size="16" text-anchor="middle" fill="${p.tinta}">N</text>`;
+function forjaRunas(k) {
+	return FORJA_RUNAS.filter((_, i) => i % 3 === k).map(([x, y, d]) => `<path transform="translate(${x} ${y})" d="${d}" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>`).join('');
 }
 
 // Esfera armilar grande, deslocada para a direita. A esfera vai num arquivo à parte (esferaArmilar), que balança por cima.
@@ -555,16 +606,28 @@ for (const cor of CORES.constelacao.slice(1)) {
 	SAIDAS.push(['rio', `constelacao-${cor}`]);
 }
 const ARTES = { planisferio, armilar, hud, radar, circuito, navegacao, bosque, vitral, forja, mapa, abissal, rio };
-// Cada capa sai com o nome do tema e do modo: capa-<tema>-<modo>.svg. A esfera do Astrolábio e a rosa dos ventos do Mapa
-// saem em arquivos à parte (esfera-*.svg e rosa-*.svg), porque se mexem por cima da capa.
+// Cada capa sai com o nome do tema e do modo: capa-<tema>-<modo>.svg. A esfera do Astrolábio sai num arquivo à parte
+// (esfera-*.svg), porque balança por cima da capa.
 for (const [nome, paleta] of SAIDAS) {
 	const p = PALETAS[paleta];
 	const svg = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${W} ${H}" preserveAspectRatio="xMidYMid slice">${ARTES[nome](p)}</svg>
 `;
 	fs.writeFileSync(`public/temas/capa-${paleta}.svg`, svg);
 	if (nome === 'armilar') fs.writeFileSync(`public/temas/esfera-${paleta}.svg`, `<svg xmlns="http://www.w3.org/2000/svg" viewBox="${ESFERA.cx - 400} ${ESFERA.cy - 400} 800 800">${esferaArmilar(p)}</svg>\n`);
-	if (nome === 'mapa') fs.writeFileSync(`public/temas/rosa-${paleta}.svg`, `<svg xmlns="http://www.w3.org/2000/svg" viewBox="-82 -82 164 164">${rosaDosVentos(p)}</svg>\n`);
 	console.log(nome, paleta, svg.length);
+}
+
+// Camadas que se mexem por cima das capas (máscaras brancas no mesmo quadro de 1800 x 520, recortadas como a capa):
+// a cor vem do CSS de cada paleta.
+const CAMADAS = {
+	'mapa-ondas': mapaOndas(),
+	'mapa-barco': mapaBarco(),
+	'abissal-algas': abissalAlgas(),
+	...Object.fromEntries([0, 1, 2].map((k) => [`abissal-medusa-${k + 1}`, abissalMedusa(k)])),
+	...Object.fromEntries([0, 1, 2].map((k) => [`forja-runas-${k + 1}`, forjaRunas(k)])),
+};
+for (const [nome, corpo] of Object.entries(CAMADAS)) {
+	fs.writeFileSync(`public/temas/camada-${nome}.svg`, `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${W} ${H}" preserveAspectRatio="xMidYMid slice" fill="none" stroke="#fff">${corpo}</svg>\n`);
 }
 
 // Máscaras de partículas para as animações (brancas: a cor vem do CSS de cada tema e paleta). Cada uma é um ladrilho

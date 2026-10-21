@@ -3,6 +3,8 @@
 :root[data-ss-tema='abissal'],
 :root[data-ss-tema='abissal'][data-theme='light'] {
 	--ss-luz: #c9f3f0;
+	--ss-alga: #0f4a3a;
+	--ss-medusa: #ffb0c8;
 	--ss-ouro: #7fb7b3;
 	--ss-ouro-rgb: 127 183 179;
 	--ss-ouro-claro: #c9ece8;

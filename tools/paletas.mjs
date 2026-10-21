@@ -63,6 +63,7 @@ export function capaScifi(tema, corId, modo) {
 // ---- Família fantasia ----
 
 const PAPEL_FANTASIA = { grimorio: 'pergaminho', bosque: 'papel-bosque', vitral: 'papel-vitral', forja: 'papel-forja', mapa: 'papel-mapa', abissal: 'papel-abissal' };
+const f2 = (n) => Math.round(n * 100) / 100;
 const saturacao = (h) => {
 	const c = hex(h).map((v) => v / 255);
 	const mx = Math.max(...c), mn = Math.min(...c);
@@ -151,7 +152,9 @@ export function varsFantasia(tema, cor) {
 	// As partículas das animações (vaga-lumes, brasas, bolhas) e a rosa dos ventos do Mapa, nas cores da paleta.
 	const luz = { bosque: p.luz, forja: p.brasa, abissal: p.luzAgua }[tema];
 	if (luz) vars['--ss-luz'] = luz;
-	if (tema === 'mapa') vars['--ss-rosa'] = arq(`rosa-mapa-${cor}`);
+	if (tema === 'mapa') vars['--ss-mar'] = p.mar;
+	if (tema === 'abissal') Object.assign(vars, { '--ss-alga': p.alga, '--ss-medusa': p.medusa });
+	if (tema === 'vitral') Object.assign(vars, { '--ss-vidro-a': p.vidros[0], '--ss-vidro-b': p.vidros[1] });
 	// O Grimório monta a capa com o selo, os cantos e o couro: aqui vão as peças recoloridas e o filtro do nome.
 	if (tema === 'grimorio') {
 		vars['--ss-selo-capa'] = arq(`selo-grimorio-${cor}`);
@@ -276,7 +279,7 @@ export function varsAstra(tema, cor, modo) {
 				'--ss-vidro': claro ? `rgb(${rgb(mistura(b.bg, '#ffffff', 0.6))} / 0.72)` : `rgb(${rgb(mistura(b.bg, '#ffffff', 0.04))} / 0.62)`,
 				'--sl-color-bg-nav': `rgb(${rgb(b.bg)} / ${claro ? 0.7 : 0.55})`,
 				'--sl-color-bg-sidebar': `rgb(${rgb(b.bg)} / ${claro ? 0.55 : 0.45})`,
-				'--ss-fundo': `linear-gradient(180deg, rgb(${rgb(b.bg)} / ${claro ? 0.84 : 0.55}), rgb(${rgb(b.bg)} / ${claro ? 0.92 : 0.82})), var(--ss-galaxia-fundo) center / cover, ${b.bg}`,
+				'--ss-fundo': [[55, 45, 18, 22, 'lilas', 0.24], [50, 42, 82, 72, 'acento', 0.22], [34, 28, 62, 14, 'pessego', 0.15], [40, 34, 34, 86, 'acento', 0.13], [26, 22, 90, 20, 'lilas', 0.14]].map(([w, h, x, y, cor, op]) => `radial-gradient(ellipse ${w}% ${h}% at ${x}% ${y}%, rgb(${rgb(e[cor])} / ${claro ? f2(op * 0.65) : op}), transparent 70%)`).join(', ') + `, url('/star-stream/temas/${claro ? 'estrelas-tinta' : 'estrelas-claras'}.svg') 0 0 / 600px, ${b.bg}`,
 			});
 			break;
 		}

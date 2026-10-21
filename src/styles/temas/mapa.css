@@ -2,6 +2,7 @@
 
 :root[data-ss-tema='mapa'],
 :root[data-ss-tema='mapa'][data-theme='light'] {
+	--ss-mar: #2f6e8e;
 	--ss-ouro: #a88a5a;
 	--ss-ouro-rgb: 168 138 90;
 	--ss-ouro-claro: #e3cf9c;

@@ -39,6 +39,15 @@
 	// As paletas ficam num arquivo por tema, fora do CSS principal. O document.write deixa o arquivo bloquear a pintura
 	// da página, como um <link> escrito no HTML: assim ela já aparece na cor certa, sem piscar na padrão.
 	if (cor && cor !== paletas[0]) document.write(`<link rel="stylesheet" href="__BASE__cores/${tema}.css" data-ss-cores="${tema}">`);
+	// As peças de ambiente (estrelas que cintilam, partículas que sobem do pé da página e o objeto do canto) ficam num
+	// contêiner fixo atrás de todo o conteúdo. São só decoração: o CSS de cada tema decide quais aparecem e como se mexem.
+	document.addEventListener('DOMContentLoaded', () => {
+		const ambiente = document.createElement('div');
+		ambiente.className = 'ss-ambiente';
+		ambiente.setAttribute('aria-hidden', 'true');
+		ambiente.innerHTML = '<div class="ss-cintilar"><i></i><i></i><i></i></div><div class="ss-subida"><i></i></div><div class="ss-deco"><i></i><i></i><i></i><i></i><i></i></div>';
+		document.body.prepend(ambiente);
+	});
 	const modo = { claro: 'light', escuro: 'dark' }[busca.get('modo')];
 	if (modo) {
 		try {

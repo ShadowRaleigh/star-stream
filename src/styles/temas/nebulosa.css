@@ -26,9 +26,15 @@
 	--sl-color-bg-sidebar: rgb(var(--ss-noite-rgb) / 0.45);
 	--sl-color-hairline: rgb(var(--ss-rosa-rgb) / 0.16);
 	--sl-color-hairline-light: rgb(var(--ss-rosa-rgb) / 0.26);
+	/* O fundo é pintado em CSS: nuvens de nebulosa em gradientes, nas cores do tema, e estrelas desenhadas. Nítido em
+	   qualquer tela, sem foto. */
 	--ss-fundo:
-		linear-gradient(180deg, rgb(var(--ss-noite-rgb) / 0.55), rgb(var(--ss-noite-rgb) / 0.82)),
-		var(--ss-galaxia-fundo) center / cover,
+		radial-gradient(ellipse 55% 45% at 18% 22%, rgb(var(--ss-lilas-rgb) / 0.24), transparent 70%),
+		radial-gradient(ellipse 50% 42% at 82% 72%, rgb(var(--ss-rosa-rgb) / 0.22), transparent 70%),
+		radial-gradient(ellipse 34% 28% at 62% 14%, rgb(var(--ss-pessego-rgb) / 0.15), transparent 70%),
+		radial-gradient(ellipse 40% 34% at 34% 86%, rgb(var(--ss-rosa-rgb) / 0.13), transparent 70%),
+		radial-gradient(ellipse 26% 22% at 90% 20%, rgb(var(--ss-lilas-rgb) / 0.14), transparent 70%),
+		url('/star-stream/temas/estrelas-claras.svg') 0 0 / 600px,
 		#0c0818;
 	--ss-tabela-cabecalho: rgb(var(--ss-rosa-rgb) / 0.12);
 	--ss-tabela-listra: rgb(255 255 255 / 0.03);
@@ -56,8 +62,12 @@
 	--sl-color-hairline: rgb(168 64 127 / 0.16);
 	--sl-color-hairline-light: rgb(168 64 127 / 0.26);
 	--ss-fundo:
-		linear-gradient(180deg, rgb(248 242 252 / 0.84), rgb(248 242 252 / 0.92)),
-		var(--ss-galaxia-fundo) center / cover,
+		radial-gradient(ellipse 55% 45% at 18% 22%, rgb(var(--ss-lilas-rgb) / 0.16), transparent 70%),
+		radial-gradient(ellipse 50% 42% at 82% 72%, rgb(var(--ss-rosa-rgb) / 0.14), transparent 70%),
+		radial-gradient(ellipse 34% 28% at 62% 14%, rgb(var(--ss-pessego-rgb) / 0.12), transparent 70%),
+		radial-gradient(ellipse 40% 34% at 34% 86%, rgb(var(--ss-rosa-rgb) / 0.1), transparent 70%),
+		radial-gradient(ellipse 26% 22% at 90% 20%, rgb(var(--ss-lilas-rgb) / 0.1), transparent 70%),
+		url('/star-stream/temas/estrelas-tinta.svg') 0 0 / 600px,
 		#f3edf8;
 	--ss-tabela-cabecalho: rgb(168 64 127 / 0.08);
 	--ss-tabela-listra: rgb(91 70 184 / 0.03);

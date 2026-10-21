@@ -2,6 +2,8 @@
 
 :root[data-ss-tema='vitral'],
 :root[data-ss-tema='vitral'][data-theme='light'] {
+	--ss-vidro-a: #b8455a;
+	--ss-vidro-b: #4f74c9;
 	--ss-ouro: #9ea3b2;
 	--ss-ouro-rgb: 158 163 178;
 	--ss-ouro-claro: #d9dce4;

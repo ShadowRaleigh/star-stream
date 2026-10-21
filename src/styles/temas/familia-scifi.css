@@ -1,21 +1,6 @@
 /* Família sci-fi: interface de nave. Cantos chanfrados, títulos técnicos, leituras em fonte mono, brilho de projeção.
    Cada tema da família (Holograma, Radar, Circuito, Navegação) define só as cores, as fontes, o selo e a capa. */
 
-/* Selo rúnico girando devagar atrás do conteúdo, e linhas de varredura bem leves. */
-[data-ss-familia='scifi'] body::before {
-	content: '';
-	position: fixed;
-	right: -180px;
-	bottom: -180px;
-	width: 620px;
-	height: 620px;
-	pointer-events: none;
-	z-index: -1;
-	background: var(--ss-selo) center / contain no-repeat;
-	opacity: 0.12;
-	animation: ss-girar 160s linear infinite;
-}
-
 [data-ss-familia='scifi'] body::after {
 	content: '';
 	position: fixed;

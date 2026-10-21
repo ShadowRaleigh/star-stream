@@ -78,21 +78,22 @@ astrolabio('astrolabio-tinta.svg', '#1b2a3e');
 salvar('grade-hex.svg', `<svg xmlns="http://www.w3.org/2000/svg" width="56" height="97" viewBox="0 0 56 97" fill="none" stroke="#7ee7ff" stroke-width=".6" opacity=".22">
 <path d="M28 0 L56 16.2 V48.5 L28 64.7 L0 48.5 V16.2 Z M28 64.7 V97 M0 97 L0 80.8 L28 97 L56 80.8 V97"/></svg>`);
 
-// Círculo rúnico para o holograma (selo girando no fundo).
+// Círculo rúnico (capa do Grimório). As runas são traços, não texto: num SVG usado como imagem, uma fonte com runas
+// pode faltar no sistema e virar quadradinhos.
+const RUNAS = ['M6 0V34M6 6L18 0M6 14L18 8', 'M4 34V0L16 10V34', 'M6 0V34M6 10L16 17L6 24', 'M6 0V34M6 6L16 12M6 14L16 20', 'M6 34V0L16 8L6 16L16 34', 'M16 4L6 17L16 30', 'M2 2L18 32M18 2L2 32', 'M6 34V0L16 8L6 16', 'M4 0V34M16 0V34M4 12L16 22', 'M10 0V34M4 12L16 22', 'M10 0V34', 'M8 4L2 12L8 20M12 14L18 22L12 30', 'M10 0V34M10 0L16 6M10 34L4 28', 'M4 0V34M4 0L12 8M4 34L12 26', 'M10 0V34M10 12L2 2M10 12L18 2', 'M14 0L4 12L16 22L6 34', 'M10 0V34M10 0L2 10M10 0L18 10', 'M5 0V34M5 0L15 8L5 17L15 26L5 34', 'M3 34V0L10 10L17 0V34', 'M3 34V0L17 14M17 34V0L3 14', 'M6 0V34M6 0L16 10', 'M10 0L18 10L10 20L2 10Z', 'M2 0V34L18 0V34L2 0', 'M10 0L18 10L10 20L2 10ZM2 34L10 20L18 34'];
 function selo(nome, cor) {
-	const runas = 'ᚠᚢᚦᚨᚱᚲᚷᚹᚺᚾᛁᛃᛇᛈᛉᛊᛏᛒᛖᛗᛚᛜᛞᛟ';
-	let txt = '';
+	let runas = '';
 	for (let i = 0; i < 24; i++) {
 		const a = (i / 24) * Math.PI * 2 - Math.PI / 2;
 		const x = 200 + Math.cos(a) * 166, y = 200 + Math.sin(a) * 166;
-		txt += `<text x="${f(x)}" y="${f(y)}" transform="rotate(${f((i / 24) * 360)} ${f(x)} ${f(y)})">${runas[i]}</text>`;
+		runas += `<path d="${RUNAS[i]}" transform="translate(${f(x)} ${f(y)}) rotate(${f((i / 24) * 360)}) scale(.55) translate(-10 -17)" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>`;
 	}
 	salvar(nome, `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" fill="none" stroke="${cor}">
 <circle cx="200" cy="200" r="190" stroke-width="1"/><circle cx="200" cy="200" r="182" stroke-width=".5"/>
 <circle cx="200" cy="200" r="148" stroke-width="1" stroke-dasharray="1 5"/>
 <rect x="96" y="96" width="208" height="208" stroke-width=".9"/><rect x="96" y="96" width="208" height="208" stroke-width=".9" transform="rotate(45 200 200)"/>
 <circle cx="200" cy="200" r="70" stroke-width=".8"/>
-<g fill="${cor}" stroke="none" font-family="serif" font-size="20" text-anchor="middle" dominant-baseline="middle">${txt}</g></svg>`);
+<g>${runas}</g></svg>`);
 }
 selo('selo-ciano.svg', '#7ee7ff');
 selo('selo-dourado.svg', '#d9b47a');

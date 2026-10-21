@@ -148,6 +148,7 @@
 		var(--ss-canto-sd) calc(100% - 14px) 14px / 90px no-repeat,
 		var(--ss-canto-ie) 14px calc(100% - 14px) / 90px no-repeat,
 		var(--ss-canto-id) calc(100% - 14px) calc(100% - 14px) / 90px no-repeat,
+		var(--ss-selo-capa) center / min(480px, 95%) no-repeat,
 		var(--ss-material) 0 0 / 300px,
 		radial-gradient(ellipse at center, var(--ss-capa-centro), var(--ss-couro) 75%);
 	border: 2px solid var(--ss-ouro);
