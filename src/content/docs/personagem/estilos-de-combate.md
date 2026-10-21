@@ -3,7 +3,7 @@ title: "Estilos de Combate"
 ---
 Na hora de criar um personagem, você começa com um estilo de combate de sua preferência.
 
-Estilos de combate definem **como** seu personagem luta: o tipo de arma que ele pode usar, a **Precisão** e o dano que ele tem com ela, o alcance, uma regra própria e um **truque**. Existem **10** estilos de combate.
+Estilos de combate definem **como** seu personagem luta: o tipo de arma que ele pode usar, a **[Precisão](../stats/#precisão)** e o dano que ele tem com ela, o alcance, uma regra própria e um **truque**. Existem **10** estilos de combate.
 
 Estilo de combate é um sistema binário, onde ou o seu personagem tem o estilo, ou não tem. Caso seu personagem use uma arma de um estilo que ele não tem, ele sofre uma penalidade de **−10 de Precisão**.
 
@@ -20,7 +20,7 @@ Estilo de combate é um sistema binário, onde ou o seu personagem tem o estilo,
 | **Simples com escudo à distância** | +4 | ×4,12 | efetivo 0 a 12m, máximo 30m |
 | **Misto** | +5 | ×3,5 | 2m; à distância, efetivo 0 a 12m, máximo 30m |
 
-**Armas de uma mão:** toda arma de uma mão rola metade dos dados de dano da categoria, mesmo quando é a única arma do personagem. Num número ímpar de dados, o que sobra vira um dado de metade do tamanho (1d10 vira 1d5; 3d12 vira 1d12 + 1d6). Em troca, a arma de uma mão deixa a outra mão para uma segunda arma, um escudo ou outra coisa. Com duas armas de uma mão, o ataque básico vira um golpe com cada arma, cada um com a própria rolagem de acerto, e a mesma arma não ataca duas vezes.
+**Armas de uma mão:** toda arma de uma mão rola metade dos dados de dano da categoria, mesmo quando é a única arma do personagem. Num número ímpar de dados, o que sobra vira um dado de metade do tamanho (1d10 vira 1d5; 3d12 vira 1d12 + 1d6). Em troca, a arma de uma mão deixa a outra mão para uma segunda arma, um escudo ou outra coisa. Com duas armas de uma mão, o [ataque básico](../../combate/ataque-e-dano/#fórmula-de-dano) vira um golpe com cada arma, cada um com a própria rolagem de acerto, e a mesma arma não ataca duas vezes.
 
 **Truques:** cada **Estilo** tem um truque que pode ser usado 1 vez por combate. Os truques que alteram um ataque valem só para o ataque básico da arma, a não ser que o texto do truque diga o contrário.
 
@@ -30,7 +30,7 @@ Estilo de combate é um sistema binário, onde ou o seu personagem tem o estilo,
 
 uma arma corpo a corpo de uma mão, com a outra mão livre.
 
-**Truque:** o Dash não gasta a Ação Principal.
+**Truque:** o [Dash](../../combate/rodadas-e-acoes/#ação-principal) não gasta a [Ação Principal](../../combate/rodadas-e-acoes/#ação-principal).
 
 ### Dupla corpo a corpo
 
@@ -40,7 +40,7 @@ duas armas corpo a corpo de uma mão, uma em cada mão. O ataque básico vira 2 
 
 ### Simples com escudo corpo a corpo
 
-uma arma corpo a corpo de uma mão e um escudo. +1 de Deflexão. Uma vez por rodada, usando a Reação, rebaixa um Crítico para Acerto em um ataque direto contra você ou contra um aliado a até 2m.
+uma arma corpo a corpo de uma mão e um escudo. +1 de [Deflexão](../stats/#deflexão). Uma vez por rodada, usando a [Reação](../../combate/rodadas-e-acoes/#reação), rebaixa um [Crítico](../../combate/ataque-e-dano/#execução-do-ataque) para Acerto em um ataque direto contra você ou contra um aliado a até 2m.
 
 **Truque:** o Dash não gasta a Ação Principal.
 
@@ -52,7 +52,7 @@ armas corpo a corpo de 2 a 3 metros de alcance, usadas com duas mãos.
 
 ### Duas mãos à distância
 
-armas com alcance ideal maior que 3 metros, usadas ou arremessadas com duas mãos (arco, rifle). Fora do alcance efetivo o ataque tem desvantagem. Engajado, o ataque básico (e o truque que o substitui) tem desvantagem, mas as habilidades não. O ataque básico e o truque ignoram a cobertura parcial dos obstáculos (não a de um aliado do alvo no caminho). **Tiro de Contenção:** um ataque com resultado Raspão ou melhor deixa um alvo que luta corpo a corpo com Lentidão de 50% na movimentação até a próxima vez dele. **Munição Perfurante:** +40% de dano contra criaturas relevantes (elites e chefes, a critério do mestre), só no ataque básico.
+armas com alcance ideal maior que 3 metros, usadas ou arremessadas com duas mãos (arco, rifle). Fora do alcance efetivo o ataque tem [desvantagem](../../regras/dados/#vantagens-e-desvantagens). [Engajado](../../combate/posicionamento/#engajando-inimigos), o ataque básico (e o truque que o substitui) tem desvantagem, mas as [habilidades](../../habilidades/) não. O ataque básico e o truque ignoram a [cobertura parcial](../../combate/posicionamento/#cobertura) dos obstáculos (não a de um aliado do alvo no caminho). **Tiro de Contenção:** um ataque com resultado [Raspão](../../combate/ataque-e-dano/#execução-do-ataque) ou melhor deixa um alvo que luta corpo a corpo com [Lentidão](../../combate/efeitos-de-status/#lentidão) de 50% na movimentação até a próxima vez dele. **Munição Perfurante:** +40% de dano contra criaturas relevantes (elites e chefes, a critério do mestre), só no ataque básico.
 
 **Truque:** em vez do ataque básico normal da Ação Principal, o ataque atinge até 5 inimigos ao alcance, com uma rolagem por alvo.
 
@@ -64,7 +64,7 @@ armas com alcance ideal maior que 3 metros, usadas ou arremessadas com uma mão 
 
 ### Conduíte
 
-um cajado, varinha ou outro equipamento usado como forma de castar magia. O ataque mira Reflexos (em vez de Deflexão). Fora do alcance efetivo tem desvantagem. Engajado, o ataque básico (e o truque que o substitui) tem desvantagem, mas as habilidades não. O ataque básico e o truque ignoram a cobertura parcial dos obstáculos (não a de um aliado do alvo no caminho).
+um cajado, varinha ou outro equipamento usado como forma de castar magia. O ataque mira [Reflexos](../stats/#reflexos) (em vez de Deflexão). Fora do alcance efetivo tem desvantagem. Engajado, o ataque básico (e o truque que o substitui) tem desvantagem, mas as habilidades não. O ataque básico e o truque ignoram a cobertura parcial dos obstáculos (não a de um aliado do alvo no caminho).
 
 **Truque:** no lugar do ataque básico da Ação Principal, com 2 ou mais inimigos no combate, o ataque atinge todos os inimigos num raio de 4m de um ponto dentro do alcance, com uma rolagem por alvo contra Reflexos, e o dano base é multiplicado por 1,6.
 

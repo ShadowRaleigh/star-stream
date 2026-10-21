@@ -1,23 +1,22 @@
 ---
 title: "Uso de Dados"
 ---
-O uso de dados pra definir resultados é essencial, ainda que muitas mecânicas em **Star Stream** tornem o sistema bem enxuto nesse sentido, quando eles aparecem, podem ser a diferença entre o seu personagem ser bem ou mal sucedido nos objetivos dele, ou mesmo ser a diferença entre a vida e a morte de personagens.  
+Muitas mecânicas do **Star Stream** deixam o sistema enxuto em rolagens, mas, quando os dados aparecem, podem ser a diferença entre o personagem conseguir ou não o que quer, e até entre a vida e a morte.
+
 ## Características
 
-* O sistema usa dois dados principais. Ataques, Testes de Concentração e qualquer rolagem contra uma Defesa usam **1d100**. Testes de perícia, testes de atributo e a iniciativa usam **1d20**. Outros dados aparecem quando a regra pede (dano, duração, HitDie)  
-* Tirar o maior resultado em um dado é considerado um **Sucesso Crítico**, nem em todos os contextos esse evento é relevante, mas, muitas vezes, tirar o valor máximo no dado é motivo de comemoração e tem características especiais  
-* Tirar o menor resultado em um dado é considerado uma **Falha Crítica**, nem em todos os contextos esse evento é relevante, mas, muitas vezes, tirar o valor mínimo no dado é razão de medo e tem consequências  
-* Todo teste em 1d20 que exigir uma rolagem deve ter uma **Classe de Dificuldade** (**DC**). O valor dessa classe é igual ao maior valor no qual você falha aquele roll. Isso quer dizer que um **DC16** exige um dado de pelo menos 17 para ser bem sucedido
+* O sistema usa dois dados principais. [Ataques](../../combate/ataque-e-dano/#execução-do-ataque), [Testes de Concentração](../../personagem/stats/#concentração) e qualquer rolagem contra uma [Defesa](../../personagem/stats/#defesas) usam **1d100**. Testes de [perícia](../../personagem/pericias/), testes de [atributo](../../personagem/atributos/) e a [iniciativa](../../combate/rodadas-e-acoes/#iniciativa) usam **1d20**. Outros dados aparecem quando a regra pede (dano, duração, HitDie).
+* Tirar o maior resultado num dado é um **Sucesso Crítico**. Nem sempre isso importa, mas muitas vezes tirar o valor máximo é motivo de comemoração e tem efeitos especiais.
+* Tirar o menor resultado num dado é uma **Falha Crítica**. Nem sempre isso importa, mas muitas vezes tirar o valor mínimo é motivo de medo e tem consequências.
+* Todo teste em 1d20 deve ter uma **Classe de Dificuldade** (**DC**). O valor da DC é o maior resultado com que você ainda falha. Ou seja, uma **DC16** exige pelo menos 17 no dado.
 
 ## Vantagens e Desvantagens
 
-Quando fazendo rolls, é possível que por alguma circunstância ou habilidade, o personagem esteja numa situação onde é mais ou menos favorável que ele seja bem sucedido. Além de mudar o DC do roll pra representar isso, essa mudança pode ser representada por uma vantagem ou uma desvantagem.
+Às vezes, por alguma circunstância ou habilidade, a situação favorece ou atrapalha o personagem. Além de mudar a DC da rolagem, o mestre pode representar isso com uma vantagem ou uma desvantagem.
 
-**Vantagem:** Você rola um dado a mais e utiliza o maior entre eles
-
-**Desvantagem:** Você rola um dado a mais e utiliza o menor entre eles
-
-* Vantagens de fontes diferentes se somam: com duas vantagens você rola 2 dados a mais e utiliza o maior entre eles (3d100 num ataque). O mesmo vale para desvantagens  
-* Cada desvantagem anula uma vantagem  
-* Tanto vantagens quanto desvantagens podem ser concedidas pelo mestre em situações apropriadas  
-* Vantagens e desvantagens podem ser concedidas por habilidades ou outras mecânicas do jogo
+* **Vantagem:** você rola um dado a mais e usa o maior resultado.
+* **Desvantagem:** você rola um dado a mais e usa o menor resultado.
+* Vantagens de fontes diferentes se somam: com duas vantagens, você rola 2 dados a mais e usa o maior (3d100 num ataque). O mesmo vale para desvantagens.
+* Cada desvantagem anula uma vantagem.
+* O mestre pode dar vantagem ou desvantagem quando a situação pedir.
+* Habilidades e outras mecânicas do jogo também podem dar vantagem ou desvantagem.

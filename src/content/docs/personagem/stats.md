@@ -1,106 +1,109 @@
 ---
 title: "Stats"
 ---
-Stats são uma série de números que representam uma abstração menor das características e estatísticas do seu personagem que os atributos principais.
+Stats são números que representam as características e estatísticas do personagem num nível de detalhe maior que os [atributos](../atributos/). Quase todos os stats são influenciados pelos atributos.
 
-Eles podem ser divididos com relação ao tipo: **Intrínsecos** e **Extrínsecos**, e essas categorias ainda podem ser divididas entre **obrigatórios**, que todos os personagens tem, e **situacionais**, que um personagem pode ou não ter dependendo de fatores diversos como raça e eventos.
-
-Vale a pena enfatizar que **quase** **todos** os stats são influenciados pelos **[atributos](../atributos/)** base do personagem
+Eles se dividem em **Intrínsecos** e **Extrínsecos**, e cada grupo ainda se divide em **obrigatórios**, que todo personagem tem, e **situacionais**, que um personagem pode ou não ter, dependendo da raça, de eventos e de outros fatores.
 
 ## Intrínsecos
 
-Status **Intrínsecos** são aqueles que representam uma característica do seu personagem que só pode ser alterada por mecânicas internas à esse personagem (**níveis**, **[talentos](../talentos/)** e **[títulos](../titulos/)**) ou eventos específicos que ocorram ao longo do jogo.
+Stats **Intrínsecos** representam características que só mudam por mecânicas do próprio personagem (**[nível](../criacao/#nível)**, **[talentos](../talentos/)** e **[títulos](../titulos/)**) ou por eventos específicos ao longo do jogo.
 
 ### Obrigatórios
 
 #### Health Points (HP)
 
-Representa a sua vida máxima. Esse stat é definido por um HitDie que é rolado para aumentar o valor da vida máxima a cada nível que o personagem sobe, sendo que no primeiro nível o personagem começa com **3 HitDies** no valor máximo (ex.: um HitDie d10 dá **30** de vida base), e a partir do nível 2 rola-se **1 HitDie** por nível. Esse stat é diretamente influenciado pelo atributo **[RES](../atributos/#resistência-res)** do personagem
+O HP é a vida máxima do personagem. Ele é definido por um **HitDie**, rolado a cada nível que o personagem sobe para aumentar a vida máxima. No nível 1, o personagem começa com **3 HitDies** no valor máximo (ex.: um HitDie d10 dá **30** de vida base), e a partir do nível 2 rola **1 HitDie** por nível. O HP é diretamente influenciado pela **[RES](../atributos/#resistência-res)**.
 
 #### Sanidade (SAN)
 
-Representa a sanidade máxima de um personagem. Ela possui um valor fixo base de 100, mas recebe **+1** por nível do personagem, mais um bônus ou penalidade de **± 1** para cada ponto de **[DET](../atributos/#determinação-det)**  do personagem **acima ou abaixo** de **10**. Caso a sanidade de um jogador fique **abaixo da metade**, ele ganha uma **Aflição Mental temporária**, caso ela chegue a **0**, o jogador ganha uma **Característica de Insanidade permanente**. A SAN, ainda, pode chegar a valores negativos, se ela por acaso chegar em **-100**, o personagem morre instantaneamente
+A SAN é a sanidade máxima do personagem. O valor base é **100**, com **+1** por nível e um bônus ou penalidade de **±1** para cada ponto de **[DET](../atributos/#determinação-det)** acima ou abaixo de **10**. Se a sanidade ficar **abaixo da metade**, o personagem ganha uma **Aflição Mental** temporária; se chegar a **0**, ganha uma **Característica de Insanidade** permanente. A SAN pode ficar negativa: se chegar a **−100**, o personagem morre na hora.
 
-**Aflição Mental:** Quando a SAN fica abaixo da metade, o personagem ganha uma aflição ligada ao que abalou a mente dele, escolhida pelo mestre (um medo, uma paranoia, uma compulsão, um apagão de memória). Quando a cena toca na aflição, a critério do mestre, ele tem **desvantagem** em todas as rolagens, inclusive ataques e Testes de Concentração, até o fim da cena. A aflição temporária acaba quando a SAN deixa de estar abaixo da metade.
+**Aflição Mental:** quando a SAN fica abaixo da metade, o personagem ganha uma aflição ligada ao que abalou a mente dele, escolhida pelo mestre (um medo, uma paranoia, uma compulsão, um apagão de memória). Quando a cena toca na aflição, a critério do mestre, ele tem **[desvantagem](../../regras/dados/#vantagens-e-desvantagens)** em todas as rolagens, inclusive ataques e Testes de Concentração, até o fim da cena. A aflição temporária acaba quando a SAN deixa de estar abaixo da metade.
 
-**Característica de Insanidade:** Quando a SAN chega a 0, o personagem ganha uma aflição permanente, com o mesmo efeito da Aflição Mental, que não acaba quando a SAN se recupera. Ela só sai com tratamento (ver o histórico [Médico](../../historicos/medico/)) ou por um evento da história.
+**Característica de Insanidade:** quando a SAN chega a 0, o personagem ganha uma aflição permanente, com o mesmo efeito da Aflição Mental, que não acaba quando a SAN se recupera. Ela só sai com tratamento (ver o histórico [Médico](../../historicos/medico/)) ou por um evento da história.
 
-**Recuperação:** a SAN não se recupera com descansos. Ela só volta com tratamento especializado, como o do histórico [Médico](../../historicos/medico/), ou com itens de cura próprios, que são raros e caros.
+**Recuperação:** a SAN não se recupera com [descansos](../../exploracao/descanso-e-provisoes/#descanso). Ela só volta com tratamento especializado, como o do histórico [Médico](../../historicos/medico/), ou com itens de cura próprios, que são raros e caros.
 
 #### Life Force (LF)
 
-É a energia vital máxima de um indivíduo. Representa a sua vitalidade, longevidade e saúde geral desse personagem. Pode ser consumida em alguns tipos de magia ou equipamentos tecnológicos. Esse valor, a princípio, é definido durante a construção da ficha do personagem baseada em múltiplos fatores e não varia muito ao longo da campanha. Personagens maiores, mais saudáveis ou mais longevos tendem a ter uma **LF** maior. Esse stat é influenciado pelo **[RES](../atributos/#resistência-res)** do personagem e não costuma participar de muitos eventos, mas se ele for **0**, o personagem morre imediatamente
+A LF é a energia vital máxima do personagem: a vitalidade, a longevidade e a saúde geral dele. Alguns tipos de magia e de equipamento tecnológico consomem LF. Ela é definida na criação da ficha, a partir de vários fatores, e varia pouco ao longo da campanha. Personagens maiores, mais saudáveis ou mais longevos tendem a ter mais LF. A LF é influenciada pela **[RES](../atributos/#resistência-res)** e raramente entra em jogo, mas se chegar a **0**, o personagem morre na hora.
 
 ### Situacionais
 
 #### Mana Points (MP)
 
-É a energia elemental que um mago ou um personagem tecnomágico consegue acumular nos seu núcleo para manifestar externamente, construir feitiços e alimentar equipamentos tecnológicos. Cresce a cada nível conforme a [origem](../origens/).
+A Mana é a energia elemental que um mago ou um personagem tecnomágico acumula no seu núcleo para manifestar externamente, construir feitiços e alimentar equipamentos tecnológicos. Cresce a cada nível conforme a [origem](../origens/).
 
-#### QI
+#### Qi
 
-É a energia elemental acumulada e refinada dentro do núcleo de Qi que é utilizada por artistas marciais pra fortalecer seus corpos e executarem técnicas marciais. Cresce a cada nível conforme a [origem](../origens/).  
+O Qi é a energia elemental acumulada e refinada no núcleo de Qi, usada por artistas marciais pra fortalecer o corpo e executar técnicas marciais. Cresce a cada nível conforme a [origem](../origens/).
 
 #### Plasma Estelar (PE)
 
-A mistura da energia elemental com energia da vida gera um tipo peculiar de energia, com propriedades de subverter a causalidade e relações de causa e consequência, permitindo a manifestação de eventos que contrariam qualquer lógica e estão além da compreensão. Geralmente está associada a seres superiores ou divindades. Cresce **+2** de PE por nível, sem rolagem (ver [Origens](../origens/)).  
+A mistura da energia elemental com a energia da vida gera um tipo peculiar de energia, capaz de subverter a causalidade e as relações de causa e consequência, manifestando eventos que contrariam qualquer lógica e estão além da compreensão. Geralmente está associada a seres superiores ou divindades. Cresce **+2** de PE por nível, sem rolagem (ver [Origens](../origens/)).
 
-**Nota:** Além desses stats, existem outros, mas que são muito específicos ou raros e dependem de eventos específicos ocorrendo dentro do jogo. Portanto, serão explicados em detalhes pelo mestre quando forem descobertos ou adquiridos por um player
+**Nota:** existem outros stats, muito específicos ou raros, que dependem de eventos do jogo. O mestre explica cada um deles quando um jogador o descobre ou adquire.
 
 ## Extrínsecos
 
-Stats **Extrínsecos** são aqueles que podem ser alterados tanto por mecânicas intrínsecas, quanto por fatores externos (**equipamentos**, **consumíveis**, **estilos de combate, etc**), assim como eventos que ocorram ao longo do jogo
+Stats **Extrínsecos** podem mudar tanto por mecânicas do próprio personagem quanto por fatores externos ([equipamentos](../../combate/equipamento/), consumíveis, [estilos de combate](../estilos-de-combate/) etc.) e por eventos do jogo.
 
 ### Obrigatórios
 
 #### Precisão
 
-Precisão é o stat que vai ser considerado contra a **Defesa** específica do personagem quando um personagem for realizar um ataque. A precisão de um personagem pode ser afetada por estilos de combate, efeitos **temporários**, **equipamento ativo** e muitos outros. Todo personagem começa com uma **Precisão** base de **22**, que aumenta em +1 a cada nível. É influenciada por **[PER](../atributos/#percepção-per)**, que dá +1 de Precisão por ponto acima de 10 (ou −1 por ponto abaixo)
+A Precisão é o stat que o atacante soma à rolagem de ataque contra a **[Defesa](#defesas)** apropriada do alvo (ver [Classificação de Ataques e Defesas associadas](../../combate/ataque-e-dano/#classificação-de-ataques-e-defesas-associadas) e [Execução do Ataque](../../combate/ataque-e-dano/#execução-do-ataque)). Ela pode mudar com estilos de combate, efeitos temporários, equipamento ativo e outros fatores. Todo personagem começa com Precisão base **22**, com **+1** a cada nível. A **[PER](../atributos/#percepção-per)** dá **+1** de Precisão por ponto acima de 10 (ou **−1** por ponto abaixo).
 
 #### Concentração
 
-Esse stat é responsável por garantir que uma ação, habilidade ou feitiço não sejam interrompidos e o progresso perdido em razão de imprevistos ou ataques adversários. É afetado por **[DET](../atributos/#determinação-det)**
+A Concentração garante que uma ação, [habilidade](../../habilidades/) ou feitiço não seja interrompido nem perca o progresso por imprevistos ou ataques inimigos. É afetada pela **[DET](../atributos/#determinação-det)**.
 
-Existem muitas aplicações para a **Concentração**, mas três das principais seriam impedir que magos percam feitiços que eles já criaram mas não lançaram, impedir que uma habilidade/feitiço que demora mais de uma rodada para ser preparada/ativada seja interrompida e, por último, impedir que habilidades/feitiços de ativação constante sejam interrompidos prematuramente
+Entre os vários usos, três são os principais: impedir que um mago perca um feitiço já criado e ainda não lançado; impedir que uma habilidade ou feitiço que leva mais de uma rodada para ser preparado seja interrompido; e impedir que habilidades ou feitiços de ativação constante sejam interrompidos antes da hora.
 
-**Teste de Concentração:** Todo personagem começa com uma **Concentração** base de **20**. Sempre que um personagem receber dano enquanto mantém uma concentração ou prepara uma habilidade, quem causou o dano faz um teste contra ele: **d100 + Precisão − (Mental + Concentração)**. Caso o dano não venha de um ataque (dano contínuo, armadilhas ou efeitos em área sem rolagem de ataque), o mestre usa **20 + o nível da fonte** no lugar da Precisão. Cada instância de dano gera um teste separado, e o resultado segue as mesmas faixas de um ataque:  
-**Erro ou Raspão:** a concentração é mantida  
-**Acerto:** a concentração é quebrada  
-**Crítico:** a concentração é quebrada e o personagem não pode se concentrar em nada durante a sua próxima rodada  
-**Crítico Duplo:** a concentração é quebrada e o personagem não pode se concentrar em nada durante as suas próximas 2 rodadas
+**Teste de Concentração:** todo personagem começa com Concentração base **20**. Sempre que um personagem recebe dano enquanto mantém uma concentração ou prepara uma habilidade, quem causou o dano faz um teste contra ele: **d100 + Precisão − ([Mental](#mental) + Concentração)**. Caso o dano não venha de um ataque (dano contínuo, armadilhas ou efeitos em área sem rolagem de ataque), o mestre usa **20 + o nível da fonte** no lugar da Precisão. Cada instância de dano gera um teste separado, e o resultado segue as mesmas [faixas de um ataque](../../combate/ataque-e-dano/#execução-do-ataque):
 
-Um personagem que tenha usado a ação de **Sustentação** mantém suas concentrações até a sua próxima vez, independente do resultado do teste
+* **Erro ou Raspão:** a concentração é mantida.
+* **Acerto:** a concentração é quebrada.
+* **Crítico:** a concentração é quebrada, e o personagem não pode se concentrar em nada durante a próxima rodada.
+* **Crítico Duplo:** a concentração é quebrada, e o personagem não pode se concentrar em nada durante as próximas 2 rodadas.
 
-**Múltiplas Concentrações:** A primeira concentração ativa não tem custo. Para cada concentração ativa além da primeira, o personagem sofre as seguintes penalidades, que se acumulam:  
-**Em combate:** todos os rolls feitos contra o personagem, incluindo ataques e **Testes de Concentração**, ganham uma **vantagem**  
-**Fora de combate:** os rolls do personagem têm uma **desvantagem**, e testes resolvidos sem rolagem consideram o nível da perícia ou do atributo reduzido em **1**
+Um personagem que usou a ação de **[Sustentação](../../combate/rodadas-e-acoes/#ação-principal)** mantém as concentrações até a próxima vez dele, qualquer que seja o resultado do teste.
 
-As penalidades duram até o personagem soltar concentrações suficientes ou elas serem quebradas
+**Múltiplas Concentrações:** a primeira concentração ativa não tem custo. Para cada concentração ativa além da primeira, o personagem sofre as penalidades abaixo, que se acumulam:
+
+* **Em combate:** todas as rolagens feitas contra o personagem, inclusive ataques e Testes de Concentração, ganham uma **[vantagem](../../regras/dados/#vantagens-e-desvantagens)**.
+* **Fora de combate:** as rolagens do personagem têm uma **desvantagem**, e os testes resolvidos sem rolagem consideram o nível da perícia ou do atributo reduzido em **1**.
+
+As penalidades duram até o personagem soltar concentrações suficientes ou até elas serem quebradas.
 
 #### Velocidade de Ação
 
-A Velocidade de Ação é o quão rápido seu personagem consegue realizar qualquer forma ação (exceto movimentação) fora de combate, como rituais, fabricação e outras ações longas. Ela não se aplica em combate. A velocidade padrão é de 1, ou **100%**, com bônus em porcentagem garantidos por **[DEX](../atributos/#destreza-dex)**.
+A Velocidade de Ação é o quão rápido o personagem realiza qualquer ação fora de combate (exceto movimentação), como rituais, fabricação e outras ações longas. Ela não se aplica em combate. A velocidade padrão é **1**, ou **100%**, com bônus ou penalidade em porcentagem dados pela **[DEX](../atributos/#destreza-dex)**.
 
-Isso quer dizer que, um personagem com **200%** de Velocidade de Ação, faria as coisas na metade do tempo normal daquela ação, enquanto que alguém com **50%**, faz as coisas no dobro do tempo
+Isso quer dizer que um personagem com **200%** de Velocidade de Ação faz as coisas na metade do tempo normal, e um com **50%** leva o dobro do tempo.
 
 #### Defesas
 
-Esse stat é, na verdade, uma macro estatística, que é dividida em 4 sub stats, sendo essas sub-estatísticas o valor mínimo que um ataque inimigo deve conseguir ao rolar pra acertar pra te afetar com danos daquele tipo:  
-  * <span id="deflexão"></span>**Deflexão:** Representa a capacidade que o personagem tem de defletir ou evitar ataques físicos diretos. Esse stat é influenciado por **[DET](../atributos/#determinação-det)**  
-  * <span id="fortitude"></span>**Fortitude:** Representa a capacidade que o personagem tem de resistir à ataques que afetam a biologia ou o funcionamento dos sistemas internos do corpo. Esse stat é influenciado por **[RES](../atributos/#resistência-res)** e **[POD](../atributos/#poder-pod)**  
-  * <span id="mental"></span>**Mental:** Representa a força mental e capacidade de resistir a ataques psicológicos/mentais. É afetado por **[INT](../atributos/#intelecto-int)** e **[DET](../atributos/#determinação-det)**  
-  * <span id="reflexos"></span>**Reflexos:** Representa a capacidade de desviar de ataques em área ou evitar eventos surpresa. É afetado por **[DEX](../atributos/#destreza-dex)** e **[PER](../atributos/#percepção-per)**
+As Defesas são, na verdade, quatro stats. Cada uma é o valor subtraído do resultado de um ataque daquele tipo (ver [Execução do Ataque](../../combate/ataque-e-dano/#execução-do-ataque)):
 
-**Nota:** As defesas mencionadas acima podem ser influenciadas também por consumíveis, equipamentos, talentos, títulos e outros. Além disso, essas estatísticas não tem nada haver com redução de dano **(RD)** ou penetração de armadura **(PA)**. Todas as defesas aumentam em +1 a cada nível, e a **Defesa Principal** de cada arquétipo ainda recebe +2 adicionais a cada **Quebra de Limite**. Para ver como as Defesas são afetadas por cada atributo, cheque a seção Efeitos dos Atributos em Combate
+* <span id="deflexão"></span>**Deflexão:** a capacidade de defletir ou evitar ataques físicos diretos. É influenciada pela **[DET](../atributos/#determinação-det)**.
+* <span id="fortitude"></span>**Fortitude:** a capacidade de resistir a ataques que afetam a biologia ou o funcionamento interno do corpo. É influenciada pela **[RES](../atributos/#resistência-res)** e pelo **[POD](../atributos/#poder-pod)**.
+* <span id="mental"></span>**Mental:** a força mental e a capacidade de resistir a ataques psicológicos. É influenciada pelo **[INT](../atributos/#intelecto-int)** e pela **[DET](../atributos/#determinação-det)**.
+* <span id="reflexos"></span>**Reflexos:** a capacidade de desviar de ataques em área ou de eventos surpresa. É influenciada pela **[DEX](../atributos/#destreza-dex)** e pela **[PER](../atributos/#percepção-per)**.
+
+**Nota:** as Defesas também podem mudar com consumíveis, [equipamentos](../../combate/equipamento/), [talentos](../talentos/), [títulos](../titulos/) e outros fatores. Elas não têm nada a ver com redução de dano **(RD)** ou penetração de armadura **(PA)**. Todas as Defesas aumentam em **+1** a cada nível, e a **[Defesa Principal](../../arquetipos/#defesa-principal)** de cada arquétipo recebe mais **+2** a cada **[Quebra de Limite](../criacao/#quebra-de-limite)**. O efeito de cada atributo nas Defesas está em [Atributos em Combate](../../combate/atributos-em-combate/).
 
 ### Situacionais
 
 #### HP Temporário
 
-HP temporário é um tipo de vida que você pode obter com habilidades que não pode ser regenerada quando perdida, e desaparece caso a party **descanse**  
+O HP temporário é HP extra ganho com habilidades. Ele não se regenera quando é perdido e desaparece quando a [Party](../../exploracao/party/) [descansa](../../exploracao/descanso-e-provisoes/#descanso).
+
 #### HP Temporário Instável
 
-Uma variação do HP temporário gerada por algumas habilidades de combate. Funciona igual ao HP temporário comum, mas desaparece no fim do combate ou depois de 1 minuto fora de combate  
+Uma variação do HP temporário, gerada por algumas habilidades de combate. Funciona como o HP temporário comum, mas desaparece no fim do combate ou depois de 1 minuto fora de combate.
+
 #### Afinidades
 
 :::note[Em construção]

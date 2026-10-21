@@ -1,28 +1,26 @@
 ---
 title: "Party"
 ---
-A Party é o conjunto dos personagens principais de cada jogador. Cada player só pode ter um personagem principal por vez. Dentro da equipe, cada personagem e jogador ocupam uma função. Enquanto que a função do jogador é passada pelo mestre, a função do personagem deve ser decidida entre a party
+A Party é o conjunto dos personagens principais dos jogadores. Cada jogador só pode ter um personagem principal por vez. Dentro da equipe, cada personagem e cada jogador têm uma função: a função do jogador é dada pelo mestre, e a do personagem é decidida pela Party.
 
 ## Papéis e Composição de time
 
-Nesse sistema, um grupo convencional possui 5 pessoas, com alguma mistura das seguintes funções:
+Um grupo convencional tem **5** pessoas, com alguma mistura das funções abaixo:
 
-* **Tanque:** A principal linha de frente da party, são personagens que sabem como provocar e atrair a atenção do inimigo pra si, enquanto resistem a inúmeros ataques  
-* **Lutador:** Uma linha de frente secundária da party, tem uma boa durabilidade e consegue a ajudar o tanque a impedir que inimigos que não sejam provocados alcancem os membros mais vulneráveis da party  
-* **Atacante:** Um personagem que consegue causar uma quantidade alta e consistente de dano em qualquer situação, sendo capaz de atingir a maioria das fraquezas e as defesas vulneráveis dos inimigos  
-* **Main Support:** Um personagem com foco em manter o time de pé e facilitar o trabalho dos outros membros, com curas e buffs pro time, geralmente se posiciona longe da ação principal do combate  
-* **Off Support:** Alguém também responsável por ajudar o time, só que com foco em controle de grupo e uso de debuffs nos inimigos pra exacerbar suas fraquezas e quebrar suas defesas  
-* **Guia:** A pessoa responsável por liderar a exploração do grupo. Ele é o responsável por se localizar nos lugares onde a party anda, conhecer o terreno, planejar rotas, procurar armadilhas e segredos, assim como identificar as fraquezas principais dos inimigos e perceber ilusões  
-* **Artesão:** A pessoa que prepara equipamentos pra equipe. Pode ajudar com a fabricação de consumíveis, reparar armas e equipamentos danificados, melhorar os itens que a **Party** já tem e garantir o estoque/inventário de todos os itens que podem ser importantes numa **Aventura**
+* **Tanque:** a principal linha de frente. Sabe provocar e atrair a atenção dos inimigos para si enquanto aguenta muitos ataques (ver o efeito [Provocado](../../combate/efeitos-de-status/#provocado)).
+* **Lutador:** uma linha de frente secundária, com boa durabilidade. Ajuda o tanque a impedir que inimigos não provocados alcancem os membros mais vulneráveis da Party.
+* **Atacante:** causa dano alto e consistente em qualquer situação e consegue atingir a maioria das [fraquezas](../../personagem/stats/#fraquezas) e das [defesas](../../personagem/stats/#defesas) vulneráveis dos inimigos.
+* **Main Support:** mantém o time de pé e facilita o trabalho dos outros, com curas e [buffs](../../combate/efeitos-de-status/). Geralmente fica longe da ação principal do combate.
+* **Off Support:** também ajuda o time, mas com foco em [controle de grupo](../../combate/efeitos-de-status/#controle) e debuffs nos inimigos, pra ampliar as fraquezas e quebrar as defesas deles.
+* **Guia:** lidera a exploração do grupo. Sabe onde a Party está, conhece o terreno, planeja rotas, procura [armadilhas](../salas-armadilhas-e-quebra-cabecas/#armadilhas) e segredos, identifica as principais fraquezas dos inimigos e percebe ilusões.
+* **Artesão:** prepara os equipamentos da equipe. Pode fabricar consumíveis, reparar armas e equipamentos danificados, melhorar os itens da Party e garantir o estoque do [inventário](../inventario/) com tudo o que pode ser importante numa [aventura](../#aventuras).
 
-Dentro desses papéis genéricos, cada participante da equipe pode se especializar como um ou mais deles. No entanto, é seriamente recomendado que pelo menos a frontline e backline principais (Tanque e Main Support) estejam bem preenchidas, além de que todo grupo se beneficia muito da presença de um Guia. Idealmente todos os papeis acima terão alguma representatividade dentro da **Party**, mas eu consideraria esses 3 os mais essenciais
+Cada participante pode se especializar em um ou mais desses papéis. Recomenda-se que pelo menos a frontline e a backline principais (Tanque e Main Support) estejam bem preenchidas, e todo grupo ganha muito com um Guia. O ideal é que todos os papéis tenham alguma representação na Party, mas esses três são os essenciais.
 
 ## Função dos jogadores
 
-A função de cada jogador é dada pelo mestre e tem objetivo de fazer os players ficarem mais imersos no papel deles no jogo, enquanto contribuem com a **Party** num geral a avançar pelo jogo. Por enquanto, temos as seguintes funções registradas:
+A função de cada jogador é dada pelo mestre. O objetivo é deixar os jogadores mais imersos no papel deles e ajudar a Party a avançar no jogo. Por enquanto, existem estas funções:
 
-* **Redator:** A pessoa responsável por anotar detalhes relevantes do que acontece na história do RPG, o que cada um faz e fazer um “Diário de Expedição” onde ficam registrados esses eventos pra party poder verificar depois
-
-* **Cartógrafo:** Esse player cuida de garantir que a party sempre saiba se localizar, mapeando dungeons, medindo salas e elegendo as melhores rotas que a party deve seguir pra sair de um ponto A e chegar num ponto B
-
-* **Administrador:** Quem gerencia os recursos e o líder “de facto” da party . Essa é a pessoa que representa o grupo na hora de pedir/negociar pagamento e é responsável tanto por medir balanço de recursos como fazer a distribuição de recompensas e garantir bons negócios pra party.
+* **Redator:** anota os detalhes relevantes da história e do que cada um faz, num "Diário de Expedição" que a Party pode consultar depois.
+* **Cartógrafo:** garante que a Party sempre saiba onde está: mapeia dungeons, mede [salas](../salas-armadilhas-e-quebra-cabecas/#salas) e escolhe as melhores rotas de um ponto A até um ponto B (ver [Deslocamento](../deslocamento/)).
+* **Administrador:** gerencia os recursos e é o líder "de facto" da Party. Representa o grupo ao pedir e negociar pagamentos, controla o balanço de recursos, distribui as recompensas e garante bons negócios pra Party.

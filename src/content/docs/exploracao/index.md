@@ -1,8 +1,7 @@
 ---
 title: "Exploração"
 ---
-Exploração é algo que será relevante na maioria dos momentos do RPG, sendo importante quando vocês estão navegando de um lugar para o outro, looteando ruínas e muito mais.  
-Essa seção vai cobrir:
+A exploração aparece na maior parte do jogo: quando o grupo viaja de um lugar a outro, looteia ruínas e muito mais. Esta seção cobre:
 
 * [Aventuras](#aventuras)
 * [Party](party/)
@@ -18,4 +17,4 @@ Essa seção vai cobrir:
 
 ## Aventuras
 
-Aventuras são o loop mais básico e primordial do sistema. Toda vez que a **Party** sai em uma missão, descobre lugares, enfrenta desafios e completa essa missão, uma aventura é completada e o ciclo se recomeça. O termo é propositalmente vago, já que aventuras diferentes podem ter circunstâncias extremamente variadas, logo, é responsabilidade do mestre determinar exatamente quando uma aventura começa e outra termina, permitindo que os sistemas relacionados com o ciclo de aventuras.
+A aventura é o ciclo mais básico do sistema. Toda vez que a **[Party](party/)** sai numa missão, descobre lugares, enfrenta desafios e a cumpre, uma aventura se completa e o ciclo recomeça. O termo é vago de propósito, porque aventuras diferentes têm circunstâncias muito variadas. Por isso, cabe ao mestre definir quando uma aventura começa e quando termina, e com isso quando entram em jogo os sistemas ligados ao ciclo de aventuras.
