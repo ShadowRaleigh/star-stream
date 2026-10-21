@@ -1,50 +1,71 @@
-/* Identidade visual do Star Stream, a partir da ficha do app: pergaminho, tinta e bronze. */
+/* Identidade visual do Star Stream (assets/star-stream): galáxia escura, marfim, azul-noite e Cinzel. */
 
-/* Tema escuro (padrão do Starlight): noite de tinta com letras de pergaminho. */
+@font-face {
+	font-family: 'Cinzel';
+	src: url('../fonts/Cinzel-Variable.ttf') format('truetype');
+	font-weight: 400 900;
+	font-display: swap;
+}
+
+/* Tema escuro (padrão): o céu da galáxia, com letras em marfim. */
 :root {
 	--ss-font-titulo: 'Cinzel', Georgia, serif;
 	--sl-font: 'Segoe UI', system-ui, -apple-system, Roboto, Arial, sans-serif;
 
-	--sl-color-accent-low: #3a2f1f;
-	--sl-color-accent: #c29f68;
-	--sl-color-accent-high: #ecd9b3;
-	--sl-color-white: #f4efe3;
-	--sl-color-gray-1: #e9e1cf;
-	--sl-color-gray-2: #cdc4b0;
-	--sl-color-gray-3: #9e9786;
-	--sl-color-gray-4: #6d685e;
-	--sl-color-gray-5: #3a4452;
-	--sl-color-gray-6: #222c39;
-	--sl-color-black: #161d27;
+	--ss-marfim: #f8f3e7;
+	--ss-noite: #1b2a3e;
 
-	--ss-tabela-cabecalho: #2a3442;
-	--ss-tabela-listra: #1b232e;
+	--sl-color-accent-low: #2e2436;
+	--sl-color-accent: #e3b88f;
+	--sl-color-accent-high: #f7e2c8;
+	--sl-color-white: #f8f3e7;
+	--sl-color-gray-1: #e9e5dc;
+	--sl-color-gray-2: #c8cad3;
+	--sl-color-gray-3: #9298aa;
+	--sl-color-gray-4: #5f6680;
+	--sl-color-gray-5: #2c3550;
+	--sl-color-gray-6: #172036;
+	--sl-color-black: #0c1120;
+
+	--ss-tabela-cabecalho: #1b2a3e;
+	--ss-tabela-listra: #111830;
 }
 
-/* Tema claro: a folha da ficha. */
+/* Tema claro: papel marfim com a tinta azul-noite do logo escuro. */
 :root[data-theme='light'] {
-	--sl-color-accent-low: #eadfc6;
-	--sl-color-accent: #8a6a3c;
-	--sl-color-accent-high: #4e3a1e;
-	--sl-color-white: #1c2a3a;
-	--sl-color-gray-1: #26374b;
-	--sl-color-gray-2: #3b4145;
-	--sl-color-gray-3: #5d6670;
-	--sl-color-gray-4: #8b8a82;
-	--sl-color-gray-5: #cfc5ae;
-	--sl-color-gray-6: #e9e1cf;
-	--sl-color-gray-7: #f0e9da;
-	--sl-color-black: #f7f3ea;
+	--sl-color-accent-low: #ece2ef;
+	--sl-color-accent: #6b4a80;
+	--sl-color-accent-high: #3d2a4b;
+	--sl-color-white: #111724;
+	--sl-color-gray-1: #1b2a3e;
+	--sl-color-gray-2: #2f3a4f;
+	--sl-color-gray-3: #555e70;
+	--sl-color-gray-4: #8a8c93;
+	--sl-color-gray-5: #d2cdbf;
+	--sl-color-gray-6: #ebe5d7;
+	--sl-color-gray-7: #f2ede2;
+	--sl-color-black: #f8f3e7;
 
-	--ss-tabela-cabecalho: #e9e1cf;
-	--ss-tabela-listra: #f1ebdd;
+	--ss-tabela-cabecalho: #e7e0d0;
+	--ss-tabela-listra: #f1ebdf;
 }
 
-/* Títulos em Cinzel, como na ficha. */
+/* Cabeçalho com uma faixa da galáxia no tema escuro. */
+:root:not([data-theme='light']) header.header {
+	background:
+		linear-gradient(rgb(12 17 32 / 0.78), rgb(12 17 32 / 0.9)),
+		url('/star-stream/galaxia.webp') center 40% / cover;
+	border-bottom-color: rgb(248 243 231 / 0.12);
+}
+
+.site-title img {
+	height: 1.9rem;
+	width: auto;
+}
+
+/* Títulos em Cinzel, como no logo. */
 .sl-markdown-content :is(h1, h2, h3, h4),
 h1#_top,
-.site-title,
-.hero h1,
 .sidebar-content summary .large {
 	font-family: var(--ss-font-titulo);
 	letter-spacing: 0.02em;
@@ -52,10 +73,12 @@ h1#_top,
 
 h1#_top {
 	color: var(--sl-color-white);
+	font-weight: 600;
 }
 
 .sl-markdown-content h2 {
 	font-size: var(--sl-text-2xl);
+	font-weight: 600;
 	padding-bottom: 0.3rem;
 	border-bottom: 1px solid var(--sl-color-gray-5);
 }
@@ -74,7 +97,7 @@ h1#_top {
 	color: var(--sl-color-accent-high);
 }
 
-/* Tabelas de regra: cabeçalho de pergaminho escuro e linhas alternadas. */
+/* Tabelas de regra. */
 .sl-markdown-content table {
 	display: table;
 	width: 100%;
@@ -128,7 +151,82 @@ h1#_top {
 	background: var(--sl-color-gray-6);
 }
 
-/* Linhas de campo de habilidade ("Alcance: 10m | Tempo: 2s ...") ficam mais legíveis com respiro. */
 .sl-markdown-content li + li {
 	margin-top: 0.3rem;
+}
+
+/* Página inicial: a galáxia com o logo, como no banner aprovado. O título textual fica só para leitores de tela. */
+.content-panel:has(+ .content-panel .ss-capa) {
+	position: absolute;
+	width: 1px;
+	height: 1px;
+	overflow: hidden;
+	clip: rect(0 0 0 0);
+	white-space: nowrap;
+}
+
+.ss-capa {
+	position: relative;
+	display: grid;
+	justify-items: center;
+	gap: 1.25rem;
+	margin-inline: calc(-1 * var(--sl-content-pad-x, 1rem));
+	padding: clamp(3rem, 10vw, 6.5rem) 1.25rem clamp(2.5rem, 7vw, 4.5rem);
+	border-radius: 0.75rem;
+	background:
+		radial-gradient(ellipse at center, rgb(12 17 32 / 0.15), rgb(12 17 32 / 0.75)),
+		url('/star-stream/galaxia.webp') center / cover;
+	text-align: center;
+	color: var(--ss-marfim);
+}
+
+.ss-capa img {
+	width: min(36rem, 88%);
+	height: auto;
+	margin: 0;
+	filter: drop-shadow(0 4px 24px rgb(0 0 0 / 0.55));
+}
+
+.ss-capa p {
+	margin: 0;
+	font-family: var(--ss-font-titulo);
+	letter-spacing: 0.12em;
+	text-transform: uppercase;
+	font-size: var(--sl-text-sm);
+	color: var(--ss-marfim);
+	opacity: 0.9;
+}
+
+.ss-capa .ss-acoes {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+	gap: 0.75rem;
+	margin-top: 0.5rem;
+}
+
+.ss-capa .ss-acoes a {
+	padding: 0.6rem 1.2rem;
+	border-radius: 999px;
+	border: 1px solid rgb(248 243 231 / 0.55);
+	color: var(--ss-marfim);
+	text-decoration: none;
+	font-weight: 600;
+	backdrop-filter: blur(4px);
+	background: rgb(12 17 32 / 0.35);
+}
+
+.ss-capa .ss-acoes a.ss-principal {
+	background: var(--ss-marfim);
+	color: var(--ss-noite);
+	border-color: var(--ss-marfim);
+}
+
+.ss-capa .ss-acoes a:hover {
+	border-color: var(--ss-marfim);
+	background: rgb(248 243 231 / 0.15);
+}
+
+.ss-capa .ss-acoes a.ss-principal:hover {
+	background: #ffffff;
 }

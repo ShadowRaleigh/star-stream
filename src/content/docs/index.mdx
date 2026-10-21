@@ -2,18 +2,19 @@
 title: Star Stream
 description: Livro de regras do Star Stream, o RPG de mesa de Shadow Raleigh.
 template: splash
-hero:
-  tagline: Livro de regras · Versão 0.9
-  actions:
-    - text: Criar um personagem
-      link: personagem/criacao/
-      icon: right-arrow
-    - text: Regras de combate
-      link: combate/
-      variant: minimal
 ---
 
 import { CardGrid, LinkCard } from '@astrojs/starlight/components';
+import logo from '../../assets/marca/logo-star-stream.svg';
+
+<div class="ss-capa not-content">
+	<img src={logo.src} alt="Star Stream" width="2040" height="429" />
+	<p>Livro de regras · Versão 0.9</p>
+	<div class="ss-acoes">
+		<a class="ss-principal" href="personagem/criacao/">Criar um personagem</a>
+		<a href="combate/">Regras de combate</a>
+	</div>
+</div>
 
 Seja bem vindo à Star Stream! Se você está lendo isso, saiba que esse sistema é autoral de Shadow Raleigh, feito com muito carinho e esforço para tentar harmonizar e fazer sentido de um mundo que ao mesmo tempo possui equipamentos e itens cyberpunk/sci-fi, rituais complexos, sistemas de hard e soft magic, capturas/batalhas estilo pokémon e dezenas de raças e sub-raças jogáveis pra todos os estilos e gostos. Esse é um trabalho em progresso e provavelmente sofrerá alterações no futuro.
 
