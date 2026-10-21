@@ -39,23 +39,6 @@ salvar('guia-orbita-1', circ(118, 1.2) + quatro(...polar(118, -0.6).map(f), 9) +
 salvar('guia-orbita-2', circ(158, 1, 'stroke-dasharray="3 9"') + `<circle cx="${f(polar(158, 1.2)[0])}" cy="${f(polar(158, 1.2)[1])}" r="5" fill="#fff" stroke="none"/>`);
 salvar('guia-orbita-3', circ(192, 0.8, 'stroke-dasharray="1 6"') + quatro(...polar(192, 3.9).map(f), 8) + `<circle cx="${f(polar(192, 5.3)[0])}" cy="${f(polar(192, 5.3)[1])}" r="3" fill="#fff" stroke="none"/>`);
 
-// ---- Clássico: planisfério (disco de estrelas que gira por trás de uma placa com janela) ----
-{
-	const r = sorteio(31);
-	let disco = circ(176, 0.6, 'opacity=".5"');
-	for (let i = 0; i < 160; i++) { const a = r() * Math.PI * 2, d = Math.sqrt(r()) * 172, [x, y] = polar(d, a); disco += `<circle cx="${f(x)}" cy="${f(y)}" r="${f(0.6 + Math.pow(r(), 3) * 2.2)}" fill="#fff" stroke="none" opacity="${f(0.4 + r() * 0.6)}"/>`; }
-	for (const [cx, cy, n] of [[150, 140, 5], [250, 250, 4], [130, 260, 4], [260, 130, 5]]) {
-		const pts = Array.from({ length: n }, () => [cx + (r() - 0.5) * 70, cy + (r() - 0.5) * 70]);
-		disco += `<path d="M ${pts.map((p) => p.map(f).join(' ')).join(' L ')}" stroke-width="1" opacity=".7"/>` + pts.map(([x, y]) => `<circle cx="${f(x)}" cy="${f(y)}" r="2.4" fill="#fff" stroke="none"/>`).join('');
-	}
-	salvar('planisferio-disco', disco);
-	// A placa cobre o disco, com uma janela oval (fill-rule evenodd).
-	salvar('planisferio-placa', `<path fill-rule="evenodd" fill="#fff" stroke="none" d="M 200 2 A 198 198 0 1 1 199.9 2 Z M 200 70 C 300 70 330 150 320 200 C 310 260 260 285 200 285 C 140 285 90 260 80 200 C 70 150 100 70 200 70 Z"/>`);
-	let marcas = circ(196, 1.4) + circ(184, 0.7) + `<path d="M 200 70 C 300 70 330 150 320 200 C 310 260 260 285 200 285 C 140 285 90 260 80 200 C 70 150 100 70 200 70 Z" stroke-width="1.2"/>`;
-	for (let g = 0; g < 360; g += 5) { const a = (g * Math.PI) / 180, [x1, y1] = polar(g % 30 ? 189 : 180, a), [x2, y2] = polar(196, a); marcas += `<line x1="${f(x1)}" y1="${f(y1)}" x2="${f(x2)}" y2="${f(y2)}" stroke-width="${g % 30 ? 0.6 : 1.1}"/>`; }
-	salvar('planisferio-marcas', marcas);
-}
-
 // ---- Observatório e Codex: astrolábio em peças (limbo, rede, círculos e a estrela do centro) ----
 {
 	let marcas = '';

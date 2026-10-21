@@ -219,7 +219,7 @@
 	}
 }
 
-:root:is([data-ss-tema='constelacao'], [data-ss-tema='classico'], [data-ss-tema='observatorio'], [data-ss-tema='codex'], [data-ss-tema='astrolabio'], [data-ss-tema='nebulosa'], [data-ss-tema='grimorio'], [data-ss-tema='vitral'], [data-ss-tema='forja'], [data-ss-tema='mapa'], [data-ss-tema='abissal'], [data-ss-familia='scifi']) .ss-deco {
+:root:is([data-ss-tema='constelacao'], [data-ss-tema='observatorio'], [data-ss-tema='codex'], [data-ss-tema='astrolabio'], [data-ss-tema='nebulosa'], [data-ss-tema='grimorio'], [data-ss-tema='vitral'], [data-ss-tema='forja'], [data-ss-tema='mapa'], [data-ss-tema='abissal'], [data-ss-familia='scifi']) .ss-deco {
 	display: block;
 }
 
@@ -234,15 +234,6 @@
 [data-ss-tema='constelacao'] .ss-deco i:nth-child(3) { display: block; --p: url('/star-stream/temas/deco/guia-orbita-1.svg'); animation: ss-rodar 70s linear infinite; }
 [data-ss-tema='constelacao'] .ss-deco i:nth-child(4) { display: block; --p: url('/star-stream/temas/deco/guia-orbita-2.svg'); animation: ss-rodar-inverso 110s linear infinite; }
 [data-ss-tema='constelacao'] .ss-deco i:nth-child(5) { display: block; --p: url('/star-stream/temas/deco/guia-orbita-3.svg'); animation: ss-rodar 170s linear infinite; }
-
-/* Clássico: um planisfério, com o disco de estrelas girando por trás da janela da placa. */
-:root[data-ss-tema='classico'] .ss-deco {
-	--op: 1;
-}
-
-[data-ss-tema='classico'] .ss-deco i:nth-child(1) { display: block; --p: url('/star-stream/temas/deco/planisferio-disco.svg'); --c: color-mix(in srgb, var(--sl-color-accent) 45%, transparent); animation: ss-rodar 300s linear infinite; }
-[data-ss-tema='classico'] .ss-deco i:nth-child(2) { display: block; --p: url('/star-stream/temas/deco/planisferio-placa.svg'); --c: var(--sl-color-black); }
-[data-ss-tema='classico'] .ss-deco i:nth-child(3) { display: block; --p: url('/star-stream/temas/deco/planisferio-marcas.svg'); --c: color-mix(in srgb, var(--sl-color-accent) 45%, transparent); }
 
 /* Observatório e Codex: o astrolábio em peças; a estrela do centro fica parada e cada arco gira no seu ritmo. */
 :root:is([data-ss-tema='observatorio'], [data-ss-tema='codex']) .ss-deco {
@@ -485,24 +476,89 @@
 	}
 }
 
-/* Clássico: só estrelas cintilando sobre a carta celeste, em dois ritmos. */
-[data-ss-tema='classico'] .ss-capa-camadas i:is(:nth-child(1), :nth-child(2)) {
+/* Clássico: um brilho percorre as réguas da moldura, dando a volta no banner, e descansa antes da próxima volta. */
+[data-ss-tema='classico'] .ss-capa-camadas i {
 	display: block;
+	overflow: hidden;
+	background: none;
+	--c: #fff4e0;
+}
+
+[data-ss-tema='classico'][data-theme='light'] .ss-capa-camadas i {
 	--c: var(--sl-color-accent);
-	--min: 0.05;
-	--max: 0.9;
+}
+
+[data-ss-tema='classico'] .ss-capa-camadas i::before {
+	content: '';
+	position: absolute;
+	inset: 0;
+	animation: 16s linear infinite;
+	animation-name: var(--regua);
+}
+
+[data-ss-tema='classico'] .ss-capa-camadas i:is(:nth-child(1), :nth-child(3)) {
+	inset: 0 0 auto;
+	height: 12px;
+}
+
+[data-ss-tema='classico'] .ss-capa-camadas i:is(:nth-child(1), :nth-child(3))::before {
+	background: linear-gradient(90deg, transparent 42%, var(--c) 50%, transparent 58%);
+}
+
+[data-ss-tema='classico'] .ss-capa-camadas i:is(:nth-child(2), :nth-child(4)) {
+	inset: 0 0 0 auto;
+	width: 12px;
+}
+
+[data-ss-tema='classico'] .ss-capa-camadas i:is(:nth-child(2), :nth-child(4))::before {
+	background: linear-gradient(180deg, transparent 38%, var(--c) 50%, transparent 62%);
 }
 
 [data-ss-tema='classico'] .ss-capa-camadas i:nth-child(1) {
-	-webkit-mask: url('/star-stream/temas/deco/estrelas-1.svg') 0 0 / 240px 240px repeat;
-	mask: url('/star-stream/temas/deco/estrelas-1.svg') 0 0 / 240px 240px repeat;
-	animation: ss-cintila 2.8s ease-in-out infinite alternate;
+	-webkit-mask: url('/star-stream/temas/regua-cima-classico-escuro.svg') left top / auto 12px repeat-x, linear-gradient(#000 0 0) left top / 100% 1.5px no-repeat;
+	mask: url('/star-stream/temas/regua-cima-classico-escuro.svg') left top / auto 12px repeat-x, linear-gradient(#000 0 0) left top / 100% 1.5px no-repeat;
+	--regua: ss-regua-cima;
 }
 
 [data-ss-tema='classico'] .ss-capa-camadas i:nth-child(2) {
-	-webkit-mask: url('/star-stream/temas/deco/estrelas-3.svg') 0 0 / 380px 380px repeat;
-	mask: url('/star-stream/temas/deco/estrelas-3.svg') 0 0 / 380px 380px repeat;
-	animation: ss-cintila 4.4s ease-in-out infinite alternate -2s;
+	-webkit-mask: url('/star-stream/temas/regua-dir-classico-escuro.svg') right top / 12px auto repeat-y, linear-gradient(#000 0 0) right top / 1.5px 100% no-repeat;
+	mask: url('/star-stream/temas/regua-dir-classico-escuro.svg') right top / 12px auto repeat-y, linear-gradient(#000 0 0) right top / 1.5px 100% no-repeat;
+	--regua: ss-regua-dir;
+}
+
+[data-ss-tema='classico'] .ss-capa-camadas i:nth-child(3) {
+	inset: auto 0 0;
+	-webkit-mask: url('/star-stream/temas/regua-baixo-classico-escuro.svg') left bottom / auto 12px repeat-x, linear-gradient(#000 0 0) left bottom / 100% 1.5px no-repeat;
+	mask: url('/star-stream/temas/regua-baixo-classico-escuro.svg') left bottom / auto 12px repeat-x, linear-gradient(#000 0 0) left bottom / 100% 1.5px no-repeat;
+	--regua: ss-regua-baixo;
+}
+
+[data-ss-tema='classico'] .ss-capa-camadas i:nth-child(4) {
+	inset: 0 auto 0 0;
+	-webkit-mask: url('/star-stream/temas/regua-esq-classico-escuro.svg') left top / 12px auto repeat-y, linear-gradient(#000 0 0) left top / 1.5px 100% no-repeat;
+	mask: url('/star-stream/temas/regua-esq-classico-escuro.svg') left top / 12px auto repeat-y, linear-gradient(#000 0 0) left top / 1.5px 100% no-repeat;
+	--regua: ss-regua-esq;
+}
+
+/* A volta: cima (0–30%), direita (30–40%), baixo (40–70%), esquerda (70–80%) e uma pausa até recomeçar. */
+@keyframes ss-regua-cima {
+	0% { transform: translateX(-60%); }
+	30%, 100% { transform: translateX(60%); }
+}
+
+@keyframes ss-regua-dir {
+	0%, 30% { transform: translateY(-65%); }
+	40%, 100% { transform: translateY(65%); }
+}
+
+@keyframes ss-regua-baixo {
+	0%, 40% { transform: translateX(60%); }
+	70%, 100% { transform: translateX(-60%); }
+}
+
+@keyframes ss-regua-esq {
+	0%, 70% { transform: translateY(65%); }
+	80%, 100% { transform: translateY(-65%); }
 }
 
 /* Observatório e Codex: o anel do astrolábio em duas peças, girando em sentidos opostos. */
@@ -791,6 +847,7 @@
 	.ss-ambiente *,
 	.ss-ambiente *::before,
 	.ss-capa-camadas i,
+	.ss-capa-camadas i::before,
 	:root[data-ss-tema] .ss-capa::before,
 	:root[data-ss-tema] .ss-capa::after {
 		animation: none !important;
