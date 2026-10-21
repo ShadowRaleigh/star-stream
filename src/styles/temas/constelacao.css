@@ -1,0 +1,221 @@
+/* Tema 1, Constelação: o céu escuro do logo, com estrelas discretas em todas as páginas e filetes de ouro. */
+
+:root[data-ss-tema='constelacao'] {
+	--ss-ouro: #e3c38f;
+	--ss-ouro-forte: #f2d9ab;
+	--sl-color-accent-low: #2a2232;
+	--sl-color-accent: #e3c38f;
+	--sl-color-accent-high: #f7e6c6;
+	--sl-color-white: #f8f3e7;
+	--sl-color-gray-1: #ebe6da;
+	--sl-color-gray-2: #c9c9d2;
+	--sl-color-gray-3: #9399ab;
+	--sl-color-gray-4: #5d6480;
+	--sl-color-gray-5: #283149;
+	--sl-color-gray-6: #141b2e;
+	--sl-color-black: #0a0e1a;
+	--sl-color-bg-nav: rgb(10 14 26 / 0.86);
+	--sl-color-bg-sidebar: rgb(10 14 26 / 0.55);
+	--sl-color-hairline: rgb(227 195 143 / 0.16);
+	--sl-color-hairline-light: rgb(227 195 143 / 0.24);
+	--ss-fundo:
+		radial-gradient(ellipse 80% 50% at 70% -10%, rgb(110 80 140 / 0.22), transparent 70%),
+		radial-gradient(ellipse 60% 40% at 0% 100%, rgb(40 70 120 / 0.25), transparent 70%),
+		url('/star-stream/temas/estrelas-claras.svg') 0 0 / 600px,
+		#0a0e1a;
+	--ss-tabela-cabecalho: rgb(227 195 143 / 0.1);
+	--ss-tabela-listra: rgb(248 243 231 / 0.025);
+}
+
+:root[data-ss-tema='constelacao'][data-theme='light'] {
+	--ss-ouro: #9a7440;
+	--ss-ouro-forte: #7a5729;
+	--sl-color-accent-low: #efe5d0;
+	--sl-color-accent: #8f6a37;
+	--sl-color-accent-high: #4f3818;
+	--sl-color-white: #111724;
+	--sl-color-gray-1: #1b2a3e;
+	--sl-color-gray-2: #2f3a4f;
+	--sl-color-gray-3: #5a6274;
+	--sl-color-gray-4: #8b8b88;
+	--sl-color-gray-5: #d8cfbb;
+	--sl-color-gray-6: #ece5d6;
+	--sl-color-gray-7: #f3eee3;
+	--sl-color-black: #f8f3e7;
+	--sl-color-bg-nav: rgb(248 243 231 / 0.9);
+	--sl-color-bg-sidebar: rgb(248 243 231 / 0.6);
+	--sl-color-hairline: rgb(154 116 64 / 0.22);
+	--sl-color-hairline-light: rgb(154 116 64 / 0.3);
+	--ss-fundo: url('/star-stream/temas/estrelas-tinta.svg') 0 0 / 600px, #f8f3e7;
+	--ss-tabela-cabecalho: rgb(154 116 64 / 0.1);
+	--ss-tabela-listra: rgb(27 42 62 / 0.03);
+}
+
+[data-ss-tema='constelacao'] header.header {
+	backdrop-filter: blur(10px);
+	border-bottom: 1px solid var(--sl-color-hairline-light);
+	box-shadow: 0 1px 0 rgb(0 0 0 / 0.25);
+}
+
+[data-ss-tema='constelacao'] .sidebar-pane {
+	border-inline-end: 1px solid var(--sl-color-hairline);
+	backdrop-filter: blur(6px);
+}
+
+/* Título da página: ouro em degradê e uma constelação embaixo. */
+[data-ss-tema='constelacao'] h1#_top {
+	font-family: 'Cinzel', serif;
+	font-weight: 600;
+	letter-spacing: 0.04em;
+	background: linear-gradient(180deg, var(--sl-color-white) 30%, var(--ss-ouro));
+	-webkit-background-clip: text;
+	background-clip: text;
+	color: transparent;
+	padding-bottom: 1.6rem;
+	background-repeat: no-repeat;
+}
+
+[data-ss-tema='constelacao'] .content-panel:has(h1#_top) {
+	position: relative;
+}
+
+[data-ss-tema='constelacao'] .content-panel:has(h1#_top)::after {
+	content: '';
+	position: absolute;
+	left: var(--sl-content-pad-x);
+	bottom: 0.6rem;
+	width: 13rem;
+	height: 2.3rem;
+	background: url('/star-stream/temas/constelacao-dourada.svg') left / contain no-repeat;
+	opacity: 0.8;
+}
+
+[data-ss-tema='constelacao'][data-theme='light'] .content-panel:has(h1#_top)::after {
+	background-image: url('/star-stream/temas/constelacao-tinta.svg');
+	opacity: 0.45;
+}
+
+[data-ss-tema='constelacao'] .sl-markdown-content h2 {
+	font-family: 'Cinzel', serif;
+	color: var(--sl-color-white);
+	border-bottom: none;
+	padding-bottom: 0.45rem;
+	background: linear-gradient(90deg, var(--ss-ouro), transparent 70%) left bottom / 100% 1px no-repeat;
+}
+
+[data-ss-tema='constelacao'] .sl-markdown-content h2::before {
+	content: '✦';
+	color: var(--ss-ouro);
+	font-size: 0.6em;
+	margin-inline-end: 0.6rem;
+	vertical-align: 0.25em;
+}
+
+[data-ss-tema='constelacao'] .sl-markdown-content h3 {
+	color: var(--ss-ouro-forte);
+}
+
+[data-ss-tema='constelacao'] .sl-markdown-content a:not(.sl-anchor-link) {
+	color: var(--sl-color-accent-high);
+	text-decoration-color: rgb(227 195 143 / 0.45);
+	text-underline-offset: 0.18em;
+}
+
+[data-ss-tema='constelacao'][data-theme='light'] .sl-markdown-content a:not(.sl-anchor-link) {
+	color: var(--sl-color-accent);
+}
+
+[data-ss-tema='constelacao'] .sl-markdown-content strong {
+	color: var(--sl-color-white);
+}
+
+/* Tabelas com cabeçalho em ouro e cantos suaves. */
+[data-ss-tema='constelacao'] .sl-markdown-content table {
+	border: 1px solid var(--sl-color-hairline-light);
+	border-radius: 0.6rem;
+	border-collapse: separate;
+	border-spacing: 0;
+	overflow: hidden;
+	background: rgb(10 14 26 / 0.35);
+}
+
+[data-ss-tema='constelacao'][data-theme='light'] .sl-markdown-content table {
+	background: rgb(255 255 255 / 0.4);
+}
+
+[data-ss-tema='constelacao'] .sl-markdown-content :is(th, td) {
+	border: none;
+	border-bottom: 1px solid var(--sl-color-hairline);
+}
+
+[data-ss-tema='constelacao'] .sl-markdown-content th {
+	color: var(--ss-ouro);
+	letter-spacing: 0.06em;
+	border-bottom: 1px solid var(--sl-color-hairline-light);
+}
+
+[data-ss-tema='constelacao'] .sl-markdown-content blockquote {
+	border: none;
+	border-inline-start: 2px solid var(--ss-ouro);
+	background: linear-gradient(90deg, rgb(227 195 143 / 0.1), transparent);
+	font-family: 'Cormorant Garamond', serif;
+	font-size: 1.25em;
+	font-style: italic;
+}
+
+[data-ss-tema='constelacao'] .starlight-aside {
+	border-radius: 0.5rem;
+	border-inline-start-width: 2px;
+	background: rgb(227 195 143 / 0.07);
+	border-color: var(--ss-ouro);
+}
+
+/* Barra lateral: grupos em Cinzel e item ativo com estrela. */
+[data-ss-tema='constelacao'] .sidebar-content summary .large {
+	color: var(--ss-ouro);
+	letter-spacing: 0.08em;
+}
+
+[data-ss-tema='constelacao'] .sidebar-content a[aria-current='page'] {
+	background: linear-gradient(90deg, rgb(227 195 143 / 0.22), transparent);
+	color: var(--sl-color-white);
+	border-inline-start: 2px solid var(--ss-ouro);
+	border-radius: 0 0.3rem 0.3rem 0;
+}
+
+[data-ss-tema='constelacao'] .sl-link-card,
+[data-ss-tema='constelacao'] .pagination-links a {
+	background: rgb(20 27 46 / 0.55);
+	border: 1px solid var(--sl-color-hairline-light);
+	border-radius: 0.6rem;
+	backdrop-filter: blur(4px);
+	transition: border-color 0.2s, box-shadow 0.2s, transform 0.2s;
+}
+
+[data-ss-tema='constelacao'][data-theme='light'] .sl-link-card,
+[data-ss-tema='constelacao'][data-theme='light'] .pagination-links a {
+	background: rgb(255 255 255 / 0.55);
+}
+
+[data-ss-tema='constelacao'] .sl-link-card:hover,
+[data-ss-tema='constelacao'] .pagination-links a:hover {
+	border-color: var(--ss-ouro);
+	box-shadow: 0 0 0 1px rgb(227 195 143 / 0.25), 0 10px 30px -12px rgb(227 195 143 / 0.35);
+	transform: translateY(-1px);
+}
+
+[data-ss-tema='constelacao'] .sl-link-card .title {
+	font-family: 'Cinzel', serif;
+	color: var(--ss-ouro-forte);
+}
+
+[data-ss-tema='constelacao'] .ss-capa {
+	border: 1px solid var(--sl-color-hairline-light);
+	box-shadow: inset 0 0 120px rgb(0 0 0 / 0.6), 0 20px 60px -30px rgb(0 0 0 / 0.8);
+}
+
+[data-ss-tema='constelacao'] .ss-capa .ss-acoes a.ss-principal {
+	background: linear-gradient(180deg, #f6e3bd, #d9b47a);
+	border-color: #f6e3bd;
+	color: #1b1408;
+}

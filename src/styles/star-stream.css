@@ -51,7 +51,8 @@
 }
 
 /* Cabeçalho com uma faixa da galáxia no tema escuro. */
-:root:not([data-theme='light']) header.header {
+:root[data-ss-tema='atual']:not([data-theme='light']) header.header,
+:root:not([data-ss-tema]):not([data-theme='light']) header.header {
 	background:
 		linear-gradient(rgb(12 17 32 / 0.78), rgb(12 17 32 / 0.9)),
 		url('/star-stream/galaxia.webp') center 40% / cover;
