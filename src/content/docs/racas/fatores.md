@@ -25,7 +25,7 @@ title: "Fatores de Raça"
 
 * **Descrição:** O personagem é feito de energia natural e interage com as coisas físicas de forma diferente
 
-* **Efeito:** O personagem pode flutuar um pouco acima do solo, **não precisa comer** e pode interagir com outras criaturas elementais através de energia. Além disso, seus dados de energia são adicionados à sua vida ao invés da energia, sendo que ele deve usar pontos de vida pra ativar suas habilidades. Ele também toma **metade** **do dano** de todos os ataques que são **físicos**, mas recebe o **dobro de dano** de ataques **elementais**
+* **Efeito:** O personagem pode flutuar um pouco acima do solo, **não precisa comer** e pode interagir com outras criaturas elementais através de energia. Além disso, seus dados de energia são adicionados à sua vida ao invés da energia, sendo que ele deve usar pontos de vida pra ativar suas habilidades. Ele também toma **metade** **do dano** de todos os ataques **físicos** (Cortante, Perfurante e Contundente), mas recebe o **dobro de dano** de ataques **elementais**. Esses multiplicadores ficam à parte dos bônus externos da [Fórmula de Dano](../../combate/ataque-e-dano/#fórmula-de-dano) e não contam como Resistência ou Fraqueza
 
 ### Local Vinculado
 

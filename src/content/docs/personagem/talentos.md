@@ -18,7 +18,7 @@ Ao escolher talentos por quebrar seu limite, jogadores podem escolher um talento
 
 * **Dar nem Água:** Você está acostumado com a desidratação e nem liga mais pras dores de cabeça. Você pode sobreviver sem água por 8 vezes o período normal (geralmente dá um total de 1 mês)
 
-* **Resiliência Térmica:** Ao escolher o talento, decida se seu personagem é aclimatado à climas frios ou quentes. Então, ganhe **Resistência ao Frio** ou **Resistência ao Calor** dependendo da sua escolha
+* **Resiliência Térmica:** Ao escolher o talento, decida se seu personagem é aclimatado à climas frios ou quentes. Então, ganhe **Resistência ao Frio** ou **Resistência ao Calor** dependendo da sua escolha. Essa resistência é aclimatação ao clima, não resistência a dano Congelante ou Queimante
 
 * **Muralha:** Ganhe a vantagem **Peso Pesado**, independente do seu peso. **Mutuamente excludente com *Peninha***
 

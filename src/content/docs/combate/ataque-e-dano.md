@@ -29,7 +29,7 @@ um ataque pode causar dois tipos de dano ao mesmo tempo, como uma espada flameja
 
 ### Danos Especiais
 
-  * Verdadeiro **:** Um dano absoluto, que ignora **Resistências** ou **Reduções de Dano**, caso acerte  
+  * **Verdadeiro:** Um dano absoluto e imutável, caso acerte. Nada altera esse dano: armadura, **Reduções de Dano**, **Resistências**, **Fraquezas** e o POD não se aplicam a ele.  
   * Psíquico **:** Um dano mental, ao invés de te causar dano no seu **[HP](../../personagem/stats/#health-points-hp)**, causa danos à **Sanidade** do personagem  
   * Forçado **:** Um dano paranormal que parece ter origem desconhecida, não existem **Resistências** conta esse tipo de dano
 

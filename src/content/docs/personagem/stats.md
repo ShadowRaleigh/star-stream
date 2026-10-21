@@ -103,10 +103,16 @@ HP temporário é um tipo de vida que você pode obter com habilidades que não 
 Uma variação do HP temporário gerada por algumas habilidades de combate. Funciona igual ao HP temporário comum, mas desaparece no fim do combate ou depois de 1 minuto fora de combate  
 #### Afinidades
 
+:::note[Em construção]
+As Afinidades ainda não têm regra própria.
+:::
+
 #### Resistências
+
+Um personagem com **Resistência** a um tipo de dano tem **−50%** nos bônus externos da [Fórmula de Dano](../../combate/ataque-e-dano/#fórmula-de-dano) contra dano desse tipo. Resistências ao mesmo tipo não se acumulam: o personagem tem a resistência ou não tem. O dano **Forçado** não pode ser resistido, e o dano **Verdadeiro** não é afetado por nada (ver [Danos Especiais](../../combate/ataque-e-dano/#danos-especiais)). Resistências vêm da raça (ver Resistência (X) em [Fatores de Raça](../../racas/fatores/#resistência-x)) e de habilidades.
 
 #### Fraquezas
 
-:::note[Em construção]
-Afinidades, Resistências e Fraquezas ainda não têm texto próprio. Por enquanto, veja **Resistência (X)** e **Fraqueza (X)** em [Fatores de Raça](../../racas/fatores/) e os bônus externos na [Fórmula de Dano](../../combate/ataque-e-dano/#fórmula-de-dano).
-:::
+Um personagem com **Fraqueza** a um tipo de dano tem **+50%** nos bônus externos contra dano desse tipo. Fraquezas vêm da raça (ver Fraqueza (X) em [Fatores de Raça](../../racas/fatores/#fraqueza-x)).
+
+Uma resistência e uma fraqueza ao mesmo tipo se anulam. Num [dano híbrido](../../combate/ataque-e-dano/#dano-híbrido), cada parte do dano usa a resistência e a fraqueza do próprio tipo.

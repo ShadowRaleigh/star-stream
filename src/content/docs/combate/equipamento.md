@@ -25,7 +25,7 @@ title: "Armas, Armaduras e Geradores"
 
 ### Habilidades
 
-Em construção
+As habilidades de uma arma vêm descritas no próprio item e não ocupam [Slots de Sincronia](../../habilidades/#slots-de-sincronia), a não ser que o item diga o contrário.
 
 ## Armadura
 
