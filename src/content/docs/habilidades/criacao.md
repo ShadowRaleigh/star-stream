@@ -10,7 +10,7 @@ Ao criar uma habilidade, o jogador gasta **2** de **PH** e precisa ficar atento 
 
 * Outros parâmetros da habilidade podem ser escolhidos de uma lista de opções:
 
-**Ex:** Caso você queira adicionar efeitos às habilidades, eles devem ser escolhidos dos **[efeitos](../../combate/efeitos-de-status/)** apresentados pra colocar nela, assim como uma **duração** da tabela que será apresentada mais abaixo
+**Ex:** Caso você queira adicionar efeitos às habilidades, eles devem ser escolhidos entre as **[capacidades](../capacidades/)** que o personagem já desbloqueou (os efeitos de status que elas aplicam estão em [Efeitos de Status](../../combate/efeitos-de-status/)), assim como uma **duração** da tabela que será apresentada mais abaixo
 
 * Fatores de Custo são taxas aditivas, que multiplicam o valor de custo base da sua habilidade pra chegar no custo final
 
@@ -233,6 +233,4 @@ Toda habilidade deve ter:
 
 ## Capacidades
 
-:::note[Em construção]
-A lista de capacidades (os efeitos que podem ser escolhidos na criação de uma habilidade) ainda não foi escrita.
-:::
+Os efeitos que podem entrar numa habilidade vêm das árvores de habilidade. As regras de desbloqueio estão em [Capacidades](../capacidades/).

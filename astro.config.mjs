@@ -100,7 +100,7 @@ export default defineConfig({
 				},
 				{
 					label: 'Habilidades',
-					items: [{ label: 'Funcionamento', slug: 'habilidades' }, 'habilidades/criacao'],
+					items: [{ label: 'Funcionamento', slug: 'habilidades' }, 'habilidades/criacao', 'habilidades/capacidades'],
 				},
 				{
 					label: 'Raças',
