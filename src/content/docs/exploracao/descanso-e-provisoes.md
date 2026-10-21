@@ -56,13 +56,13 @@ Nem sempre você vai ter rações que durem sua aventura toda, então pode ser n
 ### Água fresca
 
 * Caso você não esteja se alimentando de rações, você precisa encontrar uma fonte de água fresca pra poder se manter saudável e descansar adequadamente, seja num rio, lago ou outra fonte de água potável  
-* Se você não tomar água por mais de um dia, você fica **Sedento**  
+* Se você não tomar água por mais de um dia, você fica **[Sedento](../../combate/efeitos-de-status/#sedento)**, e por mais de 2 dias, com **[Sede Extrema](../../combate/efeitos-de-status/#sede-extrema)**  
 * Se você não tomar água por 4 dias, seguidos, seu personagem morre de sede
 
 ### Caça
 
 * Caso você não esteja se alimentando de rações, você precisa garantir uma fonte de alimentação e nutrição, seja através da caça, coleta, cultivo ou mesmo fotossíntese  
-* Se você não comer por mais de **3** dias, você fica **Faminto**  
+* Se você não comer por mais de **3** dias, você fica **[Faminto](../../combate/efeitos-de-status/#faminto)**, e por mais de 1 semana, com **[Fome Extrema](../../combate/efeitos-de-status/#fome-extrema)**  
 * Se você não comer por mais de 2 semanas, seu personagem morre de fome
 
 ### Descanso

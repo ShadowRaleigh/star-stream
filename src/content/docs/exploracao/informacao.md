@@ -1,7 +1,9 @@
 ---
 title: "Informação"
 ---
-Enquanto explorando, ao entrar em uma sala pela primeira vez, dependendo de quanta **Percepção Passiva** cada um no grupo tenha, o mestre pode pedir um roll de um d20 pra determinar quanta informação vocês obtêm.
+Ao entrar num lugar pela primeira vez, cada personagem usa a sua **Percepção Passiva**: o valor de PER somado aos bônus que citam a Percepção Passiva (como o talento Olhar Treinado), sem rolagem. Os detalhes à vista, mas fáceis de passar despercebidos (um arranhão no chão, um quadro torto, um cheiro diferente), têm uma dificuldade definida pelo mestre. Quem tem Percepção Passiva igual ou maior que ela recebe o detalhe sem precisar procurar. Informações Ocultas e Secretas continuam exigindo procurar, e o mestre pode pedir um teste de PER em 1d20 para elas.
+
+**Regra alternativa:** sem dificuldades numéricas, o mestre entrega os detalhes mais sutis ao personagem com a maior Percepção Passiva do grupo.
 
 Quando entrando numa **sala** nova, a **party** pode interagir com 3 níveis de informação:
 

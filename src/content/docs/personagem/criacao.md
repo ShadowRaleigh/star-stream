@@ -23,7 +23,6 @@ Todo personagem deve ter:
 
 Além disso, todo personagem pode ter:
 
-* Subclasses;  
 * Sub-raças;  
 * Habilidades;  
 * **[Títulos](../titulos/)**;  
