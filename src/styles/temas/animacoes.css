@@ -211,8 +211,33 @@
 	mask: var(--p) center / contain no-repeat;
 }
 
+/* Segunda decoração, opcional: cada tema que quiser a liga (display: block) e a posiciona em qualquer lado da tela com
+   --topo2, --esq2, --dir2 e --base2 (o padrão é o canto de cima à esquerda, sob o cabeçalho). As peças funcionam como
+   as do objeto principal: --p é a máscara, --c (ou --ss-deco-cor) a cor. */
+.ss-deco2 {
+	top: var(--topo2, 6rem);
+	left: var(--esq2, auto);
+	right: var(--dir2, auto);
+	bottom: var(--base2, auto);
+	width: var(--tam2, 360px);
+	aspect-ratio: var(--proporcao2, 1);
+	opacity: var(--op2, 0.3);
+}
+
+.ss-deco2 i {
+	inset: 0;
+	background: var(--c, var(--ss-deco-cor));
+	-webkit-mask: var(--p) center / contain no-repeat;
+	mask: var(--p) center / contain no-repeat;
+}
+
 /* Sem a coluna do índice à direita, o texto chega até a borda: o objeto encolhe e fica mais discreto para não brigar com ele. */
 @media (max-width: 72rem) {
+	.ss-deco2 {
+		width: calc(var(--tam2, 360px) * 0.62);
+		opacity: calc(var(--op2, 0.3) * 0.7);
+	}
+
 	.ss-deco {
 		width: calc(var(--tam, 560px) * 0.62);
 		right: calc(var(--x, -150px) * 0.62);
@@ -229,7 +254,7 @@
 
 /* No celular o texto ocupa a tela toda e o objeto só ficaria atrás dele: some (as estrelas e partículas ficam). */
 @media (max-width: 50rem) {
-	:root:root[data-ss-tema] .ss-deco {
+	:root:root[data-ss-tema] :is(.ss-deco, .ss-deco2) {
 		display: none;
 	}
 }
@@ -923,6 +948,7 @@
 @media (prefers-reduced-motion: reduce) {
 	.ss-ambiente *,
 	.ss-ambiente *::before,
+	.ss-ambiente *::after,
 	.ss-capa-camadas i,
 	.ss-capa-camadas i::before,
 	.ss-capa-camadas i::after,

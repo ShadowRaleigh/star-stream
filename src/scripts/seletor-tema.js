@@ -45,7 +45,7 @@
 		const ambiente = document.createElement('div');
 		ambiente.className = 'ss-ambiente';
 		ambiente.setAttribute('aria-hidden', 'true');
-		ambiente.innerHTML = '<div class="ss-cintilar"><i></i><i></i><i></i></div><div class="ss-subida"><i></i></div><div class="ss-deco"><i></i><i></i><i></i><i></i><i></i></div>';
+		ambiente.innerHTML = '<div class="ss-cintilar"><i></i><i></i><i></i></div><div class="ss-subida"><i></i></div><div class="ss-deco"><i></i><i></i><i></i><i></i><i></i><i></i></div><div class="ss-deco2"><i></i><i></i><i></i><i></i><i></i><i></i></div>';
 		document.body.prepend(ambiente);
 	});
 	const modo = { claro: 'light', escuro: 'dark' }[busca.get('modo')];
