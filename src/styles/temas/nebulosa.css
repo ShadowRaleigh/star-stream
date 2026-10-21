@@ -233,3 +233,14 @@
 	box-shadow: 0 8px 30px -8px rgb(var(--ss-rosa-rgb) / 0.8);
 }
 
+
+/* No claro, o pêssego e o rosa ficam escuros demais para texto escuro e claros demais para branco: o botão escurece
+   um pouco e o texto vira branco. */
+[data-ss-tema='nebulosa'][data-theme='light'] .ss-abertura .ss-acoes a.ss-principal {
+	background: linear-gradient(100deg, color-mix(in srgb, var(--ss-pessego) 78%, #000), color-mix(in srgb, var(--ss-rosa) 78%, #000));
+	color: #fff;
+}
+
+[data-ss-tema='nebulosa'][data-theme='light'] .sl-markdown-content th {
+	color: var(--sl-color-gray-1);
+}

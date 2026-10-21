@@ -49,7 +49,7 @@ function constelacao(nome, cor) {
 constelacao('constelacao-dourada.svg', '#e3c38f');
 constelacao('constelacao-tinta.svg', '#1b2a3e');
 
-// Astrolábio: anéis concêntricos com marcas de grau e uma estrela de quatro pontas.
+// Astrolábio: anéis concêntricos com marcas de grau e um sol gravado no centro.
 function astrolabio(nome, cor) {
 	let marcas = '';
 	for (let g = 0; g < 360; g += 5) {
@@ -62,14 +62,19 @@ function astrolabio(nome, cor) {
 		const a = (g * Math.PI) / 180;
 		raios += `<line x1="${f(200 + Math.cos(a) * 60)}" y1="${f(200 + Math.sin(a) * 60)}" x2="${f(200 + Math.cos(a) * 150)}" y2="${f(200 + Math.sin(a) * 150)}"/>`;
 	}
+	// O centro é um sol gravado: disco, anel e dezesseis raios curtos.
+	let sol = '';
+	for (let k = 0; k < 16; k++) {
+		const a = (k * Math.PI) / 8, r1 = k % 2 ? 32 : 30, r2 = k % 2 ? 40 : 48;
+		sol += `<line x1="${f(200 + Math.cos(a) * r1)}" y1="${f(200 + Math.sin(a) * r1)}" x2="${f(200 + Math.cos(a) * r2)}" y2="${f(200 + Math.sin(a) * r2)}" stroke-width="2"/>`;
+	}
 	salvar(nome, `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" fill="none" stroke="${cor}">
 <circle cx="200" cy="200" r="196" stroke-width="1.4"/><circle cx="200" cy="200" r="172" stroke-width=".8"/>
 <circle cx="200" cy="200" r="150" stroke-width=".6" stroke-dasharray="2 6"/><circle cx="200" cy="200" r="104" stroke-width="1"/>
 <ellipse cx="200" cy="200" rx="150" ry="62" stroke-width=".7" transform="rotate(-24 200 200)"/>
 <ellipse cx="200" cy="200" rx="150" ry="62" stroke-width=".5" transform="rotate(38 200 200)" opacity=".7"/>
 <g stroke-width=".9">${marcas}</g><g stroke-width=".5" opacity=".6">${raios}</g>
-<path d="M200 128 L210 190 L272 200 L210 210 L200 272 L190 210 L128 200 L190 190 Z" fill="${cor}" stroke="none" opacity=".9"/>
-<circle cx="200" cy="200" r="7" fill="none" stroke-width="1.2"/></svg>`);
+<g class="sol"><circle cx="200" cy="200" r="13" fill="${cor}" stroke="none"/><circle cx="200" cy="200" r="22" stroke-width="2"/>${sol}</g></svg>`);
 }
 astrolabio('astrolabio-dourado.svg', '#d9b47a');
 astrolabio('astrolabio-tinta.svg', '#1b2a3e');
@@ -149,8 +154,11 @@ salvar('couro.svg', `<svg xmlns="http://www.w3.org/2000/svg" width="300" height=
 <feColorMatrix values="0 0 0 0 .05  0 0 0 0 .02  0 0 0 0 .01  0 0 0 .5 0"/></filter>
 <rect width="100%" height="100%" filter="url(#v)"/><rect width="100%" height="100%" filter="url(#c)"/></svg>`);
 
-// Astrolábio só com os anéis (sem a estrela central), para ficar atrás do logo nas capas.
+// Astrolábio só com os anéis (sem o sol central), para ficar atrás do logo nas capas.
 for (const [nome, origem] of [['astrolabio-anel-dourado.svg', 'astrolabio-dourado.svg'], ['astrolabio-anel-tinta.svg', 'astrolabio-tinta.svg']]) {
-	const svg = fs.readFileSync(path.join(OUT, origem), 'utf8').replace(/<path d="M200 128[^>]*\/>/, '').replace(/<circle cx="200" cy="200" r="7"[^>]*\/>/, '');
+	const svg = fs.readFileSync(path.join(OUT, origem), 'utf8').replace(/<g class="sol">.*?<\/g>/, '');
 	salvar(nome, svg);
 }
+
+// O logo como máscara, para temas que pintam o nome com gradiente (o Grimório o pinta em ouro, sem filtro de cor).
+fs.copyFileSync('src/assets/marca/logo-star-stream.svg', path.join(OUT, 'logo-mascara.svg'));

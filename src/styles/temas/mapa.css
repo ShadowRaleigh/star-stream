@@ -31,10 +31,10 @@
 	--ss-capitular-1: #2f6e8e;
 	--ss-capitular-2: #1b4459;
 	--ss-botao: linear-gradient(180deg, #a3321f, #7a2214);
-	--ss-marcador: '\2726  ';
+	--ss-marcador: '\25C6  ';
 	--ss-fonte-deco: 'Almendra SC', 'Cinzel', serif;
-	--ss-fonte-cabeca: 'Almendra SC', 'Cinzel', serif;
-	--ss-fonte-rotulo: 'Almendra SC', 'Cinzel', serif;
+	--ss-fonte-cabeca: 'IM Fell English SC', 'Cinzel', serif;
+	--ss-fonte-rotulo: 'IM Fell English SC', 'Cinzel', serif;
 	--ss-serifa: 'EB Garamond Variable', 'EB Garamond', Georgia, serif;
 	--sl-font: var(--ss-serifa);
 	--sl-text-body: 1.16rem;
@@ -96,4 +96,9 @@
 [data-ss-tema='mapa'] .ss-capa .logo-escuro {
 	display: block;
 	filter: drop-shadow(0 1px 0 rgb(255 250 235 / 0.6));
+}
+
+/* A Almendra SC tem o espaço entre palavras curto demais: sem isso "Mecânicas Básicas" vira uma palavra só. */
+[data-ss-tema='mapa'] h1#_top {
+	word-spacing: 0.25em;
 }

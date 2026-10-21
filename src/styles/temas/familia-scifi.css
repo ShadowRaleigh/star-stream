@@ -8,7 +8,13 @@
 	pointer-events: none;
 	z-index: 0;
 	background: repeating-linear-gradient(0deg, rgb(var(--ss-ciano-rgb) / 0.025) 0 1px, transparent 1px 3px);
-	mix-blend-mode: screen;
+}
+
+/* No celular a varredura não aparece e só custaria repintura na rolagem. */
+@media (max-width: 50rem) {
+	[data-ss-familia='scifi'] body::after {
+		display: none;
+	}
 }
 
 [data-ss-familia='scifi'][data-theme='light'] body::after {
@@ -54,7 +60,7 @@
 	letter-spacing: 0.12em;
 	text-transform: uppercase;
 	color: var(--sl-color-white);
-	text-shadow: 0 0 18px rgb(var(--ss-ciano-rgb) / 0.55), 0 0 2px rgb(var(--ss-ciano-rgb) / 0.9);
+	text-shadow: 0 0 14px rgb(var(--ss-ciano-rgb) / 0.35);
 }
 
 [data-ss-familia='scifi'][data-theme='light'] h1#_top {
@@ -127,8 +133,8 @@
 	color: var(--sl-color-white);
 }
 
-/* Números em fonte mono, como leituras de painel. */
-[data-ss-familia='scifi'] .sl-markdown-content :is(td, code) {
+/* Números em fonte mono, como leituras de painel; a primeira coluna (o nome da linha) fica na fonte de texto. */
+[data-ss-familia='scifi'] .sl-markdown-content :is(td:not(:first-child), code) {
 	font-family: var(--ss-mono);
 	font-size: 0.9em;
 }
@@ -157,6 +163,29 @@
 	border-bottom: 1px solid var(--ss-ciano);
 }
 
+/* No computador, o cabeçalho em caixa-alta espaçada não quebra no meio ("DANO (×" / "ARMA)"). */
+@media (min-width: 50rem) {
+	[data-ss-familia='scifi'] .sl-markdown-content th {
+		white-space: nowrap;
+	}
+}
+
+/* No claro, o ciano em letra miúda não tem contraste: o texto do cabeçalho vai para a tinta e a cor fica no filete. */
+[data-ss-familia='scifi'][data-theme='light'] .sl-markdown-content th {
+	color: var(--sl-color-gray-1);
+}
+
+/* No celular, tabelas mais compactas e sem o chanfro (que cortava o canto da tabela rolando de lado). */
+@media (max-width: 50rem) {
+	[data-ss-familia='scifi'] .sl-markdown-content table {
+		clip-path: none;
+	}
+
+	[data-ss-familia='scifi'] .sl-markdown-content :is(th, td) {
+		padding: 0.4rem 0.5rem;
+	}
+}
+
 [data-ss-familia='scifi'] .sl-markdown-content blockquote {
 	border: none;
 	clip-path: var(--ss-chanfro);
@@ -181,17 +210,36 @@
 	font-size: 0.8rem;
 }
 
-/* Cartões chanfrados com borda luminosa. */
+/* Cartões chanfrados com borda luminosa. O recorte do chanfro corta também a borda (que é uma sombra interna): as duas
+   diagonais são desenhadas por cima, em --ss-cantos (só no tema que tem chanfro). */
+[data-ss-familia='scifi'] {
+	--ss-cantos: linear-gradient(transparent, transparent);
+}
+
+[data-ss-tema='holograma'] {
+	--ss-cantos:
+		linear-gradient(to top right, transparent calc(50% - 0.75px), var(--sl-color-hairline-light) calc(50% - 0.75px) calc(50% + 0.75px), transparent calc(50% + 0.75px)) right top / 14px 14px no-repeat,
+		linear-gradient(to top right, transparent calc(50% - 0.75px), var(--sl-color-hairline-light) calc(50% - 0.75px) calc(50% + 0.75px), transparent calc(50% + 0.75px)) left bottom / 14px 14px no-repeat;
+}
+
 [data-ss-familia='scifi'] .sl-link-card,
 [data-ss-familia='scifi'] .pagination-links a {
 	border: none;
 	border-radius: 0;
 	clip-path: var(--ss-chanfro);
-	background:
-		linear-gradient(135deg, rgb(var(--ss-ciano-rgb) / 0.12), rgb(var(--ss-violeta-rgb) / 0.08)),
-		var(--sl-color-gray-6);
+	background: var(--ss-cantos), linear-gradient(rgb(var(--ss-ciano-rgb) / 0.06), rgb(var(--ss-ciano-rgb) / 0.06)), var(--sl-color-gray-6);
 	box-shadow: inset 0 0 0 1px var(--sl-color-hairline-light);
 	transition: box-shadow 0.2s, background 0.2s;
+}
+
+/* No claro, cartão branco com o filete da cor do tema à esquerda (a mistura sobre o cinza parecia barro). */
+[data-ss-familia='scifi'][data-theme='light'] :is(.sl-link-card, .pagination-links a) {
+	background: var(--ss-cantos), rgb(255 255 255 / 0.9);
+	box-shadow: inset 0 0 0 1px var(--sl-color-hairline-light), inset 3px 0 0 var(--ss-ciano);
+}
+
+[data-ss-familia='scifi'][data-theme='light'] :is(.sl-link-card, .pagination-links a):hover {
+	box-shadow: inset 0 0 0 1px var(--ss-ciano), inset 3px 0 0 var(--ss-ciano);
 }
 
 [data-ss-familia='scifi'] .sl-link-card:hover,
@@ -232,8 +280,9 @@
 	filter: drop-shadow(-2px 0 0 rgb(255 70 140 / 0.55)) drop-shadow(2px 0 0 rgb(var(--ss-ciano-rgb) / 0.65)) drop-shadow(0 0 18px rgb(var(--ss-ciano-rgb) / 0.4));
 }
 
+/* No claro, o desvio de cor parecia erro de impressão: o nome fica limpo. */
 [data-ss-familia='scifi'][data-theme='light'] .ss-capa img {
-	filter: drop-shadow(-1.5px 0 0 rgb(220 40 110 / 0.45)) drop-shadow(1.5px 0 0 rgb(var(--ss-ciano-rgb) / 0.55));
+	filter: none;
 }
 
 [data-ss-familia='scifi'][data-theme='light'] .ss-capa .logo-claro {
@@ -258,6 +307,13 @@
 	letter-spacing: 0.12em;
 	text-transform: uppercase;
 	border-color: var(--ss-ciano);
+}
+
+/* O botão vazado perde a borda nos dois cantos cortados: as diagonais são desenhadas no fundo. */
+[data-ss-familia='scifi'] .ss-abertura .ss-acoes a:not(.ss-principal) {
+	background:
+		linear-gradient(to top right, transparent calc(50% - 0.75px), var(--ss-ciano) calc(50% - 0.75px) calc(50% + 0.75px), transparent calc(50% + 0.75px)) right top / 10px 10px no-repeat,
+		linear-gradient(to top right, transparent calc(50% - 0.75px), var(--ss-ciano) calc(50% - 0.75px) calc(50% + 0.75px), transparent calc(50% + 0.75px)) left bottom / 10px 10px no-repeat;
 }
 
 [data-ss-familia='scifi'] .ss-abertura .ss-acoes a.ss-principal {

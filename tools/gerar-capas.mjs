@@ -215,6 +215,13 @@ function circuito(p) {
 function navegacao(p) {
 	const px = 250, py = 560, pr = 330;
 	let g = fundoLinear(p);
+	// Grade de coordenadas da carta de navegação, com marcas nas interseções.
+	g += `<g stroke="${p.fraca}" stroke-width=".8" opacity=".16">`;
+	for (let x = 90; x < W; x += 90) g += `<line x1="${x}" y1="0" x2="${x}" y2="${H}"/>`;
+	for (let y = 70; y < H; y += 90) g += `<line x1="0" y1="${y}" x2="${W}" y2="${y}"/>`;
+	g += `</g><g stroke="${p.linha}" stroke-width="1" opacity=".35">`;
+	for (let x = 90; x < W; x += 180) for (let y = 70; y < H; y += 180) g += `<path d="M ${x - 5} ${y} H ${x + 5} M ${x} ${y - 5} V ${y + 5}"/>`;
+	g += '</g>';
 	g += estrelas(p, 300, 151, (x, y) => Math.hypot(x - px, y - py) < pr + 10);
 	g += `<defs><radialGradient id="atm" cx="${f(px / W * 100)}%" cy="100%" r="35%"><stop offset="0" stop-color="${p.linha}" stop-opacity=".22"/><stop offset="1" stop-color="${p.linha}" stop-opacity="0"/></radialGradient></defs><rect width="${W}" height="${H}" fill="url(#atm)"/>`;
 	// Planeta: paralelos e meridianos.
@@ -223,6 +230,11 @@ function navegacao(p) {
 	for (let k = -4; k <= 4; k++) { const yy = py + (k * pr) / 5, rx = Math.sqrt(pr * pr - ((k * pr) / 5) ** 2); g += `<ellipse cx="${px}" cy="${f(yy)}" rx="${f(rx)}" ry="${f(rx * 0.16)}"/>`; }
 	for (let k = 1; k <= 5; k++) g += `<ellipse cx="${px}" cy="${py}" rx="${f(pr * Math.cos((k * Math.PI) / 12))}" ry="${pr}"/>`;
 	g += '</g>';
+	// Volume: o lado longe da luz escurece, e a borda iluminada ganha um brilho fino de atmosfera.
+	g += `<defs><radialGradient id="sombra" cx="72%" cy="18%" r="95%"><stop offset=".35" stop-color="${p.fundo[2]}" stop-opacity="0"/><stop offset="1" stop-color="${p.fundo[2]}" stop-opacity=".75"/></radialGradient></defs><circle cx="${px}" cy="${py}" r="${pr}" fill="url(#sombra)"/><circle cx="${px}" cy="${py}" r="${pr + 5}" fill="none" stroke="${p.linha}" stroke-width="8" opacity=".08"/>`;
+	// Uma lua pequena na mesma órbita, com a sombra do mesmo lado.
+	const [lx, ly, lr] = [700, 360, 26];
+	g += `<circle cx="${lx}" cy="${ly}" r="${lr}" fill="${p.fundo[1]}" stroke="${p.linha}" stroke-width="1.4"/><path d="M ${lx - lr * 0.2} ${ly - lr} A ${lr} ${lr} 0 0 0 ${lx - lr * 0.2} ${ly + lr} A ${lr * 0.7} ${lr} 0 0 1 ${lx - lr * 0.2} ${ly - lr} Z" fill="${p.fundo[2]}" opacity=".7" transform="rotate(30 ${lx} ${ly})"/>`;
 	// Órbita e satélites.
 	g += `<ellipse cx="${px}" cy="${py}" rx="${pr + 260}" ry="${pr * 0.42}" transform="rotate(-18 ${px} ${py})" fill="none" stroke="${p.linha}" stroke-width="1.2" stroke-dasharray="10 8" opacity=".6"/>`;
 	// Rota curva até o destino.
@@ -242,77 +254,143 @@ function navegacao(p) {
 
 // Fantasia: capas únicas (o tema é o mesmo no claro e no escuro). O centro fica livre para o nome.
 
-// Bosque Feérico: clareira ao luar, com galhos em arco, folhas, lua crescente e vaga-lumes.
+// Bosque Feérico: uma clareira ao luar vista da mata. Ao fundo, a linha de árvores distantes sob a névoa; nos lados,
+// troncos escuros com galhos de folhas pontudas emoldurando a cena; no chão, samambaias; a lua e os vaga-lumes no meio.
+// Folha pontuda: duas curvas que afinam nas pontas.
+function folhaPontuda(x, y, ang, comp, larg, cor, op) {
+	const tx = x + Math.cos(ang) * comp, ty = y + Math.sin(ang) * comp, nx = -Math.sin(ang) * larg, ny = Math.cos(ang) * larg;
+	const mx = x + Math.cos(ang) * comp * 0.45, my = y + Math.sin(ang) * comp * 0.45;
+	return `<path d="M ${f(x)} ${f(y)} Q ${f(mx + nx)} ${f(my + ny)} ${f(tx)} ${f(ty)} Q ${f(mx - nx)} ${f(my - ny)} ${f(x)} ${f(y)} Z" fill="${cor}" opacity="${f(op)}"/>`;
+}
 function bosque(p) {
-	let g = `<defs><radialGradient id="ceu" cx="50%" cy="30%" r="80%"><stop offset="0" stop-color="${p.fundo[0]}"/><stop offset=".6" stop-color="${p.fundo[1]}"/><stop offset="1" stop-color="${p.fundo[2]}"/></radialGradient>
-	<radialGradient id="lua"><stop offset="0" stop-color="${p.brilho}" stop-opacity=".5"/><stop offset="1" stop-color="${p.brilho}" stop-opacity="0"/></radialGradient>
-	<radialGradient id="vaga"><stop offset="0" stop-color="${p.vaga}" stop-opacity="1"/><stop offset=".3" stop-color="${p.vaga}" stop-opacity=".5"/><stop offset="1" stop-color="${p.vaga}" stop-opacity="0"/></radialGradient></defs>
-	<rect width="${W}" height="${H}" fill="url(#ceu)"/>`;
-	g += estrelas(p, 160, 201, (x, y) => y > 300);
-	// Lua crescente com halo.
-	g += `<circle cx="1480" cy="110" r="150" fill="url(#lua)"/><path d="M 1480 50 A 60 60 0 1 0 1480 170 A 46 46 0 1 1 1480 50 Z" fill="${p.brilho}" opacity=".9"/>`;
-	// Galhos em arco saindo dos cantos de baixo, com folhas ao longo.
 	const r = sorteio(211);
-	const galho = (pts, larg) => {
-		const [a, b, c, d] = pts;
-		let s = `<path d="M ${a[0]} ${a[1]} C ${b[0]} ${b[1]}, ${c[0]} ${c[1]}, ${d[0]} ${d[1]}" fill="none" stroke="${p.linha}" stroke-width="${larg}" stroke-linecap="round"/>`;
-		for (let k = 1; k < 48; k++) {
-			const t = k / 48, u = 1 - t;
-			const x = u ** 3 * a[0] + 3 * u * u * t * b[0] + 3 * u * t * t * c[0] + t ** 3 * d[0];
-			const y = u ** 3 * a[1] + 3 * u * u * t * b[1] + 3 * u * t * t * c[1] + t ** 3 * d[1];
-			const ang = r() * 360, tam = 14 + r() * 18 * (1 - t * 0.5);
-			s += `<ellipse cx="${f(x)}" cy="${f(y)}" rx="${f(tam)}" ry="${f(tam * 0.38)}" transform="rotate(${f(ang)} ${f(x)} ${f(y)})" fill="${r() < 0.3 ? p.folha2 : p.folha}" opacity="${f(0.55 + r() * 0.4)}"/>`;
+	const longe = mistura(p.fundo[1], p.brilho, 0.1), meio = mistura(p.fundo[2], p.folha2, 0.35), perto = mistura(p.fundo[2], '#000000', 0.45);
+	let g = `<defs><radialGradient id="ceu" cx="62%" cy="18%" r="85%"><stop offset="0" stop-color="${mistura(p.fundo[0], p.brilho, 0.12)}"/><stop offset=".55" stop-color="${p.fundo[1]}"/><stop offset="1" stop-color="${p.fundo[2]}"/></radialGradient>
+	<radialGradient id="lua"><stop offset="0" stop-color="${p.brilho}" stop-opacity=".42"/><stop offset=".4" stop-color="${p.brilho}" stop-opacity=".12"/><stop offset="1" stop-color="${p.brilho}" stop-opacity="0"/></radialGradient>
+	<linearGradient id="nevoa" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="${p.brilho}" stop-opacity="0"/><stop offset=".5" stop-color="${p.brilho}" stop-opacity=".1"/><stop offset="1" stop-color="${p.brilho}" stop-opacity="0"/></linearGradient>
+	<radialGradient id="vaga"><stop offset="0" stop-color="${p.vaga}" stop-opacity="1"/><stop offset=".3" stop-color="${p.vaga}" stop-opacity=".45"/><stop offset="1" stop-color="${p.vaga}" stop-opacity="0"/></radialGradient>
+	<radialGradient id="veu"><stop offset="0" stop-color="${p.fundo[1]}" stop-opacity=".5"/><stop offset="1" stop-color="${p.fundo[1]}" stop-opacity="0"/></radialGradient></defs>
+	<rect width="${W}" height="${H}" fill="url(#ceu)"/>`;
+	g += estrelas(p, 140, 201, (x, y) => y > 280);
+	// Lua cheia baixa, com halo largo.
+	g += `<circle cx="1330" cy="120" r="260" fill="url(#lua)"/><circle cx="1330" cy="120" r="34" fill="${p.brilho}" opacity=".92"/>`;
+	// Linha de árvores distantes: pinheiros recortados e copas redondas de alturas variadas, sobrepostos, sob a névoa.
+	const arvoreLonge = (x, base, alt) => {
+		if (r() < 0.65) {
+			let d = `M ${f(x)} ${f(base - alt)}`, l = alt * 0.28;
+			for (let k = 1; k <= 4; k++) { const y = base - alt + (alt * k) / 4, w = (l * k) / 4 + 2; d += ` L ${f(x + w)} ${f(y)} L ${f(x + w * 0.45)} ${f(y - 2)}`; }
+			d += ` L ${f(x - l * 0.45)} ${f(base - 2)}`;
+			for (let k = 4; k >= 1; k--) { const y = base - alt + (alt * k) / 4, w = (l * k) / 4 + 2; d += ` L ${f(x - w)} ${f(y)} L ${f(x - w * 0.45)} ${f(y - 2)}`; }
+			return `<path d="${d} Z"/>`;
+		}
+		return `<ellipse cx="${f(x)}" cy="${f(base - alt * 0.55)}" rx="${f(alt * 0.32)}" ry="${f(alt * 0.5)}"/><rect x="${f(x - 2)}" y="${f(base - alt * 0.2)}" width="4" height="${f(alt * 0.2)}"/>`;
+	};
+	g += `<g fill="${longe}" opacity=".85">`;
+	for (let i = 0; i < 150; i++) { const x = r() * (W + 40) - 20, base = 372 + Math.sin(x / 170) * 12; g += arvoreLonge(x, base, 38 + r() * 70 * (0.6 + 0.4 * Math.abs(Math.sin(x / 260)))); }
+	g += `</g><rect y="330" width="${W}" height="${H - 330}" fill="${longe}" opacity=".85"/><rect y="250" width="${W}" height="170" fill="url(#nevoa)"/>`;
+	// Árvores do meio, mais escuras, só nas laterais.
+	const pinheiro = (x, base, alt, cor) => {
+		let s = `<rect x="${f(x - 3)}" y="${f(base - alt * 0.25)}" width="6" height="${f(alt * 0.25)}" fill="${cor}"/>`;
+		for (let k = 0; k < 5; k++) { const y = base - alt * 0.2 - k * alt * 0.17, l = alt * 0.32 * (1 - k * 0.16); s += `<path d="M ${f(x - l)} ${f(y)} Q ${f(x)} ${f(y - alt * 0.08)} ${f(x + l)} ${f(y)} L ${f(x)} ${f(y - alt * 0.3)} Z" fill="${cor}"/>`; }
+		return s;
+	};
+	for (const [x, alt] of [[230, 230], [330, 190], [420, 150], [1400, 160], [1500, 210], [1610, 240]]) g += pinheiro(x, H - 30, alt, meio);
+	// Chão escuro.
+	g += `<path d="M -10 ${H - 40} Q 450 ${H - 58} 900 ${H - 44} T 1810 ${H - 50} V ${H + 10} H -10 Z" fill="${perto}"/>`;
+	// Troncos da frente emoldurando a cena, com galhos de folhas pontudas.
+	const tronco = (xf, lado) => {
+		// xf é a borda de fora (fora da capa); a borda de dentro afina de 130 px na base para 60 px no alto.
+		const xi = (y) => xf + lado * (60 + 70 * (y / H) ** 2 + 8 * Math.sin(y / 37));
+		let d = `M ${xf} ${H + 10}`, borda = '';
+		for (let y = H + 10; y >= -10; y -= 26) { d += ` L ${f(xi(y))} ${y}`; borda += `${borda ? ' L' : 'M'} ${f(xi(y))} ${y}`; }
+		d += ` L ${xf} -10 Z`;
+		let casca = '';
+		for (let k = 0; k < 9; k++) { const y0 = 40 + k * 52, x = xf + lado * (18 + (k % 3) * 12); casca += `<path d="M ${x} ${y0} q ${lado * 4} 18 0 36" stroke="${mistura(perto, p.brilho, 0.12)}" stroke-width="1.4" fill="none" opacity=".6"/>`; }
+		return `<path d="${d}" fill="${perto}"/>${casca}<path d="${borda}" fill="none" stroke="${mistura(perto, p.brilho, 0.3)}" stroke-width="1.6" opacity="${lado < 0 ? 0.7 : 0.3}"/>`;
+	};
+	g += tronco(-20, 1) + tronco(1820, -1);
+	const ramo = (x0, y0, x1, y1, curva, n, sem) => {
+		const rr = sorteio(sem);
+		let s = `<path d="M ${x0} ${y0} Q ${f((x0 + x1) / 2)} ${f((y0 + y1) / 2 + curva)} ${x1} ${y1}" fill="none" stroke="${perto}" stroke-width="5" stroke-linecap="round"/>`;
+		for (let k = 1; k <= n; k++) {
+			const t = k / (n + 1), u = 1 - t, cx = (x0 + x1) / 2, cy = (y0 + y1) / 2 + curva;
+			const x = u * u * x0 + 2 * u * t * cx + t * t * x1, y = u * u * y0 + 2 * u * t * cy + t * t * y1;
+			for (const lado of [-1, 1]) {
+				const ang = Math.atan2(y1 - y0, x1 - x0) + lado * (0.7 + rr() * 0.5) + Math.PI * 0.08, comp = 24 + rr() * 16 * (1 - t * 0.4);
+				s += folhaPontuda(x, y, ang, comp, comp * 0.24, rr() < 0.35 ? p.folha : p.folha2, 0.5 + rr() * 0.35);
+			}
 		}
 		return s;
 	};
-	g += galho([[-20, 540], [120, 260], [260, 60], [700, 20]], 12);
-	g += galho([[1820, 540], [1680, 300], [1600, 40], [1100, 18]], 12);
-	g += galho([[-20, 420], [80, 330], [160, 250], [300, 200]], 4);
-	g += galho([[1820, 440], [1720, 360], [1650, 300], [1520, 270]], 4);
-	// Trepadeiras pendendo.
-	for (const [x, y0, l] of [[380, 40, 150], [520, 24, 90], [1290, 26, 120], [1420, 40, 80]]) {
-		g += `<path d="M ${x} ${y0} q 10 ${l / 3} 0 ${(2 * l) / 3} t 0 ${l / 3}" fill="none" stroke="${p.linha}" stroke-width="1.6" opacity=".7"/>`;
-		for (let k = 1; k <= 4; k++) g += `<ellipse cx="${x + (k % 2 ? 6 : -6)}" cy="${f(y0 + (l * k) / 5)}" rx="6" ry="2.6" transform="rotate(${k % 2 ? 30 : -30} ${x} ${f(y0 + (l * k) / 5)})" fill="${p.folha}" opacity=".7"/>`;
-	}
-	// Grama na base.
-	for (let x = -10; x < W + 10; x += 9) { const h = 14 + r() * 30; g += `<path d="M ${f(x)} ${H} q ${f(r() * 8 - 4)} ${f(-h / 2)} ${f(r() * 10 - 5)} ${f(-h)}" stroke="${p.folha2}" stroke-width="2" fill="none" opacity=".55"/>`; }
-	// Vaga-lumes.
-	for (let i = 0; i < 46; i++) { const x = r() * W, y = 60 + r() * (H - 100); if (x > 520 && x < 1280 && y > 160 && y < 360) continue; const s = 6 + r() * 12; g += `<circle cx="${f(x)}" cy="${f(y)}" r="${f(s)}" fill="url(#vaga)"/>`; }
+	g += ramo(60, 90, 420, 30, -40, 12, 221) + ramo(50, 200, 260, 160, -30, 7, 222) + ramo(1740, 70, 1430, 20, -36, 11, 223) + ramo(1730, 190, 1530, 150, -26, 6, 224);
+	// Samambaias no chão: folíolos pontudos ao longo de uma haste curva.
+	const samambaia = (x, y, ang, comp, sem) => {
+		const rr = sorteio(sem);
+		let s = '';
+		for (let k = 0; k < 11; k++) {
+			const t = k / 11, a = ang - t * 0.5, px = x + Math.cos(a) * comp * t, py = y + Math.sin(a) * comp * t, l = 22 * (1 - t * 0.8);
+			for (const lado of [-1, 1]) s += folhaPontuda(px, py, a + lado * 1.1, l, l * 0.22, p.folha2, 0.7);
+		}
+		return s + `<path d="M ${x} ${y} Q ${f(x + Math.cos(ang) * comp * 0.5)} ${f(y + Math.sin(ang) * comp * 0.5 - 6)} ${f(x + Math.cos(ang - 0.5) * comp)} ${f(y + Math.sin(ang - 0.5) * comp)}" fill="none" stroke="${p.folha2}" stroke-width="1.4" opacity=".8"/>`;
+	};
+	for (const [x, ang, comp, sem] of [[110, -1.2, 120, 231], [150, -0.6, 140, 232], [70, -1.9, 110, 233], [300, -1.3, 90, 234], [1700, -1.95, 120, 235], [1660, -2.5, 140, 236], [1740, -1.3, 110, 237], [1520, -1.8, 90, 238]]) g += samambaia(x, H - 34, ang, comp, sem);
+	// Vaga-lumes (o centro fica livre para o nome).
+	for (let i = 0; i < 40; i++) { const x = r() * W, y = 70 + r() * (H - 120); if (x > 520 && x < 1280 && y > 150 && y < 370) continue; const s = 5 + r() * 10; g += `<circle cx="${f(x)}" cy="${f(y)}" r="${f(s)}" fill="url(#vaga)"/>`; }
+	g += `<ellipse cx="${W / 2}" cy="${H / 2}" rx="520" ry="150" fill="url(#veu)"/>`;
 	return g;
 }
 
-// Vitral: parede de pedra no escuro com janelas góticas de vidraças em losango; a do meio, atrás do nome, quase apagada.
-function vitral(p) {
-	let g = `<defs><linearGradient id="parede" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="${p.fundo[0]}"/><stop offset="1" stop-color="${p.fundo[1]}"/></linearGradient>
-	<linearGradient id="feixe" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="${p.luz}" stop-opacity=".13"/><stop offset="1" stop-color="${p.luz}" stop-opacity="0"/></linearGradient></defs>
-	<rect width="${W}" height="${H}" fill="url(#parede)"/>`;
-	// Juntas da cantaria.
-	g += `<g stroke="${p.junta}" stroke-width="1.5" opacity=".5">`;
-	for (let y = 52, k = 0; y < H; y += 52, k++) { g += `<line x1="0" y1="${y}" x2="${W}" y2="${y}"/>`; for (let x = k % 2 ? 0 : 60; x < W; x += 120) g += `<line x1="${x}" y1="${y - 52}" x2="${x}" y2="${y}"/>`; }
-	g += '</g>';
-	const janelas = [[150, 0], [450, 1], [900, 2], [1350, 1], [1650, 0]];
-	const larg = 150, alto = 380, base = 470;
-	for (const [cx, cor] of janelas) {
-		const meio = cx === 900, x0 = cx - larg / 2, x1 = cx + larg / 2, topo = base - alto;
-		const arco = `M ${x0} ${base} V ${topo + larg * 0.55} Q ${x0} ${topo} ${cx} ${topo - 30} Q ${x1} ${topo} ${x1} ${topo + larg * 0.55} V ${base} Z`;
-		const id = `j${cx}`;
-		g += `<defs><clipPath id="${id}"><path d="${arco}"/></clipPath><radialGradient id="v${cx}" cx="50%" cy="40%" r="70%"><stop offset="0" stop-color="${p.vidros[cor][0]}"/><stop offset="1" stop-color="${p.vidros[cor][1]}"/></radialGradient></defs>`;
-		// Feixe de luz descendo da janela.
-		if (!meio) g += `<path d="M ${x0} ${base - 40} L ${x1} ${base - 40} L ${x1 + 160} ${H + 10} L ${x0 + 60} ${H + 10} Z" fill="url(#feixe)"/>`;
-		g += `<g clip-path="url(#${id})" opacity="${meio ? 0.22 : 0.92}"><rect x="${x0}" y="${topo - 40}" width="${larg}" height="${alto + 50}" fill="url(#v${cx})"/>`;
-		// Vidraças em losango (chumbo).
-		g += `<g stroke="${p.chumbo}" stroke-width="2.4" fill="none">`;
-		for (let d = -alto; d < alto + larg; d += 26) { g += `<line x1="${x0}" y1="${topo - 40 + d}" x2="${x1}" y2="${topo - 40 + d + larg * 0.9}"/><line x1="${x1}" y1="${topo - 40 + d}" x2="${x0}" y2="${topo - 40 + d + larg * 0.9}"/>`; }
-		g += `</g><line x1="${cx}" y1="${topo - 40}" x2="${cx}" y2="${base}" stroke="${p.chumbo}" stroke-width="7"/></g>`;
-		// Moldura de pedra e o óculo trifólio por cima.
-		g += `<path d="${arco}" fill="none" stroke="${p.pedra}" stroke-width="10"/><path d="${arco}" fill="none" stroke="${p.prata}" stroke-width="1.2" opacity=".5"/>`;
-		if (!meio) {
-			g += `<g transform="translate(${cx} ${topo - 66})">`;
-			for (const a of [0, 120, 240]) g += `<circle cx="0" cy="-9" r="9" transform="rotate(${a})" fill="${p.vidros[(cor + 1) % 3][0]}" stroke="${p.pedra}" stroke-width="3" opacity=".85"/>`;
-			g += '</g>';
-		}
+// Vitral: parede de cantaria no escuro com quatro janelas góticas. Cada janela tem duas lancetas e um óculo com
+// quadrifólio no alto, e o vidro é um mosaico de peças irregulares em tons de joia, mais claro onde a luz atravessa.
+// O meio fica livre para o nome.
+// Mosaico de peças: uma grade irregular (pontos sorteados nas interseções) dividida em quadriláteros.
+function mosaico(r, x0, y0, x1, y1, passo, cores, chumbo) {
+	const nx = Math.ceil((x1 - x0) / passo), ny = Math.ceil((y1 - y0) / passo), pt = [];
+	for (let j = 0; j <= ny; j++) { pt.push([]); for (let i = 0; i <= nx; i++) { const borda = i === 0 || j === 0 || i === nx || j === ny; pt[j].push([x0 + (i * (x1 - x0)) / nx + (borda ? 0 : (r() - 0.5) * passo * 0.55), y0 + (j * (y1 - y0)) / ny + (borda ? 0 : (r() - 0.5) * passo * 0.55)]); } }
+	let s = '';
+	for (let j = 0; j < ny; j++) for (let i = 0; i < nx; i++) {
+		const [a, b, c, d] = [pt[j][i], pt[j][i + 1], pt[j + 1][i + 1], pt[j + 1][i]];
+		const cor = cores[Math.floor(r() * cores.length)], tom = r();
+		s += `<path d="M ${f(a[0])} ${f(a[1])} L ${f(b[0])} ${f(b[1])} L ${f(c[0])} ${f(c[1])} L ${f(d[0])} ${f(d[1])} Z" fill="${tom < 0.3 ? mistura(cor, '#ffffff', 0.18) : tom > 0.8 ? mistura(cor, '#000000', 0.25) : cor}" stroke="${chumbo}" stroke-width="2.6" stroke-linejoin="round"/>`;
 	}
-	g += `<rect x="0" y="${base}" width="${W}" height="${H - base}" fill="${p.fundo[1]}"/><line x1="0" y1="${base}" x2="${W}" y2="${base}" stroke="${p.pedra}" stroke-width="6"/>`;
+	return s;
+}
+function vitral(p) {
+	const r = sorteio(301);
+	let g = `<defs><linearGradient id="parede" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="${p.fundo[0]}"/><stop offset="1" stop-color="${p.fundo[1]}"/></linearGradient>
+	<radialGradient id="brilho" cx="50%" cy="42%" r="60%"><stop offset="0" stop-color="${p.luz}" stop-opacity=".45"/><stop offset=".6" stop-color="${p.luz}" stop-opacity=".08"/><stop offset="1" stop-color="#000" stop-opacity=".35"/></radialGradient>
+	<linearGradient id="feixe" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="${p.luz}" stop-opacity=".1"/><stop offset="1" stop-color="${p.luz}" stop-opacity="0"/></linearGradient>
+	<radialGradient id="veu"><stop offset="0" stop-color="${p.fundo[1]}" stop-opacity=".6"/><stop offset="1" stop-color="${p.fundo[1]}" stop-opacity="0"/></radialGradient></defs>
+	<rect width="${W}" height="${H}" fill="url(#parede)"/>`;
+	// Cantaria: blocos com leve variação de tom e juntas finas.
+	for (let y = 0, k = 0; y < H; y += 46, k++) for (let x = k % 2 ? -55 : 0; x < W; x += 110) g += `<rect x="${x + 1}" y="${y + 1}" width="108" height="44" fill="${mistura(p.fundo[0], r() < 0.5 ? '#000000' : '#ffffff', r() * 0.05)}" opacity=".35"/>`;
+	// Cores do vidro: as três da paleta, mais um âmbar tirado da luz.
+	const joias = [p.vidros[0][0], p.vidros[1][0], p.vidros[2][0], mistura(p.vidros[0][0], p.luz, 0.55), mistura(p.vidros[1][0], '#000000', 0.25)];
+	const larg = 168, alto = 400, base = 486;
+	for (const [k, cx] of [125, 365, 1435, 1675].entries()) {
+		// Cada janela tem uma cor dominante, com toques das outras (sem virar colcha de retalhos).
+		const dom = joias[[1, 0, 0, 1][k]], cores = [dom, dom, dom, dom, dom, mistura(dom, '#000000', 0.22), mistura(dom, '#ffffff', 0.12), joias[2], joias[3]];
+		const x0 = cx - larg / 2, x1 = cx + larg / 2, topo = base - alto, ombro = topo + larg * 0.62;
+		const arco = `M ${x0} ${base} V ${ombro} Q ${x0} ${topo + 14} ${cx} ${topo - 26} Q ${x1} ${topo + 14} ${x1} ${ombro} V ${base} Z`;
+		const id = `j${cx}`;
+		// Feixe de luz descendo no chão.
+		g += `<path d="M ${x0 + 10} ${base - 10} L ${x1 - 10} ${base - 10} L ${x1 + 120} ${H + 10} L ${x0 + 40} ${H + 10} Z" fill="url(#feixe)"/>`;
+		// Vidro: mosaico e o brilho por cima, recortados na janela.
+		g += `<defs><clipPath id="${id}"><path d="${arco}"/></clipPath></defs><g clip-path="url(#${id})">${mosaico(r, x0, topo - 30, x1, base, 20, cores, p.chumbo)}<rect x="${x0}" y="${topo - 30}" width="${larg}" height="${alto + 30}" fill="url(#brilho)"/></g>`;
+		// Rendilhado de pedra: mainel no meio, as duas lancetas e o óculo com quadrifólio.
+		const pedra = p.pedra, w = 7;
+		g += `<g fill="none" stroke="${pedra}" stroke-linejoin="round">`;
+		g += `<line x1="${cx}" y1="${ombro + 34}" x2="${cx}" y2="${base}" stroke-width="${w}"/>`;
+		for (const [a, b] of [[x0, cx], [cx, x1]]) { const m = (a + b) / 2; g += `<path d="M ${a} ${ombro + 70} Q ${a} ${ombro + 8} ${m} ${ombro - 10} Q ${b} ${ombro + 8} ${b} ${ombro + 70}" stroke-width="${w - 1}"/>`; }
+		const oy = topo + 52, or = 30;
+		g += `<circle cx="${cx}" cy="${oy}" r="${or}" stroke-width="${w - 1}"/>`;
+		for (const a of [0, 90, 180, 270]) { const t = (a * Math.PI) / 180; g += `<circle cx="${f(cx + Math.cos(t) * or * 0.42)}" cy="${f(oy + Math.sin(t) * or * 0.42)}" r="${f(or * 0.42)}" stroke-width="3"/>`; }
+		g += `</g><g clip-path="url(#${id})"><path d="${arco}" fill="none" stroke="${mistura(p.luz, '#b8862b', 0.62)}" stroke-width="34"/><path d="${arco}" fill="none" stroke="${p.chumbo}" stroke-width="34" stroke-dasharray="2 18" opacity=".9"/><path d="${arco}" fill="none" stroke="${p.chumbo}" stroke-width="2.6" transform="translate(${cx} ${(topo + base) / 2}) scale(${f((larg - 34) / larg)} ${f((alto - 20) / alto)}) translate(-${cx} -${(topo + base) / 2})"/></g><path d="${arco}" fill="none" stroke="${pedra}" stroke-width="14"/><path d="${arco}" fill="none" stroke="${p.prata}" stroke-width="1.2" opacity=".35"/>`;
+		// Peitoril.
+		g += `<rect x="${x0 - 14}" y="${base - 4}" width="${larg + 28}" height="12" fill="${pedra}"/>`;
+	}
+	g += `<rect x="0" y="${base + 8}" width="${W}" height="${H - base}" fill="${p.fundo[1]}"/>`;
+	g += `<ellipse cx="${W / 2}" cy="${H / 2}" rx="480" ry="170" fill="url(#veu)"/>`;
 	return g;
 }
 
@@ -333,32 +411,45 @@ function mapa(p) {
 		for (let i = 1; i < pts.length - 1; i++) d += ` Q ${f(pts[i][0])} ${pts[i][1]} ${f((pts[i][0] + pts[i + 1][0]) / 2)} ${(pts[i][1] + pts[i + 1][1]) / 2}`;
 		return { d: d + ` L ${lado < 0 ? -20 : W + 20} ${H + 20} Z`, pts };
 	};
+	// Ilha de contorno suave: pontos sorteados em volta do centro, ligados por curvas que passam pelos pontos médios.
 	const ilha = ([x, y, rx, ry], sem) => {
-		const rr = sorteio(sem);
-		let d = '';
-		for (let k = 0; k <= 16; k++) { const a = (k / 16) * Math.PI * 2, j = 0.8 + rr() * 0.35; d += `${k ? ' L' : 'M'} ${f(x + Math.cos(a) * rx * j)} ${f(y + Math.sin(a) * ry * j)}`; }
+		const rr = sorteio(sem), n = 14, pts = [];
+		for (let k = 0; k < n; k++) { const a = (k / n) * Math.PI * 2, j = 0.82 + rr() * 0.3; pts.push([x + Math.cos(a) * rx * j, y + Math.sin(a) * ry * j]); }
+		const meio = (i) => [(pts[i % n][0] + pts[(i + 1) % n][0]) / 2, (pts[i % n][1] + pts[(i + 1) % n][1]) / 2];
+		let d = `M ${f(meio(0)[0])} ${f(meio(0)[1])}`;
+		for (let k = 1; k <= n; k++) d += ` Q ${f(pts[k % n][0])} ${f(pts[k % n][1])} ${f(meio(k)[0])} ${f(meio(k)[1])}`;
 		return d + ' Z';
 	};
 	const esq = costa(380, -1, 61), dir = costa(1420, 1, 67);
 	const terras = [esq.d, dir.d, ...MAPA_ILHAS.map((i, k) => ilha(i, 71 + k))];
+	// Linhas de rumo dos portulanos: raios finos saindo de dois pontos do canal.
+	for (const [ox, oy] of [[700, 250], [1150, 280]]) for (let k = 0; k < 16; k++) { const a = (k / 16) * Math.PI * 2; g += `<line x1="${ox}" y1="${oy}" x2="${f(ox + Math.cos(a) * 1400)}" y2="${f(oy + Math.sin(a) * 1400)}" stroke="${p.tinta}" stroke-width=".6" opacity=".12"/>`; }
 	// Sombreado da costa: linhas paralelas no mar, como nas cartas antigas.
 	for (const d of terras) for (const [w, op] of [[22, 0.1], [12, 0.16], [5, 0.24]]) g += `<path d="${d}" fill="none" stroke="${p.mar}" stroke-width="${w}" opacity="${op}"/>`;
 	for (const d of terras) g += `<path d="${d}" fill="${p.terra}" stroke="${p.tinta}" stroke-width="2"/>`;
-	// Morros: corcovas arredondadas com hachura no lado da sombra.
-	const morro = (x, y, s) => {
-		let m = `<path d="M ${f(x - 30 * s)} ${y} Q ${x} ${f(y - 44 * s)} ${f(x + 30 * s)} ${y}" fill="${p.fundo[0]}" fill-opacity=".5" stroke="${p.tinta}" stroke-width="1.6"/>`;
-		for (let k = 1; k <= 5; k++) { const xx = x + k * 5 * s; m += `<line x1="${f(xx)}" y1="${f(y - 36 * s + k * 6 * s)}" x2="${f(xx + 3 * s)}" y2="${f(y - 2)}" stroke="${p.tinta}" stroke-width=".9" opacity=".7"/>`; }
+	// Montanhas de carta antiga: pico com crista, o lado da sombra em hachura; cordilheiras desenhadas de trás para a frente.
+	const montanha = (x, y, s) => {
+		const h = 46 * s, l = 30 * s, px = x + (r() - 0.5) * 6 * s;
+		let m = `<path d="M ${f(x - l)} ${y} L ${f(px - 3 * s)} ${f(y - h + 6 * s)} L ${f(px)} ${f(y - h)} L ${f(px + 4 * s)} ${f(y - h + 8 * s)} L ${f(x + l)} ${y} Z" fill="${p.terra}" stroke="none"/>`;
+		for (let k = 1; k <= 7; k++) { const tt = k / 8, xx = px + (x + l - px) * tt; m += `<line x1="${f(px + (xx - px) * 0.25)}" y1="${f(y - h + (h * tt) * 0.35 + 4 * s)}" x2="${f(xx - 2)}" y2="${f(y - 1)}" stroke="${p.tinta}" stroke-width=".8" opacity=".55"/>`; }
+		m += `<path d="M ${f(x - l)} ${y} L ${f(px - 3 * s)} ${f(y - h + 6 * s)} L ${f(px)} ${f(y - h)} L ${f(px + 4 * s)} ${f(y - h + 8 * s)} L ${f(x + l)} ${y}" fill="none" stroke="${p.tinta}" stroke-width="1.5" stroke-linejoin="round"/>`;
+		m += `<path d="M ${f(px)} ${f(y - h)} Q ${f(px - 2 * s)} ${f(y - h * 0.5)} ${f(px + 6 * s)} ${f(y - 4)}" fill="none" stroke="${p.tinta}" stroke-width=".9" opacity=".7"/>`;
 		return m;
 	};
-	for (const [x, y, s] of [[110, 130, 1.1], [170, 110, 1.3], [235, 140, 0.9], [140, 175, 0.8], [1580, 110, 1.2], [1650, 140, 1], [1530, 150, 0.85], [1700, 100, 0.9]]) g += morro(x, y, s);
-	// Florestas: grupos densos de copas.
-	const floresta = (cx, cy, n, sem) => {
-		const rr = sorteio(sem);
-		let s = '';
-		for (let i = 0; i < n; i++) { const x = cx + (rr() - 0.5) * 120, y = cy + (rr() - 0.5) * 60; s += `<circle cx="${f(x)}" cy="${f(y - 6)}" r="${f(5 + rr() * 3)}" fill="${p.floresta}" stroke="${p.tinta}" stroke-width="1"/><line x1="${f(x)}" y1="${f(y)}" x2="${f(x)}" y2="${f(y + 5)}" stroke="${p.tinta}" stroke-width="1"/>`; }
-		return s;
+	const cordilheira = (lista) => lista.sort((m1, m2) => m1[1] - m2[1]).map(([x, y, s]) => montanha(x, y, s)).join('');
+	g += cordilheira([[90, 120, 1], [140, 104, 1.35], [196, 126, 1.05], [250, 112, 0.85], [118, 160, 0.9], [176, 172, 1.1], [236, 158, 0.75], [300, 140, 0.7]]);
+	g += cordilheira([[1530, 116, 0.9], [1590, 98, 1.3], [1650, 120, 1.1], [1710, 104, 0.95], [1560, 156, 1], [1630, 166, 0.85], [1700, 150, 0.8]]);
+	// Florestas: árvores de copa com o lado da sombra marcado, e alguns pinheiros, em grupos densos.
+	const floresta = (cx, cy, n, sem, lx = 130, ly = 60) => {
+		const rr = sorteio(sem), arv = [];
+		for (let i = 0; i < n; i++) arv.push([cx + (rr() - 0.5) * lx, cy + (rr() - 0.5) * ly, rr()]);
+		return arv.sort((a1, a2) => a1[1] - a2[1]).map(([x, y, q]) => {
+			if (q < 0.3) return `<path d="M ${f(x)} ${f(y - 18)} L ${f(x + 7)} ${f(y)} L ${f(x - 7)} ${f(y)} Z" fill="${p.floresta}" stroke="${p.tinta}" stroke-width="1"/><line x1="${f(x)}" y1="${f(y)}" x2="${f(x)}" y2="${f(y + 4)}" stroke="${p.tinta}" stroke-width="1"/>`;
+			const rr2 = 6 + q * 3;
+			return `<line x1="${f(x)}" y1="${f(y)}" x2="${f(x)}" y2="${f(y + 5)}" stroke="${p.tinta}" stroke-width="1.2"/><circle cx="${f(x)}" cy="${f(y - rr2 + 1)}" r="${f(rr2)}" fill="${p.floresta}" stroke="${p.tinta}" stroke-width="1"/><path d="M ${f(x + rr2 * 0.2)} ${f(y - rr2 * 1.8)} A ${f(rr2)} ${f(rr2)} 0 0 1 ${f(x + rr2 * 0.2)} ${f(y + 0.8)}" fill="none" stroke="${p.tinta}" stroke-width="2.2" opacity=".35"/>`;
+		}).join('');
 	};
-	g += floresta(150, 330, 26, 81) + floresta(250, 440, 14, 82) + floresta(1620, 330, 24, 83) + floresta(1690, 430, 12, 84) + floresta(1040, 172, 6, 85);
+	g += floresta(150, 330, 30, 81) + floresta(250, 440, 16, 82) + floresta(1620, 330, 28, 83) + floresta(1690, 430, 14, 84) + floresta(1050, 168, 4, 85, 50, 16);
 	// Rio descendo dos morros até a costa da esquerda, e uma vila na foz.
 	g += `<path d="M 175 150 C 200 210, 260 220, 300 260 S 360 290, ${f(esq.pts[20][0])} 300" fill="none" stroke="${p.mar}" stroke-width="2.6" opacity=".8"/>`;
 	for (const [x, y] of [[330, 290], [346, 280], [338, 302]]) g += `<rect x="${x}" y="${y}" width="9" height="7" fill="${p.fundo[0]}" stroke="${p.tinta}" stroke-width="1"/><path d="M ${x - 1} ${y} L ${x + 4.5} ${y - 6} L ${x + 10} ${y}" fill="${p.tinta}"/>`;
@@ -381,12 +472,13 @@ function mapa(p) {
 
 // Camadas do Mapa (máscaras brancas, no mesmo quadro da capa): as ondas do canal e o barco.
 function mapaOndas() {
+	// Ondulações longas e finas, em grupos de dois ou três traços paralelos, como nas cartas antigas.
 	const r = sorteio(521);
 	let g = '';
-	for (let i = 0; i < 70; i++) {
-		const x = 440 + r() * 920, y = 40 + r() * 440;
-		if (MAPA_ILHAS.some(([ix, iy, rx, ry]) => Math.hypot((x - ix) / (rx + 30), (y - iy) / (ry + 24)) < 1)) continue;
-		g += `<path d="M ${f(x)} ${f(y)} q 8 -6 16 0 t 16 0" stroke-width="1.8" stroke-linecap="round" opacity="${f(0.5 + r() * 0.5)}"/>`;
+	for (let i = 0; i < 22; i++) {
+		const x = 450 + r() * 860, y = 50 + r() * 420, n = 2 + Math.floor(r() * 2), l = 40 + r() * 40;
+		if (MAPA_ILHAS.some(([ix, iy, rx, ry]) => Math.hypot((x + l / 2 - ix) / (rx + 50), (y - iy) / (ry + 30)) < 1)) continue;
+		for (let k = 0; k < n; k++) { const yy = y + k * 6, xx = x + k * 7, ll = l - k * 12; g += `<path d="M ${f(xx)} ${f(yy)} q ${f(ll / 4)} -3 ${f(ll / 2)} 0 t ${f(ll / 2)} 0" stroke-width="1.1" stroke-linecap="round" opacity="${f(0.45 + r() * 0.4)}"/>`; }
 	}
 	return g;
 }
@@ -394,52 +486,122 @@ function mapaBarco() {
 	return '<g transform="translate(900 452)" stroke-width="2" stroke-linejoin="round"><path d="M -34 0 Q 0 18 34 0 Z" fill="#fff"/><line x1="0" y1="0" x2="0" y2="-48"/><path d="M 3 -46 Q 30 -30 3 -10 Z" fill="#fff" opacity=".85"/><path d="M -3 -40 Q -22 -28 -3 -14 Z" fill="#fff" opacity=".6"/><path d="M -46 10 q 10 -6 20 0 t 20 0 M 26 10 q 10 -6 20 0" stroke-linecap="round" opacity=".7"/></g>';
 }
 
-// Abissal: o fundo do mar, com raios de luz, areia e corais variados (galhos, leques, cérebro e tubos). As algas e as
-// três águas-vivas são camadas à parte (abissalAlgas e abissalMedusa), que balançam e flutuam por cima.
+// Abissal: o fundo do mar em camadas de profundidade. Raios de luz em leque descendo da superfície, neve marinha, um
+// recife distante enevoado, corais ramificados e gorgônias rendadas no meio, e rochas escuras na frente, nos cantos.
+// As algas e as três águas-vivas são camadas à parte (abissalAlgas e abissalMedusa), que balançam e flutuam por cima.
+// Coral ramificado: cada galho se divide em dois ou três, afinando, como uma árvore.
+function coralRamificado(r, x, y, ang, comp, larg, nivel, abertura, afina = 0.7, encurta = 0.75) {
+	// Os galhos tendem a voltar para cima, como os corais crescem em direção à luz.
+	const a = ang + (-Math.PI / 2 - ang) * 0.18;
+	const x2 = x + Math.cos(a) * comp, y2 = y + Math.sin(a) * comp;
+	let s = `<line x1="${f(x)}" y1="${f(y)}" x2="${f(x2)}" y2="${f(y2)}" stroke-width="${f(larg)}"/>`;
+	if (nivel === 0) return s;
+	const filhos = r() < 0.35 ? 3 : 2;
+	for (let i = 0; i < filhos; i++) {
+		const desvio = (i - (filhos - 1) / 2) * abertura * (0.7 + r() * 0.6);
+		s += coralRamificado(r, x2, y2, a + desvio, comp * (encurta - 0.07 + r() * 0.14), larg * afina, nivel - 1, abertura, afina, encurta);
+	}
+	return s;
+}
+// Gorgônia: um leque de galhos finos saindo da mesma base.
+function gorgonia(r, x, y, s, cor) {
+	let g = `<g stroke="${cor}" stroke-linecap="round" fill="none">`;
+	for (let k = -3; k <= 3; k++) g += coralRamificado(r, x, y, -Math.PI / 2 + k * 0.3, 26 * s, 3 * s, 5, 0.26, 0.72, 0.82);
+	return g + '</g>';
+}
 function abissal(p) {
 	const r = sorteio(601);
-	let g = `<defs><linearGradient id="agua" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="${p.fundo[0]}"/><stop offset=".55" stop-color="${p.fundo[1]}"/><stop offset="1" stop-color="${p.fundo[2]}"/></linearGradient>
-	<linearGradient id="raio" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="${p.luz}" stop-opacity=".22"/><stop offset="1" stop-color="${p.luz}" stop-opacity="0"/></linearGradient></defs>
-	<rect width="${W}" height="${H}" fill="url(#agua)"/>`;
-	for (const [x, w, inc] of [[260, 90, 120], [520, 60, 160], [820, 120, 140], [1120, 70, 180], [1420, 100, 150], [1640, 60, 120]]) g += `<path d="M ${x} -10 L ${x + w} -10 L ${x + w + inc} ${H} L ${x + inc - 40} ${H} Z" fill="url(#raio)"/>`;
-	g += `<path d="M -10 ${H - 30} Q 400 ${H - 52} 900 ${H - 34} T 1810 ${H - 38} V ${H + 10} H -10 Z" fill="${p.areia}"/>`;
-	const tons = [p.coral, mistura(p.coral, p.medusa, 0.5), mistura(p.coral, '#ffd27a', 0.45), mistura(p.coral, p.luz, 0.35)];
-	// Coral em galhos.
-	const galhos = (x, y, s, cor) => `<g transform="translate(${x} ${y}) scale(${s})" stroke="${cor}" stroke-width="6" stroke-linecap="round" fill="none"><path d="M 0 0 V -44 M 0 -24 L -18 -44 V -60 M 0 -34 L 16 -56 L 26 -66 M -18 -48 L -28 -56 M 16 -52 L 10 -68"/></g>`;
-	// Leque: um semicírculo de nervuras.
-	const leque = (x, y, s, cor) => { let l = `<g transform="translate(${x} ${y}) scale(${s})" stroke="${cor}" fill="none" stroke-linecap="round"><path d="M -40 -10 Q 0 -70 40 -10" stroke-width="3"/>`; for (let k = -4; k <= 4; k++) l += `<path d="M 0 0 L ${k * 9} ${-50 + Math.abs(k) * 6}" stroke-width="2"/>`; return l + `<path d="M -30 -24 Q 0 -54 30 -24" stroke-width="1.6"/></g>`; };
-	// Cérebro: uma cúpula com sulcos.
-	const cerebro = (x, y, s, cor) => `<g transform="translate(${x} ${y}) scale(${s})"><path d="M -34 0 Q -34 -40 0 -40 Q 34 -40 34 0 Z" fill="${cor}" opacity=".85"/><path d="M -24 -8 q 6 -10 12 0 t 12 0 t 12 0 M -20 -22 q 6 -10 12 0 t 12 0 t 10 0" stroke="${p.areia}" stroke-width="2" fill="none" opacity=".7"/></g>`;
-	// Tubos: esponjas em colunas.
-	const tubos = (x, y, s, cor) => `<g transform="translate(${x} ${y}) scale(${s})" fill="${cor}">${[[-14, 46], [0, 64], [14, 38]].map(([dx, h]) => `<rect x="${dx - 6}" y="${-h}" width="12" height="${h}" rx="6"/><ellipse cx="${dx}" cy="${-h}" rx="6" ry="3" fill="${p.fundo[2]}"/>`).join('')}</g>`;
-	const corais = [[galhos, 120, 1, 0], [leque, 230, 1.1, 1], [cerebro, 330, 1, 2], [tubos, 420, 0.9, 3], [galhos, 520, 0.8, 1], [leque, 1290, 1, 0], [tubos, 1380, 1.1, 2], [galhos, 1470, 1.2, 3], [cerebro, 1580, 1.2, 0], [leque, 1690, 0.9, 2], [galhos, 960, 0.7, 2], [tubos, 820, 0.7, 1]];
-	for (const [fn, x, s, k] of corais) g += fn(x, H - 34 + r() * 6, s, tons[k]);
-	// Bolhas.
-	for (let i = 0; i < 70; i++) { const x = r() * W, y = r() * H; if (x > 520 && x < 1280 && y > 150 && y < 370) continue; g += `<circle cx="${f(x)}" cy="${f(y)}" r="${f(1.5 + r() * 5)}" fill="none" stroke="${p.luz}" stroke-width="1.2" opacity="${f(0.25 + r() * 0.45)}"/>`; }
+	const longe = mistura(p.fundo[1], p.luz, 0.14), meio = mistura(p.fundo[2], p.coral, 0.55), meio2 = mistura(p.fundo[2], mistura(p.coral, p.medusa, 0.45), 0.42), perto = mistura(p.fundo[2], p.fundo[1], 0.25);
+	let g = `<defs><linearGradient id="agua" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="${p.fundo[0]}"/><stop offset=".5" stop-color="${p.fundo[1]}"/><stop offset="1" stop-color="${p.fundo[2]}"/></linearGradient>
+	<linearGradient id="raio" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="${p.luz}" stop-opacity=".16"/><stop offset=".7" stop-color="${p.luz}" stop-opacity=".04"/><stop offset="1" stop-color="${p.luz}" stop-opacity="0"/></linearGradient>
+	<radialGradient id="superficie" cx="62%" cy="-10%" r="70%"><stop offset="0" stop-color="${p.luz}" stop-opacity=".28"/><stop offset="1" stop-color="${p.luz}" stop-opacity="0"/></radialGradient>
+	<linearGradient id="nevoa" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="${p.fundo[1]}" stop-opacity="0"/><stop offset="1" stop-color="${p.fundo[1]}" stop-opacity=".55"/></linearGradient>
+	<radialGradient id="veu"><stop offset="0" stop-color="${p.fundo[1]}" stop-opacity=".55"/><stop offset="1" stop-color="${p.fundo[1]}" stop-opacity="0"/></radialGradient>
+	<filter id="difuso" x="-10%" y="-10%" width="120%" height="120%"><feGaussianBlur stdDeviation="7"/></filter></defs>
+	<rect width="${W}" height="${H}" fill="url(#agua)"/><rect width="${W}" height="${H}" fill="url(#superficie)"/><g filter="url(#difuso)">`;
+	// Raios de luz em leque, todos saindo do mesmo ponto acima da superfície.
+	const [ox, oy] = [1120, -420];
+	for (let i = 0; i < 11; i++) {
+		const a = (-0.62 + i * 0.12 + (r() - 0.5) * 0.05) + Math.PI / 2, w = 0.012 + r() * 0.03, L = 1400;
+		const p1 = [ox + Math.cos(a - w) * L, oy + Math.sin(a - w) * L], p2 = [ox + Math.cos(a + w) * L, oy + Math.sin(a + w) * L];
+		g += `<path d="M ${ox} ${oy} L ${f(p1[0])} ${f(p1[1])} L ${f(p2[0])} ${f(p2[1])} Z" fill="url(#raio)" opacity="${f(0.5 + r() * 0.5)}"/>`;
+	}
+	g += '</g>';
+	// Neve marinha: partículas finas suspensas.
+	for (let i = 0; i < 220; i++) { const x = r() * W, y = r() * H; g += `<circle cx="${f(x)}" cy="${f(y)}" r="${f(0.5 + r() * 1.1)}" fill="${p.luz}" opacity="${f(0.08 + r() * 0.25)}"/>`; }
+	// Recife distante: uma crista irregular com corais pequenos, apagada pela distância.
+	const alturaCrista = (x) => H - 70 - 34 * Math.sin(x / 130) - 18 * Math.sin(x / 47 + 1) + Math.exp(-(((x - 900) / 330) ** 2)) * 46;
+	let crista = `M -10 ${H} L -10 ${f(alturaCrista(-10))}`;
+	for (let x = 50; x <= W + 70; x += 60) crista += ` Q ${x - 30} ${f(alturaCrista(x - 30) - 8)} ${x} ${f(alturaCrista(x))}`;
+	g += `<path d="${crista} L ${W + 70} ${H} Z" fill="${longe}" opacity=".7"/>`;
+	g += `<g stroke="${longe}" stroke-linecap="round" fill="none" opacity=".7">`;
+	for (let i = 0; i < 26; i++) { const x = r() * W; if (Math.abs(x - 900) < 300) continue; g += coralRamificado(r, x, H - 70 - r() * 30, -Math.PI / 2 + (r() - 0.5) * 0.4, 16 + r() * 14, 4, 3, 0.55); }
+	g += `</g><rect y="${H - 200}" width="${W}" height="200" fill="url(#nevoa)"/>`;
+	// Meio: corais ramificados e gorgônias rendadas, só nas laterais (o centro fica para o nome).
+	const lugares = [[90, 1.15, 'galho'], [190, 1.4, 'leque'], [300, 0.9, 'galho'], [400, 1, 'leque'], [500, 0.7, 'galho'], [1300, 0.75, 'galho'], [1400, 1.1, 'leque'], [1500, 1.2, 'galho'], [1610, 1.45, 'leque'], [1720, 0.95, 'galho']];
+	for (const [x, s, tipo] of lugares) {
+		const base = H - 26 - r() * 10, cor = r() < 0.5 ? meio : meio2;
+		if (tipo === 'galho') g += `<g stroke="${cor}" stroke-linecap="round" fill="none">${coralRamificado(r, x, base, -Math.PI / 2 + (r() - 0.5) * 0.3, 26 * s, 11 * s, 4, 0.7, 0.8, 0.8)}</g>`;
+		else g += gorgonia(r, x, base, s, cor);
+	}
+	// Frente: rochas escuras nos cantos, com anêmonas em tufos finos.
+	const rocha = (x0, x1, alt, sem) => {
+		const rr = sorteio(sem);
+		let topo = '';
+		const passo = 40, pts = [];
+		for (let x = x0; x <= x1; x += passo) { const t = (x - x0) / (x1 - x0); pts.push([x, H - alt * Math.sin(Math.PI * t) ** 0.5 - rr() * 16]); }
+		topo = `M ${pts[0][0]} ${f(pts[0][1])}`;
+		for (let i = 1; i < pts.length; i++) topo += ` Q ${f(pts[i - 1][0] + passo / 2)} ${f(Math.min(pts[i - 1][1], pts[i][1]) - 6)} ${pts[i][0]} ${f(pts[i][1])}`;
+		return `<path d="M ${x0} ${H + 10} L ${topo.slice(2)} L ${x1} ${H + 10} Z" fill="${perto}"/><path d="${topo}" fill="none" stroke="${mistura(perto, p.luz, 0.25)}" stroke-width="2" opacity=".6"/>`;
+	};
+	g += rocha(-40, 340, 74, 621) + rocha(1470, 1840, 86, 622);
+	for (const [x, y] of [[120, H - 66], [250, H - 58], [1560, H - 76], [1690, H - 70]]) {
+		g += `<g stroke="${mistura(p.coral, p.luz, 0.25)}" stroke-width="1.6" stroke-linecap="round" fill="none" opacity=".75">`;
+		for (let k = 0; k < 9; k++) { const a = -Math.PI / 2 + (k - 4) * 0.2, l = 14 + r() * 8; g += `<path d="M ${x} ${y} q ${f(Math.cos(a) * l * 0.5 + 4)} ${f(Math.sin(a) * l * 0.5)} ${f(Math.cos(a) * l)} ${f(Math.sin(a) * l)}"/>`; }
+		g += '</g>';
+	}
+	// Véu atrás do nome.
+	g += `<ellipse cx="${W / 2}" cy="${H / 2}" rx="520" ry="150" fill="url(#veu)"/>`;
 	return g;
 }
+// Algas: talos finos com lâminas pontudas alternadas, saindo das rochas dos cantos.
 function abissalAlgas() {
 	const r = sorteio(611);
 	const alga = (x, alt, fase) => {
-		let d = `M ${x} ${H + 10}`;
-		for (let y = H + 10, k = 0; y > H - alt; y -= 20, k++) d += ` Q ${f(x + Math.sin(k + fase) * 22)} ${y - 10} ${f(x + Math.sin(k + 1 + fase) * 10)} ${y - 20}`;
-		return `<path d="${d}" stroke-width="${f(6 + r() * 6)}" stroke-linecap="round" opacity="${f(0.6 + r() * 0.35)}"/>`;
+		let d = `M ${x} ${H + 10}`, folhas = '';
+		const pts = [];
+		for (let y = H + 10, k = 0; y > H - alt; y -= 18, k++) { const xx = x + Math.sin(k * 0.5 + fase) * 14; pts.push([xx, y]); d += ` L ${f(xx)} ${y}`; }
+		pts.forEach(([px, py], k) => {
+			if (k < 2 || k % 2) return;
+			const lado = (k / 2) % 2 ? 1 : -1, l = 26 + r() * 22, larg = 5 + r() * 4, ang = lado * (0.5 + r() * 0.4) - Math.PI / 2;
+			const tx = px + Math.cos(ang) * l, ty = py + Math.sin(ang) * l, nx = -Math.sin(ang) * larg, ny = Math.cos(ang) * larg;
+			const mx = (px + tx) / 2, my = (py + ty) / 2;
+			folhas += `<path d="M ${f(px)} ${f(py)} Q ${f(mx + nx)} ${f(my + ny)} ${f(tx)} ${f(ty)} Q ${f(mx - nx)} ${f(my - ny)} ${f(px)} ${f(py)} Z" fill="#fff" stroke="none" opacity="${f(0.6 + r() * 0.35)}"/>`;
+		});
+		return `<path d="${d}" stroke-width="2.4" stroke-linecap="round" opacity=".85"/>${folhas}`;
 	};
 	let g = '';
-	for (let i = 0; i < 12; i++) g += alga(f(10 + r() * 360), 160 + r() * 260, r() * 6);
-	for (let i = 0; i < 12; i++) g += alga(f(1430 + r() * 360), 160 + r() * 260, r() * 6);
+	for (let i = 0; i < 7; i++) g += alga(f(20 + r() * 300), 150 + r() * 230, r() * 6);
+	for (let i = 0; i < 7; i++) g += alga(f(1500 + r() * 290), 150 + r() * 230, r() * 6);
 	return g;
 }
-// Três águas-vivas diferentes: redonda, alongada de tentáculos longos e pequena.
-const MEDUSAS = [[250, 150, 1, 'redonda'], [1570, 120, 1.25, 'longa'], [1460, 300, 0.7, 'pequena']];
+// Três águas-vivas: sino translúcido (mais denso na borda), franja, braços orais ondulados e tentáculos finos que somem.
+const MEDUSAS = [[250, 140, 1, 4, 150], [1570, 110, 1.25, 6, 200], [1440, 300, 0.7, 4, 110]];
 function abissalMedusa(k) {
-	const [x, y, s, tipo] = MEDUSAS[k];
-	const halo = `<circle cx="${x}" cy="${y}" r="${70 * s}" fill="url(#h)" stroke="none"/>`;
-	let corpo;
-	if (tipo === 'longa') corpo = `<path d="M -26 0 Q -28 -46 0 -48 Q 28 -46 26 0 Q 13 6 0 0 Q -13 6 -26 0 Z" fill="#fff" opacity=".8"/>` + [-18, -6, 6, 18].map((tx) => `<path d="M ${tx} 2 q 8 24 0 48 t 0 48 t 0 40" fill="none" stroke="#fff" stroke-width="1.8" opacity=".6"/>`).join('');
-	else if (tipo === 'pequena') corpo = `<path d="M -22 0 Q -22 -22 0 -24 Q 22 -22 22 0 Z" fill="#fff" opacity=".75"/>` + [-12, 0, 12].map((tx) => `<path d="M ${tx} 0 q 5 12 0 24 t 0 24" fill="none" stroke="#fff" stroke-width="1.6" opacity=".6"/>`).join('');
-	else corpo = `<path d="M -30 0 Q -30 -34 0 -34 Q 30 -34 30 0 Q 15 6 0 0 Q -15 6 -30 0 Z" fill="#fff" opacity=".78"/><path d="M -18 -14 Q 0 -30 18 -14" fill="none" stroke="#fff" stroke-width="1.4" opacity=".5"/>` + [-20, -8, 4, 16].map((tx) => `<path d="M ${tx} 2 q 6 18 0 34 t 0 34" fill="none" stroke="#fff" stroke-width="2" opacity=".6"/>`).join('');
-	return `<defs><radialGradient id="h"><stop offset="0" stop-color="#fff" stop-opacity=".55"/><stop offset="1" stop-color="#fff" stop-opacity="0"/></radialGradient></defs>${halo}<g transform="translate(${x} ${y}) scale(${s})">${corpo}</g>`;
+	const [x, y, s, nt, ct] = MEDUSAS[k];
+	const r = sorteio(640 + k);
+	let g = `<defs><radialGradient id="sino" cx="50%" cy="85%" r="85%"><stop offset="0" stop-color="#fff" stop-opacity=".12"/><stop offset=".7" stop-color="#fff" stop-opacity=".38"/><stop offset="1" stop-color="#fff" stop-opacity=".8"/></radialGradient>
+	<linearGradient id="fio" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#fff" stop-opacity=".7"/><stop offset="1" stop-color="#fff" stop-opacity="0"/></linearGradient>
+	<radialGradient id="h"><stop offset="0" stop-color="#fff" stop-opacity=".3"/><stop offset="1" stop-color="#fff" stop-opacity="0"/></radialGradient></defs>`;
+	g += `<circle cx="${x}" cy="${y - 10 * s}" r="${70 * s}" fill="url(#h)" stroke="none"/><g transform="translate(${x} ${y}) scale(${s})">`;
+	// Tentáculos finos e longos.
+	for (let i = 0; i < nt; i++) { const tx = -26 + (52 * i) / (nt - 1), fase = r() * 8 - 4; g += `<path d="M ${f(tx)} 0 q ${f(fase)} ${ct / 4} 0 ${ct / 2} t 0 ${ct / 2}" fill="none" stroke="url(#fio)" stroke-width="1.1"/>`; }
+	// Braços orais: fitas onduladas mais grossas no meio.
+	for (const bx of [-7, 7]) g += `<path d="M ${bx} 0 q ${bx * 1.6} 16 0 32 t 0 32 t ${bx * 0.6} 20" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" opacity=".28"/>`;
+	// O sino, com a franja da borda.
+	g += `<path d="M -32 0 C -34 -30 -20 -44 0 -44 C 20 -44 34 -30 32 0 Q 24 5 16 1 Q 8 6 0 1 Q -8 6 -16 1 Q -24 5 -32 0 Z" fill="url(#sino)" stroke="none"/>`;
+	g += '</g>';
+	return g;
 }
 
 // Forja Rúnica: pedra escura, faixas de runas em cima e embaixo e fagulhas. As runas aparecem apagadas; as acesas são
@@ -512,19 +674,25 @@ function esferaArmilar(p) {
 	g += `<line x1="${f(ax[0])}" y1="${f(ax[1])}" x2="${f(ax[2])}" y2="${f(ax[3])}" stroke-width="1.6"/>`;
 	g += '</g>';
 	g += `<circle cx="${f(ax[2])}" cy="${f(ax[3])}" r="6" fill="${p.linha}"/><circle cx="${f(ax[0])}" cy="${f(ax[1])}" r="6" fill="${p.linha}"/>`;
-	// Globo central com uma estrela de quatro pontas.
+	// A Terra no centro, como nas esferas armilares: globo com meridiano e equador.
 	g += `<circle cx="${cx}" cy="${cy}" r="44" fill="${p.fundo[1]}" stroke="${p.linha}" stroke-width="1.6"/>`;
-	g += `<path d="M ${cx} ${cy - 30} Q ${cx + 5} ${cy - 5} ${cx + 30} ${cy} Q ${cx + 5} ${cy + 5} ${cx} ${cy + 30} Q ${cx - 5} ${cy + 5} ${cx - 30} ${cy} Q ${cx - 5} ${cy - 5} ${cx} ${cy - 30} Z" fill="${p.brilho}"/>`;
+	g += `<g fill="none" stroke="${p.brilho}" stroke-width="1.6"><circle cx="${cx}" cy="${cy}" r="27"/><ellipse cx="${cx}" cy="${cy}" rx="11" ry="27"/><line x1="${cx - 27}" y1="${cy}" x2="${cx + 27}" y2="${cy}"/></g>`;
 	return g;
 }
 
 // Constelação: um rio de estrelas (o "Star Stream") cruza o céu em curva, com o brilho dourado no meio, constelações
-// nos cantos e estrelas de quatro pontas como a do logo. O centro fica limpo para o nome.
+// nos cantos e algumas estrelas fortes com raios finos, como numa foto de telescópio. O centro fica limpo para o nome.
+const curvaDoRio = (t) => [-120 + 2040 * t, 300 - 185 * Math.sin(Math.PI * (t - 0.5)) + 42 * Math.sin(4 * Math.PI * t)];
+const caminhoDoRio = (() => {
+	let d = '';
+	for (let t = 0; t <= 1.0001; t += 0.02) { const [x, y] = curvaDoRio(t); d += `${d ? ' L' : 'M'} ${f(x)} ${f(y)}`; }
+	return d;
+})();
+// Fora da área do nome, no meio da capa.
+const longeDoNome = (x, y) => !(x > 520 && x < 1280 && y > 150 && y < 380);
 function rio(p) {
 	const r = sorteio(701);
-	const curva = (t) => [-120 + 2040 * t, 300 - 185 * Math.sin(Math.PI * (t - 0.5)) + 42 * Math.sin(4 * Math.PI * t)];
-	let d = '';
-	for (let t = 0; t <= 1.0001; t += 0.02) { const [x, y] = curva(t); d += `${d ? ' L' : 'M'} ${f(x)} ${f(y)}`; }
+	const curva = curvaDoRio, d = caminhoDoRio;
 	let g = `<defs><radialGradient id="ceu" cx="50%" cy="50%" r="75%"><stop offset="0" stop-color="${p.fundo[0]}"/><stop offset=".6" stop-color="${p.fundo[1]}"/><stop offset="1" stop-color="${p.fundo[2]}"/></radialGradient>
 	<radialGradient id="neb1"><stop offset="0" stop-color="${p.violeta}" stop-opacity=".38"/><stop offset="1" stop-color="${p.violeta}" stop-opacity="0"/></radialGradient>
 	<radialGradient id="neb2"><stop offset="0" stop-color="${p.azul}" stop-opacity=".4"/><stop offset="1" stop-color="${p.azul}" stop-opacity="0"/></radialGradient>
@@ -556,9 +724,10 @@ function rio(p) {
 	}
 	// Constelações nos cantos.
 	[[70, 50, 0, 1.15], [1500, 360, 1, 1.1], [1180, 40, 2, 0.95], [150, 380, 3, 0.9]].forEach(([x, y, i, e], k) => (g += constelacao({ linha: p.acento }, FIGURAS[i], x, y, e, 711 + k)));
-	// Estrelas de quatro pontas, como a do logo.
-	const quatro = (x, y, s) => `<circle cx="${x}" cy="${y}" r="${f(s * 2.4)}" fill="url(#faisca)"/><path d="M ${x} ${f(y - s)} Q ${f(x + s * 0.16)} ${f(y - s * 0.16)} ${f(x + s)} ${y} Q ${f(x + s * 0.16)} ${f(y + s * 0.16)} ${x} ${f(y + s)} Q ${f(x - s * 0.16)} ${f(y + s * 0.16)} ${f(x - s)} ${y} Q ${f(x - s * 0.16)} ${f(y - s * 0.16)} ${x} ${f(y - s)} Z" fill="${p.marfim}"/>`;
-	for (const [x, y, s] of [[300, 120, 16], [520, 440, 11], [1320, 420, 13], [1620, 90, 20], [1050, 70, 9], [80, 260, 10], [1740, 300, 12]]) g += quatro(x, y, s);
+	// Estrelas fortes: núcleo redondo, halo e dois raios finos que somem nas pontas, como numa foto de telescópio.
+	g += `<defs><linearGradient id="raioH"><stop offset="0" stop-color="${p.marfim}" stop-opacity="0"/><stop offset=".5" stop-color="${p.marfim}" stop-opacity=".75"/><stop offset="1" stop-color="${p.marfim}" stop-opacity="0"/></linearGradient><linearGradient id="raioV" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="${p.marfim}" stop-opacity="0"/><stop offset=".5" stop-color="${p.marfim}" stop-opacity=".75"/><stop offset="1" stop-color="${p.marfim}" stop-opacity="0"/></linearGradient></defs>`;
+	const forte = (x, y, s) => `<circle cx="${x}" cy="${y}" r="${f(s * 2.2)}" fill="url(#faisca)"/><rect x="${f(x - s * 3)}" y="${f(y - 0.5)}" width="${f(s * 6)}" height="1" fill="url(#raioH)"/><rect x="${f(x - 0.5)}" y="${f(y - s * 2.2)}" width="1" height="${f(s * 4.4)}" fill="url(#raioV)"/><circle cx="${x}" cy="${y}" r="${f(1.2 + s * 0.12)}" fill="${p.marfim}"/>`;
+	for (const [x, y, s] of [[300, 120, 14], [520, 440, 9], [1320, 420, 11], [1620, 90, 16], [1050, 70, 8], [80, 260, 9], [1740, 300, 10]]) g += forte(x, y, s);
 	// Véu escuro atrás do nome.
 	g += `<ellipse cx="${W / 2}" cy="${H / 2}" rx="560" ry="160" fill="url(#veu)"/>`;
 	return g;
@@ -617,9 +786,28 @@ for (const [nome, paleta] of SAIDAS) {
 	console.log(nome, paleta, svg.length);
 }
 
+// O rio por onde a luz corre: a mesma faixa do brilho difuso, mais estreita.
+function rioFluxo() {
+	return `<defs><filter id="b" x="-20%" y="-60%" width="140%" height="220%"><feGaussianBlur stdDeviation="14"/></filter></defs><path d="${caminhoDoRio}" stroke-width="90" stroke-linecap="round" filter="url(#b)"/>`;
+}
+// Estrelas do rio que cintilam, em dois grupos alternados; nenhuma atrás do nome.
+function rioBrilho(grupo) {
+	const r = sorteio(733);
+	let g = '<defs><radialGradient id="h"><stop offset="0" stop-color="#fff"/><stop offset=".25" stop-color="#fff" stop-opacity=".55"/><stop offset="1" stop-color="#fff" stop-opacity="0"/></radialGradient></defs>';
+	for (let i = 0; i < 90; i++) {
+		const t = r(), [x, y] = curvaDoRio(t), yy = y + (r() + r() - 1) * 60, s = 1 + Math.pow(r(), 2) * 1.6;
+		if (i % 2 !== grupo || !longeDoNome(x, yy)) continue;
+		g += `<circle cx="${f(x)}" cy="${f(yy)}" r="${f(s * 5)}" fill="url(#h)" stroke="none"/><circle cx="${f(x)}" cy="${f(yy)}" r="${f(s)}" fill="#fff" stroke="none"/>`;
+	}
+	return g;
+}
+
 // Camadas que se mexem por cima das capas (máscaras brancas no mesmo quadro de 1800 x 520, recortadas como a capa):
 // a cor vem do CSS de cada paleta.
 const CAMADAS = {
+	'constelacao-fluxo': rioFluxo(),
+	'constelacao-brilho-1': rioBrilho(0),
+	'constelacao-brilho-2': rioBrilho(1),
 	'mapa-ondas': mapaOndas(),
 	'mapa-barco': mapaBarco(),
 	'abissal-algas': abissalAlgas(),

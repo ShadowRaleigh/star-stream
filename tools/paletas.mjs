@@ -64,11 +64,6 @@ export function capaScifi(tema, corId, modo) {
 
 const PAPEL_FANTASIA = { grimorio: 'pergaminho', bosque: 'papel-bosque', vitral: 'papel-vitral', forja: 'papel-forja', mapa: 'papel-mapa', abissal: 'papel-abissal' };
 const f2 = (n) => Math.round(n * 100) / 100;
-const saturacao = (h) => {
-	const c = hex(h).map((v) => v / 255);
-	const mx = Math.max(...c), mn = Math.min(...c);
-	return mx === 0 ? 0 : (mx - mn) / mx;
-};
 
 // Cores dos ornamentos de uma paleta: cantos (metal), florão (tinta) e a textura da capa de material.
 export function ornamentoFantasia(tema, cor) {
@@ -155,13 +150,10 @@ export function varsFantasia(tema, cor) {
 	if (tema === 'mapa') vars['--ss-mar'] = p.mar;
 	if (tema === 'abissal') Object.assign(vars, { '--ss-alga': p.alga, '--ss-medusa': p.medusa });
 	if (tema === 'vitral') Object.assign(vars, { '--ss-vidro-a': p.vidros[0], '--ss-vidro-b': p.vidros[1] });
-	// O Grimório monta a capa com o selo, os cantos e o couro: aqui vão as peças recoloridas e o filtro do nome.
+	// O Grimório monta a capa com o selo, os cantos e o couro: aqui vão as peças recoloridas.
 	if (tema === 'grimorio') {
 		vars['--ss-selo-capa'] = arq(`selo-grimorio-${cor}`);
 		vars['--ss-capa-centro'] = mistura(p.couro, '#ffffff', 0.12);
-		vars['--ss-filtro-logo'] = saturacao(p.ouro) < 0.22
-			? 'grayscale(1) brightness(0.92) contrast(1.1) drop-shadow(0 2px 0 rgb(0 0 0 / 0.7))'
-			: 'sepia(1) saturate(3.2) hue-rotate(-14deg) brightness(0.82) contrast(1.15) drop-shadow(0 2px 0 rgb(0 0 0 / 0.7))';
 	}
 	return { vars, varsFora, capa: tema === 'grimorio' ? null : `capa-${tema}-${cor}` };
 }

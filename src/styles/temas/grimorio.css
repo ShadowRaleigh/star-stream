@@ -16,7 +16,6 @@
 	--ss-couro-rgb: 36 22 12;
 	--ss-capa-centro: #4a2c16;
 	--ss-selo-capa: url('/star-stream/temas/selo-dourado.svg');
-	--ss-filtro-logo: sepia(1) saturate(3.2) hue-rotate(-14deg) brightness(0.82) contrast(1.15) drop-shadow(0 2px 0 rgb(0 0 0 / 0.7));
 	--ss-material: url('/star-stream/temas/couro.svg');
 	--ss-capa-fundo: linear-gradient(180deg, #2c1b0e, #1f130a);
 	--ss-papel-textura: url('/star-stream/temas/pergaminho.svg');

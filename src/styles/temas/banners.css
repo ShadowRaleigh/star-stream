@@ -168,8 +168,13 @@
 	background: radial-gradient(circle at center, rgb(var(--ss-couro-rgb) / 0.35) 0 25%, rgb(var(--ss-couro-rgb) / 0.8) 60%);
 }
 
+/* O nome em ouro de verdade: a imagem some de dentro da própria caixa e fica só o fundo em gradiente, recortado pelo
+   desenho do logo (o filtro sépia antigo deixava o ouro cor de mostarda). Nas paletas de prata, o gradiente é de prata. */
 [data-ss-tema='grimorio'] .ss-capa img {
-	filter: var(--ss-filtro-logo);
+	object-position: -99999px 0;
+	background: linear-gradient(180deg, color-mix(in srgb, var(--ss-ouro) 55%, #fff) 10%, var(--ss-ouro) 50%, color-mix(in srgb, var(--ss-ouro) 70%, #000) 92%);
+	-webkit-mask: url('/star-stream/temas/logo-mascara.svg') center / contain no-repeat;
+	mask: url('/star-stream/temas/logo-mascara.svg') center / contain no-repeat;
 }
 
 /* Clássico: uma página de atlas estelar, com régua graduada na moldura e o centro limpo para o nome. */

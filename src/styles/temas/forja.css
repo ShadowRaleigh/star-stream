@@ -32,8 +32,8 @@
 	--ss-capitular-2: #7a2c0c;
 	--ss-botao: linear-gradient(180deg, #c4521f, #8a3510);
 	--ss-marcador: '\25C8  ';
-	--ss-fonte-deco: 'Uncial Antiqua', 'Cinzel', serif;
-	--ss-fonte-cabeca: 'Uncial Antiqua', 'Cinzel', serif;
+	--ss-fonte-deco: 'Cinzel Decorative', 'Cinzel', serif;
+	--ss-fonte-cabeca: 'Cinzel', serif;
 	--ss-fonte-rotulo: 'Cinzel', serif;
 	--ss-serifa: 'EB Garamond Variable', 'EB Garamond', Georgia, serif;
 	--sl-font: var(--ss-serifa);

@@ -50,11 +50,33 @@
 	text-decoration: none;
 }
 
-/* No celular, o ícone de âncora quebrava para a linha de baixo nos títulos decorados. */
-@media (max-width: 50rem) {
-	:root[data-ss-tema]:not([data-ss-tema='classico']) .sl-markdown-content .sl-anchor-link {
+/* Títulos decorados (ícone, florão ou filete): o ícone de âncora do Starlight sai do fluxo e aparece à esquerda do título,
+   senão ele cai numa linha própria e deixa um vão da altura do título embaixo dele. */
+:root[data-ss-tema]:not([data-ss-tema='classico']) .sl-markdown-content .sl-heading-wrapper.level-h2 {
+	position: relative;
+}
+
+:root[data-ss-tema]:not([data-ss-tema='classico']) .sl-markdown-content .sl-heading-wrapper.level-h2 > h2 {
+	padding-inline-end: 0;
+}
+
+:root[data-ss-tema]:not([data-ss-tema='classico']) .sl-markdown-content .sl-heading-wrapper.level-h2 > .sl-anchor-link {
+	position: absolute;
+	top: 0;
+	inset-inline-start: -1.15em;
+	margin: 0;
+}
+
+/* No celular e em telas de toque (sem passar o mouse), o ícone de âncora ficaria sempre visível ao lado de cada título:
+   some. Nos títulos centralizados (fantasia e Codex) ele ficaria solto na margem, então some sempre. */
+@media (max-width: 50rem), (hover: none) {
+	:root[data-ss-tema] .sl-markdown-content .sl-anchor-link {
 		display: none;
 	}
+}
+
+:root:is([data-ss-familia='fantasia'], [data-ss-tema='codex']) .sl-markdown-content .level-h2 > .sl-anchor-link {
+	display: none;
 }
 
 /* No celular, a nota da versão cabe numa linha só em qualquer tema. */
@@ -80,4 +102,76 @@
 		max-width: calc(var(--sl-content-width) + 2 * var(--sl-content-pad-x) + 4rem);
 		margin-inline: auto;
 	}
+}
+
+/* O Starlight só usa --sl-text-body nos cards: o texto de leitura recebe aqui o tamanho que cada tema pede
+   (as serifas de livro precisam de mais corpo que a fonte sem serifa padrão). */
+:root[data-ss-tema] .sl-markdown-content {
+	font-size: var(--sl-text-body);
+}
+
+/* Capitular (Codex e fantasia): o primeiro parágrafo contém a letra flutuante, para ela não invadir o parágrafo
+   seguinte quando a abertura tem uma linha só. */
+:root:is([data-ss-tema='codex'], [data-ss-familia='fantasia']) .sl-markdown-content > p:first-child {
+	display: flow-root;
+}
+
+/* Os temas de fantasia são pergaminho nos dois modos: o seletor claro/escuro não mudaria nada, então some
+   (no cabeçalho e no menu do celular). */
+:root[data-ss-familia='fantasia'] starlight-theme-select {
+	display: none;
+}
+
+/* Nos temas de serifa de livro, os 14 px do índice "Nesta página" ficam miúdos: sobe para 15 px. */
+:root:is([data-ss-familia='fantasia'], [data-ss-tema='codex'], [data-ss-tema='observatorio'], [data-ss-tema='astrolabio']) .right-sidebar a {
+	font-size: 0.95rem;
+}
+
+/* O título do cartão de link é um <a>: o sublinhado que os temas dão aos links do texto não vale para ele. */
+:root[data-ss-tema] .sl-markdown-content .sl-link-card a {
+	border-bottom: 0;
+	text-decoration: none;
+}
+
+/* Botão do menu no celular: o disco branco padrão do Starlight brigava com o logo; vira um botão discreto da cor do tema. */
+:root[data-ss-tema] .sl-menu-button,
+:root[data-ss-tema][data-theme='light'] .sl-menu-button {
+	background: transparent;
+	color: var(--sl-color-gray-2);
+	box-shadow: none;
+	border: 1px solid var(--sl-color-hairline-light);
+}
+
+:root:root[data-ss-familia='scifi'] .sl-menu-button {
+	border-radius: 0;
+}
+
+:root:root[data-ss-familia='fantasia'] .sl-menu-button {
+	border-radius: 2px;
+	border-color: rgb(var(--ss-ouro-rgb) / 0.7);
+	color: var(--ss-ouro);
+}
+
+/* No computador, o cabeçalho de tabela não quebra no meio ("Dano (×" / "arma)"); tabelas largas rolam de lado. */
+@media (min-width: 50rem) {
+	:root[data-ss-tema] .sl-markdown-content th {
+		white-space: nowrap;
+	}
+}
+
+/* As partículas que sobem ficam na área do texto, sem passar por cima da barra lateral. */
+@media (min-width: 50rem) {
+	:root[data-ss-familia='fantasia'] .ss-subida {
+		left: var(--sl-sidebar-width);
+	}
+}
+
+/* Barra lateral e índice em tamanho de leitura nos temas de serifa do Astra; o índice ganha fundo para as estrelas
+   não cruzarem as letras. */
+:root:is([data-ss-tema='codex'], [data-ss-tema='observatorio'], [data-ss-tema='astrolabio']) :is(.sidebar-content a, .right-sidebar a) {
+	font-size: 1rem;
+}
+
+:root:is([data-ss-tema='codex'], [data-ss-tema='observatorio'], [data-ss-tema='astrolabio']) .right-sidebar {
+	background: var(--sl-color-bg-sidebar);
 }

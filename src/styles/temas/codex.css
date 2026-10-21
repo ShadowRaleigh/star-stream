@@ -90,11 +90,9 @@
 	font-style: italic;
 }
 
-[data-ss-tema='codex'] .sidebar-content a[aria-current='page']::after {
-	content: ' ✦';
-	color: var(--ss-ouro);
-	font-style: normal;
-	font-size: 0.7em;
+/* O item atual ganha um filete de ouro à esquerda, como fita de leitura. */
+[data-ss-tema='codex'] .sidebar-content a[aria-current='page'] {
+	box-shadow: inset 2px 0 0 var(--ss-ouro);
 }
 
 /* Título centralizado, com florão de ouro, como a página de rosto de um capítulo. */
@@ -145,6 +143,10 @@
 	border-bottom: none;
 	padding-bottom: 0;
 	margin-top: 3rem;
+}
+
+[data-ss-tema='codex'] .sl-markdown-content .sl-heading-wrapper.level-h2 {
+	text-align: center;
 }
 
 [data-ss-tema='codex'] .sl-markdown-content h2::after {

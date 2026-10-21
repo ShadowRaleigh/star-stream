@@ -33,8 +33,8 @@
 	--ss-capitular-2: #1f3266;
 	--ss-botao: linear-gradient(180deg, #8f2638, #631522);
 	--ss-marcador: '\2720  ';
-	--ss-fonte-deco: 'Cormorant Unicase', 'Cinzel', serif;
-	--ss-fonte-cabeca: 'Cormorant Unicase', 'Cinzel', serif;
+	--ss-fonte-deco: 'Cormorant Garamond', 'Cinzel', serif;
+	--ss-fonte-cabeca: 'Cormorant Garamond', 'Cinzel', serif;
 	--ss-fonte-rotulo: 'Cinzel', serif;
 	--ss-serifa: 'EB Garamond Variable', 'EB Garamond', Georgia, serif;
 	--sl-font: var(--ss-serifa);
@@ -88,4 +88,15 @@
 
 [data-ss-tema='vitral'] .ss-capa {
 	background: url('/star-stream/temas/capa-vitral.svg') center / cover;
+}
+
+/* A Cormorant Garamond só tem até o 600: o título usa o peso que existe, sem negrito falso. */
+[data-ss-tema='vitral'] h1#_top {
+	font-weight: 600;
+}
+
+/* A Cormorant em 0,85rem ficava miúda e fraca no cabeçalho da tabela. */
+[data-ss-tema='vitral'] .sl-markdown-content th {
+	font-size: 0.95rem;
+	font-weight: 600;
 }

@@ -136,9 +136,18 @@
 	opacity: 0.8;
 }
 
+/* O h2 do Starlight é inline dentro do invólucro: é o invólucro que centraliza o título e o florão. */
+[data-ss-familia='fantasia'] .sl-markdown-content .sl-heading-wrapper.level-h2 {
+	text-align: center;
+}
+
 [data-ss-familia='fantasia'] .sl-markdown-content h3 {
 	font-size: 1.25rem;
 	color: var(--ss-tinta);
+}
+
+/* O filete do h3 corre a largura toda (no h3 inline ele parecia sublinhado de link). */
+[data-ss-familia='fantasia'] .sl-markdown-content .sl-heading-wrapper.level-h3 {
 	border-bottom: 1px solid var(--sl-color-hairline);
 	padding-bottom: 0.2rem;
 }
@@ -269,4 +278,32 @@
    ao rolar além do fim, e os verificadores de contraste leem a cor certa atrás do cabeçalho e das barras laterais. */
 :root[data-ss-familia='fantasia'][data-ss-tema] {
 	background-color: var(--ss-couro-escuro);
+}
+
+/* As setas de recolher da barra lateral herdavam a tinta da página (escura sobre o couro): seguem a cor do texto
+   redefinida na barra. */
+[data-ss-familia='fantasia'] :is(.sidebar-pane, .right-sidebar) {
+	color: var(--sl-color-text);
+}
+
+/* Página inicial: a capa tem moldura própria; desce o bastante para não encostar nos cantos da folha. */
+[data-ss-familia='fantasia'] .main-pane > main:has(.ss-capa) {
+	padding-top: 3.5rem;
+}
+
+@media (max-width: 50rem) {
+	[data-ss-familia='fantasia'] .main-pane > main:has(.ss-capa) {
+		padding-top: 2.75rem;
+	}
+
+	/* No celular, menos vão antes do título: o cabeçalho e a margem da folha já ocupam a tela. */
+	[data-ss-familia='fantasia'] .content-panel:has(h1#_top) {
+		padding-top: 1.25rem;
+	}
+}
+
+/* IM Fell, Almendra, Marcellus e as outras fontes de título só existem no peso normal: sem isso o navegador inventa um
+   negrito borrado onde o tema pede 600 ou 700. */
+:root[data-ss-familia='fantasia'] {
+	font-synthesis-weight: none;
 }

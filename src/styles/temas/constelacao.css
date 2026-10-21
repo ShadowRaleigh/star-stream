@@ -102,16 +102,25 @@
 	font-family: 'Cinzel', serif;
 	color: var(--sl-color-white);
 	border-bottom: none;
+}
+
+/* O filete corre a largura toda no invólucro (no h2 inline ele ficava só sob o texto). */
+[data-ss-tema='constelacao'] .sl-markdown-content .sl-heading-wrapper.level-h2 {
 	padding-bottom: 0.45rem;
 	background: linear-gradient(90deg, var(--ss-ouro), transparent 70%) left bottom / 100% 1px no-repeat;
 }
 
+/* Um astro pequeno (anel com brilho) antes do título. */
 [data-ss-tema='constelacao'] .sl-markdown-content h2::before {
-	content: '✦';
-	color: var(--ss-ouro);
-	font-size: 0.6em;
+	content: '';
+	display: inline-block;
+	width: 0.36em;
+	height: 0.36em;
+	border: 1.5px solid var(--ss-ouro);
+	border-radius: 50%;
+	box-shadow: 0 0 6px rgb(var(--ss-ouro-rgb) / 0.6);
 	margin-inline-end: 0.6rem;
-	vertical-align: 0.25em;
+	vertical-align: 0.2em;
 }
 
 [data-ss-tema='constelacao'] .sl-markdown-content h3 {
@@ -224,3 +233,8 @@
 	color: var(--ss-botao-tinta);
 }
 
+
+/* No claro, o ouro em letra miúda não tem contraste: o cabeçalho da tabela fica na tinta. */
+[data-ss-tema='constelacao'][data-theme='light'] .sl-markdown-content th {
+	color: var(--sl-color-gray-1);
+}

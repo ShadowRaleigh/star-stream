@@ -159,14 +159,27 @@ h1#_top {
 	margin-top: 0.3rem;
 }
 
-/* Página inicial: a galáxia com o logo, como no banner aprovado. O título textual fica só para leitores de tela. */
-.content-panel:has(+ .content-panel .ss-capa) {
+/* Página inicial: a galáxia com o logo, como no banner aprovado. O título textual fica só para leitores de tela
+   (o #_top no seletor vence os temas que decoram o painel do título). */
+:root .content-panel:has(#_top):has(+ .content-panel .ss-capa) {
+	padding: 0;
+	margin: 0;
+	border: 0;
 	position: absolute;
 	width: 1px;
 	height: 1px;
 	overflow: hidden;
 	clip: rect(0 0 0 0);
 	white-space: nowrap;
+}
+
+:root .content-panel:has(#_top):has(+ .content-panel .ss-capa)::before,
+:root .content-panel:has(#_top):has(+ .content-panel .ss-capa)::after {
+	display: none;
+}
+
+:root:root .content-panel:has(.ss-capa) {
+	border-top: 0;
 }
 
 .ss-capa {
@@ -242,6 +255,29 @@ h1#_top {
 .ss-abertura .ss-acoes a.ss-principal:hover {
 	background: var(--sl-color-accent-high);
 	border-color: var(--sl-color-accent-high);
+}
+
+/* O texto de boas-vindas numa medida confortável de leitura (a coluna inteira dava umas 170 letras por linha). */
+.ss-abertura + p {
+	max-width: 44rem;
+	font-size: 1.06em;
+}
+
+/* Com um número ímpar de cards, o último ocupa a linha inteira em vez de deixar um buraco ao lado. */
+.sl-markdown-content .card-grid > :last-child:nth-child(odd) {
+	grid-column: 1 / -1;
+}
+
+/* No celular, os dois atalhos ocupam a largura toda, um sobre o outro, com o mesmo tamanho. */
+@media (max-width: 50rem) {
+	.ss-abertura .ss-acoes {
+		width: 100%;
+	}
+
+	.ss-abertura .ss-acoes a {
+		flex: 1 1 100%;
+		text-align: center;
+	}
 }
 
 /* A capa tem os dois logos; os temas de capa clara mostram o escuro. */

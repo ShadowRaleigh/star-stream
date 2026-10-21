@@ -147,11 +147,9 @@
 	flex: none;
 	width: 1.5rem;
 	height: 1.5rem;
-	background: url('/star-stream/temas/astrolabio-dourado.svg') center / contain no-repeat;
-}
-
-[data-ss-tema='astrolabio'][data-theme='light'] .sl-markdown-content h2::before {
-	background-image: url('/star-stream/temas/astrolabio-tinta.svg');
+	background: var(--sl-color-accent);
+	-webkit-mask: url('/star-stream/temas/deco/icone-astro.svg') center / contain no-repeat;
+	mask: url('/star-stream/temas/deco/icone-astro.svg') center / contain no-repeat;
 }
 
 [data-ss-tema='astrolabio'] .sl-markdown-content h2::after {
@@ -319,7 +317,9 @@
 :root[data-ss-tema='astrolabio'] .ss-abertura .ss-versao {
 	font-family: var(--ss-display);
 	font-size: 1.05rem;
-	letter-spacing: 0.3em;
+	letter-spacing: 0.16em;
+	/* Algarismos alinhados: os antigos faziam "0.9" parecer "o.g". */
+	font-variant-numeric: lining-nums;
 }
 
 :root[data-ss-tema='astrolabio'] .ss-abertura .ss-acoes a {

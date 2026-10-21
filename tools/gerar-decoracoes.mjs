@@ -15,7 +15,6 @@ function sorteio(semente) {
 }
 const HALO = '<defs><radialGradient id="h"><stop offset="0" stop-color="#fff"/><stop offset=".3" stop-color="#fff" stop-opacity=".5"/><stop offset="1" stop-color="#fff" stop-opacity="0"/></radialGradient></defs>';
 const salvar = (nome, corpo, vb = '0 0 400 400') => fs.writeFileSync(`${DIR}/${nome}.svg`, `<svg xmlns="http://www.w3.org/2000/svg" viewBox="${vb}" fill="none" stroke="#fff">${corpo}</svg>\n`);
-const quatro = (x, y, s, extra = '') => `<path d="M ${x} ${f(y - s)} Q ${f(x + s * 0.16)} ${f(y - s * 0.16)} ${f(x + s)} ${y} Q ${f(x + s * 0.16)} ${f(y + s * 0.16)} ${x} ${f(y + s)} Q ${f(x - s * 0.16)} ${f(y + s * 0.16)} ${f(x - s)} ${y} Q ${f(x - s * 0.16)} ${f(y - s * 0.16)} ${x} ${f(y - s)} Z" fill="#fff" stroke="none" ${extra}/>`;
 const circ = (r, w, extra = '') => `<circle cx="200" cy="200" r="${r}" stroke-width="${w}" ${extra}/>`;
 const polar = (r, a) => [200 + Math.cos(a) * r, 200 + Math.sin(a) * r];
 
@@ -32,12 +31,25 @@ function anelDeRunas(raio, escala, grupo) {
 	return g;
 }
 
-// ---- Constelação: estrela-guia com órbitas ----
-salvar('guia-brilho', `${HALO}<circle cx="200" cy="200" r="130" fill="url(#h)" stroke="none"/>`);
-salvar('guia-estrela', quatro(200, 200, 74) + quatro(200, 200, 30, 'transform="rotate(45 200 200)" opacity=".7"'));
-salvar('guia-orbita-1', circ(118, 1.2) + quatro(...polar(118, -0.6).map(f), 9) + quatro(...polar(118, 2.4).map(f), 6));
-salvar('guia-orbita-2', circ(158, 1, 'stroke-dasharray="3 9"') + `<circle cx="${f(polar(158, 1.2)[0])}" cy="${f(polar(158, 1.2)[1])}" r="5" fill="#fff" stroke="none"/>`);
-salvar('guia-orbita-3', circ(192, 0.8, 'stroke-dasharray="1 6"') + quatro(...polar(192, 3.9).map(f), 8) + `<circle cx="${f(polar(192, 5.3)[0])}" cy="${f(polar(192, 5.3)[1])}" r="3" fill="#fff" stroke="none"/>`);
+// ---- Constelação: uma constelação que se liga traço por traço (estrelas, halos e três grupos de linhas) ----
+{
+	const E = [[50, 120, 5], [105, 95, 4], [160, 110, 4.5], [205, 150, 6], [195, 215, 4], [265, 240, 5], [275, 170, 4.5]];
+	const LIGACOES = [[[0, 1], [1, 2]], [[2, 3], [3, 4]], [[4, 5], [5, 6], [6, 3]]];
+	// Cada traço para um pouco antes da estrela, para não encostar nela.
+	const traco = ([i, j]) => {
+		const [x1, y1, r1] = E[i], [x2, y2, r2] = E[j], d = Math.hypot(x2 - x1, y2 - y1), ux = (x2 - x1) / d, uy = (y2 - y1) / d, g1 = r1 + 7, g2 = r2 + 7;
+		return `<line x1="${f(x1 + ux * g1)}" y1="${f(y1 + uy * g1)}" x2="${f(x2 - ux * g2)}" y2="${f(y2 - uy * g2)}" stroke-width="1.3" stroke-linecap="round"/>`;
+	};
+	LIGACOES.forEach((grupo, k) => salvar(`ceu-linhas-${k + 1}`, grupo.map(traco).join('')));
+	salvar('ceu-halos', HALO + E.map(([x, y, s]) => `<circle cx="${x}" cy="${y}" r="${f(s * 4.5)}" fill="url(#h)" stroke="none"/>`).join(''));
+	const r = sorteio(57);
+	let poeira = '';
+	for (let i = 0; i < 26; i++) poeira += `<circle cx="${f(20 + r() * 280)}" cy="${f(40 + r() * 250)}" r="${f(0.7 + r() * 1.1)}" fill="#fff" stroke="none" opacity="${f(0.3 + r() * 0.5)}"/>`;
+	salvar('ceu-estrelas', poeira + E.map(([x, y, s]) => `<circle cx="${x}" cy="${y}" r="${f(s * 0.55)}" fill="#fff" stroke="none"/>`).join(''));
+}
+
+// ---- Ícone dos títulos do Observatório e do Astrolábio, desenhado para 24 px (o astrolábio inteiro virava mancha) ----
+salvar('icone-astro', '<circle cx="12" cy="12" r="10" stroke-width="1.5"/><ellipse cx="12" cy="12" rx="10" ry="4" stroke-width="1.2" transform="rotate(-28 12 12)"/><circle cx="12" cy="12" r="2.2" fill="#fff" stroke="none"/>', '0 0 24 24');
 
 // ---- Observatório e Codex: astrolábio em peças (limbo, rede, círculos e a estrela do centro) ----
 {
@@ -48,7 +60,10 @@ salvar('guia-orbita-3', circ(192, 0.8, 'stroke-dasharray="1 6"') + quatro(...pol
 	for (let g = 0; g < 360; g += 30) { const a = (g * Math.PI) / 180, [x1, y1] = polar(60, a), [x2, y2] = polar(150, a); raios += `<line x1="${f(x1)}" y1="${f(y1)}" x2="${f(x2)}" y2="${f(y2)}" stroke-width=".5" opacity=".7"/>`; }
 	salvar('astro-rede', `<ellipse cx="200" cy="200" rx="150" ry="62" stroke-width=".8" transform="rotate(-24 200 200)"/><ellipse cx="200" cy="200" rx="150" ry="62" stroke-width=".6" transform="rotate(38 200 200)" opacity=".8"/>${raios}`);
 	salvar('astro-circulos', circ(150, 0.7, 'stroke-dasharray="2 6"') + circ(104, 1.1) + `<circle cx="${f(polar(104, 0.4)[0])}" cy="${f(polar(104, 0.4)[1])}" r="3.5" fill="#fff" stroke="none"/>`);
-	salvar('astro-estrela', `<path d="M200 128 L210 190 L272 200 L210 210 L200 272 L190 210 L128 200 L190 190 Z" fill="#fff" stroke="none"/>` + circ(7, 1.2));
+	// O centro é um sol gravado (disco, anel e raios curtos), não uma estrela de quatro pontas.
+	let sol = '<circle cx="200" cy="200" r="13" fill="#fff" stroke="none"/>' + circ(22, 2);
+	for (let k = 0; k < 16; k++) { const a = (k * Math.PI) / 8, [x1, y1] = polar(k % 2 ? 32 : 30, a), [x2, y2] = polar(k % 2 ? 40 : 48, a); sol += `<line x1="${f(x1)}" y1="${f(y1)}" x2="${f(x2)}" y2="${f(y2)}" stroke-width="2"/>`; }
+	salvar('astro-estrela', sol);
 	// No banner, o anel (sem a estrela) em duas peças que giram em sentidos opostos.
 	salvar('anel-externo', circ(196, 1.4) + circ(172, 0.8) + marcas + circ(150, 0.7, 'stroke-dasharray="2 6"'));
 	salvar('anel-interno', `<ellipse cx="200" cy="200" rx="150" ry="62" stroke-width=".8" transform="rotate(-24 200 200)"/><ellipse cx="200" cy="200" rx="150" ry="62" stroke-width=".6" transform="rotate(38 200 200)" opacity=".8"/>${raios}` + circ(104, 1.1));
@@ -67,27 +82,32 @@ salvar('guia-orbita-3', circ(192, 0.8, 'stroke-dasharray="1 6"') + quatro(...pol
 	salvar('armilar-equador', el(Ri, Ri * 0.36, inc, 1.8) + [-1, 1].map((s) => el(Ri * 0.9, Ri * 0.9 * 0.36, inc, 1, 0.6, ...tr(s))).join('') + el(Ri * 0.34, Ri, inc, 1.2, 0.75), vb);
 	salvar('armilar-ecliptica', el(Ri, Ri * 0.5, 18, 1.6) + el(Ri - 16, (Ri - 16) * 0.5, 18, 1, 0.75), vb);
 	const t = (inc * Math.PI) / 180, L = R + 70, ax = [c - Math.sin(t) * L, c + Math.cos(t) * L, c + Math.sin(t) * L, c - Math.cos(t) * L];
-	salvar('armilar-eixo', `<line x1="${f(ax[0])}" y1="${f(ax[1])}" x2="${f(ax[2])}" y2="${f(ax[3])}" stroke-width="1.8"/><circle cx="${f(ax[0])}" cy="${f(ax[1])}" r="7" fill="#fff" stroke="none"/><circle cx="${f(ax[2])}" cy="${f(ax[3])}" r="7" fill="#fff" stroke="none"/><circle cx="${c}" cy="${c}" r="46" stroke-width="1.8"/>` + quatro(c, c, 32), vb);
+	salvar('armilar-eixo', `<line x1="${f(ax[0])}" y1="${f(ax[1])}" x2="${f(ax[2])}" y2="${f(ax[3])}" stroke-width="1.8"/><circle cx="${f(ax[0])}" cy="${f(ax[1])}" r="7" fill="#fff" stroke="none"/><circle cx="${f(ax[2])}" cy="${f(ax[3])}" r="7" fill="#fff" stroke="none"/><circle cx="${c}" cy="${c}" r="46" stroke-width="1.8"/><circle cx="${c}" cy="${c}" r="28" stroke-width="2"/><ellipse cx="${c}" cy="${c}" rx="11" ry="28" stroke-width="1.4"/><line x1="${c - 28}" y1="${c}" x2="${c + 28}" y2="${c}" stroke-width="1.4"/>`, vb);
 }
 
-// ---- Nebulosa: galáxia espiral (braços que giram, núcleo que pulsa) ----
+// ---- Nebulosa: galáxia espiral (braços que giram, núcleo que pulsa). Os braços são faixas de luz desfocadas ao longo
+// de uma espiral, com poucas estrelas por cima: sem a poeira de pontinhos, que parecia sujeira e pesava ----
 {
-	const bracos = (semente, n, esp, braco) => {
+	const espiral = (b, braco, t0, t1) => {
+		let d = '';
+		for (let t = t0; t <= t1; t += 0.08) { const [x, y] = polar(18 + 52 * t, t * 1.25 + (b * Math.PI * 2) / braco); d += `${d ? ' L' : 'M'} ${f(x)} ${f(y)}`; }
+		return d;
+	};
+	const bracos = (semente, braco, larg, borrao, nEstrelas) => {
 		const r = sorteio(semente);
-		let g = '';
-		for (let b = 0; b < braco; b++) {
-			for (let i = 0; i < n; i++) {
-				const t = r() * 3.4, raio = 18 + 52 * t + (r() - 0.5) * esp * (0.4 + t / 3.4), a = t * 1.25 + (b * Math.PI * 2) / braco + (r() - 0.5) * 0.35;
-				const [x, y] = polar(raio, a);
-				if (raio > 196) continue;
-				g += `<circle cx="${f(x)}" cy="${f(y)}" r="${f(0.6 + Math.pow(r(), 3) * 2.6)}" fill="#fff" stroke="none" opacity="${f(0.35 + r() * 0.65)}"/>`;
-			}
+		let g = `<defs><filter id="b" x="-30%" y="-30%" width="160%" height="160%"><feGaussianBlur stdDeviation="${borrao}"/></filter></defs><g filter="url(#b)" stroke-linecap="round">`;
+		// Camadas sobrepostas cada vez mais longas e finas: o braço é largo perto do núcleo e afina até a ponta.
+		for (let b = 0; b < braco; b++) for (const [t1, w, op] of [[1.4, 1, 0.35], [2.3, 0.65, 0.35], [3.3, 0.32, 0.45]]) g += `<path d="${espiral(b, braco, 0.1, t1)}" stroke-width="${f(larg * w)}" opacity="${op}"/>`;
+		g += '</g>';
+		for (let i = 0; i < nEstrelas; i++) {
+			const b = Math.floor(r() * braco), t = r() * 3.2, raio = 18 + 52 * t + (r() - 0.5) * larg, [x, y] = polar(raio, t * 1.25 + (b * Math.PI * 2) / braco);
+			if (raio < 190) g += `<circle cx="${f(x)}" cy="${f(y)}" r="${f(0.8 + Math.pow(r(), 3) * 2)}" fill="#fff" stroke="none" opacity="${f(0.5 + r() * 0.5)}"/>`;
 		}
 		return g;
 	};
-	salvar('espiral-bracos', bracos(41, 260, 30, 2));
-	salvar('espiral-poeira', bracos(43, 220, 60, 3));
-	salvar('espiral-nucleo', `${HALO}<circle cx="200" cy="200" r="90" fill="url(#h)" stroke="none"/><circle cx="200" cy="200" r="10" fill="#fff" stroke="none"/>`);
+	salvar('espiral-bracos', bracos(41, 2, 34, 9, 40));
+	salvar('espiral-poeira', bracos(43, 3, 60, 18, 0));
+	salvar('espiral-nucleo', `${HALO}<circle cx="200" cy="200" r="90" fill="url(#h)" stroke="none"/><circle cx="200" cy="200" r="5" fill="#fff" stroke="none"/>`);
 }
 
 // ---- Grimório e Holograma: selo rúnico (base que gira e três grupos de runas que cintilam) ----
@@ -95,7 +115,8 @@ salvar('selo-base', circ(190, 1) + circ(182, 0.5) + circ(148, 1, 'stroke-dasharr
 for (const k of [0, 1, 2]) salvar(`selo-runas-${k + 1}`, anelDeRunas(166, 0.55, k));
 
 // ---- Forja: bigorna com um anel rúnico em volta ----
-salvar('forja-bigorna', `<path fill="#fff" stroke="none" d="M 104 178 H 300 C 300 196 284 204 262 206 L 246 214 V 236 H 270 V 256 H 130 V 236 H 154 V 214 L 138 206 C 120 204 96 196 104 178 Z M 104 178 C 80 176 64 168 58 158 C 76 160 96 168 104 178 Z"/>` + `<path d="M 206 160 L 276 104 M 264 92 L 290 122" stroke-width="10" stroke-linecap="round"/>`);
+// A bigorna em traço gravado (chapada parecia ícone): contorno, filete de brilho na face e o chifre.
+salvar('forja-bigorna', '<path stroke-width="3" stroke-linejoin="round" d="M 104 178 H 300 C 300 196 284 204 262 206 L 246 214 V 236 H 270 V 256 H 130 V 236 H 154 V 214 L 138 206 C 120 204 96 196 104 178 Z M 104 178 C 80 176 64 168 58 158 C 76 160 96 168 104 178"/><line x1="116" y1="186" x2="288" y2="186" stroke-width="1.4" opacity=".7"/><line x1="154" y1="236" x2="246" y2="236" stroke-width="1.4" opacity=".6"/>');
 salvar('forja-anel', circ(192, 1.4) + circ(140, 1.2) + circ(186, 0.6, 'stroke-dasharray="2 6"'));
 for (const k of [0, 1, 2]) salvar(`forja-runas-${k + 1}`, anelDeRunas(164, 0.62, k));
 
@@ -109,13 +130,15 @@ for (const k of [0, 1, 2]) salvar(`forja-runas-${k + 1}`, anelDeRunas(164, 0.62,
 	salvar('bussola-agulha', '<path d="M 200 62 L 214 200 L 200 338 L 186 200 Z" stroke-width="2"/><path d="M 200 62 L 214 200 L 186 200 Z" fill="#fff" stroke="none"/><circle cx="200" cy="200" r="9" fill="#fff" stroke="none"/>');
 }
 
-// ---- Abissal: água-viva (sino e tentáculos, que se mexem separados; os dois no mesmo quadro, para ficarem alinhados) ----
-salvar('medusa-sino', `${HALO}<circle cx="200" cy="150" r="150" fill="url(#h)" stroke="none" opacity=".5"/><path d="M 92 170 Q 92 52 200 52 Q 308 52 308 170 Q 280 186 254 172 Q 228 190 200 174 Q 172 190 146 172 Q 120 186 92 170 Z" fill="#fff" stroke="none" opacity=".75"/><path d="M 120 140 Q 160 90 200 88 Q 240 90 280 140" stroke-width="2" opacity=".6"/><path d="M 150 160 Q 175 120 200 118 Q 225 120 250 160" stroke-width="1.6" opacity=".5"/>`, '0 0 400 600');
+// ---- Abissal: água-viva (sino e tentáculos, que se mexem separados; os dois no mesmo quadro, para ficarem alinhados).
+// Sino translúcido, mais denso na borda, e tentáculos finos que somem no fim, como na capa. ----
+salvar('medusa-sino', `<defs><radialGradient id="h"><stop offset="0" stop-color="#fff" stop-opacity=".35"/><stop offset="1" stop-color="#fff" stop-opacity="0"/></radialGradient><radialGradient id="sino" cx="50%" cy="90%" r="85%"><stop offset="0" stop-color="#fff" stop-opacity=".12"/><stop offset=".7" stop-color="#fff" stop-opacity=".4"/><stop offset="1" stop-color="#fff" stop-opacity=".85"/></radialGradient></defs><circle cx="200" cy="140" r="150" fill="url(#h)" stroke="none" opacity=".6"/><path d="M 92 172 C 88 100 130 56 200 56 C 270 56 312 100 308 172 Q 282 184 256 174 Q 228 188 200 176 Q 172 188 144 174 Q 118 184 92 172 Z" fill="url(#sino)" stroke="none"/>`, '0 0 400 600');
 {
-	let t = '';
-	for (const [x, a, l] of [[118, 18, 210], [150, 22, 240], [182, 16, 220], [218, 20, 236], [250, 18, 214], [282, 14, 200]]) t += `<path d="M ${x} 172 q ${a} ${l / 6} 0 ${l / 3} t 0 ${l / 3} t 0 ${l / 3}" stroke-width="2.4" stroke-linecap="round" opacity=".7"/>`;
-	t += '<path d="M 186 176 q 30 60 0 120 t 6 90" stroke-width="7" stroke-linecap="round" opacity=".45"/><path d="M 214 176 q -30 60 0 120 t -6 90" stroke-width="7" stroke-linecap="round" opacity=".45"/>';
-	salvar('medusa-tentaculos', t, '0 0 400 600');}
+	let t = '<defs><linearGradient id="fio" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#fff" stop-opacity=".75"/><stop offset="1" stop-color="#fff" stop-opacity="0"/></linearGradient></defs>';
+	for (const [x, a, l] of [[112, 14, 330], [140, -10, 380], [168, 12, 350], [232, -12, 360], [260, 10, 390], [288, -14, 320]]) t += `<path d="M ${x} 176 q ${a} ${l / 6} 0 ${l / 3} t 0 ${l / 3} t 0 ${l / 3}" stroke="url(#fio)" stroke-width="1.6"/>`;
+	t += '<path d="M 188 178 q 22 50 0 100 t 4 90" stroke-width="4" stroke-linecap="round" opacity=".3"/><path d="M 212 178 q -22 50 0 100 t -4 90" stroke-width="4" stroke-linecap="round" opacity=".3"/>';
+	salvar('medusa-tentaculos', t, '0 0 400 600');
+}
 
 // ---- Radar: anéis, mira e alvos (o feixe é um gradiente cônico do CSS) ----
 {
@@ -165,9 +188,10 @@ for (const [k, t, n] of [[1, 290, 9], [2, 410, 12], [3, 530, 14]]) {
 	let g = '';
 	for (let i = 0; i < n; i++) {
 		const x = f(6 + r() * (t - 12)), y = f(6 + r() * (t - 12)), s = 0.8 + r() * 1.4;
-		g += r() < 0.25 ? quatro(x, y, f(s * 3)) : `<circle cx="${x}" cy="${y}" r="${f(s)}" fill="#fff" stroke="none"/>`;
+		// Uma em cada quatro é mais forte, com halo; todas redondas, como estrela de verdade.
+		g += (r() < 0.25 ? `<circle cx="${x}" cy="${y}" r="${f(s * 5)}" fill="url(#h)" opacity=".6"/>` : '') + `<circle cx="${x}" cy="${y}" r="${f(s)}" fill="#fff" stroke="none"/>`;
 	}
-	fs.writeFileSync(`${DIR}/estrelas-${k}.svg`, `<svg xmlns="http://www.w3.org/2000/svg" width="${t}" height="${t}" viewBox="0 0 ${t} ${t}">${g}</svg>\n`);
+	fs.writeFileSync(`${DIR}/estrelas-${k}.svg`, `<svg xmlns="http://www.w3.org/2000/svg" width="${t}" height="${t}" viewBox="0 0 ${t} ${t}">${HALO}${g}</svg>\n`);
 }
 
 // ---- Partículas macias que sobem do pé da página (já desfocadas no desenho, sem filtro no navegador) ----

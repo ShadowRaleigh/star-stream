@@ -126,9 +126,9 @@
 	--max: 0.7;
 }
 
-:root[data-theme='light'] .ss-cintilar i {
-	--ss-estrela: var(--sl-color-gray-3);
-	--max: 0.55;
+/* No claro, as estrelas viram manchas sobre o papel (brilho escuro em fundo claro lê como sujeira): ficam só no escuro. */
+:root[data-theme='light'] .ss-cintilar {
+	display: none !important;
 }
 
 /* ---- Partículas que sobem do pé da página e esmaecem antes do meio (fantasia) ---- */
@@ -211,11 +211,26 @@
 	mask: var(--p) center / contain no-repeat;
 }
 
-@media (max-width: 50rem) {
+/* Sem a coluna do índice à direita, o texto chega até a borda: o objeto encolhe e fica mais discreto para não brigar com ele. */
+@media (max-width: 72rem) {
 	.ss-deco {
-		width: calc(var(--tam, 560px) * 0.55);
-		right: calc(var(--x, -150px) * 0.55);
-		bottom: calc(var(--y, -150px) * 0.55);
+		width: calc(var(--tam, 560px) * 0.62);
+		right: calc(var(--x, -150px) * 0.62);
+		bottom: calc(var(--y, -150px) * 0.62);
+		opacity: calc(var(--op, 0.3) * 0.7);
+	}
+}
+
+/* Na página inicial a coluna de cards chega à borda: o objeto fica menor, mais para o canto. */
+:root:has(.ss-capa) .ss-deco {
+	scale: 0.75;
+	transform-origin: 100% 100%;
+}
+
+/* No celular o texto ocupa a tela toda e o objeto só ficaria atrás dele: some (as estrelas e partículas ficam). */
+@media (max-width: 50rem) {
+	:root:root[data-ss-tema] .ss-deco {
+		display: none;
 	}
 }
 
@@ -223,17 +238,25 @@
 	display: block;
 }
 
-/* Constelação: a estrela-guia, com órbitas em velocidades e sentidos diferentes. */
+/* Constelação: uma constelação que se liga traço por traço, descansa ligada e se apaga; as estrelas cintilam por cima. */
 :root[data-ss-tema='constelacao'] .ss-deco {
 	--ss-deco-cor: var(--sl-color-accent);
-	--op: 0.34;
+	--op: 0.5;
 }
 
-[data-ss-tema='constelacao'] .ss-deco i:nth-child(1) { display: block; --p: url('/star-stream/temas/deco/guia-brilho.svg'); --min: 0.35; --max: 1; animation: ss-cintila 4s ease-in-out infinite alternate; }
-[data-ss-tema='constelacao'] .ss-deco i:nth-child(2) { display: block; --p: url('/star-stream/temas/deco/guia-estrela.svg'); }
-[data-ss-tema='constelacao'] .ss-deco i:nth-child(3) { display: block; --p: url('/star-stream/temas/deco/guia-orbita-1.svg'); animation: ss-rodar 70s linear infinite; }
-[data-ss-tema='constelacao'] .ss-deco i:nth-child(4) { display: block; --p: url('/star-stream/temas/deco/guia-orbita-2.svg'); animation: ss-rodar-inverso 110s linear infinite; }
-[data-ss-tema='constelacao'] .ss-deco i:nth-child(5) { display: block; --p: url('/star-stream/temas/deco/guia-orbita-3.svg'); animation: ss-rodar 170s linear infinite; }
+[data-ss-tema='constelacao'] .ss-deco i:nth-child(1) { display: block; --p: url('/star-stream/temas/deco/ceu-halos.svg'); --min: 0.25; --max: 0.9; animation: ss-cintila 3.6s ease-in-out infinite alternate; }
+[data-ss-tema='constelacao'] .ss-deco i:nth-child(2) { display: block; --p: url('/star-stream/temas/deco/ceu-estrelas.svg'); }
+[data-ss-tema='constelacao'] .ss-deco i:is(:nth-child(3), :nth-child(4), :nth-child(5)) { display: block; opacity: 0; animation: ss-ligar 18s ease-in-out infinite; }
+[data-ss-tema='constelacao'] .ss-deco i:nth-child(3) { --p: url('/star-stream/temas/deco/ceu-linhas-1.svg'); }
+[data-ss-tema='constelacao'] .ss-deco i:nth-child(4) { --p: url('/star-stream/temas/deco/ceu-linhas-2.svg'); animation-delay: 1.4s; }
+[data-ss-tema='constelacao'] .ss-deco i:nth-child(5) { --p: url('/star-stream/temas/deco/ceu-linhas-3.svg'); animation-delay: 2.8s; }
+
+/* Cada grupo de traços acende, fica e apaga junto com os outros (o atraso de cada um só muda quando ele acende). */
+@keyframes ss-ligar {
+	0% { opacity: 0; }
+	8%, 62% { opacity: 1; }
+	72%, 100% { opacity: 0; }
+}
 
 /* Observatório e Codex: o astrolábio em peças; a estrela do centro fica parada e cada arco gira no seu ritmo. */
 :root:is([data-ss-tema='observatorio'], [data-ss-tema='codex']) .ss-deco {
@@ -299,10 +322,10 @@
 :is([data-ss-tema='grimorio'], [data-ss-tema='holograma']) .ss-deco i:nth-child(3) { display: block; --p: url('/star-stream/temas/deco/selo-runas-2.svg'); --min: 0.15; --max: 1; animation: ss-rodar 300s linear infinite, ss-cintila 4.1s ease-in-out infinite alternate -1.4s; }
 :is([data-ss-tema='grimorio'], [data-ss-tema='holograma']) .ss-deco i:nth-child(4) { display: block; --p: url('/star-stream/temas/deco/selo-runas-3.svg'); --min: 0.15; --max: 1; animation: ss-rodar 300s linear infinite, ss-cintila 5s ease-in-out infinite alternate -2.7s; }
 
-/* Forja: a bigorna parada, o anel rúnico girando e runas acendendo em brasa. */
+/* Forja: a bigorna gravada, parada, o anel rúnico girando e runas acendendo em brasa. */
 :root[data-ss-tema='forja'] .ss-deco {
 	--ss-deco-cor: var(--ss-ouro);
-	--op: 0.4;
+	--op: 0.3;
 }
 
 [data-ss-tema='forja'] .ss-deco i:nth-child(1) { display: block; --p: url('/star-stream/temas/deco/forja-anel.svg'); animation: ss-rodar 240s linear infinite; }
@@ -352,7 +375,7 @@
 
 /* Vitral: uma rosácea, com dois grupos de vidro acendendo alternados atrás da pedra. */
 :root[data-ss-tema='vitral'] .ss-deco {
-	--op: 0.4;
+	--op: 0.26;
 }
 
 [data-ss-tema='vitral'] .ss-deco i:nth-child(1) { display: block; --p: url('/star-stream/temas/deco/rosacea-vidro-1.svg'); --c: var(--ss-vidro-a); --min: 0.25; --max: 1; animation: ss-cintila 6s ease-in-out infinite alternate; }
@@ -429,7 +452,8 @@
 	mask: var(--p) center / cover no-repeat;
 }
 
-/* Constelação: estrelas cintilando sobre o rio, e uma estrela cadente de vez em quando. */
+/* Constelação: a luz corre pelo rio da esquerda para a direita, as estrelas do rio cintilam em dois ritmos
+   e três estrelas cadentes cruzam o céu em lugares, ângulos e intervalos diferentes, para nunca repetir igual. */
 [data-ss-tema='constelacao'] .ss-capa::before {
 	content: '';
 	position: absolute;
@@ -439,39 +463,86 @@
 	-webkit-mask: url('/star-stream/temas/deco/estrelas-2.svg') 0 0 / 300px 300px repeat;
 	mask: url('/star-stream/temas/deco/estrelas-2.svg') 0 0 / 300px 300px repeat;
 	--min: 0.1;
-	--max: 0.85;
+	--max: 0.7;
 	animation: ss-cintila 3.2s ease-in-out infinite alternate;
 }
 
-[data-ss-tema='constelacao'] .ss-capa::after {
+[data-ss-tema='constelacao'] .ss-capa-camadas i:nth-child(1) {
+	display: block;
+	overflow: hidden;
+	background: none;
+	--p: url('/star-stream/temas/camada-constelacao-fluxo.svg');
+}
+
+[data-ss-tema='constelacao'] .ss-capa-camadas i:nth-child(1)::before,
+[data-ss-tema='constelacao'] .ss-capa-camadas i:nth-child(1)::after {
 	content: '';
 	position: absolute;
-	z-index: -1;
-	top: 18%;
-	left: -15%;
-	width: 140px;
-	height: 2px;
+	inset: 0;
+	background: linear-gradient(90deg, transparent 36%, rgb(255 230 190 / 0.35) 45%, rgb(255 248 234 / 0.8) 50%, rgb(255 230 190 / 0.35) 55%, transparent 64%);
+	animation: ss-correnteza 14s linear infinite;
+}
+
+[data-ss-tema='constelacao'] .ss-capa-camadas i:nth-child(1)::after {
+	opacity: 0.6;
+	animation-duration: 23s;
+	animation-delay: -9s;
+}
+
+[data-ss-tema='constelacao'] .ss-capa-camadas i:is(:nth-child(2), :nth-child(3)) {
+	display: block;
+	--c: #fff8ea;
+	--min: 0;
+	--max: 1;
+}
+
+[data-ss-tema='constelacao'] .ss-capa-camadas i:nth-child(2) {
+	--p: url('/star-stream/temas/camada-constelacao-brilho-1.svg');
+	animation: ss-cintila 2.6s ease-in-out infinite alternate;
+}
+
+[data-ss-tema='constelacao'] .ss-capa-camadas i:nth-child(3) {
+	--p: url('/star-stream/temas/camada-constelacao-brilho-2.svg');
+	animation: ss-cintila 3.7s ease-in-out infinite alternate -1.8s;
+}
+
+[data-ss-tema='constelacao'] .ss-capa-camadas i:is(:nth-child(4), :nth-child(5), :nth-child(6)) {
+	display: block;
+	inset: auto;
+	width: 150px;
+	height: 1.5px;
 	border-radius: 2px;
+	-webkit-mask: none;
+	mask: none;
 	background: linear-gradient(90deg, transparent, #fff8ea);
-	box-shadow: 0 0 8px rgb(255 248 234 / 0.8);
+	box-shadow: 0 0 6px rgb(255 248 234 / 0.7);
 	opacity: 0;
-	animation: ss-cadente 11s ease-in infinite 2s;
+	transform-origin: left center;
+}
+
+[data-ss-tema='constelacao'] .ss-capa-camadas i:nth-child(4) { top: 14%; left: 8%; --ang: 16deg; --dist: 420px; animation: ss-cadente 13s ease-in infinite 3s; }
+[data-ss-tema='constelacao'] .ss-capa-camadas i:nth-child(5) { top: 8%; left: 58%; --ang: 28deg; --dist: 300px; animation: ss-cadente 19s ease-in infinite 9s; }
+[data-ss-tema='constelacao'] .ss-capa-camadas i:nth-child(6) { top: 30%; left: 92%; --ang: 158deg; --dist: 340px; animation: ss-cadente 29s ease-in infinite 17s; }
+
+@keyframes ss-correnteza {
+	from { transform: translateX(-62%); }
+	to { transform: translateX(62%); }
 }
 
 @keyframes ss-cadente {
 	0%,
-	82% {
-		transform: rotate(14deg) translateX(0);
+	90% {
+		transform: rotate(var(--ang, 14deg)) translateX(0) scaleX(0.3);
 		opacity: 0;
 	}
 
-	84% {
+	91.5% {
 		opacity: 1;
 	}
 
-	94%,
+	96%,
 	100% {
-		transform: rotate(14deg) translateX(min(1300px, 110vw));
+		transform: rotate(var(--ang, 14deg)) translateX(var(--dist, 400px)) scaleX(1);
 		opacity: 0;
 	}
 }
@@ -562,6 +633,12 @@
 }
 
 /* Observatório e Codex: o anel do astrolábio em duas peças, girando em sentidos opostos. */
+/* O conjunto (parado) abre uma clareira atrás do nome, para os anéis não cruzarem as letras. */
+:is([data-ss-tema='observatorio'], [data-ss-tema='codex']) .ss-capa-camadas {
+	-webkit-mask: radial-gradient(ellipse 36% 30% at 50% 50%, transparent 62%, #000 100%);
+	mask: radial-gradient(ellipse 36% 30% at 50% 50%, transparent 62%, #000 100%);
+}
+
 :is([data-ss-tema='observatorio'], [data-ss-tema='codex']) .ss-capa-camadas i:is(:nth-child(1), :nth-child(2)) {
 	display: block;
 	inset: auto;
@@ -848,6 +925,7 @@
 	.ss-ambiente *::before,
 	.ss-capa-camadas i,
 	.ss-capa-camadas i::before,
+	.ss-capa-camadas i::after,
 	:root[data-ss-tema] .ss-capa::before,
 	:root[data-ss-tema] .ss-capa::after {
 		animation: none !important;
