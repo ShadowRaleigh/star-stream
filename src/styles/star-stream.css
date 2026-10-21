@@ -1,0 +1,134 @@
+/* Identidade visual do Star Stream, a partir da ficha do app: pergaminho, tinta e bronze. */
+
+/* Tema escuro (padrão do Starlight): noite de tinta com letras de pergaminho. */
+:root {
+	--ss-font-titulo: 'Cinzel', Georgia, serif;
+	--sl-font: 'Segoe UI', system-ui, -apple-system, Roboto, Arial, sans-serif;
+
+	--sl-color-accent-low: #3a2f1f;
+	--sl-color-accent: #c29f68;
+	--sl-color-accent-high: #ecd9b3;
+	--sl-color-white: #f4efe3;
+	--sl-color-gray-1: #e9e1cf;
+	--sl-color-gray-2: #cdc4b0;
+	--sl-color-gray-3: #9e9786;
+	--sl-color-gray-4: #6d685e;
+	--sl-color-gray-5: #3a4452;
+	--sl-color-gray-6: #222c39;
+	--sl-color-black: #161d27;
+
+	--ss-tabela-cabecalho: #2a3442;
+	--ss-tabela-listra: #1b232e;
+}
+
+/* Tema claro: a folha da ficha. */
+:root[data-theme='light'] {
+	--sl-color-accent-low: #eadfc6;
+	--sl-color-accent: #8a6a3c;
+	--sl-color-accent-high: #4e3a1e;
+	--sl-color-white: #1c2a3a;
+	--sl-color-gray-1: #26374b;
+	--sl-color-gray-2: #3b4145;
+	--sl-color-gray-3: #5d6670;
+	--sl-color-gray-4: #8b8a82;
+	--sl-color-gray-5: #cfc5ae;
+	--sl-color-gray-6: #e9e1cf;
+	--sl-color-gray-7: #f0e9da;
+	--sl-color-black: #f7f3ea;
+
+	--ss-tabela-cabecalho: #e9e1cf;
+	--ss-tabela-listra: #f1ebdd;
+}
+
+/* Títulos em Cinzel, como na ficha. */
+.sl-markdown-content :is(h1, h2, h3, h4),
+h1#_top,
+.site-title,
+.hero h1,
+.sidebar-content summary .large {
+	font-family: var(--ss-font-titulo);
+	letter-spacing: 0.02em;
+}
+
+h1#_top {
+	color: var(--sl-color-white);
+}
+
+.sl-markdown-content h2 {
+	font-size: var(--sl-text-2xl);
+	padding-bottom: 0.3rem;
+	border-bottom: 1px solid var(--sl-color-gray-5);
+}
+
+.sl-markdown-content h3 {
+	font-size: var(--sl-text-xl);
+	color: var(--sl-color-accent-high);
+}
+
+.sl-markdown-content h4 {
+	font-size: var(--sl-text-lg);
+}
+
+.sidebar-content summary .large {
+	font-size: 0.95rem;
+	color: var(--sl-color-accent-high);
+}
+
+/* Tabelas de regra: cabeçalho de pergaminho escuro e linhas alternadas. */
+.sl-markdown-content table {
+	display: table;
+	width: 100%;
+	border-collapse: collapse;
+	font-variant-numeric: tabular-nums;
+}
+
+.sl-markdown-content :is(th, td) {
+	border: 1px solid var(--sl-color-gray-5);
+	padding: 0.4rem 0.7rem;
+}
+
+.sl-markdown-content th {
+	background: var(--ss-tabela-cabecalho);
+	font-family: var(--ss-font-titulo);
+	font-size: 0.85em;
+}
+
+.sl-markdown-content tbody tr:nth-child(even) {
+	background: var(--ss-tabela-listra);
+}
+
+@media (max-width: 50rem) {
+	.sl-markdown-content table {
+		display: block;
+		overflow-x: auto;
+	}
+}
+
+/* Epígrafes dos históricos. */
+.sl-markdown-content blockquote {
+	border-inline-start: 3px solid var(--sl-color-accent);
+	background: var(--sl-color-accent-low);
+	padding: 0.6rem 1rem;
+	color: var(--sl-color-gray-1);
+	font-size: 1.05em;
+}
+
+/* Retratos das raças. */
+.retratos p {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 0.75rem;
+}
+
+.retratos img {
+	max-height: 16rem;
+	width: auto;
+	border: 1px solid var(--sl-color-gray-5);
+	border-radius: 0.4rem;
+	background: var(--sl-color-gray-6);
+}
+
+/* Linhas de campo de habilidade ("Alcance: 10m | Tempo: 2s ...") ficam mais legíveis com respiro. */
+.sl-markdown-content li + li {
+	margin-top: 0.3rem;
+}

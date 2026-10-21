@@ -1,0 +1,28 @@
+---
+title: Star Stream
+description: Livro de regras do Star Stream, o RPG de mesa de Shadow Raleigh.
+template: splash
+hero:
+  tagline: Livro de regras · Versão 0.9
+  actions:
+    - text: Criar um personagem
+      link: personagem/criacao/
+      icon: right-arrow
+    - text: Regras de combate
+      link: combate/
+      variant: minimal
+---
+
+import { CardGrid, LinkCard } from '@astrojs/starlight/components';
+
+Seja bem vindo à Star Stream! Se você está lendo isso, saiba que esse sistema é autoral de Shadow Raleigh, feito com muito carinho e esforço para tentar harmonizar e fazer sentido de um mundo que ao mesmo tempo possui equipamentos e itens cyberpunk/sci-fi, rituais complexos, sistemas de hard e soft magic, capturas/batalhas estilo pokémon e dezenas de raças e sub-raças jogáveis pra todos os estilos e gostos. Esse é um trabalho em progresso e provavelmente sofrerá alterações no futuro.
+
+<CardGrid>
+	<LinkCard title="Personagem" href="personagem/criacao/" description="Criação, origens, atributos, stats, perícias, talentos, títulos e estilos de combate." />
+	<LinkCard title="Arquétipos" href="arquetipos/" description="Os 8 arquétipos, com passivas, habilidades ativas e defesas." />
+	<LinkCard title="Históricos" href="historicos/" description="O passado do personagem e as habilidades de fora do combate." />
+	<LinkCard title="Mecânicas Básicas" href="regras/dados/" description="Dados, exploração, party, inventário, descansos e provisões." />
+	<LinkCard title="Combate" href="combate/" description="Rodadas, ações, ataque, dano, equipamento e efeitos de status." />
+	<LinkCard title="Habilidades" href="habilidades/" description="Pontos de habilidade, slots de sincronia e criação de habilidades." />
+	<LinkCard title="Raças" href="racas/" description="Raças jogáveis e seus fatores: habilidades, vantagens e desvantagens." />
+</CardGrid>
