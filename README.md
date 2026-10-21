@@ -1,6 +1,6 @@
 # Star Stream: livro de regras
 
-Livro de regras do Star Stream, o RPG de mesa de Shadow Raleigh, publicado como site de documentação.
+Livro de regras do Star Stream, o RPG de mesa de Zennova, publicado como site de documentação.
 
 Este repositório é a **fonte oficial das regras**. O antigo Google Doc "System: Star Stream BETA" (versão 0.9) ficou congelado como arquivo histórico. Toda mudança de regra é feita aqui, num commit.
 

@@ -8,7 +8,12 @@ export default defineConfig({
 	integrations: [
 		starlight({
 			title: 'Star Stream',
-			description: 'Livro de regras do Star Stream, o RPG de mesa de Shadow Raleigh.',
+			description: 'Livro de regras do Star Stream, o RPG de mesa de Zennova.',
+			favicon: '/icone-star-stream.svg',
+			head: [
+				{ tag: 'link', attrs: { rel: 'icon', type: 'image/png', sizes: '32x32', href: '/star-stream/icone-32.png' } },
+				{ tag: 'link', attrs: { rel: 'apple-touch-icon', sizes: '180x180', href: '/star-stream/icone-180.png' } },
+			],
 			defaultLocale: 'root',
 			locales: { root: { label: 'Português', lang: 'pt-BR' } },
 			logo: {
