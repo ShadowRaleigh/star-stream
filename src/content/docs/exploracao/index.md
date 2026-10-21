@@ -9,12 +9,12 @@ Essa seção vai cobrir:
 * [Inventário](inventario/)
 * [Descansos](descanso-e-provisoes/#descanso)
 * [Provisões](descanso-e-provisoes/#provisões)
-* Deslocamento (em construção)
-* Locais de Interesse (em construção)
-* Salas (em construção)
+* [Deslocamento](deslocamento/)
+* [Pontos de Interesse](pontos-de-interesse/)
+* [Salas](salas-armadilhas-e-quebra-cabecas/#salas)
 * [Informação](informacao/)
-* Armadilhas (em construção)
-* Quebra-Cabeças (em construção)
+* [Armadilhas](salas-armadilhas-e-quebra-cabecas/#armadilhas)
+* [Quebra-Cabeças](salas-armadilhas-e-quebra-cabecas/#quebra-cabeças)
 
 ## Aventuras
 

@@ -82,6 +82,9 @@ export default defineConfig({
 						'exploracao/inventario',
 						'exploracao/descanso-e-provisoes',
 						'exploracao/informacao',
+						'exploracao/deslocamento',
+						'exploracao/pontos-de-interesse',
+						'exploracao/salas-armadilhas-e-quebra-cabecas',
 					],
 				},
 				{
