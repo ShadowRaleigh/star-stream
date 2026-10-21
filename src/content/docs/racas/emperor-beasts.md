@@ -11,7 +11,7 @@ title: "Emperor Beasts"
 
 Uma raça de panteras que vive nas densas florestas negras do continente de Bravia. Possuem uma sociedade tribal caçadora-coletora. Por não possuírem uma estrutura social muito avançada, são oficialmente classificadas como animais selvagens até hoje pelo Império Elfo Negro, não sendo considerado um povo civilizado. Por essa razão, evitam a maioria do controle imperial, mantendo a maioria dos seus costumes inalterados. No entanto, suas cabeças são consideradas troféus de alta estima pelos Elfos Negros e as florestas onde vivem possuem uma madeira extremamente cobiçada para fazer mobília, de forma que são constantemente expulsos de suas regiões naturais e hoje se tornaram uma raça ameaçada de extinção. Possuem um par de chifres verdes, representando sua afinidade com o elemento ar
 
-* **Habilidades:** Toque elétrico, Garras, Presas, [Controle de Forma](../fatores/#controle-de-forma)  
+* **Habilidades:** Toque elétrico, Garras e Presas (em construção), [Controle de Forma](../fatores/#controle-de-forma)  
 * **Vantagens: +1 [PER](../../personagem/atributos/#percepção-per)**, **+1 [DEX](../../personagem/atributos/#destreza-dex)**, [Pulos Longos](../fatores/#pulos-longos), [Resistência (Cortante)](../fatores/#resistência-x), [Sentidos Apurados](../fatores/#sentidos-apurados)  
 * **Desvantagens:** [Cabeça a Prêmio](../fatores/#cabeça-a-prêmio), [Fraqueza (Contundente)](../fatores/#fraqueza-x), [Fraqueza (Gelo)](../fatores/#fraqueza-x), [Pseudo-demônio](../fatores/#pseudo-demônio)  
 * **Línguas:** Bestial, Élfico  

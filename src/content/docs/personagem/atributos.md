@@ -44,7 +44,7 @@ Na hora de montar um personagem, saiba que ele deve, inicialmente, possuir 52 po
 
 * Para personagens com nível acima do **1**, primeiro deve ser feita a distribuição dos pontos iniciais seguindo a regra pra níveis **1**, pra somente então levar em conta os pontos ganhados por ter um nível mais alto.
 
-* Novos pontos de atributo são adquiridos pelo personagem **somente** a cada **[Quebra de Limite](../criacao/#nível)**
+* Novos pontos de atributo são adquiridos pelo personagem **somente** a cada **[Quebra de Limite](../criacao/#quebra-de-limite)**
 
 * O valor “médio” pra um atributo é 10, valores maiores que isso em um atributo acarretam em um bônus, enquanto que valores menores causam penalidades.
 

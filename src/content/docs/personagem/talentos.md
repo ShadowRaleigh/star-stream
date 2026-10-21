@@ -1,7 +1,7 @@
 ---
 title: "Talentos"
 ---
-Talentos são habilidades **passivas** que podem ser adquiridas por personagens através do seu histórico, títulos ou por subir de nível. Abaixo, fica a lista de talentos mais comuns que podem ser escolhidos por jogadores a cada **[Quebra de Limite](../criacao/#nível)** ou ganhas por **[históricos](../../historicos/)**.  
+Talentos são habilidades **passivas** que podem ser adquiridas por personagens através do seu histórico, títulos ou por subir de nível. Abaixo, fica a lista de talentos mais comuns que podem ser escolhidos por jogadores a cada **[Quebra de Limite](../criacao/#quebra-de-limite)** ou ganhas por **[históricos](../../historicos/)**.  
 Ao escolher talentos por quebrar seu limite, jogadores podem escolher um talento de nível igual ou menor ao seu naquele momento
 
 ## Nível 10

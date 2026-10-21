@@ -7,7 +7,7 @@ title: "Fatores de Raça"
 
 * **Descrição:** Criaturas com essa habilidade concentram a mana do ambiente ao seu redor em frutos com propriedades especiais. As propriedades de cada fruto variam de indivíduo pra indivíduo e podem ser influenciadas por fatores ambientais
 
-* **Efeito:** Todos os dias, produz de uma a 4 frutas com propriedades únicas. O número de frutas depende da força da fruta. A cada **[Quebra de Limite](../../personagem/criacao/#nível)**, o efeito da fruta pode ser aprimorado. As frutas produzidas com essa habilidade perdem o seu efeito em 24 horas.
+* **Efeito:** Todos os dias, produz de uma a 4 frutas com propriedades únicas. O número de frutas depende da força da fruta. A cada **[Quebra de Limite](../../personagem/criacao/#quebra-de-limite)**, o efeito da fruta pode ser aprimorado. As frutas produzidas com essa habilidade perdem o seu efeito em 24 horas.
 
 ### Controle de Forma
 

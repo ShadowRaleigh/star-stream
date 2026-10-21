@@ -56,7 +56,7 @@ Uma raça com longevidade quase eterna, os aasimares são nativos de Depan e se 
 
 Filhos de qualquer raça humanóide com gigantes, os indivíduos dessa raça costumam atingir entre 4 e 6 metros de altura, com um máximo registrado de 7 metros. Geralmente são considerados alguma coisa entre párias e aberrações pela maioria das civilizações, dependendo do contato delas com a raça dos gigantes. Na maioria das vezes, são pessoas que não possuem nenhum dos pais, porque os gigantes não criam seus filhos e geralmente outras raças ou morrem durante o parto de meio-gigantes ou morrem durante sua concepção, rejeitados pela maioria das sociedades, e para lidar com o fato de que sempre vão chamar atenção (geralmente negativa) onde quer que vão, eles compensam com uma força avassaladora, capaz de intimidar a maioria das raças facilmente, além de uma parte das características da raça do pai não-gigante.  
 
-* **Habilidades:** N.A  
+* **Habilidades:** as da outra raça do personagem (a do pai ou da mãe que não é gigante)  
 * **Vantagens: +1 [RES](../../personagem/atributos/#resistência-res)**, **+1** **[POD](../../personagem/atributos/#poder-pod)**, [Peso Pesado](../fatores/#peso-pesado)  
 * **Desvantagens: -1 [INT](../../personagem/atributos/#intelecto-int)**, [Aberração](../fatores/#aberração)  
-* **Línguas:** N.A
+* **Línguas:** as da outra raça do personagem
