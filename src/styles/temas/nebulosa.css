@@ -1,1 +1,225 @@
-/* Tema nebulosa: em construção. */
+/* Tema 4, Nebulosa: a galáxia do logo como fundo de tudo, com o texto em painéis de vidro fosco. */
+
+:root[data-ss-tema='nebulosa'] {
+	--ss-rosa: #f0a8d8;
+	--ss-pessego: #ffcfa8;
+	--ss-lilas: #b9a6ff;
+	--ss-vidro: rgb(16 12 34 / 0.62);
+	--sl-color-accent-low: #2f1f45;
+	--sl-color-accent: #f0a8d8;
+	--sl-color-accent-high: #ffe1f2;
+	--sl-color-white: #fbf5ff;
+	--sl-color-gray-1: #ece2f7;
+	--sl-color-gray-2: #cdbfe0;
+	--sl-color-gray-3: #9d90b7;
+	--sl-color-gray-4: #675b83;
+	--sl-color-gray-5: #3a2f55;
+	--sl-color-gray-6: #1d1634;
+	--sl-color-black: #0c0818;
+	--sl-color-bg-nav: rgb(12 8 24 / 0.55);
+	--sl-color-bg-sidebar: rgb(12 8 24 / 0.45);
+	--sl-color-hairline: rgb(240 168 216 / 0.16);
+	--sl-color-hairline-light: rgb(240 168 216 / 0.26);
+	--ss-fundo:
+		linear-gradient(180deg, rgb(12 8 24 / 0.55), rgb(12 8 24 / 0.82)),
+		url('/star-stream/galaxia.webp') center / cover,
+		#0c0818;
+	--ss-tabela-cabecalho: rgb(240 168 216 / 0.12);
+	--ss-tabela-listra: rgb(255 255 255 / 0.03);
+}
+
+:root[data-ss-tema='nebulosa'][data-theme='light'] {
+	--ss-rosa: #a8407f;
+	--ss-pessego: #b8602a;
+	--ss-lilas: #5b46b8;
+	--ss-vidro: rgb(255 250 255 / 0.72);
+	--sl-color-accent-low: #f6e4f1;
+	--sl-color-accent: #a8407f;
+	--sl-color-accent-high: #5e1d45;
+	--sl-color-white: #1e1430;
+	--sl-color-gray-1: #2c2142;
+	--sl-color-gray-2: #463a5e;
+	--sl-color-gray-3: #6f6488;
+	--sl-color-gray-4: #9d94b2;
+	--sl-color-gray-5: #ddd3ea;
+	--sl-color-gray-6: #efe8f6;
+	--sl-color-gray-7: #f6f1fa;
+	--sl-color-black: #f3edf8;
+	--sl-color-bg-nav: rgb(250 246 252 / 0.7);
+	--sl-color-bg-sidebar: rgb(250 246 252 / 0.55);
+	--sl-color-hairline: rgb(168 64 127 / 0.16);
+	--sl-color-hairline-light: rgb(168 64 127 / 0.26);
+	--ss-fundo:
+		linear-gradient(180deg, rgb(248 242 252 / 0.84), rgb(248 242 252 / 0.92)),
+		url('/star-stream/galaxia.webp') center / cover,
+		#f3edf8;
+	--ss-tabela-cabecalho: rgb(168 64 127 / 0.08);
+	--ss-tabela-listra: rgb(91 70 184 / 0.03);
+}
+
+[data-ss-tema='nebulosa'] header.header {
+	backdrop-filter: blur(16px) saturate(140%);
+	border-bottom: 1px solid var(--sl-color-hairline);
+}
+
+[data-ss-tema='nebulosa'] .sidebar-pane {
+	backdrop-filter: blur(14px) saturate(130%);
+	border-inline-end: 1px solid var(--sl-color-hairline);
+}
+
+/* O conteúdo principal fica num painel de vidro. */
+@media (min-width: 50rem) {
+	[data-ss-tema='nebulosa'] .main-pane {
+		padding: 1.25rem 1.25rem 2rem;
+	}
+
+	[data-ss-tema='nebulosa'] .main-pane > main {
+		background: var(--ss-vidro);
+		backdrop-filter: blur(18px) saturate(140%);
+		border: 1px solid var(--sl-color-hairline);
+		border-radius: 1.25rem;
+		box-shadow: 0 30px 80px -40px rgb(0 0 0 / 0.7);
+		overflow: hidden;
+	}
+}
+
+[data-ss-tema='nebulosa'] .sidebar-content summary .large {
+	font-size: 0.9rem;
+	letter-spacing: 0.1em;
+	background: linear-gradient(90deg, var(--ss-pessego), var(--ss-rosa));
+	-webkit-background-clip: text;
+	background-clip: text;
+	color: transparent;
+}
+
+[data-ss-tema='nebulosa'] .sidebar-content a[aria-current='page'] {
+	background: linear-gradient(90deg, rgb(240 168 216 / 0.28), rgb(185 166 255 / 0.12));
+	color: var(--sl-color-white);
+	border-radius: 999px;
+	box-shadow: 0 0 18px -6px rgb(240 168 216 / 0.6);
+}
+
+/* Títulos em degradê de pêssego, rosa e lilás, as cores do centro da galáxia. */
+[data-ss-tema='nebulosa'] h1#_top {
+	font-weight: 700;
+	font-size: clamp(2.4rem, 5vw, 3.4rem);
+	letter-spacing: 0.03em;
+	background: linear-gradient(100deg, var(--ss-pessego), var(--ss-rosa) 45%, var(--ss-lilas));
+	-webkit-background-clip: text;
+	background-clip: text;
+	color: transparent;
+	filter: drop-shadow(0 0 22px rgb(240 168 216 / 0.25));
+}
+
+[data-ss-tema='nebulosa'] .content-panel:has(h1#_top) {
+	border-bottom-color: var(--sl-color-hairline);
+}
+
+[data-ss-tema='nebulosa'] .sl-markdown-content h2 {
+	color: var(--sl-color-white);
+	border-bottom: none;
+	padding-bottom: 0.3rem;
+	background: linear-gradient(90deg, var(--ss-pessego), var(--ss-rosa), transparent 75%) left bottom / 100% 2px no-repeat;
+}
+
+[data-ss-tema='nebulosa'] .sl-markdown-content h3 {
+	color: var(--ss-rosa);
+}
+
+[data-ss-tema='nebulosa'] .sl-markdown-content h4 {
+	color: var(--ss-lilas);
+}
+
+[data-ss-tema='nebulosa'] .sl-markdown-content a:not(.sl-anchor-link) {
+	color: var(--ss-pessego);
+	text-decoration-color: rgb(255 207 168 / 0.45);
+	text-underline-offset: 0.2em;
+}
+
+[data-ss-tema='nebulosa'] .sl-markdown-content strong {
+	color: var(--sl-color-white);
+}
+
+[data-ss-tema='nebulosa'] .sl-markdown-content table {
+	border-radius: 0.9rem;
+	border-collapse: separate;
+	border-spacing: 0;
+	overflow: hidden;
+	border: 1px solid var(--sl-color-hairline-light);
+	background: rgb(255 255 255 / 0.03);
+}
+
+[data-ss-tema='nebulosa'] .sl-markdown-content :is(th, td) {
+	border: none;
+	border-bottom: 1px solid var(--sl-color-hairline);
+}
+
+[data-ss-tema='nebulosa'] .sl-markdown-content th {
+	color: var(--ss-pessego);
+	background: linear-gradient(90deg, rgb(255 207 168 / 0.12), rgb(240 168 216 / 0.12));
+}
+
+[data-ss-tema='nebulosa'] .sl-markdown-content blockquote {
+	border: none;
+	border-radius: 1rem;
+	background: linear-gradient(120deg, rgb(255 207 168 / 0.12), rgb(185 166 255 / 0.12));
+	box-shadow: inset 0 0 0 1px var(--sl-color-hairline-light);
+	font-style: italic;
+	font-size: 1.08em;
+}
+
+[data-ss-tema='nebulosa'] .starlight-aside {
+	border-radius: 1rem;
+	border: none;
+	background: rgb(185 166 255 / 0.12);
+	box-shadow: inset 0 0 0 1px rgb(185 166 255 / 0.3);
+}
+
+[data-ss-tema='nebulosa'] .sl-link-card,
+[data-ss-tema='nebulosa'] .pagination-links a {
+	border-radius: 1rem;
+	border: 1px solid var(--sl-color-hairline-light);
+	background: rgb(255 255 255 / 0.05);
+	backdrop-filter: blur(10px);
+	transition: transform 0.25s, box-shadow 0.25s, border-color 0.25s;
+}
+
+[data-ss-tema='nebulosa'][data-theme='light'] .sl-link-card,
+[data-ss-tema='nebulosa'][data-theme='light'] .pagination-links a {
+	background: rgb(255 255 255 / 0.6);
+}
+
+[data-ss-tema='nebulosa'] .sl-link-card:hover,
+[data-ss-tema='nebulosa'] .pagination-links a:hover {
+	transform: translateY(-2px);
+	border-color: var(--ss-rosa);
+	box-shadow: 0 16px 40px -16px rgb(240 168 216 / 0.55);
+}
+
+[data-ss-tema='nebulosa'] .sl-link-card .title {
+	color: var(--ss-pessego);
+	font-weight: 700;
+}
+
+[data-ss-tema='nebulosa'] .ss-capa {
+	border-radius: 1.5rem;
+	background:
+		radial-gradient(ellipse at center, rgb(12 8 24 / 0) 20%, rgb(12 8 24 / 0.65)),
+		url('/star-stream/galaxia.webp') center 35% / 140%;
+	box-shadow: inset 0 0 0 1px rgb(255 255 255 / 0.12), 0 30px 90px -30px rgb(240 168 216 / 0.45);
+}
+
+[data-ss-tema='nebulosa'] .ss-capa img {
+	filter: drop-shadow(0 0 30px rgb(240 168 216 / 0.55));
+}
+
+[data-ss-tema='nebulosa'] .ss-capa .ss-acoes a.ss-principal {
+	background: linear-gradient(100deg, var(--ss-pessego), var(--ss-rosa));
+	border: none;
+	color: #2a0f24;
+	box-shadow: 0 8px 30px -8px rgb(240 168 216 / 0.8);
+}
+
+[data-ss-tema='nebulosa'] .ss-capa .ss-acoes a {
+	backdrop-filter: blur(8px);
+}

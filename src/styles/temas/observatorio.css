@@ -23,7 +23,6 @@
 	--sl-color-hairline: rgb(201 161 93 / 0.18);
 	--sl-color-hairline-light: rgb(201 161 93 / 0.3);
 	--ss-fundo:
-		url('/star-stream/temas/astrolabio-dourado.svg') right -260px top 80px / 760px no-repeat,
 		radial-gradient(ellipse 70% 60% at 100% 0%, rgb(201 161 93 / 0.08), transparent 70%),
 		url('/star-stream/temas/estrelas-douradas.svg') 0 0 / 600px,
 		#121110;
@@ -50,9 +49,7 @@
 	--sl-color-bg-sidebar: #f0e6d0;
 	--sl-color-hairline: rgb(140 101 40 / 0.22);
 	--sl-color-hairline-light: rgb(140 101 40 / 0.32);
-	--ss-fundo:
-		url('/star-stream/temas/astrolabio-tinta.svg') right -260px top 80px / 760px no-repeat,
-		#f4ecda;
+	--ss-fundo: #f4ecda;
 	--ss-tabela-listra: rgb(140 101 40 / 0.05);
 }
 
@@ -291,4 +288,23 @@
 	background: var(--ss-latao);
 	border-color: var(--ss-latao);
 	color: #17130c;
+}
+
+/* Astrolábio em marca d'água, bem leve, atrás de tudo. */
+[data-ss-tema='observatorio'] body::after {
+	content: '';
+	position: fixed;
+	right: -240px;
+	top: 40px;
+	width: 820px;
+	height: 820px;
+	pointer-events: none;
+	z-index: -1;
+	background: url('/star-stream/temas/astrolabio-dourado.svg') center / contain no-repeat;
+	opacity: 0.09;
+}
+
+[data-ss-tema='observatorio'][data-theme='light'] body::after {
+	background-image: url('/star-stream/temas/astrolabio-tinta.svg');
+	opacity: 0.07;
 }

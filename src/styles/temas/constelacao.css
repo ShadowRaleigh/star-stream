@@ -219,3 +219,11 @@
 	border-color: #f6e3bd;
 	color: #1b1408;
 }
+
+/* Na capa, uma constelação liga as estrelas por trás do logo. */
+[data-ss-tema='constelacao'] .ss-capa {
+	background:
+		url('/star-stream/temas/constelacao-dourada.svg') center 18% / 70% no-repeat,
+		radial-gradient(ellipse at center, rgb(10 14 26 / 0.1), rgb(10 14 26 / 0.8)),
+		url('/star-stream/galaxia.webp') center / cover;
+}

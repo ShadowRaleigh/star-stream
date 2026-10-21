@@ -130,3 +130,20 @@ canto('canto-ciano.svg', '#7ee7ff');
 salvar('estrela-4.svg', `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 0 L14.2 9.8 L24 12 L14.2 14.2 L12 24 L9.8 14.2 L0 12 L9.8 9.8 Z" fill="#e3c38f"/></svg>`);
 
 console.log('assets gerados em', OUT, fs.readdirSync(OUT).join(', '));
+
+// Os quatro cantos do Grimório, a partir do mesmo desenho.
+{
+	const base = fs.readFileSync(path.join(OUT, 'canto-ouro.svg'), 'utf8').replace(/^<svg[^>]*>/, '').replace(/<\/svg>\s*$/, '');
+	const cantos = { se: '', sd: 'translate(120 0) scale(-1 1)', ie: 'translate(0 120) scale(1 -1)', id: 'translate(120 120) scale(-1 -1)' };
+	for (const [nome, t] of Object.entries(cantos)) {
+		salvar(`canto-ouro-${nome}.svg`, `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" fill="none" stroke="#a87b3a"><g transform="${t}">${base}</g></svg>`);
+	}
+}
+
+// Couro: ruído escuro e quente para a capa.
+salvar('couro.svg', `<svg xmlns="http://www.w3.org/2000/svg" width="300" height="300">
+<filter id="c"><feTurbulence type="fractalNoise" baseFrequency=".8" numOctaves="3" seed="4" stitchTiles="stitch"/>
+<feColorMatrix values="0 0 0 0 .12  0 0 0 0 .07  0 0 0 0 .03  0 0 0 .35 0"/></filter>
+<filter id="v"><feTurbulence type="fractalNoise" baseFrequency=".012" numOctaves="3" seed="12" stitchTiles="stitch"/>
+<feColorMatrix values="0 0 0 0 .05  0 0 0 0 .02  0 0 0 0 .01  0 0 0 .5 0"/></filter>
+<rect width="100%" height="100%" filter="url(#v)"/><rect width="100%" height="100%" filter="url(#c)"/></svg>`);

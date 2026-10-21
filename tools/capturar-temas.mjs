@@ -7,7 +7,7 @@ import path from 'node:path';
 
 const EDGE = 'C:/Program Files (x86)/Microsoft/Edge/Application/msedge.exe';
 const BASE = 'http://localhost:4321/star-stream/';
-const [, , saida = 'capturas', temasArg, paginasArg] = process.argv;
+const [, , saida = 'capturas', temasArg, paginasArg, inverter] = process.argv;
 
 const temas = (temasArg || 'atual,constelacao,observatorio,holograma,nebulosa,codex,grimorio').split(',');
 const PAGINAS = {
@@ -19,19 +19,25 @@ const PAGINAS = {
 };
 const paginas = (paginasArg || Object.keys(PAGINAS).join(',')).split(',');
 const MODOS = { constelacao: 'escuro', observatorio: 'escuro', holograma: 'escuro', nebulosa: 'escuro', codex: 'claro', grimorio: 'claro', atual: 'escuro' };
+const esperar = (ms) => Atomics.wait(new Int32Array(new SharedArrayBuffer(4)), 0, 0, ms);
 
 fs.mkdirSync(saida, { recursive: true });
-const perfil = fs.mkdtempSync(path.join(os.tmpdir(), 'edge-temas-'));
 for (const tema of temas) {
 	for (const nome of paginas) {
 		const p = PAGINAS[nome];
-		const arquivo = path.resolve(saida, `${tema}-${nome}.png`);
-		const url = `${BASE}${p.url}?tema=${tema}&modo=${MODOS[tema] || 'escuro'}&captura`;
+		const arquivo = path.resolve(saida, `${tema}-${nome}${inverter ? '-alt' : ''}.png`);
+		// Um perfil novo por captura: com o mesmo perfil, o Edge repassa a URL a uma instância já aberta e não salva nada.
+		const perfil = fs.mkdtempSync(path.join(os.tmpdir(), 'edge-temas-'));
+		fs.rmSync(arquivo, { force: true });
+		const url = `${BASE}${p.url}?tema=${tema}&modo=${(MODOS[tema] === 'claro') !== Boolean(inverter) ? 'claro' : 'escuro'}&captura`;
 		execFileSync(EDGE, [
-			'--headless=new', '--disable-gpu', '--hide-scrollbars', `--user-data-dir=${perfil}`,
-			`--window-size=${p.tam}`, '--virtual-time-budget=6000', `--screenshot=${arquivo}`, url,
+			'--headless=new', '--disable-gpu', '--hide-scrollbars', '--no-first-run', `--user-data-dir=${perfil}`,
+			`--window-size=${p.tam}`, '--virtual-time-budget=8000', `--screenshot=${arquivo}`, url,
 		], { stdio: 'ignore' });
-		console.log('ok', tema, nome);
+		const fim = Date.now() + 30000;
+		while (!fs.existsSync(arquivo) && Date.now() < fim) esperar(250);
+		esperar(400);
+		try { fs.rmSync(perfil, { recursive: true, force: true }); } catch {}
+		console.log(fs.existsSync(arquivo) ? 'ok' : 'FALHOU', tema, nome);
 	}
 }
-fs.rmSync(perfil, { recursive: true, force: true });

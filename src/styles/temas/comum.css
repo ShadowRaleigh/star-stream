@@ -40,3 +40,21 @@
 		transition: none !important;
 	}
 }
+
+/* Os botões da capa ficam sempre sobre a galáxia: texto em marfim, sem o estilo de link do tema. */
+:root[data-ss-tema] .ss-capa .ss-acoes a:not(.ss-principal) {
+	color: #f8f3e7;
+	text-decoration: none;
+	border-bottom-width: 1px;
+}
+
+:root[data-ss-tema] .ss-capa .ss-acoes a.ss-principal {
+	text-decoration: none;
+}
+
+/* No celular, o ícone de âncora quebrava para a linha de baixo nos títulos decorados. */
+@media (max-width: 50rem) {
+	:root[data-ss-tema]:not([data-ss-tema='atual']) .sl-markdown-content .sl-anchor-link {
+		display: none;
+	}
+}
