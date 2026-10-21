@@ -1,29 +1,13 @@
 ---
 title: "Atributos em Combate"
 ---
-Essa sessão vai detalhar os efeitos que cada um dos **[atributos](../../personagem/atributos/)** podem ter em um combate
+Esta seção detalha o efeito de cada **[atributo](../../personagem/atributos/)** no combate.
 
-* **POD:**  
-  * **Efeito:** Afeta toda a cura e dano que o personagem pode causar, além de aumentar a **[Fortitude](../../personagem/stats/#defesas)**  
-  * **Bônus/Penalidade:** ± 2% de dano e cura  
-  * **Defesa:** Fortitude +1 por ponto  
-* **RES:**  
-  * **Efeito:** Afeta o **[HP, LF](../../personagem/stats/#obrigatórios)**, além de aumentar a **[Fortitude](../../personagem/stats/#defesas)**  
-  * **Bônus/Penalidade:** ± 3% para HP, ± 1 para LF  
-  * **Defesa:** +1 Fortitude por ponto  
-* **DEX:**  
-  * **Efeito:** Afeta o alcance dos ataques e os **[Reflexos](../../personagem/stats/#defesas)**. Fora de combate, também afeta a **[Velocidade de Ação](../../personagem/stats/#velocidade-de-ação)**  
-  * **Bônus/Penalidade:** +0,2m de alcance corpo a corpo e +10% de alcance à distância por ponto acima de 10; fora de combate, ± 2% Velocidade de Ação  
-  * **Defesa:** +1 Reflexos por ponto  
-* **INT:**  
-  * **Efeito:** Afeta a **[Duração](../../habilidades/criacao/#aspectos-de-seleção)**, a **[Área de Efeito](../../habilidades/criacao/#aspectos-fixos)** e o alcance das **Habilidades**, inclusive das habilidades ativas de arquétipo, além de aumentar o **[Mental](../../personagem/stats/#defesas)**  
-  * **Bônus/Penalidade:** +5% Duração; +5% Área de Efeito; +5% de alcance  
-  * **Defesa:** +1 Mental por ponto  
-* **PER:**  
-  * **Efeito:** Afeta a **[Precisão](../../personagem/stats/#precisão)** e **[Reflexos](../../personagem/stats/#defesas)**  
-  * **Bônus/Penalidade:** +1 Precisão por ponto  
-  * **Defesa:** +1 Reflexos por ponto  
-* **DET:**  
-  * **Efeito:** Afeta a **Concentração**, **[Mental](../../personagem/stats/#defesas)**, **[Deflexão](../../personagem/stats/#defesas)**  
-  * **Bônus/Penalidade:**  +1 Concentração  
-  * **Defesa:** +1 Mental, +1 Deflexão por ponto
+| Atributo | Afeta | Bônus ou penalidade | Defesa |
+| :---- | :---- | :---- | :---- |
+| **[POD](../../personagem/atributos/#poder-pod)** | Todo o dano e a cura que o personagem causa | ±2% de dano e cura | +1 de [Fortitude](../../personagem/stats/#fortitude) por ponto |
+| **[RES](../../personagem/atributos/#resistência-res)** | O [HP](../../personagem/stats/#health-points-hp) e a [LF](../../personagem/stats/#life-force-lf) | ±3% de HP, ±1 de LF | +1 de Fortitude por ponto |
+| **[DEX](../../personagem/atributos/#destreza-dex)** | O alcance dos ataques; fora de combate, a [Velocidade de Ação](../../personagem/stats/#velocidade-de-ação) | +0,2m de alcance corpo a corpo e +10% de alcance à distância por ponto acima de 10; fora de combate, ±2% de Velocidade de Ação | +1 de [Reflexos](../../personagem/stats/#reflexos) por ponto |
+| **[INT](../../personagem/atributos/#intelecto-int)** | A [Duração](../../habilidades/criacao/#duração), a [Área de Efeito](../../habilidades/criacao/#área) e o [alcance](../../habilidades/criacao/#alcance) das [habilidades](../../habilidades/), inclusive das ativas de arquétipo | +5% de Duração, +5% de Área de Efeito e +5% de alcance | +1 de [Mental](../../personagem/stats/#mental) por ponto |
+| **[PER](../../personagem/atributos/#percepção-per)** | A [Precisão](../../personagem/stats/#precisão) | +1 de Precisão por ponto | +1 de Reflexos por ponto |
+| **[DET](../../personagem/atributos/#determinação-det)** | A [Concentração](../../personagem/stats/#concentração) | +1 de Concentração | +1 de Mental e +1 de [Deflexão](../../personagem/stats/#deflexão) por ponto |

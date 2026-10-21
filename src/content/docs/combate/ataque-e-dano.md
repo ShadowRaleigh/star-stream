@@ -29,9 +29,9 @@ um ataque pode causar dois tipos de dano ao mesmo tempo, como uma espada flameja
 
 ### Danos Especiais
 
-  * **Verdadeiro:** Um dano absoluto e imutável. Nada altera esse dano: armadura, **Reduções de Dano**, **Resistências**, **Fraquezas** e o POD não se aplicam a ele. Na maioria dos casos, a fonte também é absoluta e o dano não rola para acertar. Quando a fonte rola para acertar, o Raspão e o Crítico mudam o dano normalmente.  
-  * Psíquico **:** Um dano mental, ao invés de te causar dano no seu **[HP](../../personagem/stats/#health-points-hp)**, causa danos à **Sanidade** do personagem  
-  * Forçado **:** Um dano paranormal que parece ter origem desconhecida, não existem **Resistências** conta esse tipo de dano
+  * **Verdadeiro:** Um dano absoluto e imutável. Nada altera esse dano: armadura, **Reduções de Dano**, **[Resistências](../../personagem/stats/#resistências)**, **[Fraquezas](../../personagem/stats/#fraquezas)** e o **[POD](../../personagem/atributos/#poder-pod)** não se aplicam a ele. Na maioria dos casos, a fonte também é absoluta e o dano não rola para acertar. Quando a fonte rola para acertar, o Raspão e o Crítico mudam o dano normalmente.  
+  * **Psíquico:** Um dano mental, ao invés de te causar dano no seu **[HP](../../personagem/stats/#health-points-hp)**, causa danos à **[Sanidade](../../personagem/stats/#sanidade-san)** do personagem  
+  * **Forçado:** Um dano paranormal que parece ter origem desconhecida, não existem **Resistências** contra esse tipo de dano
 
 ## Classificação de Ataques e Defesas associadas
 
@@ -42,9 +42,9 @@ um ataque pode causar dois tipos de dano ao mesmo tempo, como uma espada flameja
 
 ## Execução do Ataque
 
-Ao declarar a intenção de atacar, o jogador ou mestre deve rolar **1d100** e somar a sua **Precisão** apropriada no resultado. Então, o mestre deve subtrair desse resultado a **[Defesa](../../personagem/stats/#defesas)** apropriada e verificar o resultado de acordo com a tabela abaixo:
+Ao declarar a intenção de atacar, o jogador ou mestre deve rolar **1d100** e somar a sua **[Precisão](../../personagem/stats/#precisão)** apropriada no resultado. Então, o mestre deve subtrair desse resultado a **[Defesa](../../personagem/stats/#defesas)** apropriada e verificar o resultado de acordo com a tabela abaixo:
 
-**Fórmula:** [ Roll do d100 + **Precisão** - **Defesa** ]
+**Fórmula:** [ Roll do d100 + **Precisão** − **Defesa** ]
 
 | Faixa de Resultado | Resultado do Ataque | Dano Causado (%) |
 | :---: | :---: | :---: |
@@ -54,8 +54,8 @@ Ao declarar a intenção de atacar, o jogador ou mestre deve rolar **1d100** e s
 | **101 - 180** | **Crítico (Crit)** | **150%** |
 | **181+** | **Crítico Duplo (D. Crit)** | **200%** |
 
-Incondicionalmente da soma total, um 100 natural rolado no d100 sempre acerta e é um **crítico**  
-**Ordem dos efeitos no resultado:** quando efeitos de habilidades e de equipamentos mudam o resultado do mesmo ataque, os das habilidades se aplicam primeiro e os dos equipamentos depois. Por exemplo, contra um alvo **Exposto**, um Raspão vira Acerto; se o alvo tiver um **Defletor**, o Acerto cai de volta para Raspão.
+Independentemente da soma total, um 100 natural rolado no d100 sempre acerta e é um **crítico**  
+**Ordem dos efeitos no resultado:** quando efeitos de habilidades e de equipamentos mudam o resultado do mesmo ataque, os das habilidades se aplicam primeiro e os dos equipamentos depois. Por exemplo, contra um alvo **[Exposto](../efeitos-de-status/#exposto)**, um Raspão vira Acerto; se o alvo tiver um **[Defletor](../equipamento/#gerador)**, o Acerto cai de volta para Raspão.
 
 Pra cada **1** ponto acima de **10** no **[atributo Sorte](../../personagem/atributos/#sorte-luk)**, até um total de **20** pontos, essa tabela final é modificada. Cada ponto extra reduz a faixa de **Erro** em **1** e aumenta a faixa de **Crítico** em **1** pra baixo. Por exemplo, um aventureiro com **15** de sorte teria uma tabela de resultados de ataque como essa:
 
@@ -83,9 +83,9 @@ Depois de definir o resultado do ataque, o dano causado é calculado assim:
 
 **Fórmula:** [ **Dano base** × **Forma do ataque** × (1 + **Bônus externos**) × (1 + **Bônus de POD**) × (1 − **RD do alvo**) ]
 
-* **Dano base:** o dano do ataque básico da arma do personagem, já com o multiplicador do estilo de combate. No caso das habilidades, vale o multiplicador próprio das habilidades (ver [Habilidades](../../habilidades/criacao/#dano)).  
+* **Dano base:** o dano do ataque básico da arma do personagem, já com o multiplicador do [estilo de combate](../../personagem/estilos-de-combate/). No caso das habilidades, vale o multiplicador próprio das habilidades (ver [Habilidades](../../habilidades/criacao/#dano)).  
 * **Forma do ataque:** ataque básico 1×; habilidade simples 1,5×; habilidade especial 2,5×. Em área, simples 0,75× e especial 1,75×.  
-* **Bônus externos:** somam entre si. São o **resultado do ataque** (Raspão −50%, Acerto 0%, Crítico +50%, Crítico Duplo +100%), consumíveis, buffs, títulos, fraquezas (+50%), resistências (−50%), Vulnerável, Escalada e outros. **Não há teto.**  
+* **Bônus externos:** somam entre si. São o **resultado do ataque** (Raspão −50%, Acerto 0%, Crítico +50%, Crítico Duplo +100%), consumíveis, buffs, títulos, fraquezas (+50%), resistências (−50%), [Vulnerável](../efeitos-de-status/#vulnerável), [Escalada](../rodadas-e-acoes/#escalada) e outros. **Não há teto.**  
 * **Bônus de POD:** ±2% por ponto acima ou abaixo de 10, multiplicado à parte.  
 * **Mínimo:** o fator (1 + soma dos bônus externos) nunca fica abaixo de 0,1, ou seja, 10% do dano base.
 
