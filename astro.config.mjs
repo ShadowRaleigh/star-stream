@@ -27,6 +27,7 @@ export default defineConfig({
 				alt: 'Star Stream',
 				replacesTitle: true,
 			},
+			components: { ThemeSelect: './src/components/SeletorDeTema.astro' },
 			customCss: [
 				'@fontsource-variable/eb-garamond',
 				'@fontsource-variable/eb-garamond/wght-italic.css',
@@ -43,6 +44,9 @@ export default defineConfig({
 				'./src/styles/temas/nebulosa.css',
 				'./src/styles/temas/codex.css',
 				'./src/styles/temas/grimorio.css',
+				'./src/styles/temas/astrolabio.css',
+				'./src/styles/temas/carta.css',
+				'./src/styles/temas/banners.css',
 			],
 			lastUpdated: false,
 			pagination: true,

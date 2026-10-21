@@ -231,3 +231,8 @@ h1#_top {
 .ss-capa .ss-acoes a.ss-principal:hover {
 	background: #ffffff;
 }
+
+/* A capa tem os dois logos; os temas de capa clara mostram o escuro. */
+.ss-capa .logo-escuro {
+	display: none;
+}

@@ -147,3 +147,9 @@ salvar('couro.svg', `<svg xmlns="http://www.w3.org/2000/svg" width="300" height=
 <filter id="v"><feTurbulence type="fractalNoise" baseFrequency=".012" numOctaves="3" seed="12" stitchTiles="stitch"/>
 <feColorMatrix values="0 0 0 0 .05  0 0 0 0 .02  0 0 0 0 .01  0 0 0 .5 0"/></filter>
 <rect width="100%" height="100%" filter="url(#v)"/><rect width="100%" height="100%" filter="url(#c)"/></svg>`);
+
+// Astrolábio só com os anéis (sem a estrela central), para ficar atrás do logo nas capas.
+for (const [nome, origem] of [['astrolabio-anel-dourado.svg', 'astrolabio-dourado.svg'], ['astrolabio-anel-tinta.svg', 'astrolabio-tinta.svg']]) {
+	const svg = fs.readFileSync(path.join(OUT, origem), 'utf8').replace(/<path d="M200 128[^>]*\/>/, '').replace(/<circle cx="200" cy="200" r="7"[^>]*\/>/, '');
+	salvar(nome, svg);
+}

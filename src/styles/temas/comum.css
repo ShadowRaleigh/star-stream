@@ -1,21 +1,5 @@
 /* Peças comuns aos temas do rework visual. */
 
-/* Seletor de tema flutuante, só para comparar os modelos. */
-.ss-seletor-tema {
-	position: fixed;
-	right: 1rem;
-	bottom: 1rem;
-	z-index: 1000;
-	padding: 0.45rem 0.7rem;
-	border-radius: 0.5rem;
-	border: 1px solid rgb(248 243 231 / 0.35);
-	background: rgb(12 17 32 / 0.9);
-	color: #f8f3e7;
-	font: 600 0.8rem/1 'Segoe UI', system-ui, sans-serif;
-	box-shadow: 0 6px 24px rgb(0 0 0 / 0.4);
-	cursor: pointer;
-}
-
 /* Os temas novos desligam a faixa de galáxia do cabeçalho do tema atual. */
 :root[data-ss-tema]:not([data-ss-tema='atual']) header.header {
 	background: var(--sl-color-bg-nav);

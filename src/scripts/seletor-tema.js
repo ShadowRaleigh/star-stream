@@ -1,34 +1,22 @@
-// Seletor de tema visual (ramo de comparação do rework). Lê ?tema= na URL ou o último tema escolhido.
+// Aplica o tema visual do livro antes da página aparecer: ?tema= na URL (o link que o mestre manda), depois a última escolha, depois o padrão.
 (() => {
-	const nomes = {
-		atual: 'Atual (publicado)',
-		constelacao: '1 · Constelação',
-		observatorio: '2 · Observatório',
-		holograma: '3 · Holograma Arcano',
-		nebulosa: '4 · Nebulosa',
-		codex: '5 · Codex Celeste',
-		grimorio: 'Extra · Grimório',
-	};
-	const pedido = new URLSearchParams(location.search).get('tema');
-	let tema = pedido || (() => { try { return localStorage.getItem('ss-tema'); } catch { return null; } })() || 'atual';
-	if (!(tema in nomes)) tema = 'atual';
-	try { if (pedido) localStorage.setItem('ss-tema', tema); } catch {}
+	const temas = ['constelacao', 'observatorio', 'holograma', 'nebulosa', 'codex', 'grimorio', 'astrolabio', 'carta'];
+	const busca = new URLSearchParams(location.search);
+	const pedido = busca.get('tema');
+	let salvo = null;
+	try {
+		salvo = localStorage.getItem('ss-tema');
+	} catch {}
+	let tema = temas.includes(pedido) ? pedido : temas.includes(salvo) ? salvo : temas[0];
+	try {
+		if (temas.includes(pedido)) localStorage.setItem('ss-tema', tema);
+	} catch {}
 	document.documentElement.dataset.ssTema = tema;
-	const modo = { claro: 'light', escuro: 'dark' }[new URLSearchParams(location.search).get('modo')];
+	const modo = { claro: 'light', escuro: 'dark' }[busca.get('modo')];
 	if (modo) {
-		try { localStorage.setItem('starlight-theme', modo); } catch {}
+		try {
+			localStorage.setItem('starlight-theme', modo);
+		} catch {}
 		document.documentElement.dataset.theme = modo;
 	}
-	if (new URLSearchParams(location.search).has('captura')) return;
-	addEventListener('DOMContentLoaded', () => {
-		const s = document.createElement('select');
-		s.className = 'ss-seletor-tema';
-		s.setAttribute('aria-label', 'Tema visual');
-		for (const [v, n] of Object.entries(nomes)) s.append(new Option(n, v, false, v === tema));
-		s.addEventListener('change', () => {
-			try { localStorage.setItem('ss-tema', s.value); } catch {}
-			document.documentElement.dataset.ssTema = s.value;
-		});
-		document.body.append(s);
-	});
 })();

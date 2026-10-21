@@ -18,7 +18,7 @@ const PAGINAS = {
 	celular: { url: 'combate/ataque-e-dano/', tam: '390,844' },
 };
 const paginas = (paginasArg || Object.keys(PAGINAS).join(',')).split(',');
-const MODOS = { constelacao: 'escuro', observatorio: 'escuro', holograma: 'escuro', nebulosa: 'escuro', codex: 'claro', grimorio: 'claro', atual: 'escuro' };
+const MODOS = { constelacao: 'escuro', observatorio: 'escuro', holograma: 'escuro', nebulosa: 'escuro', codex: 'claro', grimorio: 'claro', atual: 'escuro', astrolabio: 'escuro', carta: 'claro' };
 const esperar = (ms) => Atomics.wait(new Int32Array(new SharedArrayBuffer(4)), 0, 0, ms);
 
 fs.mkdirSync(saida, { recursive: true });
