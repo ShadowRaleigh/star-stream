@@ -37,18 +37,24 @@
 }
 
 @keyframes ss-sobe {
+	from {
+		transform: rotate(0.2deg) translate(0, 0);
+	}
+
 	to {
-		transform: translateY(calc(-1 * var(--t)));
+		transform: rotate(0.2deg) translateY(calc(-1 * var(--t)));
 	}
 }
 
 @keyframes ss-flutuar {
 	from {
 		translate: 0 calc(-1 * var(--a, 8px));
+		rotate: 0.2deg;
 	}
 
 	to {
 		translate: 0 var(--a, 8px);
+		rotate: 0.2deg;
 	}
 }
 
@@ -198,10 +204,12 @@
 @keyframes ss-deriva {
 	from {
 		translate: calc(-1 * var(--b, 0px)) 0;
+		rotate: 0.2deg;
 	}
 
 	to {
 		translate: var(--b, 0px) 0;
+		rotate: 0.2deg;
 	}
 }
 
@@ -368,20 +376,22 @@
 @keyframes ss-vagar-x {
 	from {
 		translate: calc(-1 * var(--vx, 24px)) 0;
+		rotate: 0.2deg;
 	}
 
 	to {
 		translate: var(--vx, 24px) 0;
+		rotate: 0.2deg;
 	}
 }
 
 @keyframes ss-vagar-y {
 	from {
-		transform: translateY(calc(-1 * var(--vy, 16px)));
+		transform: rotate(0.2deg) translateY(calc(-1 * var(--vy, 16px)));
 	}
 
 	to {
-		transform: translateY(var(--vy, 16px));
+		transform: rotate(0.2deg) translateY(var(--vy, 16px));
 	}
 }
 
@@ -1424,11 +1434,11 @@
 @keyframes ss-medusa-nado {
 	0%,
 	100% {
-		transform: translateY(0);
+		transform: rotate(0.2deg) translateY(0);
 	}
 
 	34% {
-		transform: translateY(-12px);
+		transform: rotate(0.2deg) translateY(-12px);
 	}
 }
 
@@ -1436,14 +1446,17 @@
 @keyframes ss-medusa-subida {
 	from {
 		translate: 0 0;
+		rotate: 0.2deg;
 	}
 
 	50% {
 		translate: -12px calc(-0.5 * var(--subida));
+		rotate: 0.2deg;
 	}
 
 	to {
 		translate: 4px calc(-1 * var(--subida));
+		rotate: 0.2deg;
 	}
 }
 
@@ -1713,8 +1726,12 @@
 }
 
 @keyframes ss-orbita-x {
-	from { translate: var(--ax) 0; }
-	to { translate: calc(-1 * var(--ax)) 0; }
+	from { translate: var(--ax) 0;
+		rotate: 0.2deg;
+	}
+	to { translate: calc(-1 * var(--ax)) 0;
+		rotate: 0.2deg;
+	}
 }
 
 @keyframes ss-orbita-y {
@@ -1762,9 +1779,15 @@
 }
 
 @keyframes ss-nave {
-	0% { translate: 0 0; opacity: 0; }
-	6%, 62% { opacity: 1; }
-	68%, 100% { translate: 28.1% -61.5%; opacity: 0; }
+	0% { translate: 0 0; opacity: 0;
+		rotate: 0.2deg;
+	}
+	6%, 62% { opacity: 1;
+		rotate: 0.2deg;
+	}
+	68%, 100% { translate: 28.1% -61.5%; opacity: 0;
+		rotate: 0.2deg;
+	}
 }
 
 /* Atrás do planeta entre 61,7% e 88,3% da volta. */
@@ -2235,8 +2258,8 @@
 }
 
 @keyframes ss-neb-veu-a {
-	from { transform: translate(-5%, 2%); }
-	to { transform: translate(6%, -2%); }
+	from { transform: rotate(0.2deg) translate(-5%, 2%); }
+	to { transform: rotate(0.2deg) translate(6%, -2%); }
 }
 
 @keyframes ss-neb-veu-b {
@@ -2354,10 +2377,12 @@
 @keyframes ss-bruma {
 	from {
 		translate: -4% 0;
+		rotate: 0.2deg;
 	}
 
 	to {
 		translate: 4% 0;
+		rotate: 0.2deg;
 	}
 }
 
@@ -2470,17 +2495,20 @@
 	0% {
 		translate: -13% 0;
 		opacity: 0;
+		rotate: 0.2deg;
 	}
 
 	8%,
 	84% {
 		opacity: 1;
+		rotate: 0.2deg;
 	}
 
 	96%,
 	100% {
 		translate: 14% 0;
 		opacity: 0;
+		rotate: 0.2deg;
 	}
 }
 
@@ -2496,11 +2524,11 @@
 
 @keyframes ss-mapa-arfagem {
 	from {
-		transform: translateY(-1.5px);
+		transform: rotate(0.2deg) translateY(-1.5px);
 	}
 
 	to {
-		transform: translateY(1.5px);
+		transform: rotate(0.2deg) translateY(1.5px);
 	}
 }
 
@@ -2695,8 +2723,12 @@
 }
 
 @keyframes ss-passar {
+	from {
+		transform: rotate(0.2deg) translate(0, 0);
+	}
+
 	to {
-		transform: translateX(calc(-1 * var(--t)));
+		transform: rotate(0.2deg) translateX(calc(-1 * var(--t)));
 	}
 }
 
