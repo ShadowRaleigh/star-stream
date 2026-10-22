@@ -42,7 +42,7 @@ for (const [pacote, arquivo, familia] of FONTES) {
 		if (!woff2 || !/-latin-/.test(woff2)) continue;
 		fs.copyFileSync(path.join(dir, 'files', woff2), path.join(destino, woff2));
 		let novo = bloco
-			.replace(/src:[^;]+;/, `src: url('/star-stream/fontes/${woff2}') format('${/wght|variations/.test(bloco) ? 'woff2-variations' : 'woff2'}');`)
+			.replace(/src:[^;]+;/, `src: url('/fontes/${woff2}') format('${/wght|variations/.test(bloco) ? 'woff2-variations' : 'woff2'}');`)
 			.replace(/\n\s*/g, '\n\t')
 			.replace(/\n\t\}$/, '\n}');
 		if (familia) novo = novo.replace(/font-family:\s*'[^']+'/, `font-family: '${familia}'`);

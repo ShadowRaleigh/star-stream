@@ -35,7 +35,7 @@ for (const tema of Object.keys(PALETAS_FANTASIA)) {
 		const s = `[data-ss-tema='${tema}'][data-ss-cor='${cor}']`;
 		css += bloco(`:root${s}[data-ss-familia]`, vars);
 		css += bloco(`${s} :is(header.header, .sidebar-pane, .right-sidebar, starlight-menu-button, mobile-starlight-toc)`, varsFora);
-		if (capa) css += bloco(`${s} .ss-capa`, { 'background-image': `url('/star-stream/temas/${capa}.svg')` });
+		if (capa) css += bloco(`${s} .ss-capa`, { 'background-image': `url('/temas/${capa}.svg')` });
 	}
 	gravar(tema, css);
 }

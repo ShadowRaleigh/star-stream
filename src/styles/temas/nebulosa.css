@@ -34,7 +34,7 @@
 		radial-gradient(ellipse 34% 28% at 62% 14%, rgb(var(--ss-pessego-rgb) / 0.15), transparent 70%),
 		radial-gradient(ellipse 40% 34% at 34% 86%, rgb(var(--ss-rosa-rgb) / 0.13), transparent 70%),
 		radial-gradient(ellipse 26% 22% at 90% 20%, rgb(var(--ss-lilas-rgb) / 0.14), transparent 70%),
-		url('/star-stream/temas/estrelas-claras-largo.svg') 0 0 / 1200px,
+		url('/temas/estrelas-claras-largo.svg') 0 0 / 1200px,
 		#0c0818;
 	--ss-tabela-cabecalho: rgb(var(--ss-rosa-rgb) / 0.12);
 	--ss-tabela-listra: rgb(255 255 255 / 0.03);
@@ -67,7 +67,7 @@
 		radial-gradient(ellipse 34% 28% at 62% 14%, rgb(var(--ss-pessego-rgb) / 0.12), transparent 70%),
 		radial-gradient(ellipse 40% 34% at 34% 86%, rgb(var(--ss-rosa-rgb) / 0.1), transparent 70%),
 		radial-gradient(ellipse 26% 22% at 90% 20%, rgb(var(--ss-lilas-rgb) / 0.1), transparent 70%),
-		url('/star-stream/temas/estrelas-tinta-largo.svg') 0 0 / 1200px,
+		url('/temas/estrelas-tinta-largo.svg') 0 0 / 1200px,
 		#f3edf8;
 	--ss-tabela-cabecalho: rgb(168 64 127 / 0.08);
 	--ss-tabela-listra: rgb(91 70 184 / 0.03);

@@ -7,9 +7,9 @@
 	--ss-violeta-rgb: 233 237 242;
 	--ss-painel-rgb: 21 24 28;
 	--ss-tinta-botao: #1a0d04;
-	--ss-selo: url('/star-stream/temas/selo-navegacao-escuro.svg');
-	--ss-capa-escuro: url('/star-stream/temas/capa-navegacao-escuro.svg');
-	--ss-capa-claro: url('/star-stream/temas/capa-navegacao-claro.svg');
+	--ss-selo: url('/temas/selo-navegacao-escuro.svg');
+	--ss-capa-escuro: url('/temas/capa-navegacao-escuro.svg');
+	--ss-capa-claro: url('/temas/capa-navegacao-claro.svg');
 	--ss-tecnica: 'Exo 2 Variable', 'Exo 2', 'Segoe UI', sans-serif;
 	--ss-mono: 'JetBrains Mono Variable', 'JetBrains Mono', Consolas, monospace;
 	--sl-color-accent-low: #3a2212;
@@ -29,7 +29,7 @@
 	--sl-color-hairline-light: rgb(255 138 61 / 0.26);
 	--ss-fundo:
 		radial-gradient(ellipse 70% 40% at 50% 0%, rgb(255 138 61 / 0.08), transparent 70%),
-		url('/star-stream/temas/estrelas-claras.svg') 0 0 / 600px,
+		url('/temas/estrelas-claras.svg') 0 0 / 600px,
 		#0c0e11;
 	--ss-tabela-cabecalho: rgb(255 138 61 / 0.08);
 	--ss-tabela-listra: rgb(255 138 61 / 0.03);
@@ -41,7 +41,7 @@
 	--ss-ciano-rgb: 194 81 15;
 	--ss-violeta-rgb: 42 48 56;
 	--ss-painel-rgb: 255 255 255;
-	--ss-selo: url('/star-stream/temas/selo-navegacao-claro.svg');
+	--ss-selo: url('/temas/selo-navegacao-claro.svg');
 	--sl-color-accent-low: #fbe3d3;
 	--sl-color-accent: #c2510f;
 	--sl-color-accent-high: #7a3006;

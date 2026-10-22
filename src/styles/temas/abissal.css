@@ -16,18 +16,18 @@
 	--ss-pergaminho: #e6efed;
 	--ss-couro: #071c24;
 	--ss-couro-escuro: #03121a;
-	--ss-material: url('/star-stream/temas/material-abissal.svg');
+	--ss-material: url('/temas/material-abissal.svg');
 	--ss-capa-fundo: linear-gradient(180deg, #0c2f3a, #071c24);
-	--ss-papel-textura: url('/star-stream/temas/papel-abissal.svg');
+	--ss-papel-textura: url('/temas/papel-abissal.svg');
 	--ss-papel-claro: #f2f7f6;
 	--ss-papel-escuro: #d2e2e0;
 	--ss-sepia-rgb: 40 90 96;
 	--ss-realce-rgb: 255 255 255;
-	--ss-canto-se: url('/star-stream/temas/canto-abissal-se.svg');
-	--ss-canto-sd: url('/star-stream/temas/canto-abissal-sd.svg');
-	--ss-canto-ie: url('/star-stream/temas/canto-abissal-ie.svg');
-	--ss-canto-id: url('/star-stream/temas/canto-abissal-id.svg');
-	--ss-florao: url('/star-stream/temas/florao-abissal.svg');
+	--ss-canto-se: url('/temas/canto-abissal-se.svg');
+	--ss-canto-sd: url('/temas/canto-abissal-sd.svg');
+	--ss-canto-ie: url('/temas/canto-abissal-ie.svg');
+	--ss-canto-id: url('/temas/canto-abissal-id.svg');
+	--ss-florao: url('/temas/florao-abissal.svg');
 	--ss-fita: linear-gradient(180deg, #1f7f86, #12565c);
 	--ss-fita-texto: #eafaf8;
 	--ss-capitular-1: #1f7f86;
@@ -64,8 +64,8 @@
 	   grandes em gradientes que não se repetem: a mancha larga do ladrilho de antes se repetia em grade numa tela grande. */
 	--ss-fundo:
 		radial-gradient(ellipse 70% 50% at 50% 0%, rgb(29 107 120 / 0.35), transparent 70%),
-		url('/star-stream/temas/grao-abissal.svg') 0 0 / 300px,
-		url('/star-stream/temas/grao-abissal.svg') 137px 61px / 437px,
+		url('/temas/grao-abissal.svg') 0 0 / 300px,
+		url('/temas/grao-abissal.svg') 137px 61px / 437px,
 		radial-gradient(ellipse 38% 30% at 14% 64%, rgb(0 0 0 / 0.3), transparent 70%),
 		radial-gradient(ellipse 32% 26% at 86% 30%, rgb(0 0 0 / 0.24), transparent 70%),
 		radial-gradient(ellipse 30% 24% at 64% 92%, rgb(0 0 0 / 0.22), transparent 70%),
@@ -94,5 +94,5 @@
 }
 
 [data-ss-tema='abissal'] .ss-capa {
-	background: url('/star-stream/temas/capa-abissal.svg') center / cover;
+	background: url('/temas/capa-abissal.svg') center / cover;
 }

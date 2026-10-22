@@ -7,9 +7,9 @@
 	--ss-violeta-rgb: 255 176 0;
 	--ss-painel-rgb: 10 26 16;
 	--ss-tinta-botao: #021006;
-	--ss-selo: url('/star-stream/temas/selo-radar-escuro.svg');
-	--ss-capa-escuro: url('/star-stream/temas/capa-radar-escuro.svg');
-	--ss-capa-claro: url('/star-stream/temas/capa-radar-claro.svg');
+	--ss-selo: url('/temas/selo-radar-escuro.svg');
+	--ss-capa-escuro: url('/temas/capa-radar-escuro.svg');
+	--ss-capa-claro: url('/temas/capa-radar-claro.svg');
 	--ss-tecnica: 'Share Tech Mono', Consolas, monospace;
 	--ss-mono: 'Share Tech Mono', Consolas, monospace;
 	--sl-color-accent-low: #0b2a17;
@@ -42,7 +42,7 @@
 	--ss-ciano-rgb: 17 128 63;
 	--ss-violeta-rgb: 168 100 0;
 	--ss-painel-rgb: 255 255 255;
-	--ss-selo: url('/star-stream/temas/selo-radar-claro.svg');
+	--ss-selo: url('/temas/selo-radar-claro.svg');
 	--sl-color-accent-low: #d9f3e1;
 	--sl-color-accent: #11803f;
 	--sl-color-accent-high: #0a4a24;

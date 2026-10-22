@@ -33,7 +33,7 @@ const ctx = (await bidi('browsingContext.getTree', {})).result.contexts[0].conte
 // Sem TEMA: o rio da Constelação, isolado. Com TEMA (e PAGINA, REGIAO="x,y" em px da janela): qualquer partícula ou
 // objeto que se mexa nessa região, com o CSS extra que vier. EIXO=y mede o passo vertical (partículas que sobem).
 const tema = process.env.TEMA;
-await bidi('browsingContext.navigate', { context: ctx, url: `http://localhost:4321/star-stream/${process.env.PAGINA || ''}?tema=${tema || 'constelacao'}&modo=${process.env.MODO || 'escuro'}`, wait: 'complete' });
+await bidi('browsingContext.navigate', { context: ctx, url: `http://localhost:4321/${process.env.PAGINA || ''}?tema=${tema || 'constelacao'}&modo=${process.env.MODO || 'escuro'}`, wait: 'complete' });
 await pausa(3500);
 const avalia = async (expression) => (await bidi('script.evaluate', { expression, target: { context: ctx }, awaitPromise: true, resultOwnership: 'none' })).result?.result?.value;
 const H = "[data-ss-tema='constelacao'] .ss-capa-camadas i";

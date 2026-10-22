@@ -24,7 +24,7 @@
 	--sl-color-hairline-light: rgb(201 161 93 / 0.3);
 	--ss-fundo:
 		radial-gradient(ellipse 70% 60% at 100% 0%, rgb(201 161 93 / 0.08), transparent 70%),
-		url('/star-stream/temas/estrelas-douradas-largo.svg') 0 0 / 1200px,
+		url('/temas/estrelas-douradas-largo.svg') 0 0 / 1200px,
 		#121110;
 	--ss-tabela-cabecalho: transparent;
 	--ss-tabela-listra: rgb(201 161 93 / 0.035);
@@ -146,8 +146,8 @@
 	width: 1.5rem;
 	height: 1.5rem;
 	background: var(--sl-color-accent);
-	-webkit-mask: url('/star-stream/temas/deco/icone-observatorio.svg') center / contain no-repeat;
-	mask: url('/star-stream/temas/deco/icone-observatorio.svg') center / contain no-repeat;
+	-webkit-mask: url('/temas/deco/icone-observatorio.svg') center / contain no-repeat;
+	mask: url('/temas/deco/icone-observatorio.svg') center / contain no-repeat;
 }
 
 [data-ss-tema='observatorio'] .sl-markdown-content h2::after {
@@ -220,7 +220,7 @@
 	height: 18px;
 	margin: 0.4rem auto;
 	width: 220px;
-	background: url('/star-stream/temas/florao-dourado.svg') center / contain no-repeat;
+	background: url('/temas/florao-dourado.svg') center / contain no-repeat;
 }
 
 [data-ss-tema='observatorio'] .starlight-aside {

@@ -11,7 +11,7 @@
 //   --quadros 12   --intervalo 500 (ms)   --largura 1440   --altura 900   --celular (390 x 844, com toque)
 //   --densidade 1  (pixels por px de CSS: 2 ou 3 para ver traços finos de perto, como numa tela de alta resolução)
 //   --saida <caminho sem extensão>              (padrão: filmes/<tema>-<regiao>)
-// Precisa do servidor de desenvolvimento em http://localhost:4321/star-stream/.
+// Precisa do servidor de desenvolvimento em http://localhost:4321/.
 import { spawn } from 'node:child_process';
 import fs from 'node:fs';
 import os from 'node:os';
@@ -19,7 +19,7 @@ import path from 'node:path';
 import sharp from 'sharp';
 
 const EDGE = 'C:/Program Files (x86)/Microsoft/Edge/Application/msedge.exe';
-const BASE = 'http://localhost:4321/star-stream/';
+const BASE = 'http://localhost:4321/';
 const PAGINAS = { inicio: '', arquetipo: 'arquetipos/vanguarda/', historico: 'historicos/netrunner/', tabela: 'personagem/estilos-de-combate/', dano: 'combate/ataque-e-dano/' };
 
 const args = process.argv.slice(2);

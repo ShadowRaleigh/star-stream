@@ -3,7 +3,7 @@
 /* Tema escuro (padrão): o céu da galáxia, com letras em marfim. */
 :root {
 	/* A foto da galáxia: no celular, uma versão de 1000 px, para não disputar a rede com as fontes. */
-	--ss-galaxia: url('/star-stream/galaxia.webp');
+	--ss-galaxia: url('/galaxia.webp');
 	--ss-font-titulo: 'Cinzel', Georgia, serif;
 	--sl-font: 'Segoe UI', system-ui, -apple-system, Roboto, Arial, sans-serif;
 
@@ -28,7 +28,7 @@
 
 @media (max-width: 50rem) {
 	:root {
-		--ss-galaxia: url('/star-stream/galaxia-1000.webp');
+		--ss-galaxia: url('/galaxia-1000.webp');
 	}
 }
 
@@ -57,7 +57,7 @@
 	background:
 		radial-gradient(ellipse 50% 140% at 18% 0%, rgb(110 80 140 / 0.35), transparent 70%),
 		radial-gradient(ellipse 45% 140% at 82% 100%, rgb(40 70 120 / 0.4), transparent 70%),
-		url('/star-stream/temas/estrelas-claras.svg') 0 0 / 360px,
+		url('/temas/estrelas-claras.svg') 0 0 / 360px,
 		#0c1120;
 	border-bottom-color: rgb(248 243 231 / 0.12);
 }

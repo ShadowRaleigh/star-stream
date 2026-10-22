@@ -15,7 +15,7 @@ Este repositório é a **fonte oficial das regras**. O antigo Google Doc "System
 ## Editar
 
 1. Abra o arquivo da página em `src/content/docs/` e edite o Markdown.
-2. Para ver o resultado: `npm install` (só na primeira vez) e depois `npm run dev`, e abra `http://localhost:4321/star-stream/`.
+2. Para ver o resultado: `npm install` (só na primeira vez) e depois `npm run dev`, e abra `http://localhost:4321/`.
 3. Faça o commit e envie. O GitHub Actions publica o site sozinho em alguns minutos.
 
 Links entre páginas são relativos, por exemplo `[Atributos](../atributos/)` ou `[Defesas](../stats/#defesas)`. O `npm run build` falha se uma imagem não existir, e depois dele o `npm run check:links` confere todos os links internos e âncoras.
@@ -36,7 +36,7 @@ O livro tem 16 temas visuais em três famílias, e cada tema tem 6 paletas de co
 - **Fantasia:** `grimorio`, `bosque`, `vitral`, `forja`, `mapa` e `abissal`.
 - **Sci-fi:** `holograma`, `radar`, `circuito` e `navegacao`.
 
-O mestre pode mandar aos jogadores um link já com o tema e a paleta da campanha, por exemplo `https://shadowraleigh.github.io/star-stream/?tema=grimorio&cor=carmesim`. Os nomes das paletas de cada tema estão em `src/cores.mjs`.
+O mestre pode mandar aos jogadores um link já com o tema e a paleta da campanha, por exemplo `https://star.zennova.art/?tema=grimorio&cor=carmesim`. Os nomes das paletas de cada tema estão em `src/cores.mjs`.
 
 **Onde fica cada coisa:**
 

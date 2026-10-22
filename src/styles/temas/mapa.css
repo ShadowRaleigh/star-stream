@@ -14,18 +14,18 @@
 	--ss-pergaminho: #efe2c0;
 	--ss-couro: #132a2c;
 	--ss-couro-escuro: #0b1c1e;
-	--ss-material: url('/star-stream/temas/material-mapa.svg');
+	--ss-material: url('/temas/material-mapa.svg');
 	--ss-capa-fundo: linear-gradient(180deg, #1a3638, #10242a);
-	--ss-papel-textura: url('/star-stream/temas/papel-mapa.svg');
+	--ss-papel-textura: url('/temas/papel-mapa.svg');
 	--ss-papel-claro: #f5ead0;
 	--ss-papel-escuro: #e0c99a;
 	--ss-sepia-rgb: 107 76 42;
 	--ss-realce-rgb: 255 250 235;
-	--ss-canto-se: url('/star-stream/temas/canto-mapa-se.svg');
-	--ss-canto-sd: url('/star-stream/temas/canto-mapa-sd.svg');
-	--ss-canto-ie: url('/star-stream/temas/canto-mapa-ie.svg');
-	--ss-canto-id: url('/star-stream/temas/canto-mapa-id.svg');
-	--ss-florao: url('/star-stream/temas/florao-mapa.svg');
+	--ss-canto-se: url('/temas/canto-mapa-se.svg');
+	--ss-canto-sd: url('/temas/canto-mapa-sd.svg');
+	--ss-canto-ie: url('/temas/canto-mapa-ie.svg');
+	--ss-canto-id: url('/temas/canto-mapa-id.svg');
+	--ss-florao: url('/temas/florao-mapa.svg');
 	--ss-fita: linear-gradient(180deg, #a3321f, #7a2214);
 	--ss-fita-texto: #fbf0dc;
 	--ss-capitular-1: #2f6e8e;
@@ -61,8 +61,8 @@
 	/* Fundo: só o grão fino, em dois ladrilhos de tamanhos que não batem (300 e 437 px, deslocados), e as manchas
 	   grandes em gradientes que não se repetem: a mancha larga do ladrilho de antes se repetia em grade numa tela grande. */
 	--ss-fundo:
-		url('/star-stream/temas/grao-mapa.svg') 0 0 / 300px,
-		url('/star-stream/temas/grao-mapa.svg') 137px 61px / 437px,
+		url('/temas/grao-mapa.svg') 0 0 / 300px,
+		url('/temas/grao-mapa.svg') 137px 61px / 437px,
 		radial-gradient(ellipse 38% 30% at 14% 64%, rgb(0 0 0 / 0.3), transparent 70%),
 		radial-gradient(ellipse 32% 26% at 86% 30%, rgb(0 0 0 / 0.24), transparent 70%),
 		radial-gradient(ellipse 30% 24% at 64% 92%, rgb(0 0 0 / 0.22), transparent 70%),
@@ -92,7 +92,7 @@
 }
 
 [data-ss-tema='mapa'] .ss-capa {
-	background: url('/star-stream/temas/capa-mapa.svg') center / cover;
+	background: url('/temas/capa-mapa.svg') center / cover;
 }
 
 [data-ss-tema='mapa'] .ss-capa .logo-claro {

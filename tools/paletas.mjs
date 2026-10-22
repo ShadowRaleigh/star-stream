@@ -30,9 +30,9 @@ export function varsScifi(tema, corId, modo) {
 		'--ss-violeta-rgb': rgb(b.seg),
 		'--ss-painel-rgb': claro ? '255 255 255' : rgb(mistura(b.main, b.bg, 0.92)),
 		'--ss-tinta-botao': mistura(b.main, '#000000', 0.88),
-		'--ss-selo': `url('/star-stream/temas/${selo}.svg')`,
-		'--ss-capa-escuro': `url('/star-stream/temas/capa-${tema}-${corId}-escuro.svg')`,
-		'--ss-capa-claro': `url('/star-stream/temas/capa-${tema}-${corId}-claro.svg')`,
+		'--ss-selo': `url('/temas/${selo}.svg')`,
+		'--ss-capa-escuro': `url('/temas/capa-${tema}-${corId}-escuro.svg')`,
+		'--ss-capa-claro': `url('/temas/capa-${tema}-${corId}-claro.svg')`,
 		'--sl-color-accent-low': mistura(b.main, b.bg, claro ? 0.85 : 0.8),
 		'--sl-color-accent': b.main,
 		'--sl-color-accent-high': mistura(b.main, claro ? '#000000' : '#ffffff', 0.55),
@@ -83,7 +83,7 @@ export function ornamentoFantasia(tema, cor) {
 // Variáveis de CSS de uma paleta de fantasia, no formato que familia-fantasia.css espera.
 export function varsFantasia(tema, cor) {
 	const p = PALETAS_FANTASIA[tema][cor];
-	const arq = (nome) => `url('/star-stream/temas/${nome}.svg')`;
+	const arq = (nome) => `url('/temas/${nome}.svg')`;
 	const couroEscuro = mistura(p.couro, '#000000', 0.35), ouroClaro = mistura(p.ouro, '#ffffff', 0.35);
 	const sepia = mistura(p.tinta, p.ouro, 0.5), w = mistura(ouroClaro, '#ffffff', 0.6);
 	const acento = (t) => `linear-gradient(180deg, ${mistura(p.rubrica, '#ffffff', 0.08)}, ${mistura(p.rubrica, '#000000', t)})`;
@@ -191,7 +191,7 @@ export function baseAstra(tema, cor, modo) {
 	return { ...(modo === 'claro' ? p.c : p.e) };
 }
 
-const arqT = (nome) => `url('/star-stream/temas/${nome}.svg')`;
+const arqT = (nome) => `url('/temas/${nome}.svg')`;
 
 // Variáveis de CSS de uma paleta Astra num modo, e as regras de capa que não cabem em variáveis.
 export function varsAstra(tema, cor, modo) {
@@ -269,7 +269,7 @@ export function varsAstra(tema, cor, modo) {
 				'--ss-vidro': claro ? `rgb(${rgb(mistura(b.bg, '#ffffff', 0.6))} / 0.72)` : `rgb(${rgb(mistura(b.bg, '#ffffff', 0.04))} / 0.62)`,
 				'--sl-color-bg-nav': `rgb(${rgb(b.bg)} / ${claro ? 0.7 : 0.55})`,
 				'--sl-color-bg-sidebar': `rgb(${rgb(b.bg)} / ${claro ? 0.55 : 0.45})`,
-				'--ss-fundo': [[55, 45, 18, 22, 'lilas', 0.24], [50, 42, 82, 72, 'acento', 0.22], [34, 28, 62, 14, 'pessego', 0.15], [40, 34, 34, 86, 'acento', 0.13], [26, 22, 90, 20, 'lilas', 0.14]].map(([w, h, x, y, cor, op]) => `radial-gradient(ellipse ${w}% ${h}% at ${x}% ${y}%, rgb(${rgb(e[cor])} / ${claro ? f2(op * 0.65) : op}), transparent 70%)`).join(', ') + `, url('/star-stream/temas/${claro ? 'estrelas-tinta-largo' : 'estrelas-claras-largo'}.svg') 0 0 / 1200px, ${b.bg}`,
+				'--ss-fundo': [[55, 45, 18, 22, 'lilas', 0.24], [50, 42, 82, 72, 'acento', 0.22], [34, 28, 62, 14, 'pessego', 0.15], [40, 34, 34, 86, 'acento', 0.13], [26, 22, 90, 20, 'lilas', 0.14]].map(([w, h, x, y, cor, op]) => `radial-gradient(ellipse ${w}% ${h}% at ${x}% ${y}%, rgb(${rgb(e[cor])} / ${claro ? f2(op * 0.65) : op}), transparent 70%)`).join(', ') + `, url('/temas/${claro ? 'estrelas-tinta-largo' : 'estrelas-claras-largo'}.svg') 0 0 / 1200px, ${b.bg}`,
 			});
 			break;
 		}

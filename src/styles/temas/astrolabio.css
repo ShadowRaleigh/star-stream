@@ -24,7 +24,7 @@
 	--sl-color-hairline-light: rgb(201 161 93 / 0.3);
 	--ss-fundo:
 		radial-gradient(ellipse 70% 60% at 100% 0%, rgb(201 161 93 / 0.08), transparent 70%),
-		url('/star-stream/temas/estrelas-douradas-largo.svg') 0 0 / 1200px,
+		url('/temas/estrelas-douradas-largo.svg') 0 0 / 1200px,
 		#121110;
 	--ss-tabela-cabecalho: transparent;
 	--ss-tabela-listra: rgb(201 161 93 / 0.035);
@@ -147,8 +147,8 @@
 	width: 1.5rem;
 	height: 1.5rem;
 	background: var(--sl-color-accent);
-	-webkit-mask: url('/star-stream/temas/deco/icone-astro.svg') center / contain no-repeat;
-	mask: url('/star-stream/temas/deco/icone-astro.svg') center / contain no-repeat;
+	-webkit-mask: url('/temas/deco/icone-astro.svg') center / contain no-repeat;
+	mask: url('/temas/deco/icone-astro.svg') center / contain no-repeat;
 }
 
 [data-ss-tema='astrolabio'] .sl-markdown-content h2::after {
@@ -221,7 +221,7 @@
 	height: 18px;
 	margin: 0.4rem auto;
 	width: 220px;
-	background: url('/star-stream/temas/florao-dourado.svg') center / contain no-repeat;
+	background: url('/temas/florao-dourado.svg') center / contain no-repeat;
 }
 
 [data-ss-tema='astrolabio'] .starlight-aside {
@@ -266,11 +266,11 @@
 	border: 1px solid var(--ss-latao);
 	outline: 1px solid var(--sl-color-hairline-light);
 	outline-offset: 5px;
-	background: url('/star-stream/temas/capa-astrolabio-escuro.svg') right center / cover;
+	background: url('/temas/capa-astrolabio-escuro.svg') right center / cover;
 }
 
 [data-ss-tema='astrolabio'][data-theme='light'] .ss-capa {
-	background-image: url('/star-stream/temas/capa-astrolabio-claro.svg');
+	background-image: url('/temas/capa-astrolabio-claro.svg');
 }
 
 [data-ss-tema='astrolabio'] .ss-capa img {
@@ -356,7 +356,7 @@
 	--ss-fundo:
 		radial-gradient(ellipse 80% 50% at 70% -10%, rgb(110 80 140 / 0.22), transparent 70%),
 		radial-gradient(ellipse 60% 40% at 0% 100%, rgb(40 70 120 / 0.25), transparent 70%),
-		url('/star-stream/temas/estrelas-claras-largo.svg') 0 0 / 1200px,
+		url('/temas/estrelas-claras-largo.svg') 0 0 / 1200px,
 		#0a0e1a;
 	--ss-tabela-listra: rgb(248 243 231 / 0.025);
 }

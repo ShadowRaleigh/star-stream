@@ -7,9 +7,9 @@
 	--ss-violeta-rgb: 196 255 77;
 	--ss-painel-rgb: 22 18 44;
 	--ss-tinta-botao: #14111f;
-	--ss-selo: url('/star-stream/temas/selo-circuito-escuro.svg');
-	--ss-capa-escuro: url('/star-stream/temas/capa-circuito-escuro.svg');
-	--ss-capa-claro: url('/star-stream/temas/capa-circuito-claro.svg');
+	--ss-selo: url('/temas/selo-circuito-escuro.svg');
+	--ss-capa-escuro: url('/temas/capa-circuito-escuro.svg');
+	--ss-capa-claro: url('/temas/capa-circuito-claro.svg');
 	--ss-tecnica: 'Chakra Petch', 'Segoe UI', sans-serif;
 	--ss-mono: 'JetBrains Mono Variable', 'JetBrains Mono', Consolas, monospace;
 	--sl-color-accent-low: #292148;
@@ -38,7 +38,7 @@
 }
 
 :root[data-ss-tema='circuito'][data-theme='light'] {
-	--ss-selo: url('/star-stream/temas/selo-circuito-claro.svg');
+	--ss-selo: url('/temas/selo-circuito-claro.svg');
 	--ss-ciano: #5b36c9;
 	--ss-violeta: #4f7a00;
 	--ss-ciano-rgb: 91 54 201;

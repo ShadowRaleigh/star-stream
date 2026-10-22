@@ -3,7 +3,7 @@
 // Uso: [TEMA=constelacao] [MODO=escuro] [PAGINA=arquetipos/vanguarda/] node tools/medir-quadros-firefox.mjs <rótulo> [css extra] [sim|nao]
 //   o terceiro argumento diz se roda sem janela ("sim", padrão, sem placa de vídeo) ou com janela ("nao", com a placa de
 //   vídeo, que é a medida que vale; abre uma janela do Firefox por alguns segundos, com perfil temporário).
-// Precisa do servidor de desenvolvimento em http://localhost:4321/star-stream/.
+// Precisa do servidor de desenvolvimento em http://localhost:4321/.
 import { spawn } from 'node:child_process';
 import fs from 'node:fs';
 import os from 'node:os';
@@ -29,7 +29,7 @@ const bidi = (method, params = {}) => new Promise((ok) => { const i = ++id; pend
 await bidi('session.new', { capabilities: {} });
 const ctx = (await bidi('browsingContext.getTree', {})).result.contexts[0].context;
 await bidi('browsingContext.setViewport', { context: ctx, viewport: { width: 1440, height: 900 } });
-await bidi('browsingContext.navigate', { context: ctx, url: `http://localhost:4321/star-stream/${process.env.PAGINA || ''}?tema=${process.env.TEMA || 'constelacao'}&modo=${process.env.MODO || 'escuro'}`, wait: 'complete' });
+await bidi('browsingContext.navigate', { context: ctx, url: `http://localhost:4321/${process.env.PAGINA || ''}?tema=${process.env.TEMA || 'constelacao'}&modo=${process.env.MODO || 'escuro'}`, wait: 'complete' });
 await pausa(4000);
 const avalia = async (expression) => (await bidi('script.evaluate', { expression, target: { context: ctx }, awaitPromise: true, resultOwnership: 'none' })).result?.result?.value;
 if (css) await avalia(`document.head.insertAdjacentHTML('beforeend', '<style>' + ${JSON.stringify(css)} + '</style>'); 1`);

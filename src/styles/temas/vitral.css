@@ -15,18 +15,18 @@
 	--ss-pergaminho: #e9e6df;
 	--ss-couro: #16141c;
 	--ss-couro-escuro: #0e0c13;
-	--ss-material: url('/star-stream/temas/material-vitral.svg');
+	--ss-material: url('/temas/material-vitral.svg');
 	--ss-capa-fundo: linear-gradient(180deg, #221f2b, #16141c);
-	--ss-papel-textura: url('/star-stream/temas/papel-vitral.svg');
+	--ss-papel-textura: url('/temas/papel-vitral.svg');
 	--ss-papel-claro: #f4f2ed;
 	--ss-papel-escuro: #d9d5cb;
 	--ss-sepia-rgb: 80 76 92;
 	--ss-realce-rgb: 255 255 255;
-	--ss-canto-se: url('/star-stream/temas/canto-vitral-se.svg');
-	--ss-canto-sd: url('/star-stream/temas/canto-vitral-sd.svg');
-	--ss-canto-ie: url('/star-stream/temas/canto-vitral-ie.svg');
-	--ss-canto-id: url('/star-stream/temas/canto-vitral-id.svg');
-	--ss-florao: url('/star-stream/temas/florao-vitral.svg');
+	--ss-canto-se: url('/temas/canto-vitral-se.svg');
+	--ss-canto-sd: url('/temas/canto-vitral-sd.svg');
+	--ss-canto-ie: url('/temas/canto-vitral-ie.svg');
+	--ss-canto-id: url('/temas/canto-vitral-id.svg');
+	--ss-florao: url('/temas/florao-vitral.svg');
 	--ss-fita: linear-gradient(180deg, #34508f, #1f3266);
 	--ss-fita-texto: #eef1fa;
 	--ss-capitular-1: #34508f;
@@ -62,8 +62,8 @@
 	/* Fundo: só o grão fino, em dois ladrilhos de tamanhos que não batem (300 e 437 px, deslocados), e as manchas
 	   grandes em gradientes que não se repetem: a mancha larga do ladrilho de antes se repetia em grade numa tela grande. */
 	--ss-fundo:
-		url('/star-stream/temas/grao-vitral.svg') 0 0 / 300px,
-		url('/star-stream/temas/grao-vitral.svg') 137px 61px / 437px,
+		url('/temas/grao-vitral.svg') 0 0 / 300px,
+		url('/temas/grao-vitral.svg') 137px 61px / 437px,
 		radial-gradient(ellipse 38% 30% at 14% 64%, rgb(0 0 0 / 0.3), transparent 70%),
 		radial-gradient(ellipse 32% 26% at 86% 30%, rgb(0 0 0 / 0.24), transparent 70%),
 		radial-gradient(ellipse 30% 24% at 64% 92%, rgb(0 0 0 / 0.22), transparent 70%),
@@ -93,7 +93,7 @@
 }
 
 [data-ss-tema='vitral'] .ss-capa {
-	background: url('/star-stream/temas/capa-vitral.svg') center / cover;
+	background: url('/temas/capa-vitral.svg') center / cover;
 }
 
 /* Até 75rem a capa é mais estreita que a arte: com "cover", as janelas de fora (e, no celular, as de dentro) ficavam

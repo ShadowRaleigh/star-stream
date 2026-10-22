@@ -14,18 +14,18 @@
 	--ss-pergaminho: #e8ebd2;
 	--ss-couro: #13261a;
 	--ss-couro-escuro: #0c1a10;
-	--ss-material: url('/star-stream/temas/material-bosque.svg');
+	--ss-material: url('/temas/material-bosque.svg');
 	--ss-capa-fundo: linear-gradient(180deg, #1d3524, #122219);
-	--ss-papel-textura: url('/star-stream/temas/papel-bosque.svg');
+	--ss-papel-textura: url('/temas/papel-bosque.svg');
 	--ss-papel-claro: #f4f5e6;
 	--ss-papel-escuro: #d6ddb9;
 	--ss-sepia-rgb: 70 95 60;
 	--ss-realce-rgb: 250 252 235;
-	--ss-canto-se: url('/star-stream/temas/canto-bosque-se.svg');
-	--ss-canto-sd: url('/star-stream/temas/canto-bosque-sd.svg');
-	--ss-canto-ie: url('/star-stream/temas/canto-bosque-ie.svg');
-	--ss-canto-id: url('/star-stream/temas/canto-bosque-id.svg');
-	--ss-florao: url('/star-stream/temas/florao-bosque.svg');
+	--ss-canto-se: url('/temas/canto-bosque-se.svg');
+	--ss-canto-sd: url('/temas/canto-bosque-sd.svg');
+	--ss-canto-ie: url('/temas/canto-bosque-ie.svg');
+	--ss-canto-id: url('/temas/canto-bosque-id.svg');
+	--ss-florao: url('/temas/florao-bosque.svg');
 	--ss-fita: linear-gradient(180deg, #3d7f4b, #265a33);
 	--ss-fita-texto: #f2f4dc;
 	--ss-capitular-1: #3d7f4b;
@@ -61,8 +61,8 @@
 	/* Fundo: só o grão fino, em dois ladrilhos de tamanhos que não batem (300 e 437 px, deslocados), e as manchas
 	   grandes em gradientes que não se repetem: a mancha larga do ladrilho de antes se repetia em grade numa tela grande. */
 	--ss-fundo:
-		url('/star-stream/temas/grao-bosque.svg') 0 0 / 300px,
-		url('/star-stream/temas/grao-bosque.svg') 137px 61px / 437px,
+		url('/temas/grao-bosque.svg') 0 0 / 300px,
+		url('/temas/grao-bosque.svg') 137px 61px / 437px,
 		radial-gradient(ellipse 38% 30% at 14% 64%, rgb(0 0 0 / 0.3), transparent 70%),
 		radial-gradient(ellipse 32% 26% at 86% 30%, rgb(0 0 0 / 0.24), transparent 70%),
 		radial-gradient(ellipse 30% 24% at 64% 92%, rgb(0 0 0 / 0.22), transparent 70%),
@@ -92,7 +92,7 @@
 }
 
 [data-ss-tema='bosque'] .ss-capa {
-	background: url('/star-stream/temas/capa-bosque.svg') center / cover;
+	background: url('/temas/capa-bosque.svg') center / cover;
 }
 
 [data-ss-tema='bosque'] .ss-capa img {

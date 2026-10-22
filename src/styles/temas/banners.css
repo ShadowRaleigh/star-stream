@@ -3,7 +3,7 @@
 /* Observatório: um instrumento gravado em latão, sem foto. */
 [data-ss-tema='observatorio'] .ss-capa {
 	background:
-		var(--ss-capa-estrelas, url('/star-stream/temas/estrelas-douradas.svg')) 0 0 / 420px,
+		var(--ss-capa-estrelas, url('/temas/estrelas-douradas.svg')) 0 0 / 420px,
 		radial-gradient(ellipse at center, var(--ss-capa-1, #2a2216) 0%, var(--ss-capa-2, #15130f) 62%, var(--ss-capa-3, #0e0d0b) 100%);
 	background-blend-mode: normal;
 	border: 1px solid rgb(var(--ss-capa-metal-rgb, 201 161 93));
@@ -62,7 +62,7 @@
 	/* A galáxia vai borrada: uma versão de 480 px, já desfocada e saturada no arquivo (tools/gerar-assets-temas.mjs),
 	   porque esta camada deriva o tempo todo e um desfoque no CSS seria refeito a cada quadro. Fica só o giro de matiz
 	   de cada paleta. */
-	background: url('/star-stream/temas/galaxia-nebulosa.webp') center 40% / cover;
+	background: url('/temas/galaxia-nebulosa.webp') center 40% / cover;
 	filter: hue-rotate(var(--ss-matiz));
 	opacity: 0.85;
 }
@@ -76,7 +76,7 @@
 		radial-gradient(circle at 50% 46%, rgb(255 225 242 / 0.28) 0, transparent 34%),
 		radial-gradient(ellipse 60% 70% at 20% 90%, rgb(var(--ss-lilas-rgb) / 0.45), transparent 70%),
 		radial-gradient(ellipse 60% 70% at 85% 10%, rgb(var(--ss-pessego-rgb) / 0.35), transparent 70%),
-		url('/star-stream/temas/estrelas-claras.svg') 0 0 / 380px,
+		url('/temas/estrelas-claras.svg') 0 0 / 380px,
 		linear-gradient(180deg, rgb(18 10 36 / 0.2), rgb(18 10 36 / 0.55));
 }
 
@@ -196,8 +196,8 @@
 [data-ss-tema='grimorio'] .ss-capa img {
 	object-position: -99999px 0;
 	background: linear-gradient(180deg, color-mix(in srgb, var(--ss-ouro) 55%, #fff) 10%, var(--ss-ouro) 50%, color-mix(in srgb, var(--ss-ouro) 70%, #000) 92%);
-	-webkit-mask: url('/star-stream/temas/logo-mascara.svg') center / contain no-repeat;
-	mask: url('/star-stream/temas/logo-mascara.svg') center / contain no-repeat;
+	-webkit-mask: url('/temas/logo-mascara.svg') center / contain no-repeat;
+	mask: url('/temas/logo-mascara.svg') center / contain no-repeat;
 }
 
 /* Clássico: uma página de atlas estelar, com régua graduada na moldura e o centro limpo para o nome. */
@@ -205,11 +205,11 @@
 	isolation: isolate;
 	border: 1px solid var(--sl-color-gray-5);
 	background:
-		url('/star-stream/temas/regua-cima-classico-escuro.svg') left top / auto 12px repeat-x,
-		url('/star-stream/temas/regua-baixo-classico-escuro.svg') left bottom / auto 12px repeat-x,
-		url('/star-stream/temas/regua-esq-classico-escuro.svg') left top / 12px auto repeat-y,
-		url('/star-stream/temas/regua-dir-classico-escuro.svg') right top / 12px auto repeat-y,
-		url('/star-stream/temas/capa-classico-escuro.svg') center / cover;
+		url('/temas/regua-cima-classico-escuro.svg') left top / auto 12px repeat-x,
+		url('/temas/regua-baixo-classico-escuro.svg') left bottom / auto 12px repeat-x,
+		url('/temas/regua-esq-classico-escuro.svg') left top / 12px auto repeat-y,
+		url('/temas/regua-dir-classico-escuro.svg') right top / 12px auto repeat-y,
+		url('/temas/capa-classico-escuro.svg') center / cover;
 }
 
 [data-ss-tema='classico'] .ss-capa::before {
@@ -222,11 +222,11 @@
 
 [data-ss-tema='classico'][data-theme='light'] .ss-capa {
 	background:
-		url('/star-stream/temas/regua-cima-classico-claro.svg') left top / auto 12px repeat-x,
-		url('/star-stream/temas/regua-baixo-classico-claro.svg') left bottom / auto 12px repeat-x,
-		url('/star-stream/temas/regua-esq-classico-claro.svg') left top / 12px auto repeat-y,
-		url('/star-stream/temas/regua-dir-classico-claro.svg') right top / 12px auto repeat-y,
-		url('/star-stream/temas/capa-classico-claro.svg') center / cover;
+		url('/temas/regua-cima-classico-claro.svg') left top / auto 12px repeat-x,
+		url('/temas/regua-baixo-classico-claro.svg') left bottom / auto 12px repeat-x,
+		url('/temas/regua-esq-classico-claro.svg') left top / 12px auto repeat-y,
+		url('/temas/regua-dir-classico-claro.svg') right top / 12px auto repeat-y,
+		url('/temas/capa-classico-claro.svg') center / cover;
 }
 
 [data-ss-tema='classico'][data-theme='light'] .ss-capa::before {

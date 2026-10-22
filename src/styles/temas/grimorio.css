@@ -15,18 +15,18 @@
 	--ss-couro-escuro: #1a0f07;
 	--ss-couro-rgb: 36 22 12;
 	--ss-capa-centro: #4a2c16;
-	--ss-material: url('/star-stream/temas/couro.svg');
+	--ss-material: url('/temas/couro.svg');
 	--ss-capa-fundo: linear-gradient(180deg, #2c1b0e, #1f130a);
-	--ss-papel-textura: url('/star-stream/temas/pergaminho.svg');
+	--ss-papel-textura: url('/temas/pergaminho.svg');
 	--ss-papel-claro: #f2e4c3;
 	--ss-papel-escuro: #dcc394;
 	--ss-sepia-rgb: 122 90 50;
 	--ss-realce-rgb: 255 248 230;
-	--ss-canto-se: url('/star-stream/temas/canto-ouro-se.svg');
-	--ss-canto-sd: url('/star-stream/temas/canto-ouro-sd.svg');
-	--ss-canto-ie: url('/star-stream/temas/canto-ouro-ie.svg');
-	--ss-canto-id: url('/star-stream/temas/canto-ouro-id.svg');
-	--ss-florao: url('/star-stream/temas/florao-tinta.svg');
+	--ss-canto-se: url('/temas/canto-ouro-se.svg');
+	--ss-canto-sd: url('/temas/canto-ouro-sd.svg');
+	--ss-canto-ie: url('/temas/canto-ouro-ie.svg');
+	--ss-canto-id: url('/temas/canto-ouro-id.svg');
+	--ss-florao: url('/temas/florao-tinta.svg');
 	--ss-fita: linear-gradient(180deg, #8c2a1a, #6a1c10);
 	--ss-fita-texto: #f6e2b8;
 	--ss-capitular-1: #9a3020;
@@ -62,8 +62,8 @@
 	/* Fundo: só o grão fino, em dois ladrilhos de tamanhos que não batem (300 e 437 px, deslocados), e as manchas
 	   grandes em gradientes que não se repetem: a mancha larga do ladrilho de antes se repetia em grade numa tela grande. */
 	--ss-fundo:
-		url('/star-stream/temas/grao-grimorio.svg') 0 0 / 300px,
-		url('/star-stream/temas/grao-grimorio.svg') 137px 61px / 437px,
+		url('/temas/grao-grimorio.svg') 0 0 / 300px,
+		url('/temas/grao-grimorio.svg') 137px 61px / 437px,
 		radial-gradient(ellipse 38% 30% at 14% 64%, rgb(0 0 0 / 0.3), transparent 70%),
 		radial-gradient(ellipse 32% 26% at 86% 30%, rgb(0 0 0 / 0.24), transparent 70%),
 		radial-gradient(ellipse 30% 24% at 64% 92%, rgb(0 0 0 / 0.22), transparent 70%),

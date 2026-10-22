@@ -4,7 +4,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 
 const DIST = 'dist';
-const BASE = '/star-stream';
+const BASE = '';
 const pages = {};
 (function walk(dir) {
 	for (const f of fs.readdirSync(dir)) {

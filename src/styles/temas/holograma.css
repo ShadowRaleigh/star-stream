@@ -7,9 +7,9 @@
 	--ss-violeta-rgb: 180 140 255;
 	--ss-painel-rgb: 11 24 34;
 	--ss-tinta-botao: #04121a;
-	--ss-selo: url('/star-stream/temas/selo-ciano.svg');
-	--ss-capa-escuro: url('/star-stream/temas/capa-holograma-escuro.svg');
-	--ss-capa-claro: url('/star-stream/temas/capa-holograma-claro.svg');
+	--ss-selo: url('/temas/selo-ciano.svg');
+	--ss-capa-escuro: url('/temas/capa-holograma-escuro.svg');
+	--ss-capa-claro: url('/temas/capa-holograma-claro.svg');
 	--ss-tecnica: 'Orbitron Variable', 'Orbitron', 'Segoe UI', sans-serif;
 	--ss-mono: 'JetBrains Mono Variable', 'JetBrains Mono', Consolas, monospace;
 	--ss-chanfro: polygon(0 0, calc(100% - 14px) 0, 100% 14px, 100% 100%, 14px 100%, 0 calc(100% - 14px));
@@ -31,8 +31,8 @@
 	--ss-fundo:
 		radial-gradient(ellipse 60% 50% at 80% 10%, rgb(180 140 255 / 0.14), transparent 70%),
 		radial-gradient(ellipse 50% 40% at 10% 90%, rgb(126 231 255 / 0.1), transparent 70%),
-		url('/star-stream/temas/grade-hex.svg') 0 0 / 56px 97px,
-		url('/star-stream/temas/estrelas-claras.svg') 0 0 / 600px,
+		url('/temas/grade-hex.svg') 0 0 / 56px 97px,
+		url('/temas/estrelas-claras.svg') 0 0 / 600px,
 		#050b12;
 	--ss-tabela-cabecalho: rgb(126 231 255 / 0.08);
 	--ss-tabela-listra: rgb(126 231 255 / 0.03);

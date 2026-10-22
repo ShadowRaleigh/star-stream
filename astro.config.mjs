@@ -11,11 +11,10 @@ const seletorTema = fs
 	.replace('__FAMILIAS_DOS_TEMAS__', JSON.stringify(Object.fromEntries(TEMAS.map((t) => [t.id, t.familia]))))
 	.replace('__CORES_DOS_TEMAS__', JSON.stringify(CORES))
 	.replace('__FONTES_DOS_TEMAS__', JSON.stringify(FONTES_DO_TEMA))
-	.replaceAll('__BASE__', '/star-stream/');
+	.replaceAll('__BASE__', '/');
 
 export default defineConfig({
-	site: 'https://shadowraleigh.github.io',
-	base: '/star-stream',
+	site: 'https://star.zennova.art',
 	devToolbar: { enabled: false },
 	integrations: [
 		starlight({
@@ -23,8 +22,8 @@ export default defineConfig({
 			description: 'Livro de regras do Star Stream, o RPG de mesa de Zennova.',
 			favicon: '/icone-star-stream.svg',
 			head: [
-				{ tag: 'link', attrs: { rel: 'icon', type: 'image/png', sizes: '32x32', href: '/star-stream/icone-32.png' } },
-				{ tag: 'link', attrs: { rel: 'apple-touch-icon', sizes: '180x180', href: '/star-stream/icone-180.png' } },
+				{ tag: 'link', attrs: { rel: 'icon', type: 'image/png', sizes: '32x32', href: '/icone-32.png' } },
+				{ tag: 'link', attrs: { rel: 'apple-touch-icon', sizes: '180x180', href: '/icone-180.png' } },
 				{ tag: 'script', content: seletorTema },
 			],
 			defaultLocale: 'root',

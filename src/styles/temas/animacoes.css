@@ -108,20 +108,20 @@
 }
 
 .ss-cintilar i:nth-child(1) {
-	--m: url('/star-stream/temas/deco/estrelas-1.svg');
+	--m: url('/temas/deco/estrelas-1.svg');
 	--t: 290px;
 	--d: 2.7s;
 }
 
 .ss-cintilar i:nth-child(2) {
-	--m: url('/star-stream/temas/deco/estrelas-2.svg');
+	--m: url('/temas/deco/estrelas-2.svg');
 	--t: 410px;
 	--d: 3.9s;
 	animation-delay: -1.3s;
 }
 
 .ss-cintilar i:nth-child(3) {
-	--m: url('/star-stream/temas/deco/estrelas-3.svg');
+	--m: url('/temas/deco/estrelas-3.svg');
 	--t: 530px;
 	--d: 5.3s;
 	animation-delay: -2.6s;
@@ -219,7 +219,7 @@
 }
 
 :root[data-ss-tema='grimorio'] .ss-subida i {
-	--m: url('/star-stream/temas/deco/fantasia-poeira-a.svg');
+	--m: url('/temas/deco/fantasia-poeira-a.svg');
 	--l: 940px;
 	--t: 380px;
 	--d: 18s;
@@ -230,7 +230,7 @@
 
 :root[data-ss-tema='grimorio'] .ss-subida::before {
 	content: '';
-	--m: url('/star-stream/temas/deco/fantasia-poeira-b.svg');
+	--m: url('/temas/deco/fantasia-poeira-b.svg');
 	--l: 700px;
 	--t: 560px;
 	--d: 34s;
@@ -242,7 +242,7 @@
 
 /* Vitral: luzes coloridas, nas cores do vidro, subindo bem devagar. */
 :root[data-ss-tema='vitral'] .ss-subida i {
-	--m: url('/star-stream/temas/deco/fantasia-luzes-a.svg');
+	--m: url('/temas/deco/fantasia-luzes-a.svg');
 	--l: 980px;
 	--t: 420px;
 	--d: 24s;
@@ -254,7 +254,7 @@
 
 :root[data-ss-tema='vitral'] .ss-subida::before {
 	content: '';
-	--m: url('/star-stream/temas/deco/fantasia-luzes-b.svg');
+	--m: url('/temas/deco/fantasia-luzes-b.svg');
 	--l: 760px;
 	--t: 600px;
 	--d: 38s;
@@ -271,7 +271,7 @@
 }
 
 :root[data-ss-tema='forja'] .ss-subida i {
-	--m: url('/star-stream/temas/deco/fantasia-brasas-a.svg');
+	--m: url('/temas/deco/fantasia-brasas-a.svg');
 	--l: 900px;
 	--t: 320px;
 	--d: 5.5s;
@@ -282,7 +282,7 @@
 
 :root[data-ss-tema='forja'] .ss-subida::before {
 	content: '';
-	--m: url('/star-stream/temas/deco/fantasia-brasas-b.svg');
+	--m: url('/temas/deco/fantasia-brasas-b.svg');
 	--l: 680px;
 	--t: 470px;
 	--d: 10s;
@@ -298,7 +298,7 @@
 }
 
 :root[data-ss-tema='abissal'] .ss-subida i {
-	--m: url('/star-stream/temas/deco/fantasia-bolhas-a.svg');
+	--m: url('/temas/deco/fantasia-bolhas-a.svg');
 	--l: 980px;
 	--t: 420px;
 	--d: 9s;
@@ -309,7 +309,7 @@
 
 :root[data-ss-tema='abissal'] .ss-subida::before {
 	content: '';
-	--m: url('/star-stream/temas/deco/fantasia-bolhas-b.svg');
+	--m: url('/temas/deco/fantasia-bolhas-b.svg');
 	--l: 740px;
 	--t: 600px;
 	--d: 17s;
@@ -338,7 +338,7 @@
 }
 
 :root[data-ss-tema='bosque'] .ss-subida i {
-	--m: url('/star-stream/temas/deco/fantasia-vagalumes-a.svg');
+	--m: url('/temas/deco/fantasia-vagalumes-a.svg');
 	--l: 1080px;
 	--max: 0.95;
 	--vx: 34px;
@@ -349,7 +349,7 @@
 }
 
 :root[data-ss-tema='bosque'] .ss-subida::before {
-	--m: url('/star-stream/temas/deco/fantasia-vagalumes-b.svg');
+	--m: url('/temas/deco/fantasia-vagalumes-b.svg');
 	--l: 860px;
 	--max: 0.85;
 	--vx: 46px;
@@ -361,7 +361,7 @@
 }
 
 :root[data-ss-tema='bosque'] .ss-subida::after {
-	--m: url('/star-stream/temas/deco/fantasia-vagalumes-c.svg');
+	--m: url('/temas/deco/fantasia-vagalumes-c.svg');
 	--l: 690px;
 	--max: 0.75;
 	--vx: 28px;
@@ -533,10 +533,10 @@
 }
 
 [data-ss-tema='constelacao'] :is(.ss-deco, .ss-deco2) i:nth-child(2) { display: block; }
-[data-ss-tema='constelacao'] .ss-deco i:nth-child(1) { --p: url('/star-stream/temas/deco/ceu-halos.svg'); }
-[data-ss-tema='constelacao'] .ss-deco i:nth-child(2) { --p: url('/star-stream/temas/deco/ceu-estrelas.svg'); }
-[data-ss-tema='constelacao'] .ss-deco2 i:nth-child(1) { --p: url('/star-stream/temas/deco/ceu2-halos.svg'); }
-[data-ss-tema='constelacao'] .ss-deco2 i:nth-child(2) { --p: url('/star-stream/temas/deco/ceu2-estrelas.svg'); }
+[data-ss-tema='constelacao'] .ss-deco i:nth-child(1) { --p: url('/temas/deco/ceu-halos.svg'); }
+[data-ss-tema='constelacao'] .ss-deco i:nth-child(2) { --p: url('/temas/deco/ceu-estrelas.svg'); }
+[data-ss-tema='constelacao'] .ss-deco2 i:nth-child(1) { --p: url('/temas/deco/ceu2-halos.svg'); }
+[data-ss-tema='constelacao'] .ss-deco2 i:nth-child(2) { --p: url('/temas/deco/ceu2-estrelas.svg'); }
 
 /* As outras peças só seguram os traços (::before e ::after): elas mesmas não pintam nada. */
 [data-ss-tema='constelacao'] :is(.ss-deco, .ss-deco2) i:nth-child(n + 3) {
@@ -666,11 +666,11 @@
 	--op: 0.2;
 }
 
-[data-ss-tema='observatorio'] .ss-deco i:nth-child(1) { display: block; --p: url('/star-stream/temas/deco/obs-limbo.svg'); animation: ss-rodar 600s linear infinite; }
-[data-ss-tema='observatorio'] .ss-deco i:nth-child(2) { display: block; --p: url('/star-stream/temas/deco/obs-rede.svg'); animation: ss-rodar 200s linear infinite; }
-[data-ss-tema='observatorio'] .ss-deco i:nth-child(3) { display: block; --p: url('/star-stream/temas/deco/obs-circulos.svg'); animation: ss-rodar-inverso 130s linear infinite; }
-[data-ss-tema='observatorio'] .ss-deco i:nth-child(4) { display: block; --p: url('/star-stream/temas/deco/obs-regua.svg'); --g: 18deg; animation: ss-balancar 23s ease-in-out infinite alternate -6s; }
-[data-ss-tema='observatorio'] .ss-deco i:nth-child(5) { display: block; --p: url('/star-stream/temas/deco/obs-estrela.svg'); --c: var(--ss-latao-claro); --min: 0.7; --max: 1; animation: ss-cintila 5s ease-in-out infinite alternate; }
+[data-ss-tema='observatorio'] .ss-deco i:nth-child(1) { display: block; --p: url('/temas/deco/obs-limbo.svg'); animation: ss-rodar 600s linear infinite; }
+[data-ss-tema='observatorio'] .ss-deco i:nth-child(2) { display: block; --p: url('/temas/deco/obs-rede.svg'); animation: ss-rodar 200s linear infinite; }
+[data-ss-tema='observatorio'] .ss-deco i:nth-child(3) { display: block; --p: url('/temas/deco/obs-circulos.svg'); animation: ss-rodar-inverso 130s linear infinite; }
+[data-ss-tema='observatorio'] .ss-deco i:nth-child(4) { display: block; --p: url('/temas/deco/obs-regua.svg'); --g: 18deg; animation: ss-balancar 23s ease-in-out infinite alternate -6s; }
+[data-ss-tema='observatorio'] .ss-deco i:nth-child(5) { display: block; --p: url('/temas/deco/obs-estrela.svg'); --c: var(--ss-latao-claro); --min: 0.7; --max: 1; animation: ss-cintila 5s ease-in-out infinite alternate; }
 
 /* Na página inicial não há índice: o astrolábio fica inteiro no meio da margem direita, na altura dos cartões, com até
    480 px; se a margem não comporta 200 px, ele some. */
@@ -705,10 +705,10 @@
 	--op: 0.3;
 }
 
-[data-ss-tema='codex'] .ss-deco i:nth-child(1) { display: block; --p: url('/star-stream/temas/deco/codex-casas.svg'); }
-[data-ss-tema='codex'] .ss-deco i:nth-child(2) { display: block; --p: url('/star-stream/temas/deco/codex-disco.svg'); animation: ss-rodar-inverso 240s linear infinite; }
-[data-ss-tema='codex'] .ss-deco i:nth-child(3) { display: block; --p: url('/star-stream/temas/deco/codex-ponteiro.svg'); rotate: 200deg; animation: ss-codex-ponteiro 150s linear infinite; }
-[data-ss-tema='codex'] .ss-deco i:nth-child(4) { display: block; --p: url('/star-stream/temas/deco/codex-sol.svg'); --c: color-mix(in srgb, var(--ss-ouro) 75%, var(--sl-color-white)); --min: 0.75; --max: 1; animation: ss-cintila 7s ease-in-out infinite alternate; }
+[data-ss-tema='codex'] .ss-deco i:nth-child(1) { display: block; --p: url('/temas/deco/codex-casas.svg'); }
+[data-ss-tema='codex'] .ss-deco i:nth-child(2) { display: block; --p: url('/temas/deco/codex-disco.svg'); animation: ss-rodar-inverso 240s linear infinite; }
+[data-ss-tema='codex'] .ss-deco i:nth-child(3) { display: block; --p: url('/temas/deco/codex-ponteiro.svg'); rotate: 200deg; animation: ss-codex-ponteiro 150s linear infinite; }
+[data-ss-tema='codex'] .ss-deco i:nth-child(4) { display: block; --p: url('/temas/deco/codex-sol.svg'); --c: color-mix(in srgb, var(--ss-ouro) 75%, var(--sl-color-white)); --min: 0.75; --max: 1; animation: ss-cintila 7s ease-in-out infinite alternate; }
 
 /* O ponteiro começa apontando para cima e à esquerda (para dentro da tela) e dá a volta inteira. */
 @keyframes ss-codex-ponteiro {
@@ -747,12 +747,12 @@
 	--op: 0.36;
 }
 
-[data-ss-tema='astrolabio'] .ss-deco i:nth-child(1) { display: block; --p: url('/star-stream/temas/deco/armilar-meridiano-pe.svg'); }
-[data-ss-tema='astrolabio'] .ss-deco i:nth-child(2) { display: block; --p: url('/star-stream/temas/deco/armilar-horizonte.svg'); --g: 3deg; animation: ss-balancar 9s ease-in-out infinite alternate -3s; }
-[data-ss-tema='astrolabio'] .ss-deco i:nth-child(3) { display: block; --p: url('/star-stream/temas/deco/armilar-equador.svg'); --g: 8deg; animation: ss-balancar 11s ease-in-out infinite alternate -5s; }
-[data-ss-tema='astrolabio'] .ss-deco i:nth-child(4) { display: block; --p: url('/star-stream/temas/deco/armilar-ecliptica.svg'); --g: -10deg; animation: ss-balancar 7s ease-in-out infinite alternate -2s; }
-[data-ss-tema='astrolabio'] .ss-deco i:nth-child(5) { display: block; --p: url('/star-stream/temas/deco/armilar-eixo.svg'); }
-[data-ss-tema='astrolabio'] .ss-deco i:nth-child(6) { display: block; --p: url('/star-stream/temas/deco/armilar-agulha.svg'); --c: var(--ss-latao-claro); --min: 0.6; --max: 1; animation: ss-cintila 4.5s ease-in-out infinite alternate; }
+[data-ss-tema='astrolabio'] .ss-deco i:nth-child(1) { display: block; --p: url('/temas/deco/armilar-meridiano-pe.svg'); }
+[data-ss-tema='astrolabio'] .ss-deco i:nth-child(2) { display: block; --p: url('/temas/deco/armilar-horizonte.svg'); --g: 3deg; animation: ss-balancar 9s ease-in-out infinite alternate -3s; }
+[data-ss-tema='astrolabio'] .ss-deco i:nth-child(3) { display: block; --p: url('/temas/deco/armilar-equador.svg'); --g: 8deg; animation: ss-balancar 11s ease-in-out infinite alternate -5s; }
+[data-ss-tema='astrolabio'] .ss-deco i:nth-child(4) { display: block; --p: url('/temas/deco/armilar-ecliptica.svg'); --g: -10deg; animation: ss-balancar 7s ease-in-out infinite alternate -2s; }
+[data-ss-tema='astrolabio'] .ss-deco i:nth-child(5) { display: block; --p: url('/temas/deco/armilar-eixo.svg'); }
+[data-ss-tema='astrolabio'] .ss-deco i:nth-child(6) { display: block; --p: url('/temas/deco/armilar-agulha.svg'); --c: var(--ss-latao-claro); --min: 0.6; --max: 1; animation: ss-cintila 4.5s ease-in-out infinite alternate; }
 
 /* Na página inicial a esfera fica de pé, inteira, no meio da margem direita, com até 320 px; abaixo de 200 px some. */
 :root[data-ss-tema='astrolabio']:has(.ss-capa) .ss-ambiente {
@@ -796,9 +796,9 @@
 	--dir2: calc(var(--ss-largura-indice, 17rem) + var(--neb-vao) / 2 - var(--tam2) / 2);
 }
 
-[data-ss-tema='nebulosa'] :is(.ss-deco, .ss-deco2) i:nth-child(1) { display: block; --p: url('/star-stream/temas/deco/espiral-poeira.svg'); --c: rgb(var(--ss-lilas-rgb)); animation: ss-rodar 420s linear infinite; }
-[data-ss-tema='nebulosa'] :is(.ss-deco, .ss-deco2) i:nth-child(2) { display: block; --p: url('/star-stream/temas/deco/espiral-bracos.svg'); --c: rgb(var(--ss-rosa-rgb)); animation: ss-rodar 260s linear infinite; }
-[data-ss-tema='nebulosa'] :is(.ss-deco, .ss-deco2) i:nth-child(3) { display: block; --p: url('/star-stream/temas/deco/espiral-nucleo.svg'); --c: rgb(var(--ss-pessego-rgb)); --min: 0.5; --max: 1; animation: ss-cintila 6s ease-in-out infinite alternate; }
+[data-ss-tema='nebulosa'] :is(.ss-deco, .ss-deco2) i:nth-child(1) { display: block; --p: url('/temas/deco/espiral-poeira.svg'); --c: rgb(var(--ss-lilas-rgb)); animation: ss-rodar 420s linear infinite; }
+[data-ss-tema='nebulosa'] :is(.ss-deco, .ss-deco2) i:nth-child(2) { display: block; --p: url('/temas/deco/espiral-bracos.svg'); --c: rgb(var(--ss-rosa-rgb)); animation: ss-rodar 260s linear infinite; }
+[data-ss-tema='nebulosa'] :is(.ss-deco, .ss-deco2) i:nth-child(3) { display: block; --p: url('/temas/deco/espiral-nucleo.svg'); --c: rgb(var(--ss-pessego-rgb)); --min: 0.5; --max: 1; animation: ss-cintila 6s ease-in-out infinite alternate; }
 
 /* A pequena gira mais rápido (está longe, mas é menor) e na outra mão, com as cores trocadas, para não ser uma cópia. */
 [data-ss-tema='nebulosa'] .ss-deco2 i:nth-child(1) { --c: rgb(var(--ss-rosa-rgb)); animation-duration: 300s; animation-direction: reverse; }
@@ -851,10 +851,10 @@
 	--y: -180px;
 }
 
-[data-ss-tema='holograma'] .ss-deco i:nth-child(1) { display: block; --p: url('/star-stream/temas/deco/selo-base.svg'); animation: ss-rodar 300s linear infinite; }
-[data-ss-tema='holograma'] .ss-deco i:nth-child(2) { display: block; --p: url('/star-stream/temas/deco/selo-runas-1.svg'); --min: 0.15; --max: 1; animation: ss-rodar 300s linear infinite, ss-cintila 3.2s ease-in-out infinite alternate; }
-[data-ss-tema='holograma'] .ss-deco i:nth-child(3) { display: block; --p: url('/star-stream/temas/deco/selo-runas-2.svg'); --min: 0.15; --max: 1; animation: ss-rodar 300s linear infinite, ss-cintila 4.1s ease-in-out infinite alternate -1.4s; }
-[data-ss-tema='holograma'] .ss-deco i:nth-child(4) { display: block; --p: url('/star-stream/temas/deco/selo-runas-3.svg'); --min: 0.15; --max: 1; animation: ss-rodar 300s linear infinite, ss-cintila 5s ease-in-out infinite alternate -2.7s; }
+[data-ss-tema='holograma'] .ss-deco i:nth-child(1) { display: block; --p: url('/temas/deco/selo-base.svg'); animation: ss-rodar 300s linear infinite; }
+[data-ss-tema='holograma'] .ss-deco i:nth-child(2) { display: block; --p: url('/temas/deco/selo-runas-1.svg'); --min: 0.15; --max: 1; animation: ss-rodar 300s linear infinite, ss-cintila 3.2s ease-in-out infinite alternate; }
+[data-ss-tema='holograma'] .ss-deco i:nth-child(3) { display: block; --p: url('/temas/deco/selo-runas-2.svg'); --min: 0.15; --max: 1; animation: ss-rodar 300s linear infinite, ss-cintila 4.1s ease-in-out infinite alternate -1.4s; }
+[data-ss-tema='holograma'] .ss-deco i:nth-child(4) { display: block; --p: url('/temas/deco/selo-runas-3.svg'); --min: 0.15; --max: 1; animation: ss-rodar 300s linear infinite, ss-cintila 5s ease-in-out infinite alternate -2.7s; }
 
 /* ---- Família fantasia: o objeto de cada tema e a segunda decoração ----
    A folha de pergaminho cobre o meio da tela (e tudo o que passa atrás dela); as decorações vivem onde ela não chega.
@@ -944,12 +944,12 @@
 	bottom: auto;
 }
 
-[data-ss-tema='grimorio'] .ss-deco i:nth-child(1) { display: block; --p: url('/star-stream/temas/deco/grimorio-selo-aros.svg'); animation: ss-rodar 240s linear infinite; }
+[data-ss-tema='grimorio'] .ss-deco i:nth-child(1) { display: block; --p: url('/temas/deco/grimorio-selo-aros.svg'); animation: ss-rodar 240s linear infinite; }
 [data-ss-tema='grimorio'] .ss-deco i:is(:nth-child(2), :nth-child(3), :nth-child(4)) { display: block; --min: 0.2; --max: 1; }
-[data-ss-tema='grimorio'] .ss-deco i:nth-child(2) { --p: url('/star-stream/temas/deco/grimorio-selo-glifos-1.svg'); animation: ss-rodar-inverso 420s linear infinite, ss-cintila 4.2s ease-in-out infinite alternate; }
-[data-ss-tema='grimorio'] .ss-deco i:nth-child(3) { --p: url('/star-stream/temas/deco/grimorio-selo-glifos-2.svg'); animation: ss-rodar-inverso 420s linear infinite, ss-cintila 5.6s ease-in-out infinite alternate -1.9s; }
-[data-ss-tema='grimorio'] .ss-deco i:nth-child(4) { --p: url('/star-stream/temas/deco/grimorio-selo-glifos-3.svg'); animation: ss-rodar-inverso 420s linear infinite, ss-cintila 7s ease-in-out infinite alternate -3.8s; }
-[data-ss-tema='grimorio'] .ss-deco i:nth-child(5) { display: block; --p: url('/star-stream/temas/deco/grimorio-selo-centro.svg'); --min: 0.6; --max: 1; animation: ss-cintila 6.5s ease-in-out infinite alternate; }
+[data-ss-tema='grimorio'] .ss-deco i:nth-child(2) { --p: url('/temas/deco/grimorio-selo-glifos-1.svg'); animation: ss-rodar-inverso 420s linear infinite, ss-cintila 4.2s ease-in-out infinite alternate; }
+[data-ss-tema='grimorio'] .ss-deco i:nth-child(3) { --p: url('/temas/deco/grimorio-selo-glifos-2.svg'); animation: ss-rodar-inverso 420s linear infinite, ss-cintila 5.6s ease-in-out infinite alternate -1.9s; }
+[data-ss-tema='grimorio'] .ss-deco i:nth-child(4) { --p: url('/temas/deco/grimorio-selo-glifos-3.svg'); animation: ss-rodar-inverso 420s linear infinite, ss-cintila 7s ease-in-out infinite alternate -3.8s; }
+[data-ss-tema='grimorio'] .ss-deco i:nth-child(5) { display: block; --p: url('/temas/deco/grimorio-selo-centro.svg'); --min: 0.6; --max: 1; animation: ss-cintila 6.5s ease-in-out infinite alternate; }
 
 /* Grimório, segunda decoração: três velas que flutuam no meio da margem, cada uma no seu ritmo, com a chama tremulando.
    Cada vela é um <i> sem pintura que flutua; a cera é o ::after e a chama, com o halo, o ::before (os dois no mesmo
@@ -999,12 +999,12 @@
 }
 
 [data-ss-tema='grimorio'] .ss-deco2 i::after {
-	--pv: url('/star-stream/temas/deco/grimorio-vela-corpo.svg');
+	--pv: url('/temas/deco/grimorio-vela-corpo.svg');
 	background: var(--ss-papel-claro);
 }
 
 [data-ss-tema='grimorio'] .ss-deco2 i::before {
-	--pv: url('/star-stream/temas/deco/grimorio-vela-chama.svg');
+	--pv: url('/temas/deco/grimorio-vela-chama.svg');
 	z-index: 1;
 	background: color-mix(in srgb, var(--ss-ouro-claro) 70%, #ff9a3c);
 	transform-origin: 50% 36%;
@@ -1050,13 +1050,13 @@
 	--y-casa: -26px;
 }
 
-[data-ss-tema='bosque'] .ss-deco i:nth-child(1) { display: block; --p: url('/star-stream/temas/deco/bosque-cogumelos-base.svg'); opacity: 0.6; }
+[data-ss-tema='bosque'] .ss-deco i:nth-child(1) { display: block; --p: url('/temas/deco/bosque-cogumelos-base.svg'); opacity: 0.6; }
 [data-ss-tema='bosque'] .ss-deco i:is(:nth-child(2), :nth-child(3), :nth-child(4), :nth-child(5), :nth-child(6)) { display: block; --c: var(--ss-luz); }
-[data-ss-tema='bosque'] .ss-deco i:nth-child(2) { --p: url('/star-stream/temas/deco/bosque-cogumelos-halos-1.svg'); --min: 0.2; --max: 0.85; animation: ss-cintila 5.4s ease-in-out infinite alternate; }
-[data-ss-tema='bosque'] .ss-deco i:nth-child(3) { --p: url('/star-stream/temas/deco/bosque-cogumelos-halos-2.svg'); --min: 0.15; --max: 0.75; animation: ss-cintila 7.1s ease-in-out infinite alternate -2.4s; }
-[data-ss-tema='bosque'] .ss-deco i:nth-child(4) { --p: url('/star-stream/temas/deco/bosque-cogumelos-chapeus-1.svg'); --min: 0.55; --max: 1; animation: ss-cintila 5.4s ease-in-out infinite alternate; }
-[data-ss-tema='bosque'] .ss-deco i:nth-child(5) { --p: url('/star-stream/temas/deco/bosque-cogumelos-chapeus-2.svg'); --min: 0.5; --max: 1; animation: ss-cintila 7.1s ease-in-out infinite alternate -2.4s; }
-[data-ss-tema='bosque'] .ss-deco i:nth-child(6) { --p: url('/star-stream/temas/deco/bosque-esporos-1.svg'); --vx: 14px; --vy: 18px; --min: 0.15; --max: 1; animation: ss-vagar-x 8.6s ease-in-out infinite alternate, ss-vagar-y 5.9s ease-in-out infinite alternate, ss-cintila 2.7s ease-in-out infinite alternate; }
+[data-ss-tema='bosque'] .ss-deco i:nth-child(2) { --p: url('/temas/deco/bosque-cogumelos-halos-1.svg'); --min: 0.2; --max: 0.85; animation: ss-cintila 5.4s ease-in-out infinite alternate; }
+[data-ss-tema='bosque'] .ss-deco i:nth-child(3) { --p: url('/temas/deco/bosque-cogumelos-halos-2.svg'); --min: 0.15; --max: 0.75; animation: ss-cintila 7.1s ease-in-out infinite alternate -2.4s; }
+[data-ss-tema='bosque'] .ss-deco i:nth-child(4) { --p: url('/temas/deco/bosque-cogumelos-chapeus-1.svg'); --min: 0.55; --max: 1; animation: ss-cintila 5.4s ease-in-out infinite alternate; }
+[data-ss-tema='bosque'] .ss-deco i:nth-child(5) { --p: url('/temas/deco/bosque-cogumelos-chapeus-2.svg'); --min: 0.5; --max: 1; animation: ss-cintila 7.1s ease-in-out infinite alternate -2.4s; }
+[data-ss-tema='bosque'] .ss-deco i:nth-child(6) { --p: url('/temas/deco/bosque-esporos-1.svg'); --vx: 14px; --vy: 18px; --min: 0.15; --max: 1; animation: ss-vagar-x 8.6s ease-in-out infinite alternate, ss-vagar-y 5.9s ease-in-out infinite alternate, ss-cintila 2.7s ease-in-out infinite alternate; }
 
 [data-ss-tema='bosque'] .ss-deco::before,
 [data-ss-tema='bosque'] .ss-deco::after {
@@ -1070,8 +1070,8 @@
 	--max: 0.9;
 }
 
-[data-ss-tema='bosque'] .ss-deco::before { --pe: url('/star-stream/temas/deco/bosque-esporos-2.svg'); --vx: 18px; --vy: 12px; animation: ss-vagar-x 11.3s ease-in-out infinite alternate -4s, ss-vagar-y 7.7s ease-in-out infinite alternate -2s, ss-cintila 3.6s ease-in-out infinite alternate -1s; }
-[data-ss-tema='bosque'] .ss-deco::after { --pe: url('/star-stream/temas/deco/bosque-esporos-3.svg'); --vx: 10px; --vy: 22px; animation: ss-vagar-x 13.9s ease-in-out infinite alternate -7s, ss-vagar-y 9.4s ease-in-out infinite alternate -5s, ss-cintila 4.4s ease-in-out infinite alternate -2.2s; }
+[data-ss-tema='bosque'] .ss-deco::before { --pe: url('/temas/deco/bosque-esporos-2.svg'); --vx: 18px; --vy: 12px; animation: ss-vagar-x 11.3s ease-in-out infinite alternate -4s, ss-vagar-y 7.7s ease-in-out infinite alternate -2s, ss-cintila 3.6s ease-in-out infinite alternate -1s; }
+[data-ss-tema='bosque'] .ss-deco::after { --pe: url('/temas/deco/bosque-esporos-3.svg'); --vx: 10px; --vy: 22px; animation: ss-vagar-x 13.9s ease-in-out infinite alternate -7s, ss-vagar-y 9.4s ease-in-out infinite alternate -5s, ss-cintila 4.4s ease-in-out infinite alternate -2.2s; }
 
 /* Bosque, segunda decoração: dois ramos de hera descem do alto da margem, encostados no menu, logo abaixo do cabeçalho,
    com campânulas que acendem e apagam. Cada ramo balança em volta de onde se prende; as flores e o halo delas são
@@ -1098,10 +1098,10 @@
 [data-ss-tema='bosque'] .ss-deco2 i:is(:nth-child(1), :nth-child(2), :nth-child(3), :nth-child(4)) { display: block; --min: 0.3; --max: 1; }
 [data-ss-tema='bosque'] .ss-deco2 i:is(:nth-child(1), :nth-child(2)) { transform-origin: 43.75% 0; --g: 2deg; }
 [data-ss-tema='bosque'] .ss-deco2 i:is(:nth-child(3), :nth-child(4)) { transform-origin: 67.5% 0; --g: 2.6deg; }
-[data-ss-tema='bosque'] .ss-deco2 i:nth-child(1) { --p: url('/star-stream/temas/deco/bosque-hera-1.svg'); opacity: 0.75; animation: ss-balancar 7s ease-in-out infinite alternate; }
-[data-ss-tema='bosque'] .ss-deco2 i:nth-child(2) { --p: url('/star-stream/temas/deco/bosque-hera-1-brilho.svg'); --c: var(--ss-luz); animation: ss-balancar 7s ease-in-out infinite alternate, ss-cintila 4.6s ease-in-out infinite alternate; }
-[data-ss-tema='bosque'] .ss-deco2 i:nth-child(3) { --p: url('/star-stream/temas/deco/bosque-hera-2.svg'); opacity: 0.65; animation: ss-balancar 5.6s ease-in-out infinite alternate -2s; }
-[data-ss-tema='bosque'] .ss-deco2 i:nth-child(4) { --p: url('/star-stream/temas/deco/bosque-hera-2-brilho.svg'); --c: var(--ss-luz); animation: ss-balancar 5.6s ease-in-out infinite alternate -2s, ss-cintila 5.8s ease-in-out infinite alternate -2.9s; }
+[data-ss-tema='bosque'] .ss-deco2 i:nth-child(1) { --p: url('/temas/deco/bosque-hera-1.svg'); opacity: 0.75; animation: ss-balancar 7s ease-in-out infinite alternate; }
+[data-ss-tema='bosque'] .ss-deco2 i:nth-child(2) { --p: url('/temas/deco/bosque-hera-1-brilho.svg'); --c: var(--ss-luz); animation: ss-balancar 7s ease-in-out infinite alternate, ss-cintila 4.6s ease-in-out infinite alternate; }
+[data-ss-tema='bosque'] .ss-deco2 i:nth-child(3) { --p: url('/temas/deco/bosque-hera-2.svg'); opacity: 0.65; animation: ss-balancar 5.6s ease-in-out infinite alternate -2s; }
+[data-ss-tema='bosque'] .ss-deco2 i:nth-child(4) { --p: url('/temas/deco/bosque-hera-2-brilho.svg'); --c: var(--ss-luz); animation: ss-balancar 5.6s ease-in-out infinite alternate -2s, ss-cintila 5.8s ease-in-out infinite alternate -2.9s; }
 
 /* Vitral: a rosácea gótica à meia altura, cortada pela borda direita da tela, como uma janela na parede. A pedra fica
    parada; o vidro, em três grupos (lancetas pares, ímpares e o miolo), acende e apaga devagar em tempos diferentes,
@@ -1130,10 +1130,10 @@
 }
 
 [data-ss-tema='vitral'] .ss-deco i:is(:nth-child(1), :nth-child(2), :nth-child(3)) { display: block; --min: 0.45; --max: 1; }
-[data-ss-tema='vitral'] .ss-deco i:nth-child(1) { --p: url('/star-stream/temas/deco/rosacea-vidro-1.svg'); --c: color-mix(in srgb, var(--ss-vidro-a) 68%, var(--ss-ouro)); animation: ss-cintila 7s ease-in-out infinite alternate; }
-[data-ss-tema='vitral'] .ss-deco i:nth-child(2) { --p: url('/star-stream/temas/deco/rosacea-vidro-2.svg'); --c: color-mix(in srgb, var(--ss-vidro-b) 68%, var(--ss-ouro)); animation: ss-cintila 9s ease-in-out infinite alternate -3.5s; }
-[data-ss-tema='vitral'] .ss-deco i:nth-child(3) { --p: url('/star-stream/temas/deco/rosacea-vidro-3.svg'); --c: color-mix(in srgb, var(--ss-ouro) 50%, #f3e6c4); animation: ss-cintila 11s ease-in-out infinite alternate -6s; }
-[data-ss-tema='vitral'] .ss-deco i:nth-child(4) { display: block; --p: url('/star-stream/temas/deco/rosacea-pedra.svg'); --c: var(--ss-ouro); opacity: 0.6; }
+[data-ss-tema='vitral'] .ss-deco i:nth-child(1) { --p: url('/temas/deco/rosacea-vidro-1.svg'); --c: color-mix(in srgb, var(--ss-vidro-a) 68%, var(--ss-ouro)); animation: ss-cintila 7s ease-in-out infinite alternate; }
+[data-ss-tema='vitral'] .ss-deco i:nth-child(2) { --p: url('/temas/deco/rosacea-vidro-2.svg'); --c: color-mix(in srgb, var(--ss-vidro-b) 68%, var(--ss-ouro)); animation: ss-cintila 9s ease-in-out infinite alternate -3.5s; }
+[data-ss-tema='vitral'] .ss-deco i:nth-child(3) { --p: url('/temas/deco/rosacea-vidro-3.svg'); --c: color-mix(in srgb, var(--ss-ouro) 50%, #f3e6c4); animation: ss-cintila 11s ease-in-out infinite alternate -6s; }
+[data-ss-tema='vitral'] .ss-deco i:nth-child(4) { display: block; --p: url('/temas/deco/rosacea-pedra.svg'); --c: var(--ss-ouro); opacity: 0.6; }
 
 /* Vitral, segunda decoração: uma lanceta alta, de duas folhas e um óculo, encostada na folha, com o vidro acendendo
    alternado. */
@@ -1157,9 +1157,9 @@
 }
 
 [data-ss-tema='vitral'] .ss-deco2 i:is(:nth-child(1), :nth-child(2)) { display: block; --min: 0.3; --max: 1; }
-[data-ss-tema='vitral'] .ss-deco2 i:nth-child(1) { --p: url('/star-stream/temas/deco/vitral-lanceta-vidro-1.svg'); --c: color-mix(in srgb, var(--ss-vidro-b) 68%, var(--ss-ouro)); animation: ss-cintila 8s ease-in-out infinite alternate; }
-[data-ss-tema='vitral'] .ss-deco2 i:nth-child(2) { --p: url('/star-stream/temas/deco/vitral-lanceta-vidro-2.svg'); --c: color-mix(in srgb, var(--ss-vidro-a) 68%, var(--ss-ouro)); animation: ss-cintila 10s ease-in-out infinite alternate -4s; }
-[data-ss-tema='vitral'] .ss-deco2 i:nth-child(3) { display: block; --p: url('/star-stream/temas/deco/vitral-lanceta-pedra.svg'); --c: var(--ss-ouro); }
+[data-ss-tema='vitral'] .ss-deco2 i:nth-child(1) { --p: url('/temas/deco/vitral-lanceta-vidro-1.svg'); --c: color-mix(in srgb, var(--ss-vidro-b) 68%, var(--ss-ouro)); animation: ss-cintila 8s ease-in-out infinite alternate; }
+[data-ss-tema='vitral'] .ss-deco2 i:nth-child(2) { --p: url('/temas/deco/vitral-lanceta-vidro-2.svg'); --c: color-mix(in srgb, var(--ss-vidro-a) 68%, var(--ss-ouro)); animation: ss-cintila 10s ease-in-out infinite alternate -4s; }
+[data-ss-tema='vitral'] .ss-deco2 i:nth-child(3) { display: block; --p: url('/temas/deco/vitral-lanceta-pedra.svg'); --c: var(--ss-ouro); }
 
 /* Forja: a bigorna assenta no canto de baixo à direita, dentro de uma moldura octogonal anã que as duas bordas da tela
    cortam; o martelo encantado é seguro de fora da tela. De tempos em tempos ele sobe, desce num golpe e volta; no golpe,
@@ -1176,21 +1176,21 @@
 	--y: -44px;
 }
 
-[data-ss-tema='forja'] .ss-deco i:nth-child(1) { display: block; --p: url('/star-stream/temas/deco/forja-anel.svg'); opacity: 0.65; }
+[data-ss-tema='forja'] .ss-deco i:nth-child(1) { display: block; --p: url('/temas/deco/forja-anel.svg'); opacity: 0.65; }
 [data-ss-tema='forja'] .ss-deco i:is(:nth-child(2), :nth-child(3)) { display: block; --c: var(--ss-luz); --min: 0.12; --max: 0.95; }
-[data-ss-tema='forja'] .ss-deco i:nth-child(2) { --p: url('/star-stream/temas/deco/forja-runas-1.svg'); animation: ss-cintila 5.2s ease-in-out infinite alternate; }
-[data-ss-tema='forja'] .ss-deco i:nth-child(3) { --p: url('/star-stream/temas/deco/forja-runas-2.svg'); animation: ss-cintila 6.8s ease-in-out infinite alternate -3s; }
-[data-ss-tema='forja'] .ss-deco i:nth-child(4) { display: block; --p: url('/star-stream/temas/deco/forja-bigorna.svg'); }
-[data-ss-tema='forja'] .ss-deco i:nth-child(5) { display: block; --p: url('/star-stream/temas/deco/forja-martelo.svg'); transform-origin: 88% 38%; rotate: 38deg; animation: ss-forja-golpe 6s infinite; }
-[data-ss-tema='forja'] .ss-deco i:nth-child(6) { display: block; --p: url('/star-stream/temas/deco/forja-clarao.svg'); --c: var(--ss-luz); opacity: 0.12; animation: ss-forja-clarao 6s infinite; }
+[data-ss-tema='forja'] .ss-deco i:nth-child(2) { --p: url('/temas/deco/forja-runas-1.svg'); animation: ss-cintila 5.2s ease-in-out infinite alternate; }
+[data-ss-tema='forja'] .ss-deco i:nth-child(3) { --p: url('/temas/deco/forja-runas-2.svg'); animation: ss-cintila 6.8s ease-in-out infinite alternate -3s; }
+[data-ss-tema='forja'] .ss-deco i:nth-child(4) { display: block; --p: url('/temas/deco/forja-bigorna.svg'); }
+[data-ss-tema='forja'] .ss-deco i:nth-child(5) { display: block; --p: url('/temas/deco/forja-martelo.svg'); transform-origin: 88% 38%; rotate: 38deg; animation: ss-forja-golpe 6s infinite; }
+[data-ss-tema='forja'] .ss-deco i:nth-child(6) { display: block; --p: url('/temas/deco/forja-clarao.svg'); --c: var(--ss-luz); opacity: 0.12; animation: ss-forja-clarao 6s infinite; }
 
 [data-ss-tema='forja'] .ss-deco::before {
 	content: '';
 	position: absolute;
 	inset: 0;
 	background: var(--ss-luz);
-	-webkit-mask: url('/star-stream/temas/deco/forja-faiscas.svg') center / contain no-repeat;
-	mask: url('/star-stream/temas/deco/forja-faiscas.svg') center / contain no-repeat;
+	-webkit-mask: url('/temas/deco/forja-faiscas.svg') center / contain no-repeat;
+	mask: url('/temas/deco/forja-faiscas.svg') center / contain no-repeat;
 	transform-origin: 53% 44.5%;
 	opacity: 0;
 	animation: ss-forja-faiscas 6s infinite;
@@ -1219,8 +1219,8 @@
 }
 
 [data-ss-tema='forja'] .ss-deco2 i:is(:nth-child(1), :nth-child(2)) { display: block; transform-origin: 50% 1%; --g: 1.6deg; }
-[data-ss-tema='forja'] .ss-deco2 i:nth-child(1) { --p: url('/star-stream/temas/deco/forja-estandarte.svg'); animation: ss-balancar 6.5s ease-in-out infinite alternate; }
-[data-ss-tema='forja'] .ss-deco2 i:nth-child(2) { --p: url('/star-stream/temas/deco/forja-estandarte-runa.svg'); --c: var(--ss-luz); --min: 0.25; --max: 1; animation: ss-balancar 6.5s ease-in-out infinite alternate, ss-cintila 5s ease-in-out infinite alternate; }
+[data-ss-tema='forja'] .ss-deco2 i:nth-child(1) { --p: url('/temas/deco/forja-estandarte.svg'); animation: ss-balancar 6.5s ease-in-out infinite alternate; }
+[data-ss-tema='forja'] .ss-deco2 i:nth-child(2) { --p: url('/temas/deco/forja-estandarte-runa.svg'); --c: var(--ss-luz); --min: 0.25; --max: 1; animation: ss-balancar 6.5s ease-in-out infinite alternate, ss-cintila 5s ease-in-out infinite alternate; }
 
 /* O golpe: o martelo descansa erguido e recua um pouco (preparo), desce acelerando, bate, quica de leve e sobe devagar. */
 @keyframes ss-forja-golpe {
@@ -1305,7 +1305,7 @@
 	bottom: auto;
 }
 
-[data-ss-tema='mapa'] .ss-deco i:nth-child(1) { display: block; --p: url('/star-stream/temas/deco/bussola-aro.svg'); }
+[data-ss-tema='mapa'] .ss-deco i:nth-child(1) { display: block; --p: url('/temas/deco/bussola-aro.svg'); }
 
 [data-ss-tema='mapa'] .ss-deco i:nth-child(2) {
 	display: block;
@@ -1321,8 +1321,8 @@
 	position: absolute;
 	inset: 0;
 	background: var(--ss-deco-cor);
-	-webkit-mask: url('/star-stream/temas/deco/bussola-rosa.svg') center / contain no-repeat;
-	mask: url('/star-stream/temas/deco/bussola-rosa.svg') center / contain no-repeat;
+	-webkit-mask: url('/temas/deco/bussola-rosa.svg') center / contain no-repeat;
+	mask: url('/temas/deco/bussola-rosa.svg') center / contain no-repeat;
 	--g: 3.5deg;
 	animation: ss-balancar 4.3s ease-in-out infinite alternate -1.7s;
 }
@@ -1353,12 +1353,12 @@
 }
 
 [data-ss-tema='mapa'] .ss-deco2 i:is(:nth-child(1), :nth-child(2)) { display: block; transform-origin: 50% 65%; animation: ss-serpente 4.4s ease-in-out infinite alternate; }
-[data-ss-tema='mapa'] .ss-deco2 i:nth-child(1) { --p: url('/star-stream/temas/deco/mapa-serpente-cauda.svg'); }
-[data-ss-tema='mapa'] .ss-deco2 i:nth-child(2) { --p: url('/star-stream/temas/deco/mapa-serpente-corpo.svg'); animation-delay: -1.6s; }
-[data-ss-tema='mapa'] .ss-deco2 i:nth-child(3) { display: block; --p: url('/star-stream/temas/deco/mapa-serpente-cabeca.svg'); transform-origin: 79% 66%; animation: ss-serpente-cabeca 5.6s ease-in-out infinite alternate -2.4s; }
+[data-ss-tema='mapa'] .ss-deco2 i:nth-child(1) { --p: url('/temas/deco/mapa-serpente-cauda.svg'); }
+[data-ss-tema='mapa'] .ss-deco2 i:nth-child(2) { --p: url('/temas/deco/mapa-serpente-corpo.svg'); animation-delay: -1.6s; }
+[data-ss-tema='mapa'] .ss-deco2 i:nth-child(3) { display: block; --p: url('/temas/deco/mapa-serpente-cabeca.svg'); transform-origin: 79% 66%; animation: ss-serpente-cabeca 5.6s ease-in-out infinite alternate -2.4s; }
 /* As ondas ficam paradas: se deslizassem, as bases retas das corcovas apareceriam e sumiriam nos vales, um tremido em
    volta de cada uma. */
-[data-ss-tema='mapa'] .ss-deco2 i:nth-child(4) { display: block; --p: url('/star-stream/temas/deco/mapa-serpente-ondas.svg'); }
+[data-ss-tema='mapa'] .ss-deco2 i:nth-child(4) { display: block; --p: url('/temas/deco/mapa-serpente-ondas.svg'); }
 
 @keyframes ss-serpente {
 	from {
@@ -1402,10 +1402,10 @@
 }
 
 [data-ss-tema='abissal'] .ss-deco i:is(:nth-child(1), :nth-child(2), :nth-child(3), :nth-child(4)) { display: block; transform-origin: 50% 31.7%; }
-[data-ss-tema='abissal'] .ss-deco i:nth-child(1) { --p: url('/star-stream/temas/deco/medusa-tentaculos.svg'); --g: 2deg; animation: ss-medusa-arrasto 3.8s ease-in-out infinite, ss-balancar 7s ease-in-out infinite alternate; }
-[data-ss-tema='abissal'] .ss-deco i:nth-child(2) { --p: url('/star-stream/temas/deco/medusa-bracos.svg'); --g: 3deg; animation: ss-medusa-arrasto 3.8s ease-in-out infinite, ss-balancar 5.3s ease-in-out infinite alternate -2s; }
-[data-ss-tema='abissal'] .ss-deco i:nth-child(3) { --p: url('/star-stream/temas/deco/medusa-sino.svg'); animation: ss-medusa-pulso 3.8s ease-in-out infinite; }
-[data-ss-tema='abissal'] .ss-deco i:nth-child(4) { --p: url('/star-stream/temas/deco/medusa-gonadas.svg'); --min: 0.55; --max: 1; animation: ss-medusa-pulso 3.8s ease-in-out infinite, ss-cintila 7.6s ease-in-out infinite alternate; }
+[data-ss-tema='abissal'] .ss-deco i:nth-child(1) { --p: url('/temas/deco/medusa-tentaculos.svg'); --g: 2deg; animation: ss-medusa-arrasto 3.8s ease-in-out infinite, ss-balancar 7s ease-in-out infinite alternate; }
+[data-ss-tema='abissal'] .ss-deco i:nth-child(2) { --p: url('/temas/deco/medusa-bracos.svg'); --g: 3deg; animation: ss-medusa-arrasto 3.8s ease-in-out infinite, ss-balancar 5.3s ease-in-out infinite alternate -2s; }
+[data-ss-tema='abissal'] .ss-deco i:nth-child(3) { --p: url('/temas/deco/medusa-sino.svg'); animation: ss-medusa-pulso 3.8s ease-in-out infinite; }
+[data-ss-tema='abissal'] .ss-deco i:nth-child(4) { --p: url('/temas/deco/medusa-gonadas.svg'); --min: 0.55; --max: 1; animation: ss-medusa-pulso 3.8s ease-in-out infinite, ss-cintila 7.6s ease-in-out infinite alternate; }
 
 @keyframes ss-medusa-pulso {
 	0%,
@@ -1485,9 +1485,9 @@
 }
 
 [data-ss-tema='abissal'] .ss-deco2 i:is(:nth-child(1), :nth-child(2), :nth-child(3)) { display: block; inset: auto; bottom: 0; aspect-ratio: 120 / 600; transform-origin: 50% 100%; }
-[data-ss-tema='abissal'] .ss-deco2 i:nth-child(1) { left: 0; width: 40%; --p: url('/star-stream/temas/deco/abissal-alga-1.svg'); --g: 4deg; animation: ss-balancar 6.1s ease-in-out infinite alternate; }
-[data-ss-tema='abissal'] .ss-deco2 i:nth-child(2) { left: 28%; width: 46%; --p: url('/star-stream/temas/deco/abissal-alga-2.svg'); --g: 3deg; animation: ss-balancar 7.7s ease-in-out infinite alternate -2s; }
-[data-ss-tema='abissal'] .ss-deco2 i:nth-child(3) { left: 60%; width: 36%; --p: url('/star-stream/temas/deco/abissal-alga-3.svg'); --g: 5deg; animation: ss-balancar 5.3s ease-in-out infinite alternate -1s; }
+[data-ss-tema='abissal'] .ss-deco2 i:nth-child(1) { left: 0; width: 40%; --p: url('/temas/deco/abissal-alga-1.svg'); --g: 4deg; animation: ss-balancar 6.1s ease-in-out infinite alternate; }
+[data-ss-tema='abissal'] .ss-deco2 i:nth-child(2) { left: 28%; width: 46%; --p: url('/temas/deco/abissal-alga-2.svg'); --g: 3deg; animation: ss-balancar 7.7s ease-in-out infinite alternate -2s; }
+[data-ss-tema='abissal'] .ss-deco2 i:nth-child(3) { left: 60%; width: 36%; --p: url('/temas/deco/abissal-alga-3.svg'); --g: 5deg; animation: ss-balancar 5.3s ease-in-out infinite alternate -1s; }
 
 /* Radar: os anéis parados, o feixe girando e os alvos piscando. */
 :root[data-ss-tema='radar'] .ss-deco {
@@ -1495,7 +1495,7 @@
 	--op: 0.22;
 }
 
-[data-ss-tema='radar'] .ss-deco i:nth-child(1) { display: block; --p: url('/star-stream/temas/deco/radar-aneis.svg'); }
+[data-ss-tema='radar'] .ss-deco i:nth-child(1) { display: block; --p: url('/temas/deco/radar-aneis.svg'); }
 [data-ss-tema='radar'] .ss-deco i:nth-child(2) {
 	display: block;
 	inset: 1%;
@@ -1505,7 +1505,7 @@
 	background: conic-gradient(from 90deg, transparent 0deg 290deg, rgb(var(--ss-ciano-rgb) / 0.55) 359deg, rgb(var(--ss-ciano-rgb)) 360deg);
 	animation: ss-rodar 6s linear infinite;
 }
-[data-ss-tema='radar'] .ss-deco i:nth-child(3) { display: block; --p: url('/star-stream/temas/deco/radar-alvos.svg'); --min: 0.2; --max: 1; animation: ss-cintila 1.8s ease-in-out infinite alternate; }
+[data-ss-tema='radar'] .ss-deco i:nth-child(3) { display: block; --p: url('/temas/deco/radar-alvos.svg'); --min: 0.2; --max: 1; animation: ss-cintila 1.8s ease-in-out infinite alternate; }
 
 /* Circuito: um processador inteiro perto do canto, com os fios saindo pela direita e por baixo da tela. Ele não gira
    (é uma peça soldada na placa): a vida vem dos pulsos que correm por quatro pares de trilhas, cada um no seu ritmo,
@@ -1544,8 +1544,8 @@
 	}
 }
 
-[data-ss-tema='circuito'] .ss-deco i:nth-child(1) { display: block; opacity: 0.3; --p: url('/star-stream/temas/deco/chip-placa.svg'); }
-[data-ss-tema='circuito'] .ss-deco i:nth-child(2) { display: block; --p: url('/star-stream/temas/deco/chip-nucleo.svg'); --c: var(--ss-pulso); --min: 0.05; --max: 0.28; animation: ss-cintila 3.6s ease-in-out infinite alternate -1s; }
+[data-ss-tema='circuito'] .ss-deco i:nth-child(1) { display: block; opacity: 0.3; --p: url('/temas/deco/chip-placa.svg'); }
+[data-ss-tema='circuito'] .ss-deco i:nth-child(2) { display: block; --p: url('/temas/deco/chip-nucleo.svg'); --c: var(--ss-pulso); --min: 0.05; --max: 0.28; animation: ss-cintila 3.6s ease-in-out infinite alternate -1s; }
 
 /* No claro, o brilho do núcleo virava uma mancha escura no papel: fica só o desenho do chip. */
 :root[data-ss-tema='circuito'][data-theme='light'] .ss-deco i:nth-child(2) { display: none; }
@@ -1587,16 +1587,16 @@
 [data-ss-tema='circuito'] .ss-deco i:is(:nth-child(5), :nth-child(6))::before { left: 0; width: 60%; }
 [data-ss-tema='circuito'] .ss-deco i:is(:nth-child(5), :nth-child(6))::after { left: 60%; width: 40%; }
 
-[data-ss-tema='circuito'] .ss-deco i:nth-child(3) { --p: url('/star-stream/temas/deco/chip-dados-1.svg'); }
+[data-ss-tema='circuito'] .ss-deco i:nth-child(3) { --p: url('/temas/deco/chip-dados-1.svg'); }
 [data-ss-tema='circuito'] .ss-deco i:nth-child(3)::before { animation: ss-pulso-deco-x 4.6s linear infinite -0.4s; }
 [data-ss-tema='circuito'] .ss-deco i:nth-child(3)::after { --rumo: 270deg; animation: ss-pulso-deco-x 5.3s linear infinite reverse -2.1s; }
-[data-ss-tema='circuito'] .ss-deco i:nth-child(4) { --p: url('/star-stream/temas/deco/chip-dados-2.svg'); }
+[data-ss-tema='circuito'] .ss-deco i:nth-child(4) { --p: url('/temas/deco/chip-dados-2.svg'); }
 [data-ss-tema='circuito'] .ss-deco i:nth-child(4)::before { animation: ss-pulso-deco-x 6.1s linear infinite -2s; }
 [data-ss-tema='circuito'] .ss-deco i:nth-child(4)::after { animation: ss-pulso-deco-x 3.9s linear infinite -1s; }
-[data-ss-tema='circuito'] .ss-deco i:nth-child(5) { --p: url('/star-stream/temas/deco/chip-dados-3.svg'); }
+[data-ss-tema='circuito'] .ss-deco i:nth-child(5) { --p: url('/temas/deco/chip-dados-3.svg'); }
 [data-ss-tema='circuito'] .ss-deco i:nth-child(5)::before { animation: ss-pulso-deco-y 4.4s linear infinite -3.3s; }
 [data-ss-tema='circuito'] .ss-deco i:nth-child(5)::after { --rumo: 0deg; animation: ss-pulso-deco-y 5.7s linear infinite reverse -3s; }
-[data-ss-tema='circuito'] .ss-deco i:nth-child(6) { --p: url('/star-stream/temas/deco/chip-dados-4.svg'); }
+[data-ss-tema='circuito'] .ss-deco i:nth-child(6) { --p: url('/temas/deco/chip-dados-4.svg'); }
 [data-ss-tema='circuito'] .ss-deco i:nth-child(6)::before { animation: ss-pulso-deco-y 6.6s linear infinite -1.2s; }
 [data-ss-tema='circuito'] .ss-deco i:nth-child(6)::after { animation: ss-pulso-deco-y 4.9s linear infinite -2.6s; }
 
@@ -1616,8 +1616,8 @@
 	}
 }
 
-[data-ss-tema='circuito'] .ss-deco2 i:nth-child(1) { display: block; opacity: 0.6; --p: url('/star-stream/temas/deco/chip-barramento.svg'); }
-[data-ss-tema='circuito'] .ss-deco2 i:nth-child(2) { display: block; background: none; --p: url('/star-stream/temas/deco/chip-barramento-dados.svg'); }
+[data-ss-tema='circuito'] .ss-deco2 i:nth-child(1) { display: block; opacity: 0.6; --p: url('/temas/deco/chip-barramento.svg'); }
+[data-ss-tema='circuito'] .ss-deco2 i:nth-child(2) { display: block; background: none; --p: url('/temas/deco/chip-barramento-dados.svg'); }
 
 [data-ss-tema='circuito'] .ss-deco2 i:nth-child(2)::before,
 [data-ss-tema='circuito'] .ss-deco2 i:nth-child(2)::after {
@@ -1687,9 +1687,9 @@
 	}
 }
 
-[data-ss-tema='navegacao'] .ss-deco i:nth-child(1) { display: block; opacity: 0.45; --p: url('/star-stream/temas/deco/planeta.svg'); }
-[data-ss-tema='navegacao'] .ss-deco i:nth-child(2) { display: block; opacity: 0.7; --c: var(--ss-ciano); --p: url('/star-stream/temas/deco/orbita-tras.svg'); }
-[data-ss-tema='navegacao'] .ss-deco i:nth-child(3) { display: block; --c: var(--ss-ciano); --p: url('/star-stream/temas/deco/orbita-frente.svg'); }
+[data-ss-tema='navegacao'] .ss-deco i:nth-child(1) { display: block; opacity: 0.45; --p: url('/temas/deco/planeta.svg'); }
+[data-ss-tema='navegacao'] .ss-deco i:nth-child(2) { display: block; opacity: 0.7; --c: var(--ss-ciano); --p: url('/temas/deco/orbita-tras.svg'); }
+[data-ss-tema='navegacao'] .ss-deco i:nth-child(3) { display: block; --c: var(--ss-ciano); --p: url('/temas/deco/orbita-frente.svg'); }
 
 /* O satélite anda na mesma elipse da órbita (gerar-decoracoes.mjs: centro no meio, semieixos 150 e 42 de 400,
    inclinada 16 graus). Uma elipse inclinada é a soma de duas oscilações de seno, uma em x e outra em y, com fases
@@ -1757,8 +1757,8 @@
 	}
 }
 
-[data-ss-tema='navegacao'] .ss-deco2 i:nth-child(1) { display: block; opacity: 0.5; --p: url('/star-stream/temas/deco/lua.svg'); }
-[data-ss-tema='navegacao'] .ss-deco2 i:nth-child(2) { display: block; opacity: 0.8; --c: var(--ss-ciano); --p: url('/star-stream/temas/deco/rota.svg'); }
+[data-ss-tema='navegacao'] .ss-deco2 i:nth-child(1) { display: block; opacity: 0.5; --p: url('/temas/deco/lua.svg'); }
+[data-ss-tema='navegacao'] .ss-deco2 i:nth-child(2) { display: block; opacity: 0.8; --c: var(--ss-ciano); --p: url('/temas/deco/rota.svg'); }
 
 [data-ss-tema='navegacao'] .ss-deco2 i:nth-child(3) {
 	display: block;
@@ -1774,8 +1774,8 @@
 	position: absolute;
 	inset: 0;
 	background: var(--ss-ciano);
-	-webkit-mask: url('/star-stream/temas/deco/nave.svg') center / contain no-repeat;
-	mask: url('/star-stream/temas/deco/nave.svg') center / contain no-repeat;
+	-webkit-mask: url('/temas/deco/nave.svg') center / contain no-repeat;
+	mask: url('/temas/deco/nave.svg') center / contain no-repeat;
 	opacity: 0;
 	animation: ss-nave 17s linear infinite 2s;
 }
@@ -1825,8 +1825,8 @@
 	inset: 0;
 	z-index: -1;
 	background: #fff8ea;
-	-webkit-mask: url('/star-stream/temas/deco/estrelas-2.svg') 0 0 / 300px 300px repeat;
-	mask: url('/star-stream/temas/deco/estrelas-2.svg') 0 0 / 300px 300px repeat;
+	-webkit-mask: url('/temas/deco/estrelas-2.svg') 0 0 / 300px 300px repeat;
+	mask: url('/temas/deco/estrelas-2.svg') 0 0 / 300px 300px repeat;
 	--min: 0.1;
 	--max: 0.7;
 	animation: ss-cintila 3.2s ease-in-out infinite alternate;
@@ -1836,7 +1836,7 @@
 	display: block;
 	overflow: hidden;
 	background: none;
-	--p: url('/star-stream/temas/camada-constelacao-fluxo.svg');
+	--p: url('/temas/camada-constelacao-fluxo.svg');
 }
 
 [data-ss-tema='constelacao'] .ss-capa-camadas i:nth-child(1)::before,
@@ -1865,7 +1865,7 @@
 	display: block;
 	overflow: hidden;
 	background: none;
-	--p: url('/star-stream/temas/camada-constelacao-leito.svg');
+	--p: url('/temas/camada-constelacao-leito.svg');
 }
 
 [data-ss-tema='constelacao'] .ss-capa-camadas i:is(:nth-child(2), :nth-child(3), :nth-child(7))::before {
@@ -1882,7 +1882,7 @@
 }
 
 [data-ss-tema='constelacao'] .ss-capa-camadas i:nth-child(2) {
-	--m: url('/star-stream/temas/camada-constelacao-corrente-1.webp');
+	--m: url('/temas/camada-constelacao-corrente-1.webp');
 	--tw: 720px;
 	--th: 262px;
 	--d: 44s;
@@ -1890,7 +1890,7 @@
 }
 
 [data-ss-tema='constelacao'] .ss-capa-camadas i:nth-child(3) {
-	--m: url('/star-stream/temas/camada-constelacao-corrente-2.webp');
+	--m: url('/temas/camada-constelacao-corrente-2.webp');
 	--tw: 900px;
 	--th: 328px;
 	--d: 38s;
@@ -1898,7 +1898,7 @@
 }
 
 [data-ss-tema='constelacao'] .ss-capa-camadas i:nth-child(7) {
-	--m: url('/star-stream/temas/camada-constelacao-corrente-3.webp');
+	--m: url('/temas/camada-constelacao-corrente-3.webp');
 	--tw: 1150px;
 	--th: 419px;
 	--d: 33s;
@@ -2009,28 +2009,28 @@
 }
 
 [data-ss-tema='classico'] .ss-capa-camadas i:nth-child(1) {
-	-webkit-mask: url('/star-stream/temas/regua-cima-classico-escuro.svg') left top / auto 12px repeat-x, linear-gradient(#000 0 0) left top / 100% 1.5px no-repeat, linear-gradient(rgb(0 0 0 / 0.4), transparent) left top / 100% 12px no-repeat;
-	mask: url('/star-stream/temas/regua-cima-classico-escuro.svg') left top / auto 12px repeat-x, linear-gradient(#000 0 0) left top / 100% 1.5px no-repeat, linear-gradient(rgb(0 0 0 / 0.4), transparent) left top / 100% 12px no-repeat;
+	-webkit-mask: url('/temas/regua-cima-classico-escuro.svg') left top / auto 12px repeat-x, linear-gradient(#000 0 0) left top / 100% 1.5px no-repeat, linear-gradient(rgb(0 0 0 / 0.4), transparent) left top / 100% 12px no-repeat;
+	mask: url('/temas/regua-cima-classico-escuro.svg') left top / auto 12px repeat-x, linear-gradient(#000 0 0) left top / 100% 1.5px no-repeat, linear-gradient(rgb(0 0 0 / 0.4), transparent) left top / 100% 12px no-repeat;
 	--regua: ss-regua-cima;
 }
 
 [data-ss-tema='classico'] .ss-capa-camadas i:nth-child(2) {
-	-webkit-mask: url('/star-stream/temas/regua-dir-classico-escuro.svg') right top / 12px auto repeat-y, linear-gradient(#000 0 0) right top / 1.5px 100% no-repeat, linear-gradient(to left, rgb(0 0 0 / 0.4), transparent) right top / 12px 100% no-repeat;
-	mask: url('/star-stream/temas/regua-dir-classico-escuro.svg') right top / 12px auto repeat-y, linear-gradient(#000 0 0) right top / 1.5px 100% no-repeat, linear-gradient(to left, rgb(0 0 0 / 0.4), transparent) right top / 12px 100% no-repeat;
+	-webkit-mask: url('/temas/regua-dir-classico-escuro.svg') right top / 12px auto repeat-y, linear-gradient(#000 0 0) right top / 1.5px 100% no-repeat, linear-gradient(to left, rgb(0 0 0 / 0.4), transparent) right top / 12px 100% no-repeat;
+	mask: url('/temas/regua-dir-classico-escuro.svg') right top / 12px auto repeat-y, linear-gradient(#000 0 0) right top / 1.5px 100% no-repeat, linear-gradient(to left, rgb(0 0 0 / 0.4), transparent) right top / 12px 100% no-repeat;
 	--regua: ss-regua-dir;
 }
 
 [data-ss-tema='classico'] .ss-capa-camadas i:nth-child(3) {
 	inset: auto 0 0;
-	-webkit-mask: url('/star-stream/temas/regua-baixo-classico-escuro.svg') left bottom / auto 12px repeat-x, linear-gradient(#000 0 0) left bottom / 100% 1.5px no-repeat, linear-gradient(to top, rgb(0 0 0 / 0.4), transparent) left bottom / 100% 12px no-repeat;
-	mask: url('/star-stream/temas/regua-baixo-classico-escuro.svg') left bottom / auto 12px repeat-x, linear-gradient(#000 0 0) left bottom / 100% 1.5px no-repeat, linear-gradient(to top, rgb(0 0 0 / 0.4), transparent) left bottom / 100% 12px no-repeat;
+	-webkit-mask: url('/temas/regua-baixo-classico-escuro.svg') left bottom / auto 12px repeat-x, linear-gradient(#000 0 0) left bottom / 100% 1.5px no-repeat, linear-gradient(to top, rgb(0 0 0 / 0.4), transparent) left bottom / 100% 12px no-repeat;
+	mask: url('/temas/regua-baixo-classico-escuro.svg') left bottom / auto 12px repeat-x, linear-gradient(#000 0 0) left bottom / 100% 1.5px no-repeat, linear-gradient(to top, rgb(0 0 0 / 0.4), transparent) left bottom / 100% 12px no-repeat;
 	--regua: ss-regua-baixo;
 }
 
 [data-ss-tema='classico'] .ss-capa-camadas i:nth-child(4) {
 	inset: 0 auto 0 0;
-	-webkit-mask: url('/star-stream/temas/regua-esq-classico-escuro.svg') left top / 12px auto repeat-y, linear-gradient(#000 0 0) left top / 1.5px 100% no-repeat, linear-gradient(to right, rgb(0 0 0 / 0.4), transparent) left top / 12px 100% no-repeat;
-	mask: url('/star-stream/temas/regua-esq-classico-escuro.svg') left top / 12px auto repeat-y, linear-gradient(#000 0 0) left top / 1.5px 100% no-repeat, linear-gradient(to right, rgb(0 0 0 / 0.4), transparent) left top / 12px 100% no-repeat;
+	-webkit-mask: url('/temas/regua-esq-classico-escuro.svg') left top / 12px auto repeat-y, linear-gradient(#000 0 0) left top / 1.5px 100% no-repeat, linear-gradient(to right, rgb(0 0 0 / 0.4), transparent) left top / 12px 100% no-repeat;
+	mask: url('/temas/regua-esq-classico-escuro.svg') left top / 12px auto repeat-y, linear-gradient(#000 0 0) left top / 1.5px 100% no-repeat, linear-gradient(to right, rgb(0 0 0 / 0.4), transparent) left top / 12px 100% no-repeat;
 	--regua: ss-regua-esq;
 }
 
@@ -2117,12 +2117,12 @@
 }
 
 [data-ss-tema='observatorio'] .ss-capa-camadas i:nth-child(1) {
-	--p: url('/star-stream/temas/deco/anel-externo.svg');
+	--p: url('/temas/deco/anel-externo.svg');
 	animation: ss-rodar 220s linear infinite;
 }
 
 [data-ss-tema='observatorio'] .ss-capa-camadas i:nth-child(2) {
-	--p: url('/star-stream/temas/deco/anel-interno.svg');
+	--p: url('/temas/deco/anel-interno.svg');
 	animation: ss-rodar-inverso 120s linear infinite;
 }
 
@@ -2149,24 +2149,24 @@
 }
 
 [data-ss-tema='codex'] .ss-capa-camadas i:nth-child(1) {
-	--p: url('/star-stream/temas/deco/codex-casas.svg');
+	--p: url('/temas/deco/codex-casas.svg');
 	opacity: 0.85;
 	animation: ss-rodar 320s linear infinite;
 }
 
 [data-ss-tema='codex'] .ss-capa-camadas i:nth-child(2) {
-	--p: url('/star-stream/temas/deco/codex-disco.svg');
+	--p: url('/temas/deco/codex-disco.svg');
 	animation: ss-rodar-inverso 150s linear infinite;
 }
 
 [data-ss-tema='codex'] .ss-capa-camadas i:nth-child(3) {
-	--p: url('/star-stream/temas/deco/codex-ponteiro.svg');
+	--p: url('/temas/deco/codex-ponteiro.svg');
 	rotate: 200deg;
 	animation: ss-codex-ponteiro 110s linear infinite;
 }
 
 [data-ss-tema='codex'] .ss-capa-camadas i:nth-child(4) {
-	--p: url('/star-stream/temas/deco/codex-sol.svg');
+	--p: url('/temas/deco/codex-sol.svg');
 	--c: color-mix(in srgb, var(--sl-color-accent) 70%, #fff);
 	--min: 0.75;
 	--max: 1;
@@ -2197,10 +2197,10 @@
 	--c: var(--sl-color-white);
 }
 
-[data-ss-tema='astrolabio'] .ss-capa-camadas i:nth-child(1) { --p: url('/star-stream/temas/deco/armilar-meridiano.svg'); --g: 1.5deg; animation: ss-balancar 14s ease-in-out infinite alternate -4s; }
-[data-ss-tema='astrolabio'] .ss-capa-camadas i:nth-child(2) { --p: url('/star-stream/temas/deco/armilar-horizonte.svg'); --g: 4deg; animation: ss-balancar 9s ease-in-out infinite alternate -3s; }
-[data-ss-tema='astrolabio'] .ss-capa-camadas i:nth-child(3) { --p: url('/star-stream/temas/deco/armilar-equador.svg'); --g: 8deg; animation: ss-balancar 11s ease-in-out infinite alternate -5s; }
-[data-ss-tema='astrolabio'] .ss-capa-camadas i:nth-child(4) { --p: url('/star-stream/temas/deco/armilar-ecliptica.svg'); --g: -10deg; animation: ss-balancar 7s ease-in-out infinite alternate -2s; }
+[data-ss-tema='astrolabio'] .ss-capa-camadas i:nth-child(1) { --p: url('/temas/deco/armilar-meridiano.svg'); --g: 1.5deg; animation: ss-balancar 14s ease-in-out infinite alternate -4s; }
+[data-ss-tema='astrolabio'] .ss-capa-camadas i:nth-child(2) { --p: url('/temas/deco/armilar-horizonte.svg'); --g: 4deg; animation: ss-balancar 9s ease-in-out infinite alternate -3s; }
+[data-ss-tema='astrolabio'] .ss-capa-camadas i:nth-child(3) { --p: url('/temas/deco/armilar-equador.svg'); --g: 8deg; animation: ss-balancar 11s ease-in-out infinite alternate -5s; }
+[data-ss-tema='astrolabio'] .ss-capa-camadas i:nth-child(4) { --p: url('/temas/deco/armilar-ecliptica.svg'); --g: -10deg; animation: ss-balancar 7s ease-in-out infinite alternate -2s; }
 
 /* O disco do centro tem a cor do fundo da capa ali, que leva o halo da cor de destaque (raio 46 no quadro de 800). */
 [data-ss-tema='astrolabio'] .ss-capa-camadas i:nth-child(5) {
@@ -2209,10 +2209,10 @@
 	--c: color-mix(in srgb, var(--sl-color-black) 84%, var(--ss-latao));
 }
 
-[data-ss-tema='astrolabio'] .ss-capa-camadas i:nth-child(6) { --p: url('/star-stream/temas/deco/armilar-eixo.svg'); --g: 1.5deg; animation: ss-balancar 14s ease-in-out infinite alternate -4s; }
+[data-ss-tema='astrolabio'] .ss-capa-camadas i:nth-child(6) { --p: url('/temas/deco/armilar-eixo.svg'); --g: 1.5deg; animation: ss-balancar 14s ease-in-out infinite alternate -4s; }
 
 [data-ss-tema='astrolabio'] .ss-capa-camadas i:nth-child(7) {
-	--p: url('/star-stream/temas/deco/armilar-agulha.svg');
+	--p: url('/temas/deco/armilar-agulha.svg');
 	--c: var(--ss-latao-claro);
 	--min: 0.65;
 	--max: 1;
@@ -2278,8 +2278,8 @@
 	mask: var(--m) 0 0 / var(--t) var(--t) repeat;
 }
 
-[data-ss-tema='nebulosa'] .ss-capa-camadas i:nth-child(3) { --m: url('/star-stream/temas/deco/estrelas-1.svg'); --t: 290px; animation: ss-cintila 3.3s ease-in-out infinite alternate; }
-[data-ss-tema='nebulosa'] .ss-capa-camadas i:nth-child(4) { --m: url('/star-stream/temas/deco/estrelas-3.svg'); --t: 530px; animation: ss-cintila 4.7s ease-in-out infinite alternate -2.1s; }
+[data-ss-tema='nebulosa'] .ss-capa-camadas i:nth-child(3) { --m: url('/temas/deco/estrelas-1.svg'); --t: 290px; animation: ss-cintila 3.3s ease-in-out infinite alternate; }
+[data-ss-tema='nebulosa'] .ss-capa-camadas i:nth-child(4) { --m: url('/temas/deco/estrelas-3.svg'); --t: 530px; animation: ss-cintila 4.7s ease-in-out infinite alternate -2.1s; }
 
 @keyframes ss-nevoa {
 	to {
@@ -2308,10 +2308,10 @@
 	--max: 0.7;
 }
 
-[data-ss-tema='grimorio'] .ss-capa-camadas i:nth-child(1) { --p: url('/star-stream/temas/deco/grimorio-selo-aros.svg'); opacity: 0.55; animation: ss-rodar 200s linear infinite; }
-[data-ss-tema='grimorio'] .ss-capa-camadas i:nth-child(2) { --p: url('/star-stream/temas/deco/grimorio-selo-glifos-1.svg'); animation: ss-rodar-inverso 320s linear infinite, ss-cintila 4.6s ease-in-out infinite alternate; }
-[data-ss-tema='grimorio'] .ss-capa-camadas i:nth-child(3) { --p: url('/star-stream/temas/deco/grimorio-selo-glifos-2.svg'); animation: ss-rodar-inverso 320s linear infinite, ss-cintila 6s ease-in-out infinite alternate -2s; }
-[data-ss-tema='grimorio'] .ss-capa-camadas i:nth-child(4) { --p: url('/star-stream/temas/deco/grimorio-selo-glifos-3.svg'); animation: ss-rodar-inverso 320s linear infinite, ss-cintila 7.4s ease-in-out infinite alternate -4.1s; }
+[data-ss-tema='grimorio'] .ss-capa-camadas i:nth-child(1) { --p: url('/temas/deco/grimorio-selo-aros.svg'); opacity: 0.55; animation: ss-rodar 200s linear infinite; }
+[data-ss-tema='grimorio'] .ss-capa-camadas i:nth-child(2) { --p: url('/temas/deco/grimorio-selo-glifos-1.svg'); animation: ss-rodar-inverso 320s linear infinite, ss-cintila 4.6s ease-in-out infinite alternate; }
+[data-ss-tema='grimorio'] .ss-capa-camadas i:nth-child(3) { --p: url('/temas/deco/grimorio-selo-glifos-2.svg'); animation: ss-rodar-inverso 320s linear infinite, ss-cintila 6s ease-in-out infinite alternate -2s; }
+[data-ss-tema='grimorio'] .ss-capa-camadas i:nth-child(4) { --p: url('/temas/deco/grimorio-selo-glifos-3.svg'); animation: ss-rodar-inverso 320s linear infinite, ss-cintila 7.4s ease-in-out infinite alternate -4.1s; }
 
 /* A clareira do nome: o conjunto das camadas (parado) some num oval atrás do logo, para o heptagrama e os planetas, no
    mesmo dourado, não cruzarem as letras. No celular o logo ocupa quase a largura toda, e o oval é mais largo. */
@@ -2360,9 +2360,9 @@
 	animation: ss-vagar-x var(--dx) ease-in-out infinite alternate, ss-vagar-y var(--dy) ease-in-out infinite alternate, ss-cintila var(--dp) ease-in-out infinite alternate;
 }
 
-[data-ss-tema='bosque'] .ss-capa-camadas i:nth-child(1) { --p: url('/star-stream/temas/camada-bosque-vagalumes-1.svg'); --max: 1; --vx: 1%; --vy: 4%; --dx: 9.5s; --dy: 6.2s; --dp: 2.6s; }
-[data-ss-tema='bosque'] .ss-capa-camadas i:nth-child(2) { --p: url('/star-stream/temas/camada-bosque-vagalumes-2.svg'); --max: 0.9; --vx: 1.4%; --vy: 3%; --dx: 12.5s; --dy: 8.1s; --dp: 3.4s; animation-delay: -5s, -3s, -1.1s; }
-[data-ss-tema='bosque'] .ss-capa-camadas i:nth-child(3) { --p: url('/star-stream/temas/camada-bosque-vagalumes-3.svg'); --max: 0.8; --vx: 0.8%; --vy: 5%; --dx: 15.5s; --dy: 10.6s; --dp: 4.3s; animation-delay: -8s, -6s, -2.4s; }
+[data-ss-tema='bosque'] .ss-capa-camadas i:nth-child(1) { --p: url('/temas/camada-bosque-vagalumes-1.svg'); --max: 1; --vx: 1%; --vy: 4%; --dx: 9.5s; --dy: 6.2s; --dp: 2.6s; }
+[data-ss-tema='bosque'] .ss-capa-camadas i:nth-child(2) { --p: url('/temas/camada-bosque-vagalumes-2.svg'); --max: 0.9; --vx: 1.4%; --vy: 3%; --dx: 12.5s; --dy: 8.1s; --dp: 3.4s; animation-delay: -5s, -3s, -1.1s; }
+[data-ss-tema='bosque'] .ss-capa-camadas i:nth-child(3) { --p: url('/temas/camada-bosque-vagalumes-3.svg'); --max: 0.8; --vx: 0.8%; --vy: 5%; --dx: 15.5s; --dy: 10.6s; --dp: 4.3s; animation-delay: -8s, -6s, -2.4s; }
 
 [data-ss-tema='bosque'] .ss-capa::before {
 	content: '';
@@ -2394,7 +2394,7 @@
    camadas que tremulam de lado, e a brasa do pé da capa respira. */
 [data-ss-tema='forja'] .ss-capa-camadas i:is(:nth-child(1), :nth-child(2)) {
 	display: block;
-	--p: url('/star-stream/temas/camada-forja-runas-acesas.svg');
+	--p: url('/temas/camada-forja-runas-acesas.svg');
 }
 
 [data-ss-tema='forja'] .ss-capa-camadas i:nth-child(1) {
@@ -2463,10 +2463,10 @@
 	animation: ss-sobe var(--d) linear infinite, ss-deriva var(--db) ease-in-out infinite alternate;
 }
 
-[data-ss-tema='forja'] .ss-capa::after { --m: url('/star-stream/temas/deco/fantasia-brasas-a.svg'); --l: 900px; --t: 320px; --d: 5.5s; --b: 14px; --db: 2.4s; --op: 0.8; }
-[data-ss-tema='forja'] .ss-capa-camadas i:nth-child(3) { --m: url('/star-stream/temas/deco/fantasia-brasas-b.svg'); --l: 680px; --t: 470px; --d: 9.5s; --b: 22px; --db: 3.6s; --op: 0.7; animation-delay: -3s, -1s; }
-[data-ss-tema='abissal'] .ss-capa::after { --m: url('/star-stream/temas/deco/fantasia-bolhas-a.svg'); --l: 980px; --t: 420px; --d: 9s; --b: 6px; --db: 1.8s; --op: 0.55; }
-[data-ss-tema='abissal'] .ss-capa-camadas i:nth-child(6) { --m: url('/star-stream/temas/deco/fantasia-bolhas-b.svg'); --l: 740px; --t: 600px; --d: 16s; --b: 10px; --db: 2.9s; --op: 0.45; animation-delay: -6s, -1s; }
+[data-ss-tema='forja'] .ss-capa::after { --m: url('/temas/deco/fantasia-brasas-a.svg'); --l: 900px; --t: 320px; --d: 5.5s; --b: 14px; --db: 2.4s; --op: 0.8; }
+[data-ss-tema='forja'] .ss-capa-camadas i:nth-child(3) { --m: url('/temas/deco/fantasia-brasas-b.svg'); --l: 680px; --t: 470px; --d: 9.5s; --b: 22px; --db: 3.6s; --op: 0.7; animation-delay: -3s, -1s; }
+[data-ss-tema='abissal'] .ss-capa::after { --m: url('/temas/deco/fantasia-bolhas-a.svg'); --l: 980px; --t: 420px; --d: 9s; --b: 6px; --db: 1.8s; --op: 0.55; }
+[data-ss-tema='abissal'] .ss-capa-camadas i:nth-child(6) { --m: url('/temas/deco/fantasia-bolhas-b.svg'); --l: 740px; --t: 600px; --d: 16s; --b: 10px; --db: 2.9s; --op: 0.45; animation-delay: -6s, -1s; }
 
 /* Mapa: os dois grupos de ondas balançam em sentidos opostos, e o barco atravessa o canal de baixo, de uma ilha à
    outra: surge de trás da ilha da esquerda (aparecendo devagar), ganha velocidade, chega devagar à ilha da direita e
@@ -2480,12 +2480,12 @@
 	--c: var(--ss-mar);
 }
 
-[data-ss-tema='mapa'] .ss-capa-camadas i:nth-child(1) { --p: url('/star-stream/temas/camada-mapa-ondas-1.svg'); --b: 0.5%; animation: ss-deriva 4.4s ease-in-out infinite alternate; }
-[data-ss-tema='mapa'] .ss-capa-camadas i:nth-child(2) { --p: url('/star-stream/temas/camada-mapa-ondas-2.svg'); --b: -0.6%; animation: ss-deriva 5.6s ease-in-out infinite alternate -2.3s; }
+[data-ss-tema='mapa'] .ss-capa-camadas i:nth-child(1) { --p: url('/temas/camada-mapa-ondas-1.svg'); --b: 0.5%; animation: ss-deriva 4.4s ease-in-out infinite alternate; }
+[data-ss-tema='mapa'] .ss-capa-camadas i:nth-child(2) { --p: url('/temas/camada-mapa-ondas-2.svg'); --b: -0.6%; animation: ss-deriva 5.6s ease-in-out infinite alternate -2.3s; }
 
 [data-ss-tema='mapa'] .ss-capa-camadas i:nth-child(3) {
 	display: block;
-	--p: url('/star-stream/temas/camada-mapa-barco.svg');
+	--p: url('/temas/camada-mapa-barco.svg');
 	--c: var(--ss-tinta);
 	transform-origin: 50% 87.5%;
 	animation: ss-mapa-viagem 52s ease-in-out infinite, ss-mapa-adernar 4.7s ease-in-out infinite alternate, ss-mapa-arfagem 3.2s ease-in-out infinite alternate -1s;
@@ -2547,17 +2547,17 @@
 	--c: var(--ss-alga);
 }
 
-[data-ss-tema='abissal'] .ss-capa-camadas i:nth-child(1) { --p: url('/star-stream/temas/camada-abissal-algas-1.svg'); --g: 1.3deg; transform-origin: calc(50cqw - 140.4cqh) 100%; animation: ss-balancar 6.4s ease-in-out infinite alternate; }
-[data-ss-tema='abissal'] .ss-capa-camadas i:nth-child(5) { --p: url('/star-stream/temas/camada-abissal-algas-2.svg'); --g: 1.1deg; transform-origin: calc(50cqw + 143.3cqh) 100%; animation: ss-balancar 7.9s ease-in-out infinite alternate -3s; }
+[data-ss-tema='abissal'] .ss-capa-camadas i:nth-child(1) { --p: url('/temas/camada-abissal-algas-1.svg'); --g: 1.3deg; transform-origin: calc(50cqw - 140.4cqh) 100%; animation: ss-balancar 6.4s ease-in-out infinite alternate; }
+[data-ss-tema='abissal'] .ss-capa-camadas i:nth-child(5) { --p: url('/temas/camada-abissal-algas-2.svg'); --g: 1.1deg; transform-origin: calc(50cqw + 143.3cqh) 100%; animation: ss-balancar 7.9s ease-in-out infinite alternate -3s; }
 
 [data-ss-tema='abissal'] .ss-capa-camadas i:is(:nth-child(2), :nth-child(3), :nth-child(4)) {
 	display: block;
 	--c: var(--ss-medusa);
 }
 
-[data-ss-tema='abissal'] .ss-capa-camadas i:nth-child(2) { --p: url('/star-stream/temas/camada-abissal-medusa-1.svg'); --a: 4%; transform-origin: calc(50cqw - 125cqh) 26.9cqh; animation: ss-flutuar 6s ease-in-out infinite alternate, ss-medusa-pulso-capa 3.4s ease-in-out infinite; }
-[data-ss-tema='abissal'] .ss-capa-camadas i:nth-child(3) { --p: url('/star-stream/temas/camada-abissal-medusa-2.svg'); --a: 5%; transform-origin: calc(50cqw + 128.8cqh) 21.2cqh; animation: ss-flutuar 8.5s ease-in-out infinite alternate -3s, ss-medusa-pulso-capa 4.1s ease-in-out infinite -1.2s; }
-[data-ss-tema='abissal'] .ss-capa-camadas i:nth-child(4) { --p: url('/star-stream/temas/camada-abissal-medusa-3.svg'); --a: 3%; transform-origin: calc(50cqw + 103.8cqh) 57.7cqh; animation: ss-flutuar 5.2s ease-in-out infinite alternate -1s, ss-medusa-pulso-capa 3s ease-in-out infinite -0.7s; }
+[data-ss-tema='abissal'] .ss-capa-camadas i:nth-child(2) { --p: url('/temas/camada-abissal-medusa-1.svg'); --a: 4%; transform-origin: calc(50cqw - 125cqh) 26.9cqh; animation: ss-flutuar 6s ease-in-out infinite alternate, ss-medusa-pulso-capa 3.4s ease-in-out infinite; }
+[data-ss-tema='abissal'] .ss-capa-camadas i:nth-child(3) { --p: url('/temas/camada-abissal-medusa-2.svg'); --a: 5%; transform-origin: calc(50cqw + 128.8cqh) 21.2cqh; animation: ss-flutuar 8.5s ease-in-out infinite alternate -3s, ss-medusa-pulso-capa 4.1s ease-in-out infinite -1.2s; }
+[data-ss-tema='abissal'] .ss-capa-camadas i:nth-child(4) { --p: url('/temas/camada-abissal-medusa-3.svg'); --a: 3%; transform-origin: calc(50cqw + 103.8cqh) 57.7cqh; animation: ss-flutuar 5.2s ease-in-out infinite alternate -1s, ss-medusa-pulso-capa 3s ease-in-out infinite -0.7s; }
 
 @keyframes ss-medusa-pulso-capa {
 	0%,
@@ -2579,11 +2579,11 @@
 	--min: 0.04;
 }
 
-[data-ss-tema='vitral'] .ss-capa-camadas i:nth-child(1) { --p: url('/star-stream/temas/camada-vitral-halo-1.svg'); --max: 0.3; animation: ss-cintila 6.5s ease-in-out infinite alternate; }
-[data-ss-tema='vitral'] .ss-capa-camadas i:nth-child(2) { --p: url('/star-stream/temas/camada-vitral-halo-2.svg'); --max: 0.26; animation: ss-cintila 8.3s ease-in-out infinite alternate -3s; }
-[data-ss-tema='vitral'] .ss-capa-camadas i:nth-child(3) { --p: url('/star-stream/temas/camada-vitral-luz-1.svg'); --max: 0.34; animation: ss-cintila 6.5s ease-in-out infinite alternate; }
-[data-ss-tema='vitral'] .ss-capa-camadas i:nth-child(4) { --p: url('/star-stream/temas/camada-vitral-luz-2.svg'); --max: 0.3; animation: ss-cintila 8.3s ease-in-out infinite alternate -3s; }
-[data-ss-tema='vitral'] .ss-capa-camadas i:nth-child(5) { --p: url('/star-stream/temas/camada-vitral-poeira.svg'); --min: 0.2; --max: 0.85; --vx: 0.4%; --vy: 2.5%; animation: ss-vagar-x 13s ease-in-out infinite alternate, ss-vagar-y 9s ease-in-out infinite alternate, ss-cintila 3.3s ease-in-out infinite alternate; }
+[data-ss-tema='vitral'] .ss-capa-camadas i:nth-child(1) { --p: url('/temas/camada-vitral-halo-1.svg'); --max: 0.3; animation: ss-cintila 6.5s ease-in-out infinite alternate; }
+[data-ss-tema='vitral'] .ss-capa-camadas i:nth-child(2) { --p: url('/temas/camada-vitral-halo-2.svg'); --max: 0.26; animation: ss-cintila 8.3s ease-in-out infinite alternate -3s; }
+[data-ss-tema='vitral'] .ss-capa-camadas i:nth-child(3) { --p: url('/temas/camada-vitral-luz-1.svg'); --max: 0.34; animation: ss-cintila 6.5s ease-in-out infinite alternate; }
+[data-ss-tema='vitral'] .ss-capa-camadas i:nth-child(4) { --p: url('/temas/camada-vitral-luz-2.svg'); --max: 0.3; animation: ss-cintila 8.3s ease-in-out infinite alternate -3s; }
+[data-ss-tema='vitral'] .ss-capa-camadas i:nth-child(5) { --p: url('/temas/camada-vitral-poeira.svg'); --min: 0.2; --max: 0.85; --vx: 0.4%; --vy: 2.5%; animation: ss-vagar-x 13s ease-in-out infinite alternate, ss-vagar-y 9s ease-in-out infinite alternate, ss-cintila 3.3s ease-in-out infinite alternate; }
 
 /* Até 75rem, as camadas seguem o enquadramento estreito da capa (vitral.css): pela largura, encostadas embaixo. */
 @media (max-width: 75rem) {
@@ -2663,22 +2663,22 @@
 
 /* Quem anda da direita para a esquerda vira o rastro (--rumo) e toca a animação ao contrário. Os tempos não têm
    divisor comum pequeno, para a placa nunca repetir o mesmo desenho de pulsos. */
-[data-ss-tema='circuito'] .ss-capa-camadas i:nth-child(1) { --p: url('/star-stream/temas/camada-circuito-pulso-1.webp'); }
+[data-ss-tema='circuito'] .ss-capa-camadas i:nth-child(1) { --p: url('/temas/camada-circuito-pulso-1.webp'); }
 [data-ss-tema='circuito'] .ss-capa-camadas i:nth-child(1)::before { animation: ss-pulso-trilha 6.4s linear infinite -1.1s; }
 [data-ss-tema='circuito'] .ss-capa-camadas i:nth-child(1)::after { --rumo: 270deg; animation: ss-pulso-trilha 7.9s linear infinite reverse -5.3s; }
-[data-ss-tema='circuito'] .ss-capa-camadas i:nth-child(2) { --p: url('/star-stream/temas/camada-circuito-pulso-2.webp'); }
+[data-ss-tema='circuito'] .ss-capa-camadas i:nth-child(2) { --p: url('/temas/camada-circuito-pulso-2.webp'); }
 [data-ss-tema='circuito'] .ss-capa-camadas i:nth-child(2)::before { --rumo: 270deg; animation: ss-pulso-trilha 7.6s linear infinite reverse -3.7s; }
 [data-ss-tema='circuito'] .ss-capa-camadas i:nth-child(2)::after { animation: ss-pulso-trilha 6.1s linear infinite -0.6s; }
-[data-ss-tema='circuito'] .ss-capa-camadas i:nth-child(3) { --p: url('/star-stream/temas/camada-circuito-pulso-3.webp'); }
+[data-ss-tema='circuito'] .ss-capa-camadas i:nth-child(3) { --p: url('/temas/camada-circuito-pulso-3.webp'); }
 [data-ss-tema='circuito'] .ss-capa-camadas i:nth-child(3)::before { animation: ss-pulso-trilha-pausa 8.3s linear infinite -2.9s; }
 [data-ss-tema='circuito'] .ss-capa-camadas i:nth-child(3)::after { --rumo: 270deg; animation: ss-pulso-trilha-pausa 10.4s linear infinite reverse -6.2s; }
-[data-ss-tema='circuito'] .ss-capa-camadas i:nth-child(4) { --p: url('/star-stream/temas/camada-circuito-pulso-4.webp'); }
+[data-ss-tema='circuito'] .ss-capa-camadas i:nth-child(4) { --p: url('/temas/camada-circuito-pulso-4.webp'); }
 [data-ss-tema='circuito'] .ss-capa-camadas i:nth-child(4)::before { --rumo: 270deg; animation: ss-pulso-trilha 8.4s linear infinite reverse -4.4s; }
 [data-ss-tema='circuito'] .ss-capa-camadas i:nth-child(4)::after { animation: ss-pulso-trilha 6.8s linear infinite -2.2s; }
-[data-ss-tema='circuito'] .ss-capa-camadas i:nth-child(5) { --p: url('/star-stream/temas/camada-circuito-pulso-5.webp'); }
+[data-ss-tema='circuito'] .ss-capa-camadas i:nth-child(5) { --p: url('/temas/camada-circuito-pulso-5.webp'); }
 [data-ss-tema='circuito'] .ss-capa-camadas i:nth-child(5)::before { --rumo: 270deg; animation: ss-pulso-trilha-pausa 9.7s linear infinite reverse -0.3s; }
 [data-ss-tema='circuito'] .ss-capa-camadas i:nth-child(5)::after { animation: ss-pulso-trilha 9.6s linear infinite -7.4s; }
-[data-ss-tema='circuito'] .ss-capa-camadas i:nth-child(6) { --p: url('/star-stream/temas/camada-circuito-pulso-6.webp'); }
+[data-ss-tema='circuito'] .ss-capa-camadas i:nth-child(6) { --p: url('/temas/camada-circuito-pulso-6.webp'); }
 [data-ss-tema='circuito'] .ss-capa-camadas i:nth-child(6)::before { animation: ss-pulso-trilha 9.2s linear infinite -6.8s; }
 [data-ss-tema='circuito'] .ss-capa-camadas i:nth-child(6)::after { --rumo: 270deg; animation: ss-pulso-trilha-pausa 11.3s linear infinite reverse -3.1s; }
 
@@ -2702,8 +2702,8 @@
 	--max: 1;
 }
 
-[data-ss-tema='circuito'] .ss-capa-camadas i:nth-child(7) { --p: url('/star-stream/temas/camada-circuito-leds-1.svg'); animation: ss-cintila 1.3s ease-in-out infinite alternate; }
-[data-ss-tema='circuito'] .ss-capa-camadas i:nth-child(8) { --p: url('/star-stream/temas/camada-circuito-leds-2.svg'); animation: ss-cintila 2.1s ease-in-out infinite alternate -0.8s; }
+[data-ss-tema='circuito'] .ss-capa-camadas i:nth-child(7) { --p: url('/temas/camada-circuito-leds-1.svg'); animation: ss-cintila 1.3s ease-in-out infinite alternate; }
+[data-ss-tema='circuito'] .ss-capa-camadas i:nth-child(8) { --p: url('/temas/camada-circuito-leds-2.svg'); animation: ss-cintila 2.1s ease-in-out infinite alternate -0.8s; }
 
 /* Navegação: o campo de estrelas passa pela janela da nave. São pontos nítidos, como estrelas de verdade (as bolinhas
    desfocadas de antes pareciam poeira na lente e, no claro, manchas cinza no papel). */
@@ -2714,8 +2714,8 @@
 	z-index: -1;
 	--t: 320px;
 	background: var(--sl-color-white);
-	-webkit-mask: url('/star-stream/temas/particulas-poeira.svg') 0 0 / 320px 320px repeat;
-	mask: url('/star-stream/temas/particulas-poeira.svg') 0 0 / 320px 320px repeat;
+	-webkit-mask: url('/temas/particulas-poeira.svg') 0 0 / 320px 320px repeat;
+	mask: url('/temas/particulas-poeira.svg') 0 0 / 320px 320px repeat;
 	opacity: 0.6;
 	animation: ss-passar 12s linear infinite;
 }

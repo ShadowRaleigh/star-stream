@@ -14,18 +14,18 @@
 	--ss-pergaminho: #e2ddd2;
 	--ss-couro: #1a1918;
 	--ss-couro-escuro: #0f0e0d;
-	--ss-material: url('/star-stream/temas/material-forja.svg');
+	--ss-material: url('/temas/material-forja.svg');
 	--ss-capa-fundo: linear-gradient(180deg, #2a2724, #1a1918);
-	--ss-papel-textura: url('/star-stream/temas/papel-forja.svg');
+	--ss-papel-textura: url('/temas/papel-forja.svg');
 	--ss-papel-claro: #efebe3;
 	--ss-papel-escuro: #d0c8b9;
 	--ss-sepia-rgb: 90 80 68;
 	--ss-realce-rgb: 255 250 240;
-	--ss-canto-se: url('/star-stream/temas/canto-forja-se.svg');
-	--ss-canto-sd: url('/star-stream/temas/canto-forja-sd.svg');
-	--ss-canto-ie: url('/star-stream/temas/canto-forja-ie.svg');
-	--ss-canto-id: url('/star-stream/temas/canto-forja-id.svg');
-	--ss-florao: url('/star-stream/temas/florao-forja.svg');
+	--ss-canto-se: url('/temas/canto-forja-se.svg');
+	--ss-canto-sd: url('/temas/canto-forja-sd.svg');
+	--ss-canto-ie: url('/temas/canto-forja-ie.svg');
+	--ss-canto-id: url('/temas/canto-forja-id.svg');
+	--ss-florao: url('/temas/florao-forja.svg');
 	--ss-fita: linear-gradient(180deg, #c4521f, #8a3510);
 	--ss-fita-texto: #fff0e0;
 	--ss-capitular-1: #c4521f;
@@ -62,8 +62,8 @@
 	   grandes em gradientes que não se repetem: a mancha larga do ladrilho de antes se repetia em grade numa tela grande. */
 	--ss-fundo:
 		radial-gradient(ellipse 60% 40% at 50% 100%, rgb(196 82 31 / 0.22), transparent 70%),
-		url('/star-stream/temas/grao-forja.svg') 0 0 / 300px,
-		url('/star-stream/temas/grao-forja.svg') 137px 61px / 437px,
+		url('/temas/grao-forja.svg') 0 0 / 300px,
+		url('/temas/grao-forja.svg') 137px 61px / 437px,
 		radial-gradient(ellipse 38% 30% at 14% 64%, rgb(0 0 0 / 0.3), transparent 70%),
 		radial-gradient(ellipse 32% 26% at 86% 30%, rgb(0 0 0 / 0.24), transparent 70%),
 		radial-gradient(ellipse 30% 24% at 64% 92%, rgb(0 0 0 / 0.22), transparent 70%),
@@ -93,7 +93,7 @@
 }
 
 [data-ss-tema='forja'] .ss-capa {
-	background: url('/star-stream/temas/capa-forja.svg') center / cover;
+	background: url('/temas/capa-forja.svg') center / cover;
 }
 
 [data-ss-tema='forja'] .ss-capa img {
