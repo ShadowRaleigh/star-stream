@@ -9,6 +9,7 @@
 //   --cor <paleta>                               (padrão: a primeira do tema)
 //   --regiao capa|canto|tela|x,y,largura,altura  (padrão: capa; canto = 640 x 520 do canto de baixo à direita)
 //   --quadros 12   --intervalo 500 (ms)   --largura 1440   --altura 900   --celular (390 x 844, com toque)
+//   --densidade 1  (pixels por px de CSS: 2 ou 3 para ver traços finos de perto, como numa tela de alta resolução)
 //   --saida <caminho sem extensão>              (padrão: filmes/<tema>-<regiao>)
 // Precisa do servidor de desenvolvimento em http://localhost:4321/star-stream/.
 import { spawn } from 'node:child_process';
@@ -28,7 +29,7 @@ const opc = (nome, padrao) => { const i = args.indexOf(`--${nome}`); return i < 
 const celular = args.includes('--celular');
 const pagina = opc('pagina', 'inicio'), modo = opc('modo', 'escuro'), cor = opc('cor', ''), regiao = opc('regiao', 'capa');
 const quadros = Number(opc('quadros', 12)), intervalo = Number(opc('intervalo', 500));
-const largura = celular ? 390 : Number(opc('largura', 1440)), altura = celular ? 844 : Number(opc('altura', 900));
+const largura = celular ? 390 : Number(opc('largura', 1440)), altura = celular ? 844 : Number(opc('altura', 900)), densidade = Number(opc('densidade', 1));
 const saida = opc('saida', `filmes/${tema}-${regiao.replace(/,/g, '_')}${celular ? '-celular' : ''}`);
 const pausa = (ms) => new Promise((ok) => setTimeout(ok, ms));
 
@@ -56,7 +57,7 @@ const quando = (method) => new Promise((ok) => eventos.set(method, ok));
 
 try {
 	await cdp('Page.enable');
-	await cdp('Emulation.setDeviceMetricsOverride', { width: largura, height: altura, deviceScaleFactor: 1, mobile: celular });
+	await cdp('Emulation.setDeviceMetricsOverride', { width: largura, height: altura, deviceScaleFactor: densidade, mobile: celular });
 	await cdp('Emulation.setTouchEmulationEnabled', { enabled: celular, maxTouchPoints: celular ? 5 : 0 });
 	const url = `${BASE}${PAGINAS[pagina] ?? pagina}?tema=${tema}&modo=${modo}${cor ? `&cor=${cor}` : ''}`;
 	const carregou = quando('Page.loadEventFired');
@@ -87,7 +88,7 @@ try {
 	}
 
 	// Folha de quadros: até 3 por linha, cada um reduzido para caber em 600 px de largura, com o tempo em cima.
-	const larg = Math.min(600, clip.width), alt = Math.round((clip.height * larg) / clip.width), cols = Math.min(3, quadros), lins = Math.ceil(quadros / cols), faixa = 22;
+	const larg = Math.min(densidade > 1 ? 900 : 600, clip.width * densidade), alt = Math.round((clip.height * larg) / clip.width), cols = Math.min(3, quadros), lins = Math.ceil(quadros / cols), faixa = 22;
 	const pecas = [];
 	for (const [i, img] of imgs.entries()) {
 		const x = (i % cols) * (larg + 6), y = Math.floor(i / cols) * (alt + faixa + 6);

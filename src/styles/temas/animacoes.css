@@ -1356,7 +1356,9 @@
 [data-ss-tema='mapa'] .ss-deco2 i:nth-child(1) { --p: url('/star-stream/temas/deco/mapa-serpente-cauda.svg'); }
 [data-ss-tema='mapa'] .ss-deco2 i:nth-child(2) { --p: url('/star-stream/temas/deco/mapa-serpente-corpo.svg'); animation-delay: -1.6s; }
 [data-ss-tema='mapa'] .ss-deco2 i:nth-child(3) { display: block; --p: url('/star-stream/temas/deco/mapa-serpente-cabeca.svg'); transform-origin: 79% 66%; animation: ss-serpente-cabeca 5.6s ease-in-out infinite alternate -2.4s; }
-[data-ss-tema='mapa'] .ss-deco2 i:nth-child(4) { display: block; --p: url('/star-stream/temas/deco/mapa-serpente-ondas.svg'); --b: 4px; animation: ss-deriva 3.2s ease-in-out infinite alternate; }
+/* As ondas ficam paradas: se deslizassem, as bases retas das corcovas apareceriam e sumiriam nos vales, um tremido em
+   volta de cada uma. */
+[data-ss-tema='mapa'] .ss-deco2 i:nth-child(4) { display: block; --p: url('/star-stream/temas/deco/mapa-serpente-ondas.svg'); }
 
 @keyframes ss-serpente {
 	from {
