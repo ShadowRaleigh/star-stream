@@ -1383,14 +1383,15 @@
    volta de cada uma. */
 [data-ss-tema='mapa'] .ss-deco2 i:nth-child(4) { display: block; --p: url('/temas/deco/mapa-serpente-ondas.svg'); }
 
-/* As corcovas mergulham e emergem uns 7% da altura (as pernas continuam abaixo da água o tempo todo). */
+/* As corcovas mergulham e emergem uns 4% da altura: no ponto mais alto ficam um pouco abaixo da altura do desenho, para a
+   perna sair direto de dentro da onda, sem sobrar corpo acima da água (as pernas continuam abaixo dela o tempo todo). */
 @keyframes ss-serpente {
 	from {
-		transform: rotate(0.2deg) translateY(4%);
+		transform: rotate(0.2deg) translateY(4.5%);
 	}
 
 	to {
-		transform: rotate(0.2deg) translateY(-3%);
+		transform: rotate(0.2deg) translateY(0.5%);
 	}
 }
 
