@@ -400,7 +400,7 @@ function navegacao(p) {
 // Fantasia: capas únicas (o tema é o mesmo no claro e no escuro). O centro fica livre para o nome.
 
 // Bosque Feérico: uma clareira ao luar vista da mata. Ao fundo, a linha de árvores distantes sob a névoa; nos lados,
-// troncos escuros com galhos de folhas pontudas emoldurando a cena; no chão, samambaias; a lua e os vaga-lumes no meio.
+// troncos escuros emoldurando a cena; no chão, samambaias; a lua e os vaga-lumes no meio.
 // Folha pontuda: duas curvas que afinam nas pontas.
 function folhaPontuda(x, y, ang, comp, larg, cor, op) {
 	const tx = x + Math.cos(ang) * comp, ty = y + Math.sin(ang) * comp, nx = -Math.sin(ang) * larg, ny = Math.cos(ang) * larg;
@@ -442,7 +442,7 @@ function bosque(p) {
 	for (const [x, alt] of [[230, 230], [330, 190], [420, 150], [1400, 160], [1500, 210], [1610, 240]]) g += pinheiro(x, H - 30, alt, meio);
 	// Chão escuro.
 	g += `<path d="M -10 ${H - 40} Q 450 ${H - 58} 900 ${H - 44} T 1810 ${H - 50} V ${H + 10} H -10 Z" fill="${perto}"/>`;
-	// Troncos da frente emoldurando a cena, com galhos de folhas pontudas.
+	// Troncos da frente emoldurando a cena.
 	const tronco = (xf, lado) => {
 		// xf é a borda de fora (fora da capa); a borda de dentro afina de 130 px na base para 60 px no alto.
 		const xi = (y) => xf + lado * (60 + 70 * (y / H) ** 2 + 8 * Math.sin(y / 37));
@@ -454,20 +454,6 @@ function bosque(p) {
 		return `<path d="${d}" fill="${perto}"/>${casca}<path d="${borda}" fill="none" stroke="${mistura(perto, p.brilho, 0.3)}" stroke-width="1.6" opacity="${lado < 0 ? 0.7 : 0.3}"/>`;
 	};
 	g += tronco(-20, 1) + tronco(1820, -1);
-	const ramo = (x0, y0, x1, y1, curva, n, sem) => {
-		const rr = sorteio(sem);
-		let s = `<path d="M ${x0} ${y0} Q ${f((x0 + x1) / 2)} ${f((y0 + y1) / 2 + curva)} ${x1} ${y1}" fill="none" stroke="${perto}" stroke-width="5" stroke-linecap="round"/>`;
-		for (let k = 1; k <= n; k++) {
-			const t = k / (n + 1), u = 1 - t, cx = (x0 + x1) / 2, cy = (y0 + y1) / 2 + curva;
-			const x = u * u * x0 + 2 * u * t * cx + t * t * x1, y = u * u * y0 + 2 * u * t * cy + t * t * y1;
-			for (const lado of [-1, 1]) {
-				const ang = Math.atan2(y1 - y0, x1 - x0) + lado * (0.7 + rr() * 0.5) + Math.PI * 0.08, comp = 24 + rr() * 16 * (1 - t * 0.4);
-				s += folhaPontuda(x, y, ang, comp, comp * 0.24, rr() < 0.35 ? p.folha : p.folha2, 0.5 + rr() * 0.35);
-			}
-		}
-		return s;
-	};
-	g += ramo(60, 90, 420, 30, -40, 12, 221) + ramo(50, 200, 260, 160, -30, 7, 222) + ramo(1740, 70, 1430, 20, -36, 11, 223) + ramo(1730, 190, 1530, 150, -26, 6, 224);
 	// Samambaias no chão: folíolos pontudos ao longo de uma haste curva.
 	const samambaia = (x, y, ang, comp, sem) => {
 		const rr = sorteio(sem);
