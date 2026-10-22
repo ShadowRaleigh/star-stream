@@ -1858,7 +1858,7 @@
 	--m: url('/star-stream/temas/camada-constelacao-corrente-1.svg');
 	--tw: 720px;
 	--th: 262px;
-	--d: 76s;
+	--d: 44s;
 	--c: color-mix(in srgb, rgb(var(--ss-ouro-rgb)) 55%, #cdbcf2);
 }
 
@@ -1866,7 +1866,7 @@
 	--m: url('/star-stream/temas/camada-constelacao-corrente-2.svg');
 	--tw: 900px;
 	--th: 328px;
-	--d: 64s;
+	--d: 38s;
 	--c: color-mix(in srgb, rgb(var(--ss-ouro-rgb)) 45%, #fff8ea);
 }
 
@@ -1874,20 +1874,26 @@
 	--m: url('/star-stream/temas/camada-constelacao-corrente-3.svg');
 	--tw: 1150px;
 	--th: 419px;
-	--d: 58s;
+	--d: 33s;
 	--c: #fff4de;
 }
 
 /* No celular a capa é estreita: os ladrilhos encolhem junto (mesma proporção), para o rio continuar cheio. */
 @media (max-width: 50rem) {
-	[data-ss-tema='constelacao'] .ss-capa-camadas i:nth-child(2) { --tw: 432px; --th: 157.2px; --d: 64s; }
-	[data-ss-tema='constelacao'] .ss-capa-camadas i:nth-child(3) { --tw: 540px; --th: 196.8px; --d: 56s; }
-	[data-ss-tema='constelacao'] .ss-capa-camadas i:nth-child(7) { --tw: 690px; --th: 251.4px; --d: 50s; }
+	[data-ss-tema='constelacao'] .ss-capa-camadas i:nth-child(2) { --tw: 432px; --th: 157.2px; --d: 36s; }
+	[data-ss-tema='constelacao'] .ss-capa-camadas i:nth-child(3) { --tw: 540px; --th: 196.8px; --d: 31s; }
+	[data-ss-tema='constelacao'] .ss-capa-camadas i:nth-child(7) { --tw: 690px; --th: 251.4px; --d: 27s; }
 }
 
+/* A rotação de 0,01 grau não se vê, mas impede o navegador de encaixar a camada em pixels inteiros: sem ela, estrelas
+   de 1 a 2 px andando devagar pulavam de pixel em pixel e o rio parecia andar aos trancos. */
 @keyframes ss-rio-corre {
+	from {
+		transform: translate(0, 0) rotate(0.01deg);
+	}
+
 	to {
-		transform: translate(var(--tw), calc(-1 * var(--th)));
+		transform: translate(var(--tw), calc(-1 * var(--th))) rotate(0.01deg);
 	}
 }
 
