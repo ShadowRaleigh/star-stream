@@ -129,10 +129,6 @@ function canto(nome, cor) {
 <circle cx="76" cy="12" r="1.6" fill="${cor}"/><circle cx="12" cy="76" r="1.6" fill="${cor}"/></svg>`);
 }
 canto('canto-ouro.svg', '#a87b3a');
-canto('canto-ciano.svg', '#7ee7ff');
-
-// Moldura em ângulo para painéis de HUD.
-salvar('estrela-4.svg', `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 0 L14.2 9.8 L24 12 L14.2 14.2 L12 24 L9.8 14.2 L0 12 L9.8 9.8 Z" fill="#e3c38f"/></svg>`);
 
 console.log('assets gerados em', OUT, fs.readdirSync(OUT).join(', '));
 

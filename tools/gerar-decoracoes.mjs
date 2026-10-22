@@ -587,17 +587,6 @@ for (const [k, t, n] of [[1, 290, 9], [2, 410, 12], [3, 530, 14]]) {
 	fs.writeFileSync(`${DIR}/estrelas-${k}.svg`, `<svg xmlns="http://www.w3.org/2000/svg" width="${t}" height="${t}" viewBox="0 0 ${t} ${t}">${HALO}${g}</svg>\n`);
 }
 
-// ---- Poeira macia em ladrilho quadrado (já desfocada no desenho, sem filtro no navegador). As partículas da fantasia
-// agora são os ladrilhos largos fantasia-* (mais abaixo); fica só a poeira, que pode servir a outro tema. ----
-for (const [nome, t, n, forma] of [
-	['poeira', 300, 14, (x, y, r) => `<circle cx="${x}" cy="${y}" r="${f(4 + r() * 4)}" fill="url(#h)"/>`],
-]) {
-	const r = sorteio(2000 + t);
-	let g = '';
-	for (let i = 0; i < n; i++) g += forma(f(10 + r() * (t - 20)), f(10 + r() * (t - 20)), r);
-	fs.writeFileSync(`${DIR}/sobe-${nome}.svg`, `<svg xmlns="http://www.w3.org/2000/svg" width="${t}" height="${t}" viewBox="0 0 ${t} ${t}">${HALO}${g}</svg>\n`);
-}
-
 // Trepadeira (segunda decoração do Bosque): dois ramos de hera que descem do alto da margem, com campânulas que brilham.
 // Cada ramo é uma peça (talo e folhas) num quadro de 160 x 520, com as flores e o halo delas à parte, para pulsar; o
 // ramo e o halo dele balançam juntos em volta do ponto onde o ramo se prende, no alto.

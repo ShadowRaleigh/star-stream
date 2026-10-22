@@ -1020,8 +1020,6 @@ for (const [nome, corpo] of Object.entries(CAMADAS)) {
 // que se repete sem emenda, para a camada poder deslizar em loop só com transform.
 const PARTICULAS = {
 	poeira: { t: 320, n: 26, forma: (x, y, r) => `<circle cx="${x}" cy="${y}" r="${f(0.6 + r() * 1.5)}" opacity="${f(0.35 + r() * 0.65)}"/>` },
-	brilhos: { t: 380, n: 10, forma: (x, y, r) => { const s = f(3 + r() * 5); return `<path d="M ${x} ${f(y - s)} Q ${f(x + s * 0.18)} ${f(y - s * 0.18)} ${f(x + s)} ${y} Q ${f(x + s * 0.18)} ${f(y + s * 0.18)} ${x} ${f(y + s)} Q ${f(x - s * 0.18)} ${f(y + s * 0.18)} ${f(x - s)} ${y} Q ${f(x - s * 0.18)} ${f(y - s * 0.18)} ${x} ${f(y - s)} Z" opacity="${f(0.5 + r() * 0.5)}"/>`; } },
-	luzes: { t: 400, n: 10, forma: (x, y, r) => `<circle cx="${x}" cy="${y}" r="${f(6 + r() * 10)}" fill="url(#halo)"/>` },
 };
 for (const [nome, { t, n, forma }] of Object.entries(PARTICULAS)) {
 	const r = sorteio(900 + t);
