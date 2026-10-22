@@ -2,6 +2,7 @@
 // inclusive nas paletas de cor de src/cores.mjs.
 // Uso: node tools/gerar-capas.mjs
 import fs from 'node:fs';
+import sharp from 'sharp';
 import { CORES } from '../src/cores.mjs';
 import { arteFantasia, capaAstra, capaScifi, mistura } from './paletas.mjs';
 
@@ -987,7 +988,13 @@ function rioCorrente({ tw, th, n, semente, raio, op, halo }) {
 	const g = [...grupos].map(([o, e]) => (o < 1 ? `<g opacity="${o}">${e}</g>` : e)).join('');
 	return `<svg xmlns="http://www.w3.org/2000/svg" width="${tw}" height="${th}" viewBox="0 0 ${tw} ${th}" fill="#fff"><defs><radialGradient id="h"><stop offset="0" stop-color="#fff"/><stop offset=".25" stop-color="#fff" stop-opacity=".5"/><stop offset="1" stop-color="#fff" stop-opacity="0"/></radialGradient></defs>${g}</svg>\n`;
 }
-RIO_CORRENTE.forEach((c, k) => fs.writeFileSync(`public/temas/camada-constelacao-corrente-${k + 1}.svg`, rioCorrente(c)));
+// Os ladrilhos saem como imagem rasterizada (WebP sem perda, em resolução dobrada para telas densas), não como SVG: o
+// Firefox redesenha o vetor a cada fração de pixel que a camada anda, perdia metade dos quadros e as estrelas andavam
+// aos trancos; uma imagem pronta ele só desliza, com interpolação.
+for (const [k, c] of RIO_CORRENTE.entries()) {
+	await sharp(Buffer.from(rioCorrente(c)), { density: 144 }).resize(c.tw * 2, c.th * 2).webp({ lossless: true }).toFile(`public/temas/camada-constelacao-corrente-${k + 1}.webp`);
+	fs.rmSync(`public/temas/camada-constelacao-corrente-${k + 1}.svg`, { force: true });
+}
 
 // Camadas que se mexem por cima das capas (máscaras brancas no mesmo quadro de 1800 x 520, recortadas como a capa):
 // a cor vem do CSS de cada paleta.
@@ -1011,8 +1018,16 @@ const CAMADAS = {
 	'circuito-leds-1': circuitoLeds(0),
 	'circuito-leds-2': circuitoLeds(1),
 };
+// As máscaras dos pulsos do Circuito saem como imagem pronta (WebP): têm o halo desfocado dentro do SVG, e o Firefox
+// refazia esse desfoque a cada quadro em que a faixa de luz passa por trás delas, perdendo metade dos quadros.
+const RASTER = (nome) => nome.startsWith('circuito-pulso-');
 for (const [nome, corpo] of Object.entries(CAMADAS)) {
-	fs.writeFileSync(`public/temas/camada-${nome}.svg`, `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${W} ${H}" preserveAspectRatio="xMidYMid slice" fill="none" stroke="#fff">${corpo}</svg>\n`);
+	const svg = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${W} ${H}" preserveAspectRatio="xMidYMid slice" fill="none" stroke="#fff">${corpo}</svg>\n`;
+	if (!RASTER(nome)) fs.writeFileSync(`public/temas/camada-${nome}.svg`, svg);
+	else {
+		await sharp(Buffer.from(svg), { density: 72 }).resize(W, H).webp({ quality: 80, alphaQuality: 70 }).toFile(`public/temas/camada-${nome}.webp`);
+		fs.rmSync(`public/temas/camada-${nome}.svg`, { force: true });
+	}
 }
 
 // Máscaras de partículas para as animações (brancas: a cor vem do CSS de cada tema e paleta). Cada uma é um ladrilho

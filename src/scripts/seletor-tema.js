@@ -79,4 +79,12 @@
 		} catch {}
 		document.documentElement.dataset.theme = modo;
 	}
+	// Um link compartilhado (?tema=…&cor=…&modo=…) já foi aplicado e guardado no navegador acima: os parâmetros saem da
+	// barra de endereço, que fica limpa, e o tema continua valendo ao navegar pelo livro.
+	const doTema = ['tema', 'cor', 'modo'].filter((p) => busca.has(p));
+	if (doTema.length) {
+		const limpa = new URL(location.href);
+		for (const p of doTema) limpa.searchParams.delete(p);
+		history.replaceState(history.state, '', limpa.pathname + limpa.search + limpa.hash);
+	}
 })();

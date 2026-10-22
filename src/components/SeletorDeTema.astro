@@ -42,6 +42,15 @@ const coresIniciais = coresDe[TEMAS[0].id];
 		</select>
 		<Icon name="down-caret" class="icone seta" />
 	</label>
+	<span class="compartilhar">
+		<button type="button" class="compartilhar" aria-label="Compartilhar esta página com este tema" title="Compartilhar esta página com este tema">
+			<svg viewBox="0 0 24 24" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+				<circle cx="18" cy="5" r="2.6" /><circle cx="6" cy="12" r="2.6" /><circle cx="18" cy="19" r="2.6" />
+				<path d="m8.3 10.8 7.4-4.4M8.3 13.2l7.4 4.4" />
+			</svg>
+		</button>
+		<span class="aviso" role="status" aria-live="polite"></span>
+	</span>
 </ss-seletor-tema>
 <ThemeSelect />
 
@@ -154,6 +163,42 @@ const coresIniciais = coresDe[TEMAS[0].id];
 			tema.value = raiz.dataset.ssTema || tema.options[0].value;
 			montarCores();
 
+			// Compartilhar: o link desta página com o tema, a paleta e o modo de agora. Só esse link leva o tema; o site
+			// segue usando a escolha guardada no navegador, e a barra de endereço de quem abre fica limpa (seletor-tema.js).
+			const botao = this.querySelector<HTMLButtonElement>('button.compartilhar');
+			const aviso = this.querySelector<HTMLElement>('.aviso');
+			let sumir = 0;
+			const avisar = (texto: string) => {
+				if (!aviso) return;
+				aviso.textContent = texto;
+				aviso.classList.add('visivel');
+				clearTimeout(sumir);
+				sumir = window.setTimeout(() => aviso.classList.remove('visivel'), 2200);
+			};
+			botao?.addEventListener('click', async () => {
+				const atual = raiz.dataset.ssTema || tema.options[0].value;
+				const link = new URL(location.pathname, location.origin);
+				link.searchParams.set('tema', atual);
+				if (raiz.dataset.ssCor) link.searchParams.set('cor', raiz.dataset.ssCor);
+				// A fantasia é igual no claro e no escuro: o modo só vai no link dos outros temas.
+				if (familias[atual] !== 'fantasia') link.searchParams.set('modo', raiz.dataset.theme === 'light' ? 'claro' : 'escuro');
+				// No celular, a folha de compartilhar do sistema; no computador, o link vai para a área de transferência.
+				if (navigator.share && matchMedia('(pointer: coarse)').matches) {
+					try {
+						await navigator.share({ title: document.title, url: link.href });
+						return;
+					} catch (erro) {
+						if ((erro as DOMException).name === 'AbortError') return;
+					}
+				}
+				try {
+					await navigator.clipboard.writeText(link.href);
+					avisar('Link copiado');
+				} catch {
+					window.prompt('Copie o link desta página com este tema:', link.href);
+				}
+			});
+
 			tema.addEventListener('change', async () => {
 				const novo = tema.value;
 				// Cada tema lembra a sua última paleta.
@@ -220,6 +265,55 @@ const coresIniciais = coresDe[TEMAS[0].id];
 
 	label:hover {
 		color: var(--sl-color-white);
+	}
+
+	/* Compartilhar: só o ícone, no tom dos seletores; o aviso "Link copiado" aparece embaixo e some sozinho. */
+	span.compartilhar {
+		position: relative;
+		display: flex;
+		align-items: center;
+	}
+
+	button.compartilhar {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		width: 2rem;
+		height: 2rem;
+		padding: 0;
+		border: 0;
+		border-radius: 0.25rem;
+		background: none;
+		color: var(--sl-color-gray-2);
+		font-size: 1.05rem;
+		cursor: pointer;
+	}
+
+	button.compartilhar:hover,
+	button.compartilhar:focus-visible {
+		color: var(--sl-color-white);
+	}
+
+	.aviso {
+		position: absolute;
+		top: calc(100% + 0.35rem);
+		right: 0;
+		padding: 0.25rem 0.6rem;
+		border: 1px solid var(--sl-color-hairline-light);
+		border-radius: 0.25rem;
+		background: var(--sl-color-bg-nav);
+		color: var(--sl-color-white);
+		font-size: var(--sl-text-xs);
+		white-space: nowrap;
+		pointer-events: none;
+		opacity: 0;
+		transform: translateY(-0.2rem);
+		transition: opacity 0.2s, transform 0.2s;
+	}
+
+	.aviso.visivel {
+		opacity: 1;
+		transform: none;
 	}
 
 	.icone {
