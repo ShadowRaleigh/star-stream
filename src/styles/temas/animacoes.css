@@ -1327,8 +1327,8 @@
 	animation: ss-balancar 4.3s ease-in-out infinite alternate -1.7s;
 }
 
-/* Mapa, segunda decoração: a serpente do mar das margens das cartas antigas, no pé da margem, centrada no vão. A cauda,
-   as corcovas e a cabeça esticam e encolhem a partir da linha d'água, fora de compasso, como se nadasse; as ondas por
+/* Mapa, segunda decoração: a serpente do mar das margens das cartas antigas, no pé da margem, centrada no vão. A cauda e
+   as corcovas sobem e descem inteiras, fora de compasso, e a cabeça balança no pescoço, como se nadasse; as ondas por
    cima ficam paradas. Precisa de uma margem larga: só aparece em telas grandes. */
 :root[data-ss-tema='mapa'] .ss-deco2 {
 	--ss-deco-cor: var(--ss-ouro-claro);
@@ -1352,33 +1352,55 @@
 	}
 }
 
-[data-ss-tema='mapa'] .ss-deco2 i:is(:nth-child(1), :nth-child(2)) { display: block; transform-origin: 50% 65%; animation: ss-serpente 4.4s ease-in-out infinite alternate; }
+/* Cada parte do corpo é desenhada no ::before e se mexe nele; a peça em si fica parada e recorta tudo abaixo da linha
+   d'água (66,5% da altura, logo atrás das ondas). Assim a base reta das corcovas e do pescoço nunca aparece: antes, o
+   corpo esticava a partir da água e o Firefox mostrava a base como uma linha clara de vez em quando, além de tremer ao
+   interpolar o esticar. Subir e descer inteiro, com a rotação fixa que evita o encaixe em pixel, anda liso nos dois. */
+[data-ss-tema='mapa'] .ss-deco2 i:is(:nth-child(1), :nth-child(2), :nth-child(3)) {
+	display: block;
+	background: none;
+	-webkit-mask: none;
+	mask: none;
+	clip-path: inset(0 0 33.5% 0);
+}
+
+[data-ss-tema='mapa'] .ss-deco2 i:is(:nth-child(1), :nth-child(2), :nth-child(3))::before {
+	content: '';
+	position: absolute;
+	inset: 0;
+	background: var(--c, var(--ss-deco-cor));
+	-webkit-mask: var(--p) center / contain no-repeat;
+	mask: var(--p) center / contain no-repeat;
+}
+
+[data-ss-tema='mapa'] .ss-deco2 i:is(:nth-child(1), :nth-child(2))::before { animation: ss-serpente 4.4s ease-in-out infinite alternate; }
 [data-ss-tema='mapa'] .ss-deco2 i:nth-child(1) { --p: url('/temas/deco/mapa-serpente-cauda.svg'); }
-[data-ss-tema='mapa'] .ss-deco2 i:nth-child(2) { --p: url('/temas/deco/mapa-serpente-corpo.svg'); animation-delay: -1.6s; }
-[data-ss-tema='mapa'] .ss-deco2 i:nth-child(3) { display: block; --p: url('/temas/deco/mapa-serpente-cabeca.svg'); transform-origin: 79% 66%; animation: ss-serpente-cabeca 5.6s ease-in-out infinite alternate -2.4s; }
+[data-ss-tema='mapa'] .ss-deco2 i:nth-child(2) { --p: url('/temas/deco/mapa-serpente-corpo.svg'); }
+[data-ss-tema='mapa'] .ss-deco2 i:nth-child(2)::before { animation-delay: -1.6s; }
+[data-ss-tema='mapa'] .ss-deco2 i:nth-child(3) { --p: url('/temas/deco/mapa-serpente-cabeca.svg'); }
+[data-ss-tema='mapa'] .ss-deco2 i:nth-child(3)::before { transform-origin: 79% 66%; animation: ss-serpente-cabeca 5.6s ease-in-out infinite alternate -2.4s; }
 /* As ondas ficam paradas: se deslizassem, as bases retas das corcovas apareceriam e sumiriam nos vales, um tremido em
    volta de cada uma. */
 [data-ss-tema='mapa'] .ss-deco2 i:nth-child(4) { display: block; --p: url('/temas/deco/mapa-serpente-ondas.svg'); }
 
+/* As corcovas mergulham e emergem uns 7% da altura (as pernas continuam abaixo da água o tempo todo). */
 @keyframes ss-serpente {
 	from {
-		scale: 1 0.8;
+		transform: rotate(0.2deg) translateY(4%);
 	}
 
 	to {
-		scale: 1 1.08;
+		transform: rotate(0.2deg) translateY(-3%);
 	}
 }
 
 @keyframes ss-serpente-cabeca {
 	from {
-		rotate: -4deg;
-		scale: 0.97;
+		transform: rotate(-4deg);
 	}
 
 	to {
-		rotate: 3deg;
-		scale: 1.02;
+		transform: rotate(3deg);
 	}
 }
 

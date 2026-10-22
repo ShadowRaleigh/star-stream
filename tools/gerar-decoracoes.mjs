@@ -307,9 +307,11 @@ salvar('forja-bigorna', '<path stroke-width="3" stroke-linejoin="round" d="M 104
 // ondas paradas por cima. As partes só esticam e encolhem em altura a partir da linha d'água (a cabeça também gira um
 // pouco no pescoço), então o pé de cada uma nunca sai da água.
 {
-	const corcova = (cx, l, alt, larg) => `<path d="M ${cx - l} 130 C ${cx - l} ${130 - alt} ${cx + l} ${130 - alt} ${cx + l} 130 L ${cx + l - larg} 130 C ${cx + l - larg} ${130 - alt + larg * 1.2} ${cx - l + larg} ${130 - alt + larg * 1.2} ${cx - l + larg} 130 Z" fill="#fff" stroke="none"/>`;
+	// As pernas descem até y = 152, abaixo da linha d'água (130): no CSS cada peça sobe e desce inteira e um recorte parado
+	// esconde tudo abaixo da água, então a base nunca aparece, nem quando a corcova sobe.
+	const corcova = (cx, l, alt, larg) => `<path d="M ${cx - l} 152 V 130 C ${cx - l} ${130 - alt} ${cx + l} ${130 - alt} ${cx + l} 130 V 152 H ${cx + l - larg} V 130 C ${cx + l - larg} ${130 - alt + larg * 1.2} ${cx - l + larg} ${130 - alt + larg * 1.2} ${cx - l + larg} 130 V 152 Z" fill="#fff" stroke="none"/>`;
 	// Cabeça: o pescoço fino sai da água em curva, com espinhos no dorso, focinho comprido e o olho vazado.
-	const cabeca = '<path d="M 306 133 C 302 104 308 76 326 60 C 338 49 354 45 368 50 L 389 57 C 395 59 394 65 388 66 L 368 68 C 358 69 350 74 346 82 C 338 96 328 112 326 133 Z M 360 54 m -3.2 0 a 3.2 3.2 0 1 0 6.4 0 a 3.2 3.2 0 1 0 -6.4 0 Z" fill="#fff" stroke="none" fill-rule="evenodd"/>' +
+	const cabeca = '<path d="M 306 152 L 306 133 C 302 104 308 76 326 60 C 338 49 354 45 368 50 L 389 57 C 395 59 394 65 388 66 L 368 68 C 358 69 350 74 346 82 C 338 96 328 112 326 133 L 326 152 Z M 360 54 m -3.2 0 a 3.2 3.2 0 1 0 6.4 0 a 3.2 3.2 0 1 0 -6.4 0 Z" fill="#fff" stroke="none" fill-rule="evenodd"/>' +
 		[[305, 112, -1.1], [307, 96, -1.0], [312, 81, -0.85], [320, 68, -0.65], [331, 57, -0.4]].map(([x, y, a]) => `<path d="M ${x} ${y} L ${f(x + Math.cos(a + Math.PI) * 11)} ${f(y + Math.sin(a + Math.PI) * 11 - 3)} L ${x + 4} ${y - 7} Z" fill="#fff" stroke="none"/>`).join('') +
 		'<path d="M 388 64 Q 398 72 393 82" stroke-width="1.6" stroke-linecap="round"/>';
 	salvar('mapa-serpente-cabeca', cabeca, '0 0 400 200');
