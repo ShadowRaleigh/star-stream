@@ -1846,7 +1846,9 @@
 [data-ss-tema='constelacao'] .ss-capa-camadas i:is(:nth-child(2), :nth-child(3), :nth-child(7))::before {
 	content: '';
 	position: absolute;
-	inset: 0 0 calc(-1 * var(--th)) calc(-1 * var(--tw));
+	/* Um ladrilho a mais à esquerda e embaixo, por onde a camada anda, e 8 px de folga em volta para a leve rotação
+	   (ss-rio-corre) nunca abrir uma quina sem estrelas. */
+	inset: -8px -8px calc(-1 * var(--th) - 8px) calc(-1 * var(--tw) - 8px);
 	background: var(--c);
 	-webkit-mask: var(--m) 0 0 / var(--tw) var(--th) repeat;
 	mask: var(--m) 0 0 / var(--tw) var(--th) repeat;
@@ -1885,15 +1887,17 @@
 	[data-ss-tema='constelacao'] .ss-capa-camadas i:nth-child(7) { --tw: 690px; --th: 251.4px; --d: 27s; }
 }
 
-/* A rotação de 0,01 grau não se vê, mas impede o navegador de encaixar a camada em pixels inteiros: sem ela, estrelas
-   de 1 a 2 px andando devagar pulavam de pixel em pixel e o rio parecia andar aos trancos. */
+/* O Firefox encaixa uma camada que só se desloca em pixels inteiros: as estrelas ficavam paradas dois ou três quadros e
+   pulavam 1 px (medido na tela). Uma rotação fixa de 0,2 grau, que não se vê, tira a camada desse encaixe e o
+   deslocamento passa a ser sub-pixel (0,01 grau era pouco: o Firefox ainda encaixava). A rotação vem antes do
+   deslocamento, para o laço andar exatamente um ladrilho do desenho já girado e continuar sem salto. */
 @keyframes ss-rio-corre {
 	from {
-		transform: translate(0, 0) rotate(0.01deg);
+		transform: rotate(0.2deg) translate(0, 0);
 	}
 
 	to {
-		transform: translate(var(--tw), calc(-1 * var(--th))) rotate(0.01deg);
+		transform: rotate(0.2deg) translate(var(--tw), calc(-1 * var(--th)));
 	}
 }
 
