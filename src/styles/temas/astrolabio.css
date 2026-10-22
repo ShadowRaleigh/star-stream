@@ -1,7 +1,6 @@
 /* Astrolábio: a estrutura do Observatório (títulos gravados, serifa de livro, astrolábio, filetes duplos) com o céu azul-noite, as estrelas e o ouro do Constelação no escuro, e a Ardósia no claro. Gerado de observatorio.css; as cores ficam no fim. */
 
 :root[data-ss-tema='astrolabio'] {
-	--ss-esfera: url('/star-stream/temas/esfera-astrolabio-escuro.svg');
 	--ss-latao: #c9a15d;
 	--ss-latao-claro: #e8c88c;
 	--ss-serifa: 'EB Garamond Variable', 'EB Garamond', Georgia, serif;
@@ -25,7 +24,7 @@
 	--sl-color-hairline-light: rgb(201 161 93 / 0.3);
 	--ss-fundo:
 		radial-gradient(ellipse 70% 60% at 100% 0%, rgb(201 161 93 / 0.08), transparent 70%),
-		url('/star-stream/temas/estrelas-douradas.svg') 0 0 / 600px,
+		url('/star-stream/temas/estrelas-douradas-largo.svg') 0 0 / 1200px,
 		#121110;
 	--ss-tabela-cabecalho: transparent;
 	--ss-tabela-listra: rgb(201 161 93 / 0.035);
@@ -357,14 +356,13 @@
 	--ss-fundo:
 		radial-gradient(ellipse 80% 50% at 70% -10%, rgb(110 80 140 / 0.22), transparent 70%),
 		radial-gradient(ellipse 60% 40% at 0% 100%, rgb(40 70 120 / 0.25), transparent 70%),
-		url('/star-stream/temas/estrelas-claras.svg') 0 0 / 600px,
+		url('/star-stream/temas/estrelas-claras-largo.svg') 0 0 / 1200px,
 		#0a0e1a;
 	--ss-tabela-listra: rgb(248 243 231 / 0.025);
 }
 
 /* Modo claro: Ardósia (papel cinza-pedra, tinta grafite e azul-petróleo). */
 :root[data-ss-tema='astrolabio'][data-theme='light'] {
-	--ss-esfera: url('/star-stream/temas/esfera-astrolabio-claro.svg');
 	--ss-latao: #1f6f78;
 	--ss-latao-claro: #0e3c42;
 	--sl-color-accent-low: #dce7e8;

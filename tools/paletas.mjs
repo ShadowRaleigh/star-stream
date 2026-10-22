@@ -62,6 +62,7 @@ export function capaScifi(tema, corId, modo) {
 
 // ---- Família fantasia ----
 
+const MANCHAS_FANTASIA = 'radial-gradient(ellipse 38% 30% at 14% 64%, rgb(0 0 0 / 0.3), transparent 70%), radial-gradient(ellipse 32% 26% at 86% 30%, rgb(0 0 0 / 0.24), transparent 70%), radial-gradient(ellipse 30% 24% at 64% 92%, rgb(0 0 0 / 0.22), transparent 70%)';
 const PAPEL_FANTASIA = { grimorio: 'pergaminho', bosque: 'papel-bosque', vitral: 'papel-vitral', forja: 'papel-forja', mapa: 'papel-mapa', abissal: 'papel-abissal' };
 const f2 = (n) => Math.round(n * 100) / 100;
 
@@ -127,7 +128,8 @@ export function varsFantasia(tema, cor) {
 		'--sl-color-text-accent': p.rubrica,
 		'--sl-color-hairline': `rgb(${rgb(sepia)} / 0.3)`,
 		'--sl-color-hairline-light': `rgb(${rgb(sepia)} / 0.45)`,
-		'--ss-fundo': `${arq(`material-${tema}-${cor}`)} 0 0 / 300px, radial-gradient(ellipse at 50% 0%, ${mistura(p.couro, '#ffffff', 0.08)}, ${couroEscuro} 70%), ${couroEscuro}`,
+		// O fundo leva só o grão em ladrilho; as manchas grandes são gradientes que não se repetem (como nos arquivos dos temas).
+		'--ss-fundo': `${arq(`grao-${tema}-${cor}`)} 0 0 / 300px, ${arq(`grao-${tema}-${cor}`)} 137px 61px / 437px, ${MANCHAS_FANTASIA}, radial-gradient(ellipse at 50% 0%, ${mistura(p.couro, '#ffffff', 0.08)}, ${couroEscuro} 70%), ${couroEscuro}`,
 		'--ss-tabela-cabecalho': `rgb(${rgb(p.rubrica)} / 0.08)`,
 		'--ss-tabela-listra': `rgb(${rgb(sepia)} / 0.06)`,
 	};
@@ -149,12 +151,10 @@ export function varsFantasia(tema, cor) {
 	if (luz) vars['--ss-luz'] = luz;
 	if (tema === 'mapa') vars['--ss-mar'] = p.mar;
 	if (tema === 'abissal') Object.assign(vars, { '--ss-alga': p.alga, '--ss-medusa': p.medusa });
-	if (tema === 'vitral') Object.assign(vars, { '--ss-vidro-a': p.vidros[0], '--ss-vidro-b': p.vidros[1] });
-	// O Grimório monta a capa com o selo, os cantos e o couro: aqui vão as peças recoloridas.
-	if (tema === 'grimorio') {
-		vars['--ss-selo-capa'] = arq(`selo-grimorio-${cor}`);
-		vars['--ss-capa-centro'] = mistura(p.couro, '#ffffff', 0.12);
-	}
+	// --ss-vitral-parede: a cor do alto da parede da capa, que preenche a faixa de cima quando a capa estreita mostra a arte inteira.
+	if (tema === 'vitral') Object.assign(vars, { '--ss-vidro-a': p.vidros[0], '--ss-vidro-b': p.vidros[1], '--ss-vitral-parede': mistura(p.couro, '#ffffff', 0.06) });
+	// O Grimório monta a capa com os cantos e o couro (o selo do meio são camadas na cor do metal, em animacoes.css).
+	if (tema === 'grimorio') vars['--ss-capa-centro'] = mistura(p.couro, '#ffffff', 0.12);
 	return { vars, varsFora, capa: tema === 'grimorio' ? null : `capa-${tema}-${cor}` };
 }
 
@@ -212,8 +212,8 @@ export function varsAstra(tema, cor, modo) {
 		'--ss-tabela-listra': `rgb(${rgb(b.tinta)} / 0.03)`,
 	};
 	const regras = [];
-	const ceuEscuro = `radial-gradient(ellipse 80% 50% at 70% -10%, rgb(${rgb(mistura(b.acento, '#6e508c', 0.5))} / 0.22), transparent 70%), radial-gradient(ellipse 60% 40% at 0% 100%, rgb(${rgb(mistura(b.acento, '#284678', 0.6))} / 0.25), transparent 70%), ${arqT('estrelas-claras')} 0 0 / 600px, ${b.bg}`;
-	const ceuClaro = `${arqT('estrelas-tinta')} 0 0 / 600px, ${b.bg}`;
+	const ceuEscuro = `radial-gradient(ellipse 80% 50% at 70% -10%, rgb(${rgb(mistura(b.acento, '#6e508c', 0.5))} / 0.22), transparent 70%), radial-gradient(ellipse 60% 40% at 0% 100%, rgb(${rgb(mistura(b.acento, '#284678', 0.6))} / 0.25), transparent 70%), ${arqT('estrelas-claras-largo')} 0 0 / 1200px, ${b.bg}`;
+	const ceuClaro = `${arqT('estrelas-tinta-largo')} 0 0 / 1200px, ${b.bg}`;
 	switch (tema) {
 		case 'constelacao': {
 			const e = baseAstra(tema, cor, 'escuro');
@@ -244,13 +244,11 @@ export function varsAstra(tema, cor, modo) {
 				'--ss-latao-claro': mistura(b.acento, claro ? '#000000' : '#ffffff', claro ? 0.25 : 0.35),
 				'--ss-botao-tinta': mistura(b.acento, '#000000', 0.88),
 				'--ss-fundo': claro ? b.bg : `radial-gradient(ellipse 70% 60% at 100% 0%, rgb(${rgb(b.acento)} / 0.08), transparent 70%), ${b.bg}`,
-				'--ss-capa-anel': arqT(`anel-observatorio-${cor}-escuro`),
 				'--ss-capa-estrelas': arqT(`estrelas-observatorio-${cor}`),
 				'--ss-capa-1': mistura(e.bg, e.acento, 0.12),
 				'--ss-capa-2': mistura(e.bg, e.acento, 0.04),
 				'--ss-capa-3': mistura(e.bg, '#000000', 0.2),
 				'--ss-capa-metal-rgb': rgb(e.acento),
-				'--ss-capa-anel-claro': arqT(`anel-observatorio-${cor}-claro`),
 				'--ss-capa-claro-1': mistura(b.bg, '#ffffff', 0.5),
 				'--ss-capa-claro-2': mistura(b.bg, b.acento, 0.18),
 			});
@@ -271,7 +269,7 @@ export function varsAstra(tema, cor, modo) {
 				'--ss-vidro': claro ? `rgb(${rgb(mistura(b.bg, '#ffffff', 0.6))} / 0.72)` : `rgb(${rgb(mistura(b.bg, '#ffffff', 0.04))} / 0.62)`,
 				'--sl-color-bg-nav': `rgb(${rgb(b.bg)} / ${claro ? 0.7 : 0.55})`,
 				'--sl-color-bg-sidebar': `rgb(${rgb(b.bg)} / ${claro ? 0.55 : 0.45})`,
-				'--ss-fundo': [[55, 45, 18, 22, 'lilas', 0.24], [50, 42, 82, 72, 'acento', 0.22], [34, 28, 62, 14, 'pessego', 0.15], [40, 34, 34, 86, 'acento', 0.13], [26, 22, 90, 20, 'lilas', 0.14]].map(([w, h, x, y, cor, op]) => `radial-gradient(ellipse ${w}% ${h}% at ${x}% ${y}%, rgb(${rgb(e[cor])} / ${claro ? f2(op * 0.65) : op}), transparent 70%)`).join(', ') + `, url('/star-stream/temas/${claro ? 'estrelas-tinta' : 'estrelas-claras'}.svg') 0 0 / 600px, ${b.bg}`,
+				'--ss-fundo': [[55, 45, 18, 22, 'lilas', 0.24], [50, 42, 82, 72, 'acento', 0.22], [34, 28, 62, 14, 'pessego', 0.15], [40, 34, 34, 86, 'acento', 0.13], [26, 22, 90, 20, 'lilas', 0.14]].map(([w, h, x, y, cor, op]) => `radial-gradient(ellipse ${w}% ${h}% at ${x}% ${y}%, rgb(${rgb(e[cor])} / ${claro ? f2(op * 0.65) : op}), transparent 70%)`).join(', ') + `, url('/star-stream/temas/${claro ? 'estrelas-tinta-largo' : 'estrelas-claras-largo'}.svg') 0 0 / 1200px, ${b.bg}`,
 			});
 			break;
 		}
@@ -285,11 +283,9 @@ export function varsAstra(tema, cor, modo) {
 				'--ss-noite': e.bg,
 				'--ss-noite-rgb': rgb(e.bg),
 				'--ss-link-claro': mistura(p.tinta, '#2a5aa0', 0.25),
-				'--ss-capa-anel-claro': arqT(`anel-codex-${cor}-claro`),
-				'--ss-capa-anel-escuro': arqT(`anel-codex-${cor}-escuro`),
 				'--ss-capa-estrelas-claro': arqT(`estrelas-codex-${cor}-claro`),
 				'--ss-capa-estrelas-escuro': arqT(`estrelas-codex-${cor}-escuro`),
-				'--ss-fundo': claro ? `${arqT(`estrelas-codex-${cor}-claro`)} 0 0 / 600px, ${c.bg}` : `${arqT(`estrelas-codex-${cor}-escuro`)} 0 0 / 600px, ${e.bg}`,
+				'--ss-fundo': claro ? `${arqT(`estrelas-codex-${cor}-claro-largo`)} 0 0 / 1200px, ${c.bg}` : `${arqT(`estrelas-codex-${cor}-escuro-largo`)} 0 0 / 1200px, ${e.bg}`,
 				'--sl-color-bg-nav': b.bg,
 				'--sl-color-bg-sidebar': mistura(b.bg, b.tinta, 0.03),
 			});
@@ -302,7 +298,6 @@ export function varsAstra(tema, cor, modo) {
 				'--ss-botao-tinta': mistura(b.acento, '#000000', 0.88),
 				'--ss-fundo': claro ? b.bg : ceuEscuro,
 			});
-			v['--ss-esfera'] = arqT(`esfera-astrolabio-${cor}-${modo}`);
 			regras.push(['.ss-capa', { 'background-image': arqT(`capa-astrolabio-${cor}-${modo}`) }]);
 			break;
 	}

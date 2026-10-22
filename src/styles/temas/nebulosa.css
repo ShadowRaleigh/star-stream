@@ -34,7 +34,7 @@
 		radial-gradient(ellipse 34% 28% at 62% 14%, rgb(var(--ss-pessego-rgb) / 0.15), transparent 70%),
 		radial-gradient(ellipse 40% 34% at 34% 86%, rgb(var(--ss-rosa-rgb) / 0.13), transparent 70%),
 		radial-gradient(ellipse 26% 22% at 90% 20%, rgb(var(--ss-lilas-rgb) / 0.14), transparent 70%),
-		url('/star-stream/temas/estrelas-claras.svg') 0 0 / 600px,
+		url('/star-stream/temas/estrelas-claras-largo.svg') 0 0 / 1200px,
 		#0c0818;
 	--ss-tabela-cabecalho: rgb(var(--ss-rosa-rgb) / 0.12);
 	--ss-tabela-listra: rgb(255 255 255 / 0.03);
@@ -67,7 +67,7 @@
 		radial-gradient(ellipse 34% 28% at 62% 14%, rgb(var(--ss-pessego-rgb) / 0.12), transparent 70%),
 		radial-gradient(ellipse 40% 34% at 34% 86%, rgb(var(--ss-rosa-rgb) / 0.1), transparent 70%),
 		radial-gradient(ellipse 26% 22% at 90% 20%, rgb(var(--ss-lilas-rgb) / 0.1), transparent 70%),
-		url('/star-stream/temas/estrelas-tinta.svg') 0 0 / 600px,
+		url('/star-stream/temas/estrelas-tinta-largo.svg') 0 0 / 1200px,
 		#f3edf8;
 	--ss-tabela-cabecalho: rgb(168 64 127 / 0.08);
 	--ss-tabela-listra: rgb(91 70 184 / 0.03);
@@ -87,9 +87,11 @@
 		padding: 1.25rem 1.25rem 2rem;
 	}
 
+	/* O vidro é a cor da paleta em duas demãos, sem desfoque do que está atrás: atrás do painel há estrelas que cintilam,
+	   névoa que deriva e a galáxia girando, e um backdrop-filter numa área desse tamanho seria refeito a cada quadro, para
+	   sempre, só para esconder o movimento. Com duas demãos o céu passa bem apagado pelo vidro. */
 	[data-ss-tema='nebulosa'] .main-pane > main {
-		background: var(--ss-vidro);
-		backdrop-filter: blur(18px) saturate(140%);
+		background: linear-gradient(var(--ss-vidro) 0 0), var(--ss-vidro);
 		border: 1px solid var(--sl-color-hairline);
 		border-radius: 1.25rem;
 		box-shadow: 0 30px 80px -40px rgb(0 0 0 / 0.7);

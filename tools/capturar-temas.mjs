@@ -9,7 +9,8 @@ import path from 'node:path';
 
 const EDGE = 'C:/Program Files (x86)/Microsoft/Edge/Application/msedge.exe';
 const BASE = 'http://localhost:4321/star-stream/';
-const PORTA = 9334;
+// Porta sorteada: com várias capturas ou filmagens ao mesmo tempo, uma não se conecta ao navegador da outra.
+const PORTA = 20000 + Math.floor(Math.random() * 20000);
 const [, , saida = 'capturas', temasArg, paginasArg, inverter] = process.argv;
 
 // Modo em que cada tema é capturado por padrão (o argumento "alt" inverte).

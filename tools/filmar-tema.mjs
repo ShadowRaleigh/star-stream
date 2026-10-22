@@ -32,7 +32,8 @@ const largura = celular ? 390 : Number(opc('largura', 1440)), altura = celular ?
 const saida = opc('saida', `filmes/${tema}-${regiao.replace(/,/g, '_')}${celular ? '-celular' : ''}`);
 const pausa = (ms) => new Promise((ok) => setTimeout(ok, ms));
 
-const PORTA = 9335 + Math.floor(Math.random() * 400);
+// Porta sorteada numa faixa larga: com várias filmagens ao mesmo tempo, uma não se conecta ao navegador da outra.
+const PORTA = 20000 + Math.floor(Math.random() * 20000);
 const perfil = fs.mkdtempSync(path.join(os.tmpdir(), 'edge-filme-'));
 const edge = spawn(EDGE, ['--headless=new', '--hide-scrollbars', '--no-first-run', `--user-data-dir=${perfil}`, `--remote-debugging-port=${PORTA}`, 'about:blank'], { stdio: 'ignore' });
 let alvo;

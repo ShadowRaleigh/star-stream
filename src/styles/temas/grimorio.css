@@ -15,7 +15,6 @@
 	--ss-couro-escuro: #1a0f07;
 	--ss-couro-rgb: 36 22 12;
 	--ss-capa-centro: #4a2c16;
-	--ss-selo-capa: url('/star-stream/temas/selo-dourado.svg');
 	--ss-material: url('/star-stream/temas/couro.svg');
 	--ss-capa-fundo: linear-gradient(180deg, #2c1b0e, #1f130a);
 	--ss-papel-textura: url('/star-stream/temas/pergaminho.svg');
@@ -60,8 +59,14 @@
 	--sl-color-bg-sidebar: transparent;
 	--sl-color-hairline: rgb(122 90 50 / 0.3);
 	--sl-color-hairline-light: rgb(122 90 50 / 0.45);
+	/* Fundo: só o grão fino, em dois ladrilhos de tamanhos que não batem (300 e 437 px, deslocados), e as manchas
+	   grandes em gradientes que não se repetem: a mancha larga do ladrilho de antes se repetia em grade numa tela grande. */
 	--ss-fundo:
-		url('/star-stream/temas/couro.svg') 0 0 / 300px,
+		url('/star-stream/temas/grao-grimorio.svg') 0 0 / 300px,
+		url('/star-stream/temas/grao-grimorio.svg') 137px 61px / 437px,
+		radial-gradient(ellipse 38% 30% at 14% 64%, rgb(0 0 0 / 0.3), transparent 70%),
+		radial-gradient(ellipse 32% 26% at 86% 30%, rgb(0 0 0 / 0.24), transparent 70%),
+		radial-gradient(ellipse 30% 24% at 64% 92%, rgb(0 0 0 / 0.22), transparent 70%),
 		radial-gradient(ellipse at 50% 0%, #3a2414, #1a0f07 70%),
 		#1a0f07;
 	--ss-tabela-cabecalho: rgb(122 34 22 / 0.08);

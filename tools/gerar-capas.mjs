@@ -3,7 +3,7 @@
 // Uso: node tools/gerar-capas.mjs
 import fs from 'node:fs';
 import { CORES } from '../src/cores.mjs';
-import { arteFantasia, capaAstra, capaScifi, mistura, ornamentoFantasia } from './paletas.mjs';
+import { arteFantasia, capaAstra, capaScifi, mistura } from './paletas.mjs';
 
 const W = 1800, H = 520;
 const PALETAS = {
@@ -171,8 +171,9 @@ function radar(p) {
 		if (longo) g += texto(cx + Math.cos(t) * 540, cy + Math.sin(t) * 540 + 5, String(a).padStart(3, '0'), p.fraca, 13, 'text-anchor="middle"');
 	}
 	g += `<ellipse cx="${cx}" cy="${cy}" rx="520" ry="140" fill="url(#limpo)"/>`;
-	// Contatos.
-	for (const [x, y, nome, cor] of [[1440, 96, 'NAVE-03', p.linha], [330, 420, 'BOIA 7', p.linha], [1580, 390, '? SEM ID', p.brilho], [250, 110, 'ESTAÇÃO K', p.linha]]) {
+	// Contatos. No celular a capa mostra só a faixa de x 270 a 1530: cada contato fica inteiro dentro dela ou fora dela,
+	// para nenhum nome aparecer cortado na borda.
+	for (const [x, y, nome, cor] of [[1400, 96, 'NAVE-03', p.linha], [330, 420, 'BOIA 7', p.linha], [1580, 390, '? SEM ID', p.brilho], [300, 110, 'ESTAÇÃO K', p.linha]]) {
 		g += `<circle cx="${x}" cy="${y}" r="4" fill="${cor}"/><circle cx="${x}" cy="${y}" r="12" fill="none" stroke="${cor}" stroke-width="1" opacity=".6"/>`;
 		g += `<line x1="${x + 12}" y1="${y - 8}" x2="${x + 34}" y2="${y - 22}" stroke="${cor}" stroke-width="1" opacity=".7"/>` + texto(x + 38, y - 24, nome, cor, 13, 'letter-spacing="1"');
 	}
@@ -180,40 +181,180 @@ function radar(p) {
 	return g;
 }
 
-// 3. Circuito: trilhas de placa saindo das bordas, com chips e pulsos de dados correndo por alguns ciclos
-// (uma animação sem fim dentro do SVG redesenharia a capa a cada quadro, para sempre).
+// 3. Circuito: uma placa de verdade. Dois processadores, o ÉTER-9 à esquerda e o NÚCLEO à direita, ligados por dois
+// barramentos que passam por cima e por baixo do nome; cada um tem as trilhas que saem pelas bordas, e o NÚCLEO
+// acende quatro LEDs e alimenta o S2. As trilhas só andam reto ou a 45 graus, nunca se cruzam e nunca voltam para trás
+// no eixo x: assim um pulso de luz que atravessa a capa de lado a lado (camadas camada-circuito-pulso-*.svg, animadas em
+// animacoes.css) corre por cada trilha como energia pelo fio, inclusive nas dobras.
+
+// Desloca uma polilinha para o lado (pela normal de cada trecho), com quinas em meia-esquadria: um barramento de trilhas
+// paralelas faz as dobras de 45 graus sem mudar a distância entre elas.
+function paralela(pts, d) {
+	const normal = (a, b) => { const dx = b[0] - a[0], dy = b[1] - a[1], l = Math.hypot(dx, dy); return [-dy / l, dx / l]; };
+	return pts.map((b, i) => {
+		const a = pts[i - 1], c = pts[i + 1];
+		if (!a || !c) { const n = a ? normal(a, b) : normal(b, c); return [b[0] + n[0] * d, b[1] + n[1] * d]; }
+		const n1 = normal(a, b), n2 = normal(b, c), k = 1 + n1[0] * n2[0] + n1[1] * n2[1];
+		return [b[0] + ((n1[0] + n2[0]) * d) / k, b[1] + ((n1[1] + n2[1]) * d) / k];
+	});
+}
+const polilinha = (pts) => 'M ' + pts.map(([x, y]) => `${f(x)} ${f(y)}`).join(' L ');
+
+// Processador de quatro lados (QFP): n pinos por lado, a cada passo. Guarda a ponta de cada pino, onde a trilha começa.
+function qfp(cx, cy, lado, n, passo) {
+	const m = lado / 2, ks = Array.from({ length: n }, (_, k) => (k - (n - 1) / 2) * passo);
+	return { cx, cy, lado, m,
+		cima: ks.map((o) => [cx + o, cy - m - 10]), baixo: ks.map((o) => [cx + o, cy + m + 10]),
+		esq: ks.map((o) => [cx - m - 10, cy + o]), dir: ks.map((o) => [cx + m + 10, cy + o]) };
+}
+// O ÉTER-9 e o NÚCLEO ficam fora da faixa que o celular mostra (x de 270 a 1530): lá a capa recorta as laterais, e um
+// processador cortado ao meio parecia quebrado. No celular aparecem só os barramentos em volta do nome.
+const ETER = qfp(190, 262, 120, 7, 14);
+const NUCLEO = qfp(1620, 262, 140, 9, 14);
+const S2 = { cx: 1716, cy: 478, w: 64, h: 28 };
+
+const PLACA = (() => {
+	const trilhas = {}, vias = [];
+	// ÉTER-9, lado esquerdo: um leque que abre até a borda.
+	ETER.esq.forEach(([x, y], k) => {
+		const y2 = ETER.cy + (y - ETER.cy) * 2.2, d = Math.abs(y2 - y);
+		trilhas[`LF${k}`] = [[x, y], [x - 14, y], [x - 14 - d, y2], [-10, y2]];
+	});
+	// ÉTER-9, de cima e de baixo: sobem (descem), dobram para a esquerda e saem pela borda; algumas param numa via.
+	const fimLateral = [-10, 34, -10, 62, -10, 20, -10];
+	const cimaE = [[ETER.cx, ETER.cima[0][1]], [ETER.cx, 166], [ETER.cx - 84, 82], [-10, 82]];
+	const baixoE = [[ETER.cx, ETER.baixo[0][1]], [ETER.cx, 358], [ETER.cx - 84, 442], [-10, 442]];
+	for (const [lado, base, nome] of [['cima', cimaE, 'TL'], ['baixo', baixoE, 'BL']]) {
+		ETER[lado].forEach(([x], k) => {
+			const pts = paralela(base, lado === 'cima' ? x - ETER.cx : ETER.cx - x);
+			pts[3][0] = fimLateral[k];
+			if (fimLateral[k] > 0) vias.push([fimLateral[k] - 5, pts[3][1]]);
+			trilhas[`${nome}${k}`] = pts;
+		});
+	}
+	// Barramentos ÉTER-9 → NÚCLEO, um por cima e outro por baixo do nome.
+	const xn = NUCLEO.esq[0][0];
+	const barCima = [[ETER.dir[0][0], 234], [278, 234], [454, 58], [1306, 58], [1482, 234], [xn, 234]];
+	const barBaixo = [[ETER.dir[0][0], 290], [278, 290], [450, 462], [1310, 462], [1482, 290], [xn, 290]];
+	[-14, 0, 14].forEach((d, k) => { trilhas[`TB${k}`] = paralela(barCima, d); trilhas[`BB${k}`] = paralela(barBaixo, d); });
+	// O pino do meio de cada lado vai até uma via de teste, antes do nome.
+	trilhas.SE = [[ETER.dir[0][0], 262], [326, 262]];
+	trilhas.SD = [[xn, 262], [1474, 262]];
+	vias.push([331, 262], [1469, 262]);
+	// NÚCLEO, lado direito: leque até o conector da borda.
+	NUCLEO.dir.forEach(([x, y], k) => {
+		const y2 = NUCLEO.cy + (y - NUCLEO.cy) * 1.8, d = Math.abs(y2 - y);
+		trilhas[`NF${k}`] = [[x, y], [x + 12, y], [x + 12 + d, y2], [1772, y2]];
+	});
+	// NÚCLEO, de cima: os quatro da esquerda acendem os LEDs; os cinco da direita sobem e saem pela borda.
+	const leds = [[1585, NUCLEO.cima[0][1]], [1585, 160], [1545, 120], [1497, 120]];
+	const cimaN = [[NUCLEO.cx, NUCLEO.cima[0][1]], [NUCLEO.cx, 146], [NUCLEO.cx + 76, 70], [1810, 70]];
+	NUCLEO.cima.forEach(([x], k) => {
+		if (k >= 4) { trilhas[`NT${k}`] = paralela(cimaN, x - NUCLEO.cx); return; }
+		// Os LEDs ficam desencontrados, um mais à esquerda que o outro, para caberem sem encostar.
+		const pts = paralela(leds, x - 1585);
+		pts[3][0] = k % 2 ? 1471 : 1497;
+		trilhas[`NL${k}`] = pts;
+	});
+	// NÚCLEO, de baixo: os cinco da esquerda param em vias de teste, os quatro da direita descem até o S2.
+	NUCLEO.baixo.forEach(([x, y], k) => {
+		if (k < 5) { const fundo = [372, 392, 412, 392, 372][k]; trilhas[`NB${k}`] = [[x, y], [x, fundo]]; vias.push([x, fundo + 5]); return; }
+		const alvo = S2.cx - 21 + (k - 5) * 14, d = alvo - x;
+		trilhas[`NS${k}`] = [[x, y], [x, 380], [x + d, 380 + d], [alvo, S2.cy - S2.h / 2 - 9]];
+	});
+	// O S2 desce até a borda de baixo.
+	for (let k = 0; k < 4; k++) trilhas[`SB${k}`] = [[S2.cx - 21 + k * 14, S2.cy + S2.h / 2 + 9], [S2.cx - 21 + k * 14, 530]];
+	return { trilhas, vias };
+})();
+
+// Pulsos: cada camada guarda trilhas de cima do nome (o pulso do ::before) e de baixo (o do ::after). Numa mesma metade,
+// as trilhas de uma camada não dividem a mesma faixa de x, para o pulso passar por uma de cada vez, como um dado que
+// entra num processador e sai do outro lado; as trilhas paralelas do mesmo barramento ficam em camadas diferentes.
+const PULSOS = [
+	['TL1', 'TB0', 'NT5', 'BL2', 'BB1', 'NS6'],
+	['LF0', 'TB1', 'NF1', 'LF5', 'BB2', 'NF6'],
+	['TL4', 'TB2', 'NT7', 'BL5', 'BB0', 'NF8'],
+	['LF2', 'NL1', 'NF3', 'LF4', 'NS5'],
+	['TL6', 'NT8', 'BL0', 'NF7'],
+	['TL2', 'NL3', 'NF0', 'LF6', 'NS8'],
+];
+// Corpos de peças por onde a trilha passa por baixo: o pulso some ali e reaparece do outro lado.
+const RESISTORES = [0, 2, 4, 6].map((k) => [36, PLACA.trilhas[`LF${k}`][3][1]]);
+
+function chipDesenho(c, p, rotulo, miolo) {
+	let pernas = '';
+	for (const [x, y] of c.cima) pernas += `M ${f(x)} ${f(y)} V ${f(c.cy - c.m)} `;
+	for (const [x, y] of c.baixo) pernas += `M ${f(x)} ${f(y)} V ${f(c.cy + c.m)} `;
+	for (const [x, y] of c.esq) pernas += `M ${f(x)} ${f(y)} H ${f(c.cx - c.m)} `;
+	for (const [x, y] of c.dir) pernas += `M ${f(x)} ${f(y)} H ${f(c.cx + c.m)} `;
+	const { cx, cy, m, lado } = c, d = lado * 0.5, dy = cy - 8;
+	let g = `<path d="${pernas}" stroke="${p.linha}" stroke-width="3.6" fill="none"/>`;
+	g += `<rect x="${cx - m}" y="${cy - m}" width="${lado}" height="${lado}" rx="5" fill="${p.fundo[1]}" stroke="${p.linha}" stroke-width="2"/>`;
+	g += `<rect x="${cx - m + 6}" y="${cy - m + 6}" width="${lado - 12}" height="${lado - 12}" rx="3" fill="none" stroke="${p.linha}" stroke-width=".8" opacity=".4"/>`;
+	g += `<rect x="${f(cx - d / 2)}" y="${f(dy - d / 2)}" width="${f(d)}" height="${f(d)}" rx="2" fill="${p.linha}" fill-opacity=".1" stroke="${p.linha}" stroke-width="1.3" opacity=".85"/>`;
+	if (miolo === 'cristal') {
+		const r = d * 0.36;
+		g += `<path d="M ${cx} ${f(dy - r)} L ${f(cx + r * 0.8)} ${dy} L ${cx} ${f(dy + r)} L ${f(cx - r * 0.8)} ${dy} Z M ${cx} ${f(dy - r)} V ${f(dy + r)} M ${f(cx - r * 0.8)} ${dy} H ${f(cx + r * 0.8)}" fill="none" stroke="${p.linha}" stroke-width="1.2" opacity=".75"/>`;
+	} else {
+		const t = d / 4.2;
+		for (let i = -1; i <= 1; i++) for (let j = -1; j <= 1; j++) g += `<rect x="${f(cx + i * t * 1.35 - t / 2)}" y="${f(dy + j * t * 1.35 - t / 2)}" width="${f(t)}" height="${f(t)}" fill="${p.linha}" opacity="${i === 0 && j === 0 ? 0.7 : 0.35}"/>`;
+	}
+	g += `<circle cx="${cx - m + 14}" cy="${cy - m + 14}" r="3.2" fill="${p.linha}" opacity=".8"/>`;
+	g += texto(cx, cy + m - 12, rotulo, p.linha, 13, 'text-anchor="middle" letter-spacing="2"');
+	return g;
+}
+// Peça SMD de dois terminais (resistor, capacitor), deitada ou em pé.
+const smd = (p, x, y, deitada = true, comp = 24, larg = 10) => {
+	const [w, h] = deitada ? [comp, larg] : [larg, comp], pw = deitada ? 6 : larg, ph = deitada ? larg : 6;
+	return `<rect x="${f(x - w / 2)}" y="${f(y - h / 2)}" width="${w}" height="${h}" rx="1.5" fill="${p.fundo[1]}" stroke="${p.linha}" stroke-width="1.2"/>`
+		+ `<rect x="${f(x - w / 2)}" y="${f(y - h / 2)}" width="${pw}" height="${ph}" fill="${p.linha}" opacity=".7"/><rect x="${f(x + w / 2 - pw)}" y="${f(y + h / 2 - ph)}" width="${pw}" height="${ph}" fill="${p.linha}" opacity=".7"/>`;
+};
+const LEDS = [0, 1, 2, 3].map((k) => [k % 2 ? 1462 : 1488, PLACA.trilhas[`NL${k}`][3][1]]);
+
 function circuito(p) {
 	let g = fundoLinear(p) + grade(p, 24, 0.07);
-	g += `<style>.pulso{stroke-dasharray:8 340;animation:corre 3.2s linear 6}@keyframes corre{to{stroke-dashoffset:-348}}@media (prefers-reduced-motion: reduce){.pulso{animation:none}}</style>`;
-	const r = sorteio(131);
-	let trilhas = '', pulsos = '', pads = '';
-	// Trilhas: saem de uma borda, andam reto, dobram a 45 graus e param antes da área do nome.
-	for (let i = 0; i < 26; i++) {
-		const esq = i % 2 === 0, y0 = 26 + r() * (H - 52), dir = esq ? 1 : -1;
-		const x0 = esq ? -10 : W + 10, x1 = esq ? 60 + r() * 220 : W - 60 - r() * 220;
-		const sobe = y0 < H / 2 ? 1 : -1, d = 20 + r() * 70;
-		const x2 = x1 + dir * d, y2 = y0 + sobe * d * (r() < 0.5 ? 1 : -1);
-		const x3 = esq ? Math.min(x2 + 60 + r() * 260, 520) : Math.max(x2 - 60 - r() * 260, W - 520);
-		const caminho = `M ${f(x0)} ${f(y0)} L ${f(x1)} ${f(y0)} L ${f(x2)} ${f(y2)} L ${f(x3)} ${f(y2)}`;
-		trilhas += `<path d="${caminho}"/>`;
-		if (i % 3 === 0) pulsos += `<path class="pulso" d="${caminho}" style="animation-delay:-${f(r() * 3)}s"/>`;
-		pads += `<circle cx="${f(x3)}" cy="${f(y2)}" r="4.5" fill="${p.fundo[1]}" stroke="${p.linha}" stroke-width="1.6"/>`;
-	}
-	g += `<g fill="none" stroke="${p.linha}" stroke-width="7" opacity=".08">${trilhas}</g>`;
-	g += `<g fill="none" stroke="${p.linha}" stroke-width="1.6" opacity=".7">${trilhas}</g>`;
-	g += `<g fill="none" stroke="${p.brilho}" stroke-width="3" stroke-linecap="round">${pulsos}</g>` + pads;
-	// Chips.
-	for (const [x, y, w, h, rot] of [[150, 190, 110, 70, 'ÉTER-9'], [1540, 300, 120, 74, 'NÚCLEO'], [330, 60, 70, 44, 'R7'], [1380, 420, 76, 46, 'S2']]) {
-		g += `<rect x="${x}" y="${y}" width="${w}" height="${h}" rx="3" fill="${p.fundo[1]}" stroke="${p.linha}" stroke-width="1.6"/>`;
-		for (let k = 8; k < w - 4; k += 12) g += `<line x1="${x + k}" y1="${y - 7}" x2="${x + k}" y2="${y}" stroke="${p.linha}" stroke-width="2"/><line x1="${x + k}" y1="${y + h}" x2="${x + k}" y2="${y + h + 7}" stroke="${p.linha}" stroke-width="2"/>`;
-		g += texto(x + w / 2, y + h / 2 + 5, rot, p.linha, 13, 'text-anchor="middle" letter-spacing="2"');
-	}
+	const todas = Object.values(PLACA.trilhas).map((t) => `<path d="${polilinha(t)}"/>`).join('');
+	g += `<g fill="none" stroke="${p.linha}" stroke-width="7" opacity=".07" stroke-linejoin="round">${todas}</g>`;
+	g += `<g fill="none" stroke="${p.linha}" stroke-width="1.7" opacity=".75" stroke-linejoin="round">${todas}</g>`;
+	for (const [x, y] of PLACA.vias) g += `<circle cx="${x}" cy="${f(y)}" r="5" fill="${p.fundo[1]}" stroke="${p.linha}" stroke-width="1.8"/>`;
+	// Conector de borda à direita: os dedos onde chega o leque do NÚCLEO.
+	for (let k = 0; k < 9; k++) { const y = PLACA.trilhas[`NF${k}`][3][1]; g += `<rect x="1772" y="${f(y - 7)}" width="40" height="14" rx="2" fill="${p.linha}" fill-opacity=".22" stroke="${p.linha}" stroke-width="1.4"/>`; }
+	for (const [x, y] of RESISTORES) g += smd(p, x, y);
+	// Capacitores de desacoplamento junto dos processadores e o cristal do ÉTER-9, todos fora da faixa do celular
+	// (uma peça cortada pela borda da capa parecia quebrada).
+	g += smd(p, 246, 162, false, 20, 9) + smd(p, 260, 162, false, 20, 9) + smd(p, 1548, 370, false, 20, 9) + smd(p, 1548, 396, false, 20, 9);
+	g += `<rect x="244" y="346" width="16" height="38" rx="8" fill="${p.fundo[1]}" stroke="${p.linha}" stroke-width="1.4"/><rect x="248" y="352" width="8" height="26" rx="4" fill="none" stroke="${p.linha}" stroke-width=".8" opacity=".6"/>` + texto(252, 400, 'XT1', p.linha, 11, 'text-anchor="middle" opacity=".7"');
+	// LEDs de atividade do NÚCLEO (o brilho que pisca é uma camada por cima).
+	for (const [x, y] of LEDS) g += `<rect x="${x - 9}" y="${f(y - 6)}" width="18" height="12" rx="2" fill="${p.fundo[1]}" stroke="${p.linha}" stroke-width="1.3"/><circle cx="${x}" cy="${f(y)}" r="2.6" fill="${p.linha}" opacity=".45"/>`;
+	g += chipDesenho(ETER, p, 'ÉTER-9', 'cristal') + chipDesenho(NUCLEO, p, 'NÚCLEO', 'nucleos');
+	// S2: um chip pequeno de oito pinos.
+	let pinos = '';
+	for (let k = 0; k < 4; k++) { const x = S2.cx - 21 + k * 14; pinos += `M ${x} ${S2.cy - S2.h / 2 - 9} V ${S2.cy - S2.h / 2} M ${x} ${S2.cy + S2.h / 2} V ${S2.cy + S2.h / 2 + 9} `; }
+	g += `<path d="${pinos}" stroke="${p.linha}" stroke-width="3.4"/><rect x="${S2.cx - S2.w / 2}" y="${S2.cy - S2.h / 2}" width="${S2.w}" height="${S2.h}" rx="3" fill="${p.fundo[1]}" stroke="${p.linha}" stroke-width="1.8"/>` + texto(S2.cx, S2.cy + 4.5, 'S2', p.linha, 12, 'text-anchor="middle" letter-spacing="2"');
 	return g;
 }
 
-// 4. Navegação: um planeta em malha de arame no canto, a órbita e a rota até o destino marcado.
+// Máscaras dos pulsos: as trilhas de cada camada mais grossas, com um halo desfocado (o desfoque é calculado uma vez,
+// quando o navegador rasteriza a máscara), e um recorte onde passam sob uma peça.
+function circuitoPulso(k) {
+	const nomes = PULSOS[k];
+	const recortes = RESISTORES.map(([x, y]) => `<rect x="${x - 12}" y="${f(y - 6)}" width="24" height="12" fill="#000"/>`).join('');
+	const d = nomes.map((n) => polilinha(PLACA.trilhas[n])).join(' ');
+	return `<defs><mask id="m" maskUnits="userSpaceOnUse" x="0" y="0" width="${W}" height="${H}"><rect width="${W}" height="${H}" fill="#fff"/>${recortes}</mask><filter id="b" filterUnits="userSpaceOnUse" x="0" y="0" width="${W}" height="${H}"><feGaussianBlur stdDeviation="4"/></filter></defs><g mask="url(#m)" stroke-linecap="round" stroke-linejoin="round"><path d="${d}" stroke-width="12" opacity=".6" filter="url(#b)"/><path d="${d}" stroke-width="3.6"/></g>`;
+}
+// Brilho dos LEDs, em dois grupos que piscam em ritmos diferentes.
+function circuitoLeds(grupo) {
+	return `<defs><radialGradient id="h"><stop offset="0" stop-color="#fff"/><stop offset=".35" stop-color="#fff" stop-opacity=".5"/><stop offset="1" stop-color="#fff" stop-opacity="0"/></radialGradient></defs>` + LEDS.filter((_, k) => k % 2 === grupo).map(([x, y]) => `<circle cx="${x}" cy="${f(y)}" r="16" fill="url(#h)" stroke="none"/><circle cx="${x}" cy="${f(y)}" r="3.2" fill="#fff" stroke="none"/>`).join('');
+}
+
+// 4. Navegação: um planeta em malha de arame no canto, a órbita em volta dele e a rota até o destino marcado.
+// A órbita é uma elipse inclinada em duas metades: a de trás, tracejada e fraca, passa por trás do planeta (o disco
+// dele a cobre); a da frente, contínua e com brilho, passa por cima. O satélite que percorre a órbita é uma camada do
+// CSS (animacoes.css), com os números de ORBITA_CAPA: se a órbita mudar aqui, rode o gerador e copie os valores que
+// ele mostra para lá.
+const ORBITA_CAPA = { cx: 170, cy: 360, a: 320, b: 90, inclinacao: 10, raio: 210 };
 function navegacao(p) {
-	const px = 250, py = 560, pr = 330;
+	const { cx: px, cy: py, raio: pr, a, b, inclinacao } = ORBITA_CAPA;
 	let g = fundoLinear(p);
 	// Grade de coordenadas da carta de navegação, com marcas nas interseções.
 	g += `<g stroke="${p.fraca}" stroke-width=".8" opacity=".16">`;
@@ -223,7 +364,10 @@ function navegacao(p) {
 	for (let x = 90; x < W; x += 180) for (let y = 70; y < H; y += 180) g += `<path d="M ${x - 5} ${y} H ${x + 5} M ${x} ${y - 5} V ${y + 5}"/>`;
 	g += '</g>';
 	g += estrelas(p, 300, 151, (x, y) => Math.hypot(x - px, y - py) < pr + 10);
-	g += `<defs><radialGradient id="atm" cx="${f(px / W * 100)}%" cy="100%" r="35%"><stop offset="0" stop-color="${p.linha}" stop-opacity=".22"/><stop offset="1" stop-color="${p.linha}" stop-opacity="0"/></radialGradient></defs><rect width="${W}" height="${H}" fill="url(#atm)"/>`;
+	g += `<defs><radialGradient id="atm" cx="${f((px / W) * 100)}%" cy="100%" r="35%"><stop offset="0" stop-color="${p.linha}" stop-opacity=".22"/><stop offset="1" stop-color="${p.linha}" stop-opacity="0"/></radialGradient></defs><rect width="${W}" height="${H}" fill="url(#atm)"/>`;
+	// Metade de trás da órbita (desenhada antes do planeta, que a cobre onde passa por trás).
+	const orbita = (lado, extra) => `<path d="M ${f(px - a)} ${py} A ${a} ${b} 0 0 ${lado} ${f(px + a)} ${py}" transform="rotate(${inclinacao} ${px} ${py})" fill="none" ${extra}/>`;
+	g += orbita(1, `stroke="${p.linha}" stroke-width="1.4" stroke-dasharray="6 8" opacity=".45"`);
 	// Planeta: paralelos e meridianos.
 	g += `<circle cx="${px}" cy="${py}" r="${pr}" fill="${p.fundo[1]}" stroke="${p.linha}" stroke-width="2"/>`;
 	g += `<g fill="none" stroke="${p.linha}" stroke-width="1" opacity=".55" transform="rotate(-18 ${px} ${py})">`;
@@ -232,23 +376,23 @@ function navegacao(p) {
 	g += '</g>';
 	// Volume: o lado longe da luz escurece, e a borda iluminada ganha um brilho fino de atmosfera.
 	g += `<defs><radialGradient id="sombra" cx="72%" cy="18%" r="95%"><stop offset=".35" stop-color="${p.fundo[2]}" stop-opacity="0"/><stop offset="1" stop-color="${p.fundo[2]}" stop-opacity=".75"/></radialGradient></defs><circle cx="${px}" cy="${py}" r="${pr}" fill="url(#sombra)"/><circle cx="${px}" cy="${py}" r="${pr + 5}" fill="none" stroke="${p.linha}" stroke-width="8" opacity=".08"/>`;
-	// Uma lua pequena na mesma órbita, com a sombra do mesmo lado.
-	const [lx, ly, lr] = [700, 360, 26];
-	g += `<circle cx="${lx}" cy="${ly}" r="${lr}" fill="${p.fundo[1]}" stroke="${p.linha}" stroke-width="1.4"/><path d="M ${lx - lr * 0.2} ${ly - lr} A ${lr} ${lr} 0 0 0 ${lx - lr * 0.2} ${ly + lr} A ${lr * 0.7} ${lr} 0 0 1 ${lx - lr * 0.2} ${ly - lr} Z" fill="${p.fundo[2]}" opacity=".7" transform="rotate(30 ${lx} ${ly})"/>`;
-	// Órbita e satélites.
-	g += `<ellipse cx="${px}" cy="${py}" rx="${pr + 260}" ry="${pr * 0.42}" transform="rotate(-18 ${px} ${py})" fill="none" stroke="${p.linha}" stroke-width="1.2" stroke-dasharray="10 8" opacity=".6"/>`;
-	// Rota curva até o destino.
-	const dx = 1560, dy = 120;
-	g += `<path d="M ${px + 160} ${py - 300} C 700 120, 1200 40, ${dx} ${dy}" fill="none" stroke="${p.brilho}" stroke-width="2" stroke-dasharray="3 9" stroke-linecap="round"/>`;
+	// Metade da frente da órbita, por cima do planeta: um halo largo e o traço firme.
+	g += orbita(0, `stroke="${p.linha}" stroke-width="9" opacity=".1"`) + orbita(0, `stroke="${p.linha}" stroke-width="2.2" opacity=".9"`);
+	// Rota curva até o destino, saindo da borda iluminada do planeta.
+	const [r0, r1, r2, r3] = [[px + pr * 0.5, py - pr * 0.87], [520, 50], [1100, 20], [1580, 120]];
+	const bezier = (t) => [0, 1].map((i) => (1 - t) ** 3 * r0[i] + 3 * (1 - t) ** 2 * t * r1[i] + 3 * (1 - t) * t * t * r2[i] + t ** 3 * r3[i]);
+	const [dx, dy] = r3;
+	g += `<path d="M ${f(r0[0])} ${f(r0[1])} C ${r1.join(' ')}, ${r2.join(' ')}, ${dx} ${dy}" fill="none" stroke="${p.brilho}" stroke-width="2" stroke-dasharray="3 9" stroke-linecap="round"/>`;
 	g += `<circle cx="${dx}" cy="${dy}" r="8" fill="none" stroke="${p.brilho}" stroke-width="2"/><circle cx="${dx}" cy="${dy}" r="22" fill="none" stroke="${p.brilho}" stroke-width="1" opacity=".6"/><circle cx="${dx}" cy="${dy}" r="38" fill="none" stroke="${p.brilho}" stroke-width=".8" opacity=".35" stroke-dasharray="4 6"/>`;
 	g += texto(dx + 48, dy - 6, 'DESTINO', p.brilho, 14, 'letter-spacing="3" font-weight="700"') + texto(dx + 48, dy + 14, 'MOGAR · 3,2 UA', p.fraca, 13, 'letter-spacing="1"');
-	// Pontos de passagem na rota.
-	for (const [x, y, n] of [[700, 152, 'PP-1'], [1180, 66, 'PP-2']]) g += `<rect x="${x - 5}" y="${y - 5}" width="10" height="10" fill="none" stroke="${p.linha}" stroke-width="1.6" transform="rotate(45 ${x} ${y})"/>` + texto(x, y - 14, n, p.fraca, 12, 'text-anchor="middle"');
-	// Painel de dados à direita, embaixo.
+	// Pontos de passagem em cima da rota.
+	for (const [t, n] of [[0.3, 'PP-1'], [0.62, 'PP-2']]) { const [x, y] = bezier(t).map(f); g += `<rect x="${x - 5}" y="${y - 5}" width="10" height="10" fill="${p.fundo[1]}" stroke="${p.linha}" stroke-width="1.6" transform="rotate(45 ${x} ${y})"/>` + texto(x, y - 14, n, p.fraca, 12, 'text-anchor="middle"'); }
+	// Painel de dados à direita, embaixo. O painel e o destino ficam além da faixa que o celular mostra (x até 1530):
+	// cortados pela borda, pareciam quebrados.
 	const linhas = ['ÓRBITA ESTÁVEL', 'Δv 0,84 km/s', 'CHEGADA T+06:12', 'ÉTER 72%'];
-	g += `<rect x="${W - 300}" y="${H - 150}" width="250" height="110" fill="${p.fundo[1]}" fill-opacity=".6" stroke="${p.linha}" stroke-width="1.2"/>`;
-	linhas.forEach((l, i) => (g += texto(W - 284, H - 120 + i * 24, l, i === 0 ? p.linha : p.fraca, 13, 'letter-spacing="1"')));
-	g += canto(W - 300, H - 150, 1, 1, 16, p.brilho, 2.4);
+	g += `<rect x="${W - 260}" y="${H - 150}" width="220" height="110" fill="${p.fundo[1]}" fill-opacity=".6" stroke="${p.linha}" stroke-width="1.2"/>`;
+	linhas.forEach((l, i) => (g += texto(W - 244, H - 120 + i * 24, l, i === 0 ? p.linha : p.fraca, 13, 'letter-spacing="1"')));
+	g += canto(W - 260, H - 150, 1, 1, 16, p.brilho, 2.4);
 	return g;
 }
 
@@ -334,9 +478,22 @@ function bosque(p) {
 		return s + `<path d="M ${x} ${y} Q ${f(x + Math.cos(ang) * comp * 0.5)} ${f(y + Math.sin(ang) * comp * 0.5 - 6)} ${f(x + Math.cos(ang - 0.5) * comp)} ${f(y + Math.sin(ang - 0.5) * comp)}" fill="none" stroke="${p.folha2}" stroke-width="1.4" opacity=".8"/>`;
 	};
 	for (const [x, ang, comp, sem] of [[110, -1.2, 120, 231], [150, -0.6, 140, 232], [70, -1.9, 110, 233], [300, -1.3, 90, 234], [1700, -1.95, 120, 235], [1660, -2.5, 140, 236], [1740, -1.3, 110, 237], [1520, -1.8, 90, 238]]) g += samambaia(x, H - 34, ang, comp, sem);
-	// Vaga-lumes (o centro fica livre para o nome).
-	for (let i = 0; i < 40; i++) { const x = r() * W, y = 70 + r() * (H - 120); if (x > 520 && x < 1280 && y > 150 && y < 370) continue; const s = 5 + r() * 10; g += `<circle cx="${f(x)}" cy="${f(y)}" r="${f(s)}" fill="url(#vaga)"/>`; }
+	// Os vaga-lumes não ficam pintados aqui: são as camadas de bosqueVagalumes, que vagam e piscam (parados ao lado dos
+	// que se mexem, pareciam presos na tela).
 	g += `<ellipse cx="${W / 2}" cy="${H / 2}" rx="520" ry="150" fill="url(#veu)"/>`;
+	return g;
+}
+// Vaga-lumes da capa, em três camadas que vagam devagar e piscam cada uma no seu ritmo (subindo em fila, pareciam um
+// ladrilho repetido). Ficam fora da área do nome, mais perto do chão e das árvores.
+function bosqueVagalumes(k) {
+	const r = sorteio(261 + k * 7);
+	let g = '<defs><radialGradient id="v"><stop offset="0" stop-color="#fff"/><stop offset=".3" stop-color="#fff" stop-opacity=".45"/><stop offset="1" stop-color="#fff" stop-opacity="0"/></radialGradient></defs>';
+	for (let i = 0, n = 0; i < 60 && n < 13; i++) {
+		const x = 30 + r() * (W - 60), y = 60 + Math.pow(r(), 0.7) * (H - 110), s = 9 + r() * 9;
+		if (x > 500 && x < 1300 && y > 140 && y < 380) continue;
+		g += `<circle cx="${f(x)}" cy="${f(y)}" r="${f(s)}" fill="url(#v)" stroke="none"/><circle cx="${f(x)}" cy="${f(y)}" r="2.8" fill="#fff" stroke="none"/>`;
+		n++;
+	}
 	return g;
 }
 
@@ -355,6 +512,7 @@ function mosaico(r, x0, y0, x1, y1, passo, cores, chumbo) {
 	}
 	return s;
 }
+const VITRAL_JANELAS = [112, 326, 1474, 1688], VITRAL_LARG = 156;
 function vitral(p) {
 	const r = sorteio(301);
 	let g = `<defs><linearGradient id="parede" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="${p.fundo[0]}"/><stop offset="1" stop-color="${p.fundo[1]}"/></linearGradient>
@@ -366,8 +524,9 @@ function vitral(p) {
 	for (let y = 0, k = 0; y < H; y += 46, k++) for (let x = k % 2 ? -55 : 0; x < W; x += 110) g += `<rect x="${x + 1}" y="${y + 1}" width="108" height="44" fill="${mistura(p.fundo[0], r() < 0.5 ? '#000000' : '#ffffff', r() * 0.05)}" opacity=".35"/>`;
 	// Cores do vidro: as três da paleta, mais um âmbar tirado da luz.
 	const joias = [p.vidros[0][0], p.vidros[1][0], p.vidros[2][0], mistura(p.vidros[0][0], p.luz, 0.55), mistura(p.vidros[1][0], '#000000', 0.25)];
-	const larg = 168, alto = 400, base = 486;
-	for (const [k, cx] of [125, 365, 1435, 1675].entries()) {
+	// As janelas de dentro ficam a uns 15 px do nome na capa do computador (antes o M encostava na janela da direita).
+	const larg = VITRAL_LARG, alto = 400, base = 486;
+	for (const [k, cx] of VITRAL_JANELAS.entries()) {
 		// Cada janela tem uma cor dominante, com toques das outras (sem virar colcha de retalhos).
 		const dom = joias[[1, 0, 0, 1][k]], cores = [dom, dom, dom, dom, dom, mistura(dom, '#000000', 0.22), mistura(dom, '#ffffff', 0.12), joias[2], joias[3]];
 		const x0 = cx - larg / 2, x1 = cx + larg / 2, topo = base - alto, ombro = topo + larg * 0.62;
@@ -391,6 +550,30 @@ function vitral(p) {
 	}
 	g += `<rect x="0" y="${base + 8}" width="${W}" height="${H - base}" fill="${p.fundo[1]}"/>`;
 	g += `<ellipse cx="${W / 2}" cy="${H / 2}" rx="480" ry="170" fill="url(#veu)"/>`;
+	return g;
+}
+
+// Camadas do Vitral (máscaras brancas no quadro da capa, com as mesmas medidas das janelas de vitral()): a luz atrás do
+// vidro, em dois grupos de janelas que acendem e apagam fora de compasso, como nuvens passando na frente da lua; o halo
+// que essa luz deixa na pedra em volta de cada janela; e o pó suspenso diante delas.
+function vitralArco(cx) {
+	const larg = VITRAL_LARG, base = 486, topo = base - 400, ombro = topo + larg * 0.62, x0 = cx - larg / 2, x1 = cx + larg / 2;
+	return `M ${x0} ${base} V ${f(ombro)} Q ${x0} ${topo + 14} ${cx} ${topo - 26} Q ${x1} ${topo + 14} ${x1} ${f(ombro)} V ${base} Z`;
+}
+function vitralLuz(grupo) {
+	const janelas = VITRAL_JANELAS.filter((_, k) => k % 2 === grupo);
+	return '<defs><radialGradient id="l" cx="50%" cy="38%" r="65%"><stop offset="0" stop-color="#fff"/><stop offset=".6" stop-color="#fff" stop-opacity=".55"/><stop offset="1" stop-color="#fff" stop-opacity=".25"/></radialGradient></defs>' +
+		janelas.map((cx) => `<path d="${vitralArco(cx)}" fill="url(#l)" stroke="none"/>`).join('');
+}
+function vitralHalo(grupo) {
+	const janelas = VITRAL_JANELAS.filter((_, k) => k % 2 === grupo);
+	return '<defs><radialGradient id="h"><stop offset="0" stop-color="#fff" stop-opacity=".55"/><stop offset=".55" stop-color="#fff" stop-opacity=".18"/><stop offset="1" stop-color="#fff" stop-opacity="0"/></radialGradient></defs>' +
+		janelas.map((cx) => `<ellipse cx="${cx}" cy="270" rx="150" ry="290" fill="url(#h)" stroke="none"/>`).join('');
+}
+function vitralPoeira() {
+	const r = sorteio(331);
+	let g = '<defs><radialGradient id="p"><stop offset="0" stop-color="#fff"/><stop offset="1" stop-color="#fff" stop-opacity="0"/></radialGradient></defs>';
+	for (const cx of VITRAL_JANELAS) for (let i = 0; i < 9; i++) { const x = cx - 85 + r() * 170, y = 90 + r() * 380, s = 1.6 + r() * 2.6; g += `<circle cx="${f(x)}" cy="${f(y)}" r="${f(s)}" fill="url(#p)" stroke="none" opacity="${f(0.5 + r() * 0.5)}"/>`; }
 	return g;
 }
 
@@ -470,20 +653,30 @@ function mapa(p) {
 	return g;
 }
 
-// Camadas do Mapa (máscaras brancas, no mesmo quadro da capa): as ondas do canal e o barco.
-function mapaOndas() {
+// Camadas do Mapa (máscaras brancas, no mesmo quadro da capa): as ondas do canal, em dois grupos que balançam em
+// sentidos opostos (o mar todo indo e vindo junto parecia um bloco deslizando), e o barco.
+function mapaOndas(grupo) {
 	// Ondulações longas e finas, em grupos de dois ou três traços paralelos, como nas cartas antigas.
 	const r = sorteio(521);
 	let g = '';
 	for (let i = 0; i < 22; i++) {
 		const x = 450 + r() * 860, y = 50 + r() * 420, n = 2 + Math.floor(r() * 2), l = 40 + r() * 40;
 		if (MAPA_ILHAS.some(([ix, iy, rx, ry]) => Math.hypot((x + l / 2 - ix) / (rx + 50), (y - iy) / (ry + 30)) < 1)) continue;
-		for (let k = 0; k < n; k++) { const yy = y + k * 6, xx = x + k * 7, ll = l - k * 12; g += `<path d="M ${f(xx)} ${f(yy)} q ${f(ll / 4)} -3 ${f(ll / 2)} 0 t ${f(ll / 2)} 0" stroke-width="1.1" stroke-linecap="round" opacity="${f(0.45 + r() * 0.4)}"/>`; }
+		for (let k = 0; k < n; k++) { const yy = y + k * 6, xx = x + k * 7, ll = l - k * 12, op = f(0.45 + r() * 0.4); if (i % 2 === grupo) g += `<path d="M ${f(xx)} ${f(yy)} q ${f(ll / 4)} -3 ${f(ll / 2)} 0 t ${f(ll / 2)} 0" stroke-width="1.1" stroke-linecap="round" opacity="${op}"/>`; }
 	}
 	return g;
 }
+// Uma caravela pequena, em tinta: casco com o castelo de popa, dois mastros com as velas cheias de vento, bandeirola e
+// gurupés. A proa aponta para a direita; o CSS a vira na volta. O casco assenta na linha d'água em y = 452.
 function mapaBarco() {
-	return '<g transform="translate(900 452)" stroke-width="2" stroke-linejoin="round"><path d="M -34 0 Q 0 18 34 0 Z" fill="#fff"/><line x1="0" y1="0" x2="0" y2="-48"/><path d="M 3 -46 Q 30 -30 3 -10 Z" fill="#fff" opacity=".85"/><path d="M -3 -40 Q -22 -28 -3 -14 Z" fill="#fff" opacity=".6"/><path d="M -46 10 q 10 -6 20 0 t 20 0 M 26 10 q 10 -6 20 0" stroke-linecap="round" opacity=".7"/></g>';
+	const vela = (x0, x1, topo, base) => { const m = (x0 + x1) / 2, bojo = (x1 - x0) * 0.22; return `<path d="M ${x0} ${topo} Q ${m} ${topo + 5} ${x1} ${topo} Q ${f(x1 + bojo)} ${f((topo + base) / 2)} ${x1} ${base} Q ${m} ${base + 4} ${x0} ${base} Q ${f(x0 + bojo * 0.6)} ${f((topo + base) / 2)} ${x0} ${topo} Z" fill="#fff" fill-opacity=".22" stroke-width="1.6"/>`; };
+	return '<g transform="translate(900 452) scale(1.15)" stroke-width="1.8" stroke-linejoin="round" stroke-linecap="round">' +
+		'<path d="M -44 -9 L -40 6 Q -8 15 28 8 Q 40 4 48 -7 Q 6 -2 -44 -9 Z" fill="#fff"/><path d="M -44 -9 L -44 -18 L -27 -16 L -27 -6" fill="#fff"/>' +
+		'<path d="M -36 1 H 30" stroke-width="1" opacity=".5"/>' +
+		'<line x1="-4" y1="-4" x2="-4" y2="-66"/><line x1="24" y1="-3" x2="24" y2="-50"/><line x1="46" y1="-6" x2="64" y2="-16"/>' +
+		vela(-22, 12, -60, -18) + vela(12, 36, -46, -16) + '<path d="M 46 -8 L 62 -14 L 50 -26 Z" fill="#fff" fill-opacity=".22" stroke-width="1.3"/>' +
+		'<path d="M -4 -66 L 12 -62 L -4 -58 Z" fill="#fff"/>' +
+		'<path d="M -58 12 q 8 -5 16 0 t 16 0 M 40 12 q 8 -5 16 0" stroke-width="1.4" opacity=".7"/></g>';
 }
 
 // Abissal: o fundo do mar em camadas de profundidade. Raios de luz em leque descendo da superfície, neve marinha, um
@@ -564,8 +757,10 @@ function abissal(p) {
 	g += `<ellipse cx="${W / 2}" cy="${H / 2}" rx="520" ry="150" fill="url(#veu)"/>`;
 	return g;
 }
-// Algas: talos finos com lâminas pontudas alternadas, saindo das rochas dos cantos.
-function abissalAlgas() {
+// Algas: talos com lâminas pontudas alternadas, saindo das rochas dos cantos, em duas camadas (esquerda e direita) que
+// balançam cada uma em volta do próprio pé. Desfocadas de leve no próprio SVG: talo fino balançando cintilava no
+// serrilhado dos pixels.
+function abissalAlgas(lado) {
 	const r = sorteio(611);
 	const alga = (x, alt, fase) => {
 		let d = `M ${x} ${H + 10}`, folhas = '';
@@ -578,34 +773,39 @@ function abissalAlgas() {
 			const mx = (px + tx) / 2, my = (py + ty) / 2;
 			folhas += `<path d="M ${f(px)} ${f(py)} Q ${f(mx + nx)} ${f(my + ny)} ${f(tx)} ${f(ty)} Q ${f(mx - nx)} ${f(my - ny)} ${f(px)} ${f(py)} Z" fill="#fff" stroke="none" opacity="${f(0.6 + r() * 0.35)}"/>`;
 		});
-		return `<path d="${d}" stroke-width="2.4" stroke-linecap="round" opacity=".85"/>${folhas}`;
+		return `<path d="${d}" stroke-width="2.8" stroke-linecap="round" opacity=".85"/>${folhas}`;
 	};
-	let g = '';
-	for (let i = 0; i < 7; i++) g += alga(f(20 + r() * 300), 150 + r() * 230, r() * 6);
-	for (let i = 0; i < 7; i++) g += alga(f(1500 + r() * 290), 150 + r() * 230, r() * 6);
-	return g;
+	let esq = '', dir = '';
+	for (let i = 0; i < 7; i++) esq += alga(f(20 + r() * 300), 150 + r() * 230, r() * 6);
+	for (let i = 0; i < 7; i++) dir += alga(f(1500 + r() * 290), 150 + r() * 230, r() * 6);
+	return `<defs><filter id="d" x="-5%" y="-5%" width="110%" height="110%"><feGaussianBlur stdDeviation=".6"/></filter></defs><g filter="url(#d)">${lado ? dir : esq}</g>`;
 }
-// Três águas-vivas: sino translúcido (mais denso na borda), franja, braços orais ondulados e tentáculos finos que somem.
-const MEDUSAS = [[250, 140, 1, 4, 150], [1570, 110, 1.25, 6, 200], [1440, 300, 0.7, 4, 110]];
+// Três águas-vivas: sino translúcido (mais denso na borda), franja, braços orais ondulados e tentáculos que somem. Os
+// tentáculos são macios (desfocados no SVG) e nascem transparentes: fio de cabelo subindo e descendo devagar cintilava.
+const MEDUSAS = [[250, 140, 1, 5, 150], [1570, 110, 1.25, 7, 200], [1440, 300, 0.7, 5, 110]];
 function abissalMedusa(k) {
 	const [x, y, s, nt, ct] = MEDUSAS[k];
 	const r = sorteio(640 + k);
 	let g = `<defs><radialGradient id="sino" cx="50%" cy="85%" r="85%"><stop offset="0" stop-color="#fff" stop-opacity=".12"/><stop offset=".7" stop-color="#fff" stop-opacity=".38"/><stop offset="1" stop-color="#fff" stop-opacity=".8"/></radialGradient>
-	<linearGradient id="fio" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#fff" stop-opacity=".7"/><stop offset="1" stop-color="#fff" stop-opacity="0"/></linearGradient>
-	<radialGradient id="h"><stop offset="0" stop-color="#fff" stop-opacity=".3"/><stop offset="1" stop-color="#fff" stop-opacity="0"/></radialGradient></defs>`;
-	g += `<circle cx="${x}" cy="${y - 10 * s}" r="${70 * s}" fill="url(#h)" stroke="none"/><g transform="translate(${x} ${y}) scale(${s})">`;
-	// Tentáculos finos e longos.
-	for (let i = 0; i < nt; i++) { const tx = -26 + (52 * i) / (nt - 1), fase = r() * 8 - 4; g += `<path d="M ${f(tx)} 0 q ${f(fase)} ${ct / 4} 0 ${ct / 2} t 0 ${ct / 2}" fill="none" stroke="url(#fio)" stroke-width="1.1"/>`; }
+	<linearGradient id="fio" x1="0" y1="0" x2="0" y2="${ct}" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#fff" stop-opacity="0"/><stop offset=".08" stop-color="#fff" stop-opacity=".6"/><stop offset="1" stop-color="#fff" stop-opacity="0"/></linearGradient>
+	<radialGradient id="h"><stop offset="0" stop-color="#fff" stop-opacity=".3"/><stop offset="1" stop-color="#fff" stop-opacity="0"/></radialGradient>
+	<filter id="m" x="-30%" y="-10%" width="160%" height="120%"><feGaussianBlur stdDeviation=".8"/></filter></defs>`;
+	g += `<circle cx="${x}" cy="${y - 10 * s}" r="${70 * s}" fill="url(#h)" stroke="none"/><g transform="translate(${x} ${y}) scale(${s})"><g filter="url(#m)">`;
+	// Tentáculos compridos, ondulando.
+	for (let i = 0; i < nt; i++) { const tx = -27 + (54 * i) / (nt - 1), fase = r() * 8 - 4; g += `<path d="M ${f(tx)} 0 q ${f(fase)} ${ct / 4} 0 ${ct / 2} t 0 ${ct / 2}" fill="none" stroke="url(#fio)" stroke-width="1.8"/>`; }
 	// Braços orais: fitas onduladas mais grossas no meio.
-	for (const bx of [-7, 7]) g += `<path d="M ${bx} 0 q ${bx * 1.6} 16 0 32 t 0 32 t ${bx * 0.6} 20" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" opacity=".28"/>`;
-	// O sino, com a franja da borda.
+	for (const bx of [-7, 7]) g += `<path d="M ${bx} 0 q ${bx * 1.6} 16 0 32 t 0 32 t ${bx * 0.6} 20" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" opacity=".28"/>`;
+	g += '</g>';
+	// O sino, com a franja da borda e as quatro gônadas.
 	g += `<path d="M -32 0 C -34 -30 -20 -44 0 -44 C 20 -44 34 -30 32 0 Q 24 5 16 1 Q 8 6 0 1 Q -8 6 -16 1 Q -24 5 -32 0 Z" fill="url(#sino)" stroke="none"/>`;
+	g += `<g filter="url(#m)" opacity=".55">${[[-10, -15], [10, -15], [0, -19], [0, -11]].map(([dx, dy]) => `<ellipse cx="${dx}" cy="${dy}" rx="6" ry="3.2" stroke-width="2"/>`).join('')}</g>`;
 	g += '</g>';
 	return g;
 }
 
 // Forja Rúnica: pedra escura, faixas de runas em cima e embaixo e fagulhas. As runas aparecem apagadas; as acesas são
-// três camadas à parte (forjaRunas), que cintilam alternadas.
+// uma camada à parte (forjaRunasAcesas), por onde passa a onda de calor. As fagulhas paradas são poucas: as que sobem
+// (camadas do CSS) fazem o movimento, e fagulha parada demais parecia poeira.
 const RUNAS = ['M6 0V34M6 6L18 0M6 14L18 8', 'M4 34V0L16 10V34', 'M6 0V34M6 10L16 17L6 24', 'M6 0V34M6 6L16 12M6 14L16 20', 'M6 34V0L16 8L6 16L16 34', 'M16 4L6 17L16 30', 'M2 2L18 32M18 2L2 32', 'M6 34V0L16 8L6 16', 'M4 0V34M16 0V34M4 12L16 22', 'M10 0V34M4 12L16 22', 'M10 0V34', 'M8 4L2 12L8 20M12 14L18 22L12 30', 'M10 0V34M10 0L16 6M10 34L4 28', 'M10 0V34M10 12L2 2M10 12L18 2', 'M14 0L4 12L16 22L6 34', 'M10 0V34M10 0L2 10M10 0L18 10', 'M5 0V34M5 0L15 8L5 17L15 26L5 34', 'M3 34V0L10 10L17 0V34', 'M3 34V0L17 14M17 34V0L3 14', 'M6 0V34M6 0L16 10', 'M10 0L18 10L10 20L2 10Z', 'M2 0V34L18 0V34L2 0'];
 // As posições e os glifos das runas das faixas, sorteados uma vez só, para a base e as camadas acesas coincidirem.
 const FORJA_RUNAS = (() => {
@@ -627,18 +827,23 @@ function forja(p) {
 	}
 	// Runas apagadas, como entalhes na pedra.
 	g += `<g fill="none" stroke="${p.brasa}" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" opacity=".28">${FORJA_RUNAS.map(([x, y, d]) => `<path transform="translate(${x} ${y})" d="${d}"/>`).join('')}</g>`;
-	for (let i = 0; i < 120; i++) {
+	for (let i = 0; i < 55; i++) {
 		const x = r() * W, y = 100 + Math.pow(r(), 0.6) * (H - 190);
 		if (x > 520 && x < 1280 && y > 150 && y < 370) continue;
 		g += `<circle cx="${f(x)}" cy="${f(y)}" r="${f(1 + r() * 2.6)}" fill="${r() < 0.3 ? p.brilho : p.brasa}" opacity="${f(0.35 + r() * 0.6)}"/>`;
 	}
 	return g;
 }
-function forjaRunas(k) {
-	return FORJA_RUNAS.filter((_, i) => i % 3 === k).map(([x, y, d]) => `<path transform="translate(${x} ${y})" d="${d}" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>`).join('');
+// As runas acesas, todas numa camada só, com o brilho em volta já desenhado (desfoque dentro do SVG, rasterizado uma vez:
+// o drop-shadow do CSS seria recalculado a cada quadro). No CSS, uma onda de calor corre por elas da esquerda para a
+// direita, e só onde ela passa as runas acendem.
+function forjaRunasAcesas() {
+	const runas = FORJA_RUNAS.map(([x, y, d]) => `<path transform="translate(${x} ${y})" d="${d}"/>`).join('');
+	return `<defs><filter id="b" x="-10%" y="-40%" width="120%" height="180%"><feGaussianBlur stdDeviation="4"/></filter></defs><g stroke-width="5" stroke-linecap="round" stroke-linejoin="round" opacity=".7" filter="url(#b)">${runas}</g><g stroke-width="3" stroke-linecap="round" stroke-linejoin="round">${runas}</g>`;
 }
 
-// Esfera armilar grande, deslocada para a direita. A esfera vai num arquivo à parte (esferaArmilar), que balança por cima.
+// Esfera armilar grande, deslocada para a direita. A esfera não está no desenho: ela é montada por cima, na capa, com
+// as peças armilar-* de tools/gerar-decoracoes.mjs (animacoes.css), para cada anel balançar no seu ritmo.
 const ESFERA = { cx: 1390, cy: 262 };
 function armilar(p) {
 	const { cx } = ESFERA;
@@ -646,37 +851,6 @@ function armilar(p) {
 	g += `<defs><radialGradient id="halo" cx="${f(cx / W * 100)}%" cy="50%" r="30%"><stop offset="0" stop-color="${p.brilho}" stop-opacity=".22"/><stop offset="1" stop-color="${p.brilho}" stop-opacity="0"/></radialGradient></defs><rect width="${W}" height="${H}" fill="url(#halo)"/>`;
 	g += estrelas(p, 380, 41);
 	[[80, 80, 2, 1], [260, 360, 0, 0.9], [760, 410, 3, 0.8]].forEach(([x, y, i, e], k) => (g += constelacao(p, FIGURAS[i], x, y, e, 51 + k)));
-	return g;
-}
-
-function esferaArmilar(p) {
-	const { cx, cy } = ESFERA, R = 300, Ri = R - 24;
-	const anel = (rx, ry, rot, larg, op) => `<ellipse cx="${cx}" cy="${cy}" rx="${rx}" ry="${ry}" transform="rotate(${rot} ${cx} ${cy})" stroke-width="${larg}" opacity="${op}"/>`;
-	let g = `<g fill="none" stroke="${p.linha}">`;
-	// Meridiano: aro duplo graduado.
-	g += `<circle cx="${cx}" cy="${cy}" r="${R}" stroke-width="2"/><circle cx="${cx}" cy="${cy}" r="${Ri}" stroke-width="1.2"/>`;
-	for (let a = 0; a < 360; a += 2.5) {
-		const t = (a * Math.PI) / 180, longo = a % 15 === 0;
-		g += `<line x1="${f(cx + Math.cos(t) * R)}" y1="${f(cy + Math.sin(t) * R)}" x2="${f(cx + Math.cos(t) * (R - (longo ? 24 : 10)))}" y2="${f(cy + Math.sin(t) * (R - (longo ? 24 : 10)))}" stroke-width="${longo ? 1.3 : 0.7}"/>`;
-	}
-	// Horizonte, equador, eclíptica (faixa dupla), trópicos e colúria.
-	g += anel(R + 46, 74, 0, 2, 0.9) + anel(R + 34, 64, 0, 0.9, 0.7);
-	g += anel(Ri, Ri * 0.36, -23.5, 1.6, 0.9);
-	g += anel(Ri, Ri * 0.5, 18, 1.4, 0.85) + anel(Ri - 16, (Ri - 16) * 0.5, 18, 0.9, 0.7);
-	for (const s of [-1, 1]) {
-		const t = (-23.5 * Math.PI) / 180, d = s * Ri * 0.42;
-		g += `<ellipse cx="${f(cx - Math.sin(t) * d)}" cy="${f(cy + Math.cos(t) * d)}" rx="${f(Ri * 0.9)}" ry="${f(Ri * 0.9 * 0.36)}" transform="rotate(-23.5 ${f(cx - Math.sin(t) * d)} ${f(cy + Math.cos(t) * d)})" stroke-width=".9" opacity=".55"/>`;
-	}
-	g += anel(Ri * 0.34, Ri, -23.5, 1.1, 0.7);
-	// Eixo polar com os remates.
-	const t = (-23.5 * Math.PI) / 180, L = R + 70;
-	const ax = [cx - Math.sin(t) * L, cy + Math.cos(t) * L, cx + Math.sin(t) * L, cy - Math.cos(t) * L];
-	g += `<line x1="${f(ax[0])}" y1="${f(ax[1])}" x2="${f(ax[2])}" y2="${f(ax[3])}" stroke-width="1.6"/>`;
-	g += '</g>';
-	g += `<circle cx="${f(ax[2])}" cy="${f(ax[3])}" r="6" fill="${p.linha}"/><circle cx="${f(ax[0])}" cy="${f(ax[1])}" r="6" fill="${p.linha}"/>`;
-	// A Terra no centro, como nas esferas armilares: globo com meridiano e equador.
-	g += `<circle cx="${cx}" cy="${cy}" r="44" fill="${p.fundo[1]}" stroke="${p.linha}" stroke-width="1.6"/>`;
-	g += `<g fill="none" stroke="${p.brilho}" stroke-width="1.6"><circle cx="${cx}" cy="${cy}" r="27"/><ellipse cx="${cx}" cy="${cy}" rx="11" ry="27"/><line x1="${cx - 27}" y1="${cy}" x2="${cx + 27}" y2="${cy}"/></g>`;
 	return g;
 }
 
@@ -688,8 +862,6 @@ const caminhoDoRio = (() => {
 	for (let t = 0; t <= 1.0001; t += 0.02) { const [x, y] = curvaDoRio(t); d += `${d ? ' L' : 'M'} ${f(x)} ${f(y)}`; }
 	return d;
 })();
-// Fora da área do nome, no meio da capa.
-const longeDoNome = (x, y) => !(x > 520 && x < 1280 && y > 150 && y < 380);
 function rio(p) {
 	const r = sorteio(701);
 	const curva = curvaDoRio, d = caminhoDoRio;
@@ -707,20 +879,16 @@ function rio(p) {
 	g += estrelas({ estrela: p.marfim }, 620, 703);
 	// O brilho difuso do rio.
 	g += `<path d="${d}" fill="none" stroke="url(#fluxo)" stroke-width="170" opacity=".26" filter="url(#nevoa)"/><path d="${d}" fill="none" stroke="url(#fluxo)" stroke-width="54" opacity=".32" filter="url(#nevoa2)"/>`;
-	// As estrelas do rio: mais densas no meio da faixa, da cor violeta no começo ao ouro e ao marfim no fim.
+	// O pó fino do rio, que fica parado: mais denso no meio da faixa, da cor violeta no começo ao ouro e ao marfim no fim.
+	// É só textura, miúdo e apagado. As estrelas que se veem uma a uma correm por cima, nas camadas da correnteza
+	// (rioCorrente), na direção da luz: se elas ficassem gravadas aqui, o rio pareceria parado com a luz passando.
 	const cor = (t) => (t < 0.5 ? mistura(p.violeta, p.acento, t * 2) : mistura(p.acento, p.marfim, (t - 0.5) * 2));
-	for (let i = 0; i < 2600; i++) {
+	for (let i = 0; i < 2000; i++) {
 		const t = r(), [x, y] = curva(t);
 		const gauss = (r() + r() + r() - 1.5) / 1.5, larg = 70 * (0.55 + 0.45 * Math.abs(Math.sin(Math.PI * t)));
 		const yy = y + gauss * larg, xx = x + (r() - 0.5) * 24;
-		const raio = 0.5 + Math.pow(r(), 3) * 2.2;
-		g += `<circle cx="${f(xx)}" cy="${f(yy)}" r="${f(raio)}" fill="${cor(t)}" opacity="${f(0.3 + r() * 0.65)}"/>`;
-	}
-	// Nós de luz ao longo do rio.
-	for (let i = 0; i < 26; i++) {
-		const t = 0.04 + r() * 0.92, [x, y] = curva(t), yy = y + (r() - 0.5) * 50;
-		if (x > 560 && x < 1240 && yy > 170 && yy < 360) continue;
-		g += `<circle cx="${f(x)}" cy="${f(yy)}" r="${f(6 + r() * 8)}" fill="url(#faisca)"/><circle cx="${f(x)}" cy="${f(yy)}" r="${f(1.4 + r())}" fill="${p.marfim}"/>`;
+		const raio = 0.4 + Math.pow(r(), 3) * 1;
+		g += `<circle cx="${f(xx)}" cy="${f(yy)}" r="${f(raio)}" fill="${cor(t)}" opacity="${f(0.2 + r() * 0.45)}"/>`;
 	}
 	// Constelações nos cantos.
 	[[70, 50, 0, 1.15], [1500, 360, 1, 1.1], [1180, 40, 2, 0.95], [150, 380, 3, 0.9]].forEach(([x, y, i, e], k) => (g += constelacao({ linha: p.acento }, FIGURAS[i], x, y, e, 711 + k)));
@@ -775,14 +943,12 @@ for (const cor of CORES.constelacao.slice(1)) {
 	SAIDAS.push(['rio', `constelacao-${cor}`]);
 }
 const ARTES = { planisferio, armilar, hud, radar, circuito, navegacao, bosque, vitral, forja, mapa, abissal, rio };
-// Cada capa sai com o nome do tema e do modo: capa-<tema>-<modo>.svg. A esfera do Astrolábio sai num arquivo à parte
-// (esfera-*.svg), porque balança por cima da capa.
+// Cada capa sai com o nome do tema e do modo: capa-<tema>-<modo>.svg.
 for (const [nome, paleta] of SAIDAS) {
 	const p = PALETAS[paleta];
 	const svg = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${W} ${H}" preserveAspectRatio="xMidYMid slice">${ARTES[nome](p)}</svg>
 `;
 	fs.writeFileSync(`public/temas/capa-${paleta}.svg`, svg);
-	if (nome === 'armilar') fs.writeFileSync(`public/temas/esfera-${paleta}.svg`, `<svg xmlns="http://www.w3.org/2000/svg" viewBox="${ESFERA.cx - 400} ${ESFERA.cy - 400} 800 800">${esferaArmilar(p)}</svg>\n`);
 	console.log(nome, paleta, svg.length);
 }
 
@@ -790,29 +956,60 @@ for (const [nome, paleta] of SAIDAS) {
 function rioFluxo() {
 	return `<defs><filter id="b" x="-20%" y="-60%" width="140%" height="220%"><feGaussianBlur stdDeviation="14"/></filter></defs><path d="${caminhoDoRio}" stroke-width="90" stroke-linecap="round" filter="url(#b)"/>`;
 }
-// Estrelas do rio que cintilam, em dois grupos alternados; nenhuma atrás do nome.
-function rioBrilho(grupo) {
-	const r = sorteio(733);
-	let g = '<defs><radialGradient id="h"><stop offset="0" stop-color="#fff"/><stop offset=".25" stop-color="#fff" stop-opacity=".55"/><stop offset="1" stop-color="#fff" stop-opacity="0"/></radialGradient></defs>';
-	for (let i = 0; i < 90; i++) {
-		const t = r(), [x, y] = curvaDoRio(t), yy = y + (r() + r() - 1) * 60, s = 1 + Math.pow(r(), 2) * 1.6;
-		if (i % 2 !== grupo || !longeDoNome(x, yy)) continue;
-		g += `<circle cx="${f(x)}" cy="${f(yy)}" r="${f(s * 5)}" fill="url(#h)" stroke="none"/><circle cx="${f(x)}" cy="${f(yy)}" r="${f(s)}" fill="#fff" stroke="none"/>`;
-	}
-	return g;
+// O leito do rio: a faixa por onde as estrelas da correnteza aparecem, mais larga que a da luz e com a borda macia (a
+// estrela some aos poucos quando sai da faixa). Atrás do nome ela fica bem fraca, para nada correr entre as letras.
+function rioLeito() {
+	return `<defs><filter id="b" x="-20%" y="-80%" width="140%" height="260%"><feGaussianBlur stdDeviation="22"/></filter><radialGradient id="nome"><stop offset="0" stop-color="#262626"/><stop offset=".6" stop-color="#4d4d4d"/><stop offset="1" stop-color="#fff"/></radialGradient><mask id="m" maskUnits="userSpaceOnUse" x="0" y="0" width="${W}" height="${H}"><rect width="${W}" height="${H}" fill="#fff"/><ellipse cx="${W / 2}" cy="${H / 2}" rx="470" ry="150" fill="url(#nome)"/></mask></defs><g mask="url(#m)"><path d="${caminhoDoRio}" stroke-width="118" stroke-linecap="round" filter="url(#b)"/></g>`;
 }
+// As estrelas da correnteza: três ladrilhos que emendam sem costura (a estrela que passa da borda volta do outro lado),
+// do pó miúdo e denso às estrelas fortes com halo. A proporção de cada ladrilho é a inclinação do rio (cerca de 20 graus,
+// a dos trechos à vista, que sobem para a direita): no CSS cada um anda exatamente um ladrilho para a direita e um para
+// cima, em laço, então as estrelas correm ao longo da faixa, não através dela, e o laço não tem salto. Cada camada tem a
+// sua velocidade (as maiores, mais perto, mais rápidas). As estrelas vão agrupadas pela opacidade, para o arquivo ficar
+// enxuto.
+const RIO_CORRENTE = [
+	{ tw: 720, th: 262, n: 1130, semente: 741, raio: (r) => 0.45 + r() * 0.55, op: (r) => 0.4 + r() * 0.6 },
+	{ tw: 900, th: 328, n: 384, semente: 743, raio: (r) => 0.8 + Math.pow(r(), 2) * 1, op: (r) => 0.6 + r() * 0.4 },
+	{ tw: 1150, th: 419, n: 48, semente: 747, raio: (r) => 1.2 + r() * 0.9, op: () => 1, halo: true },
+];
+function rioCorrente({ tw, th, n, semente, raio, op, halo }) {
+	const r = sorteio(semente), grupos = new Map();
+	for (let i = 0; i < n; i++) {
+		const x = r() * tw, y = r() * th, s = raio(r), o = Math.round(op(r) * 10) / 10;
+		let e = '';
+		for (const dx of [0, -tw, tw]) for (const dy of [0, -th, th]) {
+			const cx = x + dx, cy = y + dy, borda = halo ? s * 4.5 + 1 : s + 1;
+			if (cx < -borda || cx > tw + borda || cy < -borda || cy > th + borda) continue;
+			e += (halo ? `<circle cx="${f(cx)}" cy="${f(cy)}" r="${f(s * 4.5)}" fill="url(#h)"/>` : '') + `<circle cx="${f(cx)}" cy="${f(cy)}" r="${f(s)}"/>`;
+		}
+		grupos.set(o, (grupos.get(o) || '') + e);
+	}
+	const g = [...grupos].map(([o, e]) => (o < 1 ? `<g opacity="${o}">${e}</g>` : e)).join('');
+	return `<svg xmlns="http://www.w3.org/2000/svg" width="${tw}" height="${th}" viewBox="0 0 ${tw} ${th}" fill="#fff"><defs><radialGradient id="h"><stop offset="0" stop-color="#fff"/><stop offset=".25" stop-color="#fff" stop-opacity=".5"/><stop offset="1" stop-color="#fff" stop-opacity="0"/></radialGradient></defs>${g}</svg>\n`;
+}
+RIO_CORRENTE.forEach((c, k) => fs.writeFileSync(`public/temas/camada-constelacao-corrente-${k + 1}.svg`, rioCorrente(c)));
 
 // Camadas que se mexem por cima das capas (máscaras brancas no mesmo quadro de 1800 x 520, recortadas como a capa):
 // a cor vem do CSS de cada paleta.
 const CAMADAS = {
 	'constelacao-fluxo': rioFluxo(),
-	'constelacao-brilho-1': rioBrilho(0),
-	'constelacao-brilho-2': rioBrilho(1),
-	'mapa-ondas': mapaOndas(),
+	'constelacao-leito': rioLeito(),
+	'mapa-ondas-1': mapaOndas(0),
+	'mapa-ondas-2': mapaOndas(1),
 	'mapa-barco': mapaBarco(),
-	'abissal-algas': abissalAlgas(),
+	'abissal-algas-1': abissalAlgas(0),
+	'abissal-algas-2': abissalAlgas(1),
 	...Object.fromEntries([0, 1, 2].map((k) => [`abissal-medusa-${k + 1}`, abissalMedusa(k)])),
-	...Object.fromEntries([0, 1, 2].map((k) => [`forja-runas-${k + 1}`, forjaRunas(k)])),
+	'forja-runas-acesas': forjaRunasAcesas(),
+	...Object.fromEntries([0, 1, 2].map((k) => [`bosque-vagalumes-${k + 1}`, bosqueVagalumes(k)])),
+	'vitral-luz-1': vitralLuz(0),
+	'vitral-luz-2': vitralLuz(1),
+	'vitral-halo-1': vitralHalo(0),
+	'vitral-halo-2': vitralHalo(1),
+	'vitral-poeira': vitralPoeira(),
+	...Object.fromEntries(PULSOS.map((_, k) => [`circuito-pulso-${k + 1}`, circuitoPulso(k)])),
+	'circuito-leds-1': circuitoLeds(0),
+	'circuito-leds-2': circuitoLeds(1),
 };
 for (const [nome, corpo] of Object.entries(CAMADAS)) {
 	fs.writeFileSync(`public/temas/camada-${nome}.svg`, `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${W} ${H}" preserveAspectRatio="xMidYMid slice" fill="none" stroke="#fff">${corpo}</svg>\n`);
@@ -822,9 +1019,6 @@ for (const [nome, corpo] of Object.entries(CAMADAS)) {
 // que se repete sem emenda, para a camada poder deslizar em loop só com transform.
 const PARTICULAS = {
 	poeira: { t: 320, n: 26, forma: (x, y, r) => `<circle cx="${x}" cy="${y}" r="${f(0.6 + r() * 1.5)}" opacity="${f(0.35 + r() * 0.65)}"/>` },
-	vagalumes: { t: 420, n: 9, forma: (x, y, r) => `<circle cx="${x}" cy="${y}" r="${f(5 + r() * 5)}" fill="url(#halo)"/><circle cx="${x}" cy="${y}" r="1.6"/>` },
-	brasas: { t: 300, n: 18, forma: (x, y, r) => `<ellipse cx="${x}" cy="${y}" rx="${f(0.8 + r() * 1.2)}" ry="${f(2 + r() * 3)}" opacity="${f(0.45 + r() * 0.55)}"/>` },
-	bolhas: { t: 340, n: 12, forma: (x, y, r) => `<circle cx="${x}" cy="${y}" r="${f(2 + r() * 5)}" fill="none" stroke="#fff" stroke-width="1.2" opacity="${f(0.45 + r() * 0.5)}"/>` },
 	brilhos: { t: 380, n: 10, forma: (x, y, r) => { const s = f(3 + r() * 5); return `<path d="M ${x} ${f(y - s)} Q ${f(x + s * 0.18)} ${f(y - s * 0.18)} ${f(x + s)} ${y} Q ${f(x + s * 0.18)} ${f(y + s * 0.18)} ${x} ${f(y + s)} Q ${f(x - s * 0.18)} ${f(y + s * 0.18)} ${f(x - s)} ${y} Q ${f(x - s * 0.18)} ${f(y - s * 0.18)} ${x} ${f(y - s)} Z" opacity="${f(0.5 + r() * 0.5)}"/>`; } },
 	luzes: { t: 400, n: 10, forma: (x, y, r) => `<circle cx="${x}" cy="${y}" r="${f(6 + r() * 10)}" fill="url(#halo)"/>` },
 };
@@ -896,23 +1090,19 @@ for (const modo of ['classico-escuro', 'classico-claro', ...CORES.classico.slice
 	}
 }
 
-// O selo da capa do Grimório, no metal de cada paleta.
-const seloDourado = fs.readFileSync('public/temas/selo-dourado.svg', 'utf8');
-for (const cor of CORES.grimorio.slice(1)) fs.writeFileSync(`public/temas/selo-grimorio-${cor}.svg`, seloDourado.split('#d9b47a').join(ornamentoFantasia('grimorio', cor).canto));
-
-// Observatório e Codex: o anel do astrolábio e as estrelas da capa, recoloridos em cada paleta.
-const pecas = Object.fromEntries(['astrolabio-anel-dourado', 'astrolabio-anel-tinta', 'estrelas-douradas', 'estrelas-tinta'].map((n) => [n, fs.readFileSync(`public/temas/${n}.svg`, 'utf8')]));
+// Observatório e Codex: as estrelas da capa, recoloridas em cada paleta. (Os anéis da capa são peças animadas, em
+// máscara branca, de tools/gerar-decoracoes.mjs; a cor deles vem do CSS.) O fundo das páginas do Codex usa o campo largo
+// de 1200 px (tools/gerar-assets-temas.mjs), também recolorido.
+const pecas = Object.fromEntries(['estrelas-douradas', 'estrelas-tinta', 'estrelas-douradas-largo', 'estrelas-tinta-largo'].map((n) => [n, fs.readFileSync(`public/temas/${n}.svg`, 'utf8')]));
 const recolorir = (peca, de, para, arquivo) => fs.writeFileSync(`public/temas/${arquivo}.svg`, pecas[peca].split(de).join(para));
 for (const cor of CORES.observatorio.slice(1)) {
-	const e = capaAstra('observatorio', cor, 'escuro'), cl = capaAstra('observatorio', cor, 'claro');
-	recolorir('astrolabio-anel-dourado', '#d9b47a', e.anel, `anel-observatorio-${cor}-escuro`);
-	recolorir('astrolabio-anel-tinta', '#1b2a3e', cl.anel, `anel-observatorio-${cor}-claro`);
+	const e = capaAstra('observatorio', cor, 'escuro');
 	recolorir('estrelas-douradas', '#e3c38f', e.estrelas, `estrelas-observatorio-${cor}`);
 }
 for (const cor of CORES.codex.slice(1)) {
 	const e = capaAstra('codex', cor, 'escuro'), cl = capaAstra('codex', cor, 'claro');
-	recolorir('astrolabio-anel-dourado', '#d9b47a', e.anel, `anel-codex-${cor}-escuro`);
-	recolorir('astrolabio-anel-tinta', '#1b2a3e', cl.anel, `anel-codex-${cor}-claro`);
 	recolorir('estrelas-douradas', '#e3c38f', e.estrelas, `estrelas-codex-${cor}-escuro`);
 	recolorir('estrelas-tinta', '#1b2a3e', cl.estrelas, `estrelas-codex-${cor}-claro`);
+	recolorir('estrelas-douradas-largo', '#e3c38f', e.estrelas, `estrelas-codex-${cor}-escuro-largo`);
+	recolorir('estrelas-tinta-largo', '#1b2a3e', cl.estrelas, `estrelas-codex-${cor}-claro-largo`);
 }

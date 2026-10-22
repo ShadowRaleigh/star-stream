@@ -71,6 +71,62 @@ const coresIniciais = coresDe[TEMAS[0].id];
 		return arquivosDeCor.get(tema)!;
 	};
 
+	// Imagens (fundos e máscaras, inclusive de ::before e ::after) e fontes que a página usa no estado atual.
+	const recursosDaPagina = () => {
+		const urls = new Set<string>();
+		const fontes = new Set<string>();
+		const elementos = [raiz, document.body, ...document.querySelectorAll('header.header, .ss-capa, .ss-capa *, .ss-ambiente *, main, .sidebar-pane')];
+		for (const el of elementos) {
+			for (const pseudo of [null, '::before', '::after']) {
+				const estilo = getComputedStyle(el, pseudo);
+				for (const valor of [estilo.backgroundImage, estilo.maskImage, estilo.getPropertyValue('-webkit-mask-image')]) {
+					for (const [, url] of (valor || '').matchAll(/url\("?([^")]+)"?\)/g)) urls.add(url);
+				}
+			}
+		}
+		for (const el of document.querySelectorAll('body, h1, h2, .sl-link-card .title, header.header')) fontes.add(getComputedStyle(el).fontFamily.split(',')[0].trim());
+		return { urls: [...urls], fontes: [...fontes] };
+	};
+
+	// Troca de tema sem piscar: aplica a mudança por um instante (sem pintar a tela, tudo na mesma tarefa), anota as
+	// imagens e fontes que o tema novo vai usar, desfaz, espera elas chegarem e só então aplica de vez. Na primeira vez
+	// que um tema ou cor é aberto, o banner aparecia em branco ou na paleta errada por um instante enquanto a arte baixava.
+	const aplicarSemPiscar = async (mudar: () => void) => {
+		const antes = { ...raiz.dataset };
+		// A sondagem recalcula o estilo duas vezes: as animações do tema atual seriam recriadas do zero (um pulo
+		// visível) e as transições dos links disparariam. Guarda o ponto de cada animação e desliga as transições.
+		const tempos = new Map<string, CSSNumberish | null>();
+		const chave = (a: Animation) => {
+			const efeito = a.effect as KeyframeEffect | null;
+			return efeito?.target ? `${(a as CSSAnimation).animationName}|${efeito.pseudoElement ?? ''}|${elementos.indexOf(efeito.target)}` : '';
+		};
+		const elementos = [...document.querySelectorAll('*')];
+		for (const a of document.getAnimations()) if ('animationName' in a) tempos.set(chave(a), a.currentTime);
+		raiz.dataset.ssSondando = '';
+		mudar();
+		const { urls, fontes } = recursosDaPagina();
+		for (const chave of Object.keys(raiz.dataset)) if (!(chave in antes) && chave !== 'ssSondando') delete raiz.dataset[chave];
+		Object.assign(raiz.dataset, antes);
+		getComputedStyle(raiz).color;
+		for (const a of document.getAnimations()) {
+			const t = 'animationName' in a ? tempos.get(chave(a)) : undefined;
+			if (t != null && a.currentTime !== t) a.currentTime = t;
+		}
+		delete raiz.dataset.ssSondando;
+		const imagens = urls.map((url) => {
+			const img = new Image();
+			img.src = url;
+			return img.decode().catch(() => {});
+		});
+		const tipos = fontes.map((nome) => document.fonts.load(`1em ${nome}`).catch(() => {}));
+		// Enquanto a arte do tema novo chega, o cursor avisa que a troca está em andamento. Nunca trava: numa rede muito
+		// lenta, aplica depois de 3 s mesmo assim (com 1,2 s, uma conexão lenta trocava antes da arte e o banner piscava).
+		raiz.style.cursor = 'progress';
+		await Promise.race([Promise.all([...imagens, ...tipos]), new Promise((ok) => setTimeout(ok, 3000))]);
+		raiz.style.cursor = '';
+		mudar();
+	};
+
 	class SeletorDeTema extends HTMLElement {
 		connectedCallback() {
 			const tema = this.querySelector<HTMLSelectElement>('select.tema');
@@ -109,17 +165,21 @@ const coresIniciais = coresDe[TEMAS[0].id];
 				} catch {}
 				const escolhida = lista.find((c) => c.id === salva)?.id || lista[0]?.id;
 				if (escolhida && escolhida !== lista[0].id) await carregarCores(novo);
-				raiz.dataset.ssTema = novo;
-				raiz.dataset.ssFamilia = familias[novo];
-				if (escolhida) raiz.dataset.ssCor = escolhida;
-				else delete raiz.dataset.ssCor;
+				await aplicarSemPiscar(() => {
+					raiz.dataset.ssTema = novo;
+					raiz.dataset.ssFamilia = familias[novo];
+					if (escolhida) raiz.dataset.ssCor = escolhida;
+					else delete raiz.dataset.ssCor;
+				});
 				sincronizar();
 			});
 
 			cor.addEventListener('change', async () => {
 				const lista = cores[tema.value] || [];
 				if (cor.value !== lista[0]?.id) await carregarCores(tema.value);
-				raiz.dataset.ssCor = cor.value;
+				await aplicarSemPiscar(() => {
+					raiz.dataset.ssCor = cor.value;
+				});
 				try {
 					localStorage.setItem(`ss-cor-${tema.value}`, cor.value);
 				} catch {}

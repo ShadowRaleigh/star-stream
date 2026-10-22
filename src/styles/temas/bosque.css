@@ -58,8 +58,14 @@
 	--sl-color-bg-sidebar: transparent;
 	--sl-color-hairline: rgb(70 95 60 / 0.3);
 	--sl-color-hairline-light: rgb(70 95 60 / 0.45);
+	/* Fundo: só o grão fino, em dois ladrilhos de tamanhos que não batem (300 e 437 px, deslocados), e as manchas
+	   grandes em gradientes que não se repetem: a mancha larga do ladrilho de antes se repetia em grade numa tela grande. */
 	--ss-fundo:
-		url('/star-stream/temas/material-bosque.svg') 0 0 / 300px,
+		url('/star-stream/temas/grao-bosque.svg') 0 0 / 300px,
+		url('/star-stream/temas/grao-bosque.svg') 137px 61px / 437px,
+		radial-gradient(ellipse 38% 30% at 14% 64%, rgb(0 0 0 / 0.3), transparent 70%),
+		radial-gradient(ellipse 32% 26% at 86% 30%, rgb(0 0 0 / 0.24), transparent 70%),
+		radial-gradient(ellipse 30% 24% at 64% 92%, rgb(0 0 0 / 0.22), transparent 70%),
 		radial-gradient(ellipse at 50% 0%, #23402b, #0c1a10 70%),
 		#0c1a10;
 	--ss-tabela-cabecalho: rgb(46 107 58 / 0.08);

@@ -47,6 +47,30 @@
 		ambiente.setAttribute('aria-hidden', 'true');
 		ambiente.innerHTML = '<div class="ss-cintilar"><i></i><i></i><i></i></div><div class="ss-subida"><i></i></div><div class="ss-deco"><i></i><i></i><i></i><i></i><i></i><i></i></div><div class="ss-deco2"><i></i><i></i><i></i><i></i><i></i><i></i></div>';
 		document.body.prepend(ambiente);
+
+		// Onde o índice "Nesta página" termina na tela, em --ss-fim-indice (0 quando a página não tem índice): as
+		// decorações da coluna da direita ficam abaixo dele e encolhem ou somem quando ele é longo, em vez de passar
+		// por baixo dos links. O índice fica fixo ao rolar, mas a posição dele muda no começo da página.
+		const indice = document.querySelector('.right-sidebar starlight-toc');
+		const raiz = document.documentElement;
+		let pendente = false;
+		let ultimo = -1;
+		const medir = () => {
+			pendente = false;
+			const fim = indice && indice.offsetParent ? Math.max(0, Math.round(indice.getBoundingClientRect().bottom)) : 0;
+			// Só grava quando muda: trocar uma variável da raiz faz o navegador recalcular o estilo da página inteira.
+			if (fim !== ultimo) raiz.style.setProperty('--ss-fim-indice', `${(ultimo = fim)}px`);
+		};
+		const agendar = () => {
+			if (!pendente) {
+				pendente = true;
+				requestAnimationFrame(medir);
+			}
+		};
+		medir();
+		addEventListener('resize', agendar, { passive: true });
+		addEventListener('scroll', agendar, { passive: true });
+		if (indice && 'ResizeObserver' in window) new ResizeObserver(agendar).observe(indice);
 	});
 	const modo = { claro: 'light', escuro: 'dark' }[busca.get('modo')];
 	if (modo) {

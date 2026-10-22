@@ -6,8 +6,6 @@
 	--ss-noite: #0f1626;
 	--ss-noite-rgb: 15 22 38;
 	--ss-link-claro: #23406b;
-	--ss-capa-anel-claro: url('/star-stream/temas/astrolabio-anel-tinta.svg');
-	--ss-capa-anel-escuro: url('/star-stream/temas/astrolabio-anel-dourado.svg');
 	--ss-capa-estrelas-claro: url('/star-stream/temas/estrelas-tinta.svg');
 	--ss-capa-estrelas-escuro: url('/star-stream/temas/estrelas-douradas.svg');
 	--ss-ouro: #a8823f;
@@ -31,7 +29,7 @@
 	--sl-color-bg-sidebar: #111a2c;
 	--sl-color-hairline: rgb(215 180 109 / 0.18);
 	--sl-color-hairline-light: rgb(215 180 109 / 0.28);
-	--ss-fundo: url('/star-stream/temas/estrelas-douradas.svg') 0 0 / 600px, #0f1626;
+	--ss-fundo: url('/star-stream/temas/estrelas-douradas-largo.svg') 0 0 / 1200px, #0f1626;
 	--ss-tabela-cabecalho: transparent;
 	--ss-tabela-listra: transparent;
 }
@@ -55,7 +53,7 @@
 	--sl-color-hairline: rgb(168 130 63 / 0.25);
 	--sl-color-hairline-light: rgb(168 130 63 / 0.38);
 	--ss-fundo:
-		url('/star-stream/temas/estrelas-tinta.svg') 0 0 / 600px,
+		url('/star-stream/temas/estrelas-tinta-largo.svg') 0 0 / 1200px,
 		#f7f1e3;
 }
 
@@ -71,7 +69,6 @@
 [data-ss-tema='codex'] .sidebar-pane {
 	border-inline-end: 1px solid var(--sl-color-hairline-light);
 }
-
 [data-ss-tema='codex'] .sidebar-content summary .large {
 	font-family: 'Cinzel', serif;
 	font-size: 0.85rem;

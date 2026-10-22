@@ -59,8 +59,14 @@
 	--sl-color-bg-sidebar: transparent;
 	--sl-color-hairline: rgb(80 76 92 / 0.3);
 	--sl-color-hairline-light: rgb(80 76 92 / 0.45);
+	/* Fundo: só o grão fino, em dois ladrilhos de tamanhos que não batem (300 e 437 px, deslocados), e as manchas
+	   grandes em gradientes que não se repetem: a mancha larga do ladrilho de antes se repetia em grade numa tela grande. */
 	--ss-fundo:
-		url('/star-stream/temas/material-vitral.svg') 0 0 / 300px,
+		url('/star-stream/temas/grao-vitral.svg') 0 0 / 300px,
+		url('/star-stream/temas/grao-vitral.svg') 137px 61px / 437px,
+		radial-gradient(ellipse 38% 30% at 14% 64%, rgb(0 0 0 / 0.3), transparent 70%),
+		radial-gradient(ellipse 32% 26% at 86% 30%, rgb(0 0 0 / 0.24), transparent 70%),
+		radial-gradient(ellipse 30% 24% at 64% 92%, rgb(0 0 0 / 0.22), transparent 70%),
 		radial-gradient(ellipse at 50% 0%, #24202f, #0e0c13 70%),
 		#0e0c13;
 	--ss-tabela-cabecalho: rgb(125 29 46 / 0.08);
@@ -88,6 +94,20 @@
 
 [data-ss-tema='vitral'] .ss-capa {
 	background: url('/star-stream/temas/capa-vitral.svg') center / cover;
+}
+
+/* Até 75rem a capa é mais estreita que a arte: com "cover", as janelas de fora (e, no celular, as de dentro) ficavam
+   cortadas ao meio nas bordas. Aqui a arte é dimensionada pela largura para mostrar exatamente o vão entre as janelas
+   de fora (1420 dos 1800 da arte): o par de dentro aparece inteiro e o de fora fica fora da capa. A arte encosta
+   embaixo; no celular, onde ela fica mais baixa que a capa, a faixa que sobra em cima é a cor do alto da parede. As
+   camadas de luz e de pó seguem o mesmo enquadramento (animacoes.css). */
+@media (max-width: 75rem) {
+	[data-ss-tema='vitral'] .ss-capa {
+		background-size: calc(100% * 1800 / 1420) auto;
+		background-position: center bottom;
+		background-repeat: no-repeat;
+		background-color: var(--ss-vitral-parede, #1c1925);
+	}
 }
 
 /* A Cormorant Garamond só tem até o 600: o título usa o peso que existe, sem negrito falso. */

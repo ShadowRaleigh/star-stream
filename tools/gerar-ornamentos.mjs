@@ -7,14 +7,29 @@ import { CORES } from '../src/cores.mjs';
 import { ornamentoFantasia } from './paletas.mjs';
 
 // Ruído em duas camadas, como o couro e o pergaminho do Grimório; as cores mudam por tema.
+// A região do filtro é exatamente o ladrilho (x/y 0, 100%): por padrão ela sobra 10% para cada lado, e o "stitch" do
+// ruído emenda as bordas dessa região maior, não as do ladrilho, o que deixava uma costura a cada repetição (o fundo
+// "lajotado"). O material da capa usa ladrilho de 600 px, para a mancha larga não se repetir em grade à vista.
 function ruido(tam, fina, larga) {
 	const m = ([r, g, b, a]) => `0 0 0 0 ${r}  0 0 0 0 ${g}  0 0 0 0 ${b}  0 0 0 ${a} 0`;
 	return `<svg xmlns="http://www.w3.org/2000/svg" width="${tam}" height="${tam}">
-<filter id="v"><feTurbulence type="fractalNoise" baseFrequency="${larga.freq}" numOctaves="3" seed="${larga.semente}" stitchTiles="stitch"/>
+<filter id="v" x="0" y="0" width="100%" height="100%"><feTurbulence type="fractalNoise" baseFrequency="${larga.freq}" numOctaves="3" seed="${larga.semente}" stitchTiles="stitch"/>
 <feColorMatrix values="${m(larga.cor)}"/></filter>
-<filter id="c"><feTurbulence type="fractalNoise" baseFrequency="${fina.freq}" numOctaves="3" seed="${fina.semente}" stitchTiles="stitch"/>
+<filter id="c" x="0" y="0" width="100%" height="100%"><feTurbulence type="fractalNoise" baseFrequency="${fina.freq}" numOctaves="3" seed="${fina.semente}" stitchTiles="stitch"/>
 <feColorMatrix values="${m(fina.cor)}"/></filter>
 <rect width="100%" height="100%" filter="url(#v)"/><rect width="100%" height="100%" filter="url(#c)"/></svg>
+`;
+}
+
+// Só o grão fino, sem a mancha larga: é o que vai no fundo da página. Mesmo sem costura, a mancha larga do ladrilho
+// se repetia a cada 600 px numa tela grande (o mesmo desenho de manchas em grade); no fundo, as manchas grandes são
+// gradientes radiais do --ss-fundo, que não se repetem. O material com a mancha continua no cabeçalho e na capa.
+function grao(tam, fina) {
+	const m = ([r, g, b, a]) => `0 0 0 0 ${r}  0 0 0 0 ${g}  0 0 0 0 ${b}  0 0 0 ${a} 0`;
+	return `<svg xmlns="http://www.w3.org/2000/svg" width="${tam}" height="${tam}">
+<filter id="c" x="0" y="0" width="100%" height="100%"><feTurbulence type="fractalNoise" baseFrequency="${fina.freq}" numOctaves="3" seed="${fina.semente}" stitchTiles="stitch"/>
+<feColorMatrix values="${m(fina.cor)}"/></filter>
+<rect width="100%" height="100%" filter="url(#c)"/></svg>
 `;
 }
 
@@ -102,7 +117,8 @@ const TEMAS = {
 };
 
 for (const [tema, t] of Object.entries(TEMAS)) {
-	fs.writeFileSync(`public/temas/material-${tema}.svg`, ruido(300, t.material.fina, t.material.larga));
+	fs.writeFileSync(`public/temas/material-${tema}.svg`, ruido(600, t.material.fina, t.material.larga));
+	fs.writeFileSync(`public/temas/grao-${tema}.svg`, grao(300, t.material.fina));
 	fs.writeFileSync(`public/temas/papel-${tema}.svg`, ruido(400, t.papel.fina, t.papel.larga));
 	for (const [lado, espelho] of Object.entries(ESPELHOS)) {
 		fs.writeFileSync(
@@ -114,13 +130,17 @@ for (const [tema, t] of Object.entries(TEMAS)) {
 	console.log('ok', tema);
 }
 
+// O grão do couro do Grimório (o couro.svg sai de tools/gerar-assets-temas.mjs), para o fundo da página.
+fs.writeFileSync('public/temas/grao-grimorio.svg', grao(300, { freq: 0.8, semente: 4, cor: [0.12, 0.07, 0.03, 0.35] }));
+
 // Paletas: cantos e florão recoloridos, e uma textura de capa na cor do couro de cada uma.
 const cantosGrimorio = Object.fromEntries(Object.keys(ESPELHOS).map((lado) => [lado, fs.readFileSync(`public/temas/canto-ouro-${lado}.svg`, 'utf8')]));
 const floraoGrimorio = fs.readFileSync('public/temas/florao-tinta.svg', 'utf8');
 for (const tema of ['grimorio', ...Object.keys(TEMAS)]) {
 	for (const cor of CORES[tema].slice(1)) {
 		const o = ornamentoFantasia(tema, cor);
-		fs.writeFileSync(`public/temas/material-${tema}-${cor}.svg`, ruido(300, o.material.fina, o.material.larga));
+		fs.writeFileSync(`public/temas/material-${tema}-${cor}.svg`, ruido(600, o.material.fina, o.material.larga));
+		fs.writeFileSync(`public/temas/grao-${tema}-${cor}.svg`, grao(300, o.material.fina));
 		for (const [lado, espelho] of Object.entries(ESPELHOS)) {
 			const svg = tema === 'grimorio'
 				? cantosGrimorio[lado].split('#a87b3a').join(o.canto)

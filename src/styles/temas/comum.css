@@ -159,19 +159,13 @@
 	}
 }
 
-/* As partículas que sobem ficam na área do texto, sem passar por cima da barra lateral. */
-@media (min-width: 50rem) {
-	:root[data-ss-familia='fantasia'] .ss-subida {
-		left: var(--sl-sidebar-width);
-	}
-}
-
 /* Barra lateral e índice em tamanho de leitura nos temas de serifa do Astra; o índice ganha fundo para as estrelas
-   não cruzarem as letras. */
+   não cruzarem as letras. O fundo vale só para o alto da coluna, onde ficam os links, e some para baixo: o instrumento
+   de cada tema mora na parte de baixo dessa coluna e aparece inteiro, sem uma borda de painel cortando o desenho. */
 :root:is([data-ss-tema='codex'], [data-ss-tema='observatorio'], [data-ss-tema='astrolabio']) :is(.sidebar-content a, .right-sidebar a) {
 	font-size: 1rem;
 }
 
 :root:is([data-ss-tema='codex'], [data-ss-tema='observatorio'], [data-ss-tema='astrolabio']) .right-sidebar {
-	background: var(--sl-color-bg-sidebar);
+	background: linear-gradient(color-mix(in srgb, var(--sl-color-bg-sidebar) 80%, transparent) 30%, transparent 70%);
 }

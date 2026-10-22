@@ -309,3 +309,162 @@ h1#_top {
 		--ss-largura-indice: 19rem;
 	}
 }
+
+/* Durante a troca de tema, o seletor sonda o tema novo por um instante (SeletorDeTema.astro): sem transições nesse
+   meio-tempo, nada na página reage à sondagem. */
+:root[data-ss-sondando] *,
+:root[data-ss-sondando] *::before,
+:root[data-ss-sondando] *::after {
+	transition: none !important;
+}
+
+/* ---- Busca no cabeçalho: uma linha editorial, sem caixa ----
+   Lupa, um convite em itálico e um filete fino embaixo, que acende do centro para as pontas ao passar o mouse.
+   Cada família ajusta o tom: o Astra é um livro de astronomia, a fantasia um tomo com pauta dupla, o sci-fi um
+   terminal com cursor. O texto do botão vem do Starlight ("Pesquisar"); o convite de cada tema é desenhado por cima,
+   e o nome acessível continua sendo o do botão. */
+@media (min-width: 50rem) {
+	:root[data-ss-tema] site-search button[data-open-modal] {
+		position: relative;
+		max-width: 19rem;
+		height: 2.25rem;
+		padding: 0 0.15rem;
+		gap: 0.6rem;
+		border: 0;
+		border-bottom: 1px solid var(--ss-busca-linha, color-mix(in srgb, var(--sl-color-accent) 40%, transparent));
+		border-radius: 0;
+		background: none;
+		color: var(--sl-color-gray-3);
+	}
+
+	/* O filete aceso, por cima do filete apagado. */
+	:root[data-ss-tema] site-search button[data-open-modal]::after {
+		content: '';
+		position: absolute;
+		inset: auto 0 -1px;
+		height: 1px;
+		background: var(--sl-color-accent);
+		transform: scaleX(0);
+		transition: transform 0.35s ease;
+	}
+
+	:root[data-ss-tema] site-search button[data-open-modal]:is(:hover, :focus-visible)::after {
+		transform: scaleX(1);
+	}
+
+	:root[data-ss-tema] site-search button[data-open-modal]:is(:hover, :focus-visible) {
+		color: var(--sl-color-white);
+		outline: none;
+	}
+
+	:root[data-ss-tema] site-search button[data-open-modal] > svg {
+		color: var(--sl-color-accent);
+		font-size: 1.05rem;
+	}
+
+	/* O convite do tema no lugar de "Pesquisar". */
+	:root[data-ss-tema] site-search button[data-open-modal] > span {
+		font-size: 0;
+	}
+
+	:root[data-ss-tema] site-search button[data-open-modal] > span::before {
+		content: var(--ss-busca-texto, 'Buscar no livro…');
+		font-family: var(--ss-busca-fonte, 'EB Garamond Variable', 'EB Garamond', Georgia, serif);
+		font-style: var(--ss-busca-estilo, italic);
+		font-size: var(--ss-busca-tamanho, 1.02rem);
+		letter-spacing: var(--ss-busca-espaco, 0.01em);
+	}
+
+	/* O atalho vira uma nota discreta, sem caixinha. */
+	:root[data-ss-tema] site-search button[data-open-modal] > kbd,
+	:root[data-ss-tema] site-search button[data-open-modal] > kbd > kbd {
+		background: none;
+		padding: 0;
+		color: var(--sl-color-gray-4);
+		font-size: 0.72rem;
+		letter-spacing: 0.04em;
+	}
+
+	/* Fantasia: um tomo; o convite é outro e a linha é uma pauta dupla dourada. */
+	:root[data-ss-familia='fantasia'] {
+		--ss-busca-texto: 'Buscar no tomo…';
+	}
+
+	:root[data-ss-familia='fantasia'] site-search button[data-open-modal] {
+		border-bottom: 3px double rgb(var(--ss-ouro-rgb) / 0.55);
+		color: var(--ss-ouro-claro);
+	}
+
+	:root[data-ss-familia='fantasia'] site-search button[data-open-modal]::after {
+		bottom: -3px;
+		height: 3px;
+		background: none;
+		border-block: 1px solid var(--ss-ouro);
+	}
+
+	:root[data-ss-familia='fantasia'] site-search button[data-open-modal] > svg {
+		color: var(--ss-ouro);
+	}
+
+	:root[data-ss-familia='fantasia'] site-search button[data-open-modal] > kbd,
+	:root[data-ss-familia='fantasia'] site-search button[data-open-modal] > kbd > kbd {
+		color: rgb(var(--ss-ouro-rgb) / 0.6);
+	}
+
+	/* Sci-fi: um terminal. Fonte mono, sem itálico, e o cursor piscando depois do comando. */
+	:root[data-ss-familia='scifi'] {
+		--ss-busca-texto: 'buscar';
+		--ss-busca-fonte: var(--ss-mono);
+		--ss-busca-estilo: normal;
+		--ss-busca-tamanho: 0.82rem;
+		--ss-busca-espaco: 0.14em;
+		--ss-busca-linha: rgb(var(--ss-ciano-rgb) / 0.4);
+	}
+
+	:root[data-ss-familia='scifi'] site-search button[data-open-modal] > span::before {
+		content: '> ' var(--ss-busca-texto);
+		color: var(--ss-ciano);
+	}
+
+	:root[data-ss-familia='scifi'] site-search button[data-open-modal] > span::after {
+		content: '';
+		display: inline-block;
+		width: 0.5em;
+		height: 1em;
+		margin-inline-start: 0.2em;
+		vertical-align: -0.15em;
+		background: var(--ss-ciano);
+		font-size: 0.82rem;
+		opacity: 0.7;
+	}
+
+	/* O cursor fica aceso e parado: piscar no topo de toda página cansaria a vista. Só pisca quando a busca é chamada. */
+	:root[data-ss-familia='scifi'] site-search button[data-open-modal]:is(:hover, :focus-visible) > span::after {
+		opacity: 1;
+		animation: ss-cursor 1.1s steps(1) infinite;
+	}
+
+	:root[data-ss-familia='scifi'] site-search button[data-open-modal]::after {
+		background: var(--ss-ciano);
+	}
+
+	:root[data-ss-familia='scifi'] site-search button[data-open-modal] > svg {
+		color: var(--ss-ciano);
+	}
+}
+
+@keyframes ss-cursor {
+	50% {
+		opacity: 0;
+	}
+}
+
+@media (prefers-reduced-motion: reduce) {
+	:root[data-ss-tema] site-search button[data-open-modal]::after {
+		transition: none;
+	}
+
+	:root[data-ss-familia='scifi'] site-search button[data-open-modal] > span::after {
+		animation: none;
+	}
+}

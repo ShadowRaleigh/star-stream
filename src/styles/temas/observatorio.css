@@ -24,7 +24,7 @@
 	--sl-color-hairline-light: rgb(201 161 93 / 0.3);
 	--ss-fundo:
 		radial-gradient(ellipse 70% 60% at 100% 0%, rgb(201 161 93 / 0.08), transparent 70%),
-		url('/star-stream/temas/estrelas-douradas.svg') 0 0 / 600px,
+		url('/star-stream/temas/estrelas-douradas-largo.svg') 0 0 / 1200px,
 		#121110;
 	--ss-tabela-cabecalho: transparent;
 	--ss-tabela-listra: rgb(201 161 93 / 0.035);
@@ -75,7 +75,6 @@
 [data-ss-tema='observatorio'] .sidebar-pane {
 	border-inline-end: 1px solid var(--sl-color-hairline-light);
 }
-
 [data-ss-tema='observatorio'] .sidebar-content summary .large {
 	font-family: var(--ss-display);
 	font-size: 1.05rem;
@@ -147,8 +146,8 @@
 	width: 1.5rem;
 	height: 1.5rem;
 	background: var(--sl-color-accent);
-	-webkit-mask: url('/star-stream/temas/deco/icone-astro.svg') center / contain no-repeat;
-	mask: url('/star-stream/temas/deco/icone-astro.svg') center / contain no-repeat;
+	-webkit-mask: url('/star-stream/temas/deco/icone-observatorio.svg') center / contain no-repeat;
+	mask: url('/star-stream/temas/deco/icone-observatorio.svg') center / contain no-repeat;
 }
 
 [data-ss-tema='observatorio'] .sl-markdown-content h2::after {
@@ -257,16 +256,9 @@
 	color: var(--ss-latao-claro);
 }
 
+/* O fundo, a moldura e o brilho da capa ficam em banners.css; os anéis que giram, em animacoes.css. */
 [data-ss-tema='observatorio'] .ss-capa {
 	border-radius: 2px;
-	border: 1px solid var(--ss-latao);
-	outline: 1px solid var(--sl-color-hairline-light);
-	outline-offset: 5px;
-	background:
-		url('/star-stream/temas/astrolabio-dourado.svg') center / 560px no-repeat,
-		radial-gradient(ellipse at center, rgb(18 17 16 / 0.35), rgb(18 17 16 / 0.92)),
-		var(--ss-galaxia) center / cover;
-	background-blend-mode: soft-light, normal, normal;
 }
 
 [data-ss-tema='observatorio'] .ss-abertura .ss-versao {

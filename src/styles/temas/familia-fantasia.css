@@ -2,7 +2,7 @@
    Cada tema da família (Grimório, Bosque Feérico, Vitral, Forja Rúnica) define só as cores, as texturas, os ornamentos, as fontes e a capa. */
 
 [data-ss-familia='fantasia'] header.header {
-	background: var(--ss-material) 0 0 / 300px, var(--ss-capa-fundo);
+	background: var(--ss-material) 0 0 / 600px, var(--ss-capa-fundo);
 	border-bottom: 1px solid var(--ss-ouro);
 	box-shadow: 0 3px 0 -1px var(--ss-couro-escuro), 0 4px 0 -1px rgb(var(--ss-ouro-rgb) / 0.5), 0 10px 24px rgb(0 0 0 / 0.5);
 }
@@ -265,7 +265,7 @@
 }
 
 [data-ss-familia='fantasia'] mobile-starlight-toc nav {
-	background: var(--ss-material) 0 0 / 300px, var(--ss-couro-escuro);
+	background: var(--ss-material) 0 0 / 600px, var(--ss-couro-escuro);
 	border-bottom: 1px solid var(--ss-ouro);
 }
 

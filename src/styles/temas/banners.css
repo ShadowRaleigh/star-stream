@@ -59,9 +59,11 @@
 	position: absolute;
 	inset: -40px;
 	z-index: -2;
-	/* A galáxia vai borrada: uma versão de 480 px fica igual depois do desfoque e pesa um oitavo. */
-	background: url('/star-stream/galaxia-borrada.webp') center 40% / cover;
-	filter: blur(22px) saturate(1.8) hue-rotate(var(--ss-matiz));
+	/* A galáxia vai borrada: uma versão de 480 px, já desfocada e saturada no arquivo (tools/gerar-assets-temas.mjs),
+	   porque esta camada deriva o tempo todo e um desfoque no CSS seria refeito a cada quadro. Fica só o giro de matiz
+	   de cada paleta. */
+	background: url('/star-stream/temas/galaxia-nebulosa.webp') center 40% / cover;
+	filter: hue-rotate(var(--ss-matiz));
 	opacity: 0.85;
 }
 
@@ -97,7 +99,28 @@
 	position: absolute;
 	inset: 0;
 	z-index: -1;
-	background: radial-gradient(circle at center, rgb(var(--ss-papel-rgb) / 0.55) 0 30%, rgb(var(--ss-papel-rgb) / 0.88) 62%);
+	background: radial-gradient(circle at 30% 50%, rgb(var(--ss-papel-rgb) / 0.55) 0 30%, rgb(var(--ss-papel-rgb) / 0.88) 62%);
+}
+
+/* Como na página do tema: o nome à esquerda e a volvela grande à direita, cortada pelas bordas (animacoes.css). */
+[data-ss-tema='codex'] .ss-capa {
+	justify-items: start;
+	padding-inline: clamp(1.5rem, 6%, 5rem);
+}
+
+[data-ss-tema='codex'] .ss-capa img {
+	width: min(30rem, 54%);
+}
+
+/* No celular não cabe lado a lado: o nome volta ao centro e a volvela fica atrás, apagada. */
+@media (max-width: 50rem) {
+	[data-ss-tema='codex'] .ss-capa {
+		justify-items: center;
+	}
+
+	[data-ss-tema='codex'] .ss-capa img {
+		width: 88%;
+	}
 }
 
 [data-ss-tema='codex'] .ss-capa .logo-claro {
@@ -122,7 +145,7 @@
 }
 
 [data-ss-tema='codex']:not([data-theme='light']) .ss-capa::before {
-	background: radial-gradient(circle at center, rgb(var(--ss-noite-rgb) / 0.45) 0 30%, rgb(var(--ss-noite-rgb) / 0.85) 62%);
+	background: radial-gradient(circle at 30% 50%, rgb(var(--ss-noite-rgb) / 0.45) 0 30%, rgb(var(--ss-noite-rgb) / 0.85) 62%);
 }
 
 [data-ss-tema='codex']:not([data-theme='light']) .ss-capa .logo-claro {
@@ -139,7 +162,8 @@
 	color: var(--ss-noite);
 }
 
-/* Grimório: capa de couro com ferros dourados, cantos e um medalhão; o logo em ouro. */
+/* Grimório: capa de couro com ferros dourados e cantos; o logo em ouro. O selo alquímico do meio gira por cima, em
+   camadas (animacoes.css). */
 [data-ss-tema='grimorio'] .ss-capa {
 	position: relative;
 	isolation: isolate;
@@ -148,8 +172,7 @@
 		var(--ss-canto-sd) calc(100% - 14px) 14px / 90px no-repeat,
 		var(--ss-canto-ie) 14px calc(100% - 14px) / 90px no-repeat,
 		var(--ss-canto-id) calc(100% - 14px) calc(100% - 14px) / 90px no-repeat,
-		var(--ss-selo-capa) center / min(480px, 95%) no-repeat,
-		var(--ss-material) 0 0 / 300px,
+		var(--ss-material) 0 0 / 600px,
 		radial-gradient(ellipse at center, var(--ss-capa-centro), var(--ss-couro) 75%);
 	border: 2px solid var(--ss-ouro);
 	box-shadow:

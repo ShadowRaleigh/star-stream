@@ -26,7 +26,7 @@
 	--ss-fundo:
 		radial-gradient(ellipse 80% 50% at 70% -10%, rgb(110 80 140 / 0.22), transparent 70%),
 		radial-gradient(ellipse 60% 40% at 0% 100%, rgb(40 70 120 / 0.25), transparent 70%),
-		url('/star-stream/temas/estrelas-claras.svg') 0 0 / 600px,
+		url('/star-stream/temas/estrelas-claras-largo.svg') 0 0 / 1200px,
 		#0a0e1a;
 	--ss-tabela-cabecalho: rgb(var(--ss-ouro-rgb) / 0.1);
 	--ss-tabela-listra: rgb(248 243 231 / 0.025);
@@ -51,7 +51,7 @@
 	--sl-color-bg-sidebar: rgb(248 243 231 / 0.6);
 	--sl-color-hairline: rgb(154 116 64 / 0.22);
 	--sl-color-hairline-light: rgb(154 116 64 / 0.3);
-	--ss-fundo: url('/star-stream/temas/estrelas-tinta.svg') 0 0 / 600px, #f8f3e7;
+	--ss-fundo: url('/star-stream/temas/estrelas-tinta-largo.svg') 0 0 / 1200px, #f8f3e7;
 	--ss-tabela-cabecalho: rgb(154 116 64 / 0.1);
 	--ss-tabela-listra: rgb(27 42 62 / 0.03);
 }
