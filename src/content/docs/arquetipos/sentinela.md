@@ -5,7 +5,7 @@ O Sentinela é o analista do grupo. Ele estuda o inimigo, testa as suas suspeita
 
 ## Progressão de Slots de Sincronia
 
-| Nível | Slots Comuns | Slots Especiais |
+| Nível | Slots Simples | Slots Especiais |
 | :---- | :---- | :---- |
 | 1 | 2 | 0 |
 | 10 | 3 | 1 |

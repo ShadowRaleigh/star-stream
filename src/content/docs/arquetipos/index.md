@@ -16,7 +16,7 @@ Existem 8 arquétipos:
 
 Cada arquétipo tem a própria página, porque os detalhes são muito específicos e extensos, mas esta seção resume os fatores principais que caracterizam todos eles.
 
-Em primeiro lugar, o arquétipo define o seu **HitDie** e o seu crescimento ao longo do jogo. Como o sistema usa **[Slots de Sincronia](../habilidades/#slots-de-sincronia)** para as habilidades, preste atenção nos pontos de progressão e na proporção entre **Slots Comuns** e **Slots Especiais** que cada arquétipo oferece ao longo dos níveis. Os níveis em que os personagens ganham slots são:
+Em primeiro lugar, o arquétipo define o seu **HitDie** e o seu crescimento ao longo do jogo. Como o sistema usa **[Slots de Sincronia](../habilidades/#slots-de-sincronia)** para as habilidades, preste atenção nos pontos de progressão e na proporção entre **Slots Simples** e **Slots Especiais** que cada arquétipo oferece ao longo dos níveis. Os níveis em que os personagens ganham slots são:
 
 * **1**.
 * **10**.

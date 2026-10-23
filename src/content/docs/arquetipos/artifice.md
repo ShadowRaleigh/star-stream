@@ -5,7 +5,7 @@ O Artífice luta construindo. Ele grava as próprias habilidades em construtos q
 
 ## Progressão de Slots de Sincronia
 
-| Nível | Slots Comuns | Slots Especiais |
+| Nível | Slots Simples | Slots Especiais |
 | :---- | :---- | :---- |
 | 1 | 1 | 1 |
 | 10 | 2 | 2 |

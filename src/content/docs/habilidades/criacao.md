@@ -10,15 +10,13 @@ Criar uma habilidade custa **2 PH**, e você precisa ficar atento a 3 coisas:
 
 * Outros parâmetros da habilidade podem ser escolhidos de uma lista de opções.
 
-**Exemplo:** caso você queira adicionar efeitos à habilidade, eles devem ser escolhidos entre as **[Capacidades](../capacidades/)** que o personagem já desbloqueou (os efeitos de status que elas aplicam estão em [Efeitos de Status](../../combate/efeitos-de-status/)), assim como uma **[duração](#duração)** da tabela mais abaixo.
+**Exemplo:** os efeitos da habilidade são escolhidos entre os que o personagem já desbloqueou nas árvores das **[Capacidades](../capacidades/)** (os efeitos de status que elas aplicam estão em [Efeitos de Status](../../combate/efeitos-de-status/)), e a **[duração](#duração)** sai da tabela mais abaixo. O escopo do que as suas habilidades podem fazer depende das Capacidades do personagem.
 
 * Os Fatores de Custo são taxas aditivas, que multiplicam o custo base da habilidade para chegar ao custo final.
 
-* Por último, os efeitos da habilidade devem ser escolhidos entre os efeitos desbloqueados nas árvores de habilidade. O escopo do que as suas habilidades podem fazer depende das Capacidades do personagem.
-
 ## Estrutura
 
-Toda habilidade deve ter:
+Uma habilidade pode ter os campos abaixo:
 
 * **Tipo de Sincronia:** define se a habilidade é simples ou especial (ver [Slots de Sincronia](../#slots-de-sincronia)).
 
@@ -30,17 +28,17 @@ Toda habilidade deve ter:
 
 * **Tipo de Dano:** nas habilidades que causam dano, o [tipo de dano](../../combate/ataque-e-dano/#tipos-de-dano) causado, que define quais [Resistências](../../personagem/stats/#resistências) e [Fraquezas](../../personagem/stats/#fraquezas) se aplicam.
 
-* **Velocidade:** o tempo que a habilidade leva para ser usada (ver [Velocidade](#velocidade)). Se for menor ou igual a 5s, ela pode ser usada como **[Ação Principal](../../combate/rodadas-e-acoes/#ação-principal)**; se for menor ou igual a 2s, como **[Ação Bônus](../../combate/rodadas-e-acoes/#ação-bônus)**. Caso seja maior que 5s, ela precisa ser preparada com a Ação Principal em todas as rodadas, até ser usada automaticamente quando o tempo restante for menor que 5s; opcionalmente, caso o tempo restante até ela ficar pronta seja menor que 2s, ela pode ser ativada como Ação Bônus. Enquanto você estiver preparando uma habilidade, receber dano exige um **[Teste de Concentração](../../personagem/stats/#concentração)** para saber se a habilidade é perdida, com todos os recursos envolvidos. Caso uma rodada se passe sem que você use a Ação Principal para prepará-la ou a Ação Bônus para ativá-la, a habilidade é cancelada, e os recursos não são consumidos.
+* **Velocidade:** o tempo que a habilidade leva para ser usada (ver [Velocidade](#velocidade)). Se for menor ou igual a 5s, ela pode ser usada como **[Ação Principal](../../combate/rodadas-e-acoes/#ação-principal)**; se for menor ou igual a 2s, como **[Ação Bônus](../../combate/rodadas-e-acoes/#ação-bônus)**. Caso seja maior que 5s, ela precisa ser carregada com a Ação Principal em todas as rodadas, até ser usada automaticamente quando o tempo restante for menor ou igual a 5s (uma habilidade Lenta, de 10s, dispara na 2ª rodada); opcionalmente, caso o tempo restante até ela ficar pronta seja menor ou igual a 2s, ela pode ser ativada como Ação Bônus. Enquanto você estiver carregando uma habilidade, receber dano exige um **[Teste de Concentração](../../personagem/stats/#concentração)** para saber se a habilidade é perdida, com todos os recursos envolvidos. Caso uma rodada se passe sem que você use a Ação Principal para carregá-la ou a Ação Bônus para ativá-la, a habilidade é cancelada, e os recursos não são consumidos.
 
 * **Área:** caso a habilidade seja em área, este campo especifica o formato e o tamanho da área (ver [Área](#área)). Se a habilidade não for em área, o campo não precisa estar presente.
 
-* **Alcance:** a distância máxima em que a habilidade atinge o alvo, ou a distância máxima entre o alvo e o epicentro da área (ver [Alcance](#alcance)). Se a habilidade for de alvo Self, o campo não precisa estar presente.
+* **Alcance:** a distância máxima entre quem usa a habilidade e o alvo, ou entre quem usa e o epicentro da área (ver [Alcance](#alcance)). O tamanho da área em volta do epicentro é definido pelo campo Área. Se a habilidade for de alvo Self, o campo não precisa estar presente.
 
 * **Efeito:** o que a habilidade faz. É a seção principal da habilidade, que define exatamente o que ela faz e quais fatores afetam o seu funcionamento. Por padrão, se um cenário não for incluído no efeito da habilidade, ela não funciona nesse cenário. Excepcionalmente, o mestre pode sobrescrever essa regra.
 
-* **Duração:** caso a habilidade seja de ativação única, este campo é “instantâneo”. Caso ela exija ativação constante, dura até a concentração ser interrompida. Caso tenha algum efeito que dure um número específico de rodadas ou de minutos, o campo mostra esses dados ou a duração em minutos (ver [Duração](#duração)).
+* **Duração:** nem toda habilidade tem duração: um dano ou uma cura direta, sem efeito que continue depois, não tem este campo. Caso ela exija ativação constante, dura até a concentração ser interrompida. Caso tenha algum efeito que dure um número específico de rodadas ou de minutos, o campo mostra esses dados ou a duração em minutos (ver [Duração](#duração)).
 
-* **Custo Base:** o custo no recurso principal que você recebe da sua [origem](../../personagem/origens/), a **[Energia](../../personagem/origens/#energia)** (ver [Custo Base](#custo-base)). Nem todas as habilidades têm custo base; caso a sua não tenha, este campo é “0”.
+* **Custo Base:** o custo no recurso principal que você recebe da sua [origem](../../personagem/origens/), a **[Energia](../../personagem/origens/#energia)** (ver [Custo Base](#custo-base)). Nem toda habilidade tem custo: habilidades com circunstâncias especiais, como as de [arquétipo](../../arquetipos/) ou de [histórico](../../historicos/), podem não ter.
 
 * **Fator de Custo:** a soma dos fatores de custo de cada opção de customização escolhida para a habilidade, mais 1.
 
@@ -50,7 +48,7 @@ Toda habilidade deve ter:
 
 * **Condições:** a habilidade pode ter condições específicas para ser ativada, como forma de compensar um efeito mais poderoso ou uma versão mais forte dela. Caso existam, elas ficam neste campo; caso não existam, o campo pode ser omitido.
 
-* **Limite de Usos:** quantas vezes a habilidade pode ser usada e em qual intervalo de tempo (ver [Limite de Usos](#limite-de-usos)). Geralmente, habilidades simples podem ser usadas várias vezes por **[Descanso Curto](../../exploracao/descanso-e-provisoes/#descanso-curto)**, ou até por combate, enquanto habilidades especiais só podem ser usadas algumas vezes por **[Pernoite](../../exploracao/descanso-e-provisoes/#pernoite)** ou por **[Descanso Longo](../../exploracao/descanso-e-provisoes/#descanso-longo)**, mas nem todas as habilidades têm esse tipo de limite. Caso a sua habilidade não tenha limite de usos, o campo pode ser omitido.
+* **Limite de Usos:** quantas vezes a habilidade pode ser usada e em qual intervalo de tempo (ver [Limite de Usos](#limite-de-usos)). Geralmente, habilidades simples podem ser usadas várias vezes por **[Descanso Curto](../../exploracao/descanso-e-provisoes/#descanso-curto)**, ou até por combate, enquanto habilidades especiais só podem ser usadas algumas vezes por **[Pernoite](../../exploracao/descanso-e-provisoes/#pernoite)** ou por **[Descanso Longo](../../exploracao/descanso-e-provisoes/#descanso-longo)**, mas nem todas as habilidades têm esse tipo de limite. Uma habilidade sem limite de usos é **Ilimitada** e paga o fator de custo dela na tabela.
 
 * **Efeitos Adicionais:** efeitos extras que não acontecem durante a habilidade em si: um dano ou efeito aplicado mais tarde, uma penalidade que você sofre por usar a habilidade ou algo do gênero. Se a habilidade não tiver efeitos adicionais, o campo pode ser omitido.
 
@@ -59,7 +57,7 @@ Toda habilidade deve ter:
 
 ### Efeitos
 
-* Os tiers de habilidade acompanham a categoria das [armas](../../combate/equipamento/#precisão-e-dano-base-por-categoria) e [armaduras](../../combate/equipamento/#armadura) e são desbloqueados nos mesmos níveis.
+* Os tiers de habilidade acompanham a categoria das [armas](../../combate/equipamento/#precisão-e-dano-base-por-categoria) e [armaduras](../../combate/equipamento/#armadura) e são desbloqueados nos mesmos níveis: Tier 1 no nível 1, Tier 2 no 5, Tier 3 no 10, Tier 4 no 15, Tier 5 no 25, Tier 6 no 35, Tier 7 no 50, Tier 8 no 70 e Tier 9 no 100.
 * O número de efeitos que uma habilidade pode ter depende do tier e do **tipo de sincronia** dela, segundo a tabela a seguir:
 
 | Tiers | Simples | Especial |
@@ -78,7 +76,7 @@ Toda habilidade deve ter:
 
 ### Dano
 
-* O dano é definido pelo tipo de habilidade e escala com o tier.
+* O dano é definido pelo **Tipo de Sincronia** da habilidade (simples ou especial, pela Forma do ataque abaixo) e escala com o tier.
 * **Dano base:** o dano do ataque básico de uma arma da mesma categoria do tier da habilidade, multiplicado por **1,65** (no lugar do multiplicador do [estilo de combate](../../personagem/estilos-de-combate/)).
 * Sobre o dano base, vale a **Forma do ataque** da [Fórmula de Dano](../../combate/ataque-e-dano/#fórmula-de-dano).
 
@@ -108,15 +106,15 @@ Toda habilidade deve ter:
 | Tier 9 | 14m | 25m | 25m |
 
 * Ao criar a habilidade, você pode escolher qualquer tamanho menor que o tamanho base. Isso não reduz o custo final da habilidade.
-* Nas habilidades com área de quadrilátero, o formato não precisa ser um quadrado, mas precisa ser um quadrilátero com a mesma área de um quadrado com o lado indicado na tabela.
+* Nas habilidades com área de quadrilátero, o formato não precisa ser um quadrado, mas precisa ser um quadrilátero com a mesma área de um quadrado com o lado indicado na tabela. Por padrão, a área é um quadrado com esse lado, centrado no ponto onde a habilidade é usada.
 * Cones têm abertura de 60°: na grade hexagonal, o cone sai numa das 6 direções, e cada fileira à frente tem uma casa a mais que a anterior.
-* Nas habilidades em área, você pode sacrificar 50% do efeito da habilidade para aumentar o raio, o lado ou o comprimento em até 50%. O tamanho final não precisa ser 50% maior, mas, para qualquer tamanho maior que o base, o efeito da habilidade é reduzido em 50%.
+* Na hora de usar uma habilidade em área, você pode sacrificar 50% de todo o efeito dela (dano, cura, duração e o resto) para aumentar o raio, o lado ou o comprimento em até 50%. O tamanho final não precisa ser 50% maior, mas, para qualquer tamanho maior que o base, o efeito é reduzido em 50%. A criação assume o uso normal; o sacrifício é uma escolha do momento, para se adaptar à situação, e não dá para combiná-lo com o sacrifício de alcance no mesmo uso.
 * O centro (ou o ponto de origem) de uma habilidade em área precisa estar na linha de visão de quem a usa. Na grade hexagonal, a área é aproximada pelas casas: o círculo pega as casas até o raio, e o quadrilátero, as casas que cobrem a mesma área.
 
 
 ### Custo Base
 
-* O custo base da habilidade, em **[Energia](../../personagem/origens/#energia)**, escala com o nível, segundo as tabelas abaixo:
+* O custo base da habilidade, em **[Energia](../../personagem/origens/#energia)**, escala com o tier, segundo as tabelas abaixo:
 
 **Simples:**
 
@@ -146,7 +144,7 @@ Toda habilidade deve ter:
 | Tier 8 | 98,6 |
 | Tier 9 | 140 |
 
-* Caso a habilidade seja em área (AoE), ela tem um fator de custo base de +20%.
+* Caso a habilidade seja em área (AoE), ela soma **+20%** ao Fator de Custo.
 
 
 ### Custo Material
@@ -175,7 +173,7 @@ Toda habilidade deve ter:
 ### Alcance
 
 * Você escolhe até onde as suas habilidades alcançam com base na tabela abaixo. Além disso, habilidades especiais ganham 30% de alcance bônus.
-* Você pode optar, a qualquer momento, por sacrificar 50% do efeito da habilidade para ter um alcance 50% maior.
+* Na hora de usar a habilidade, você pode sacrificar 50% de todo o efeito dela para ter um alcance 50% maior. Não dá para combinar com o sacrifício de área no mesmo uso.
 
 | Alcance | Distância (m) | Fator de custo |
 | ----- | :---: | :---: |
@@ -188,17 +186,18 @@ Toda habilidade deve ter:
 
 ### Duração
 
+* A duração vale para efeitos que continuam ao longo das rodadas (overtime), como um dano por rodada. Uma Instantânea dura 1 rodada.
 * Caso o seu feitiço tenha um efeito persistente, ele naturalmente já exige um sacrifício material para ser usado. Por isso, por padrão, os feitiços são de curta duração. Na criação da habilidade, você pode aumentar essa duração, recebendo uma penalidade no custo base final dela.
 
 | Tier de Duração | Duração (Dados) | Média de Rodadas | Fator de Custo |
 | ----- | :---: | :---: | :---: |
-| **Instantânea** | **1** | 1 | −15% |
+| **Instantânea** | **1 rodada** | 1 | −15% |
 | **Curta** | **1d3 rodadas** | 2 | 0% |
 | **Média** | **2d3 rodadas** | 4 | +25% |
 | **Longa** | **2d5 rodadas** | 6 | +50% |
 | **[Concentração](../../personagem/stats/#concentração)** | **Indefinida** | N/A | +40% |
 
-* Caso a habilidade seja do tipo **Especial**, cada um desses tiers de duração ganha 1 dado adicional.
+* Caso a habilidade seja do tipo **Especial**, cada tier de duração com dados ganha 1 dado adicional (1d3 vira 2d3, 2d5 vira 3d5). A Instantânea e a Concentração não mudam.
 
 
 ### Limite de Usos
@@ -211,8 +210,8 @@ Toda habilidade deve ter:
 | :---: | :---: | :---: |
 | **1** | **0%** | **Número base** |
 | **2 - 5** | **10% por uso extra** | **Ex.: uma skill com 3 usos custa 20% a mais** |
-| **Escalonável** | **30% fixo** | **Fórmula de usos: 1 + (Nível/10)** |
-| **Ilimitado** | **100%** | **Infinity, pai. Se essa opção for selecionada, você não pode interferir** |
+| **Escalonável** | **30% fixo** | **Fórmula de usos: 1 + (Nível/10), arredondado para o inteiro mais próximo** |
+| **Ilimitado** | **100%** | **Infinity, pai.** |
 
 **Intervalo de Recuperação:**
 

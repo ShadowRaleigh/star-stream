@@ -5,7 +5,7 @@ O Vanguarda é um combatente de linha de frente que se fortalece ao atrair a ate
 
 ## Progressão de Slots de Sincronia
 
-| Nível | Slots Comuns | Slots Especiais |
+| Nível | Slots Simples | Slots Especiais |
 | :---- | :---- | :---- |
 | 1 | 2 | 0 |
 | 10 | 3 | 1 |

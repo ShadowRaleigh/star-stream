@@ -5,7 +5,7 @@ O Adaptador usa a manipulação biológica para alternar entre estados físicos 
 
 ## Progressão de Slots de Sincronia
 
-| Nível | Slots Comuns | Slots Especiais |
+| Nível | Slots Simples | Slots Especiais |
 | :---- | :---- | :---- |
 | 1 | 2 | 0 |
 | 10 | 3 | 1 |

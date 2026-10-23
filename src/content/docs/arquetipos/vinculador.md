@@ -5,7 +5,7 @@ O Vinculador opera por meio de um vínculo simbiótico com um companheiro. Os do
 
 ## Progressão de Slots de Sincronia
 
-| Nível | Slots Comuns | Slots Especiais |
+| Nível | Slots Simples | Slots Especiais |
 | :---- | :---- | :---- |
 | 1 | 1 | 1 |
 | 10 | 3 | 1 |
@@ -20,7 +20,7 @@ O Vinculador opera por meio de um vínculo simbiótico com um companheiro. Os do
 
 O Vinculador começa o jogo com um vínculo a uma criatura de origem espiritual, animal, demoníaca ou tecnológica. Essa criatura, o companion, é de tamanho médio e tem ficha própria.
 
-O companion não tem [perícias](../../personagem/pericias/) e tem habilidades separadas, mas não ganha **[PH](../../habilidades/#pontos-de-habilidade-ph)** ao subir de nível. Em cada **[Quebra de Limite](../../personagem/criacao/#quebra-de-limite)**, ele recebe 7 [Pontos de Atributo](../../personagem/atributos/#distribuição-de-atributos) para distribuir, e usa [armadura](../../combate/equipamento/#armadura) como um personagem. Por isso, o Vinculador precisa gastar os próprios **PH** e recursos para investir nas habilidades do companion e construí-las. Além disso, os **[Slots de Sincronia](../../habilidades/#slots-de-sincronia)** são divididos entre os dois: a partir do nível 10, o companion precisa ter sempre pelo menos um **Slot Comum** e um **Slot Especial** próprios.
+O companion não tem [perícias](../../personagem/pericias/) e tem habilidades separadas, mas não ganha **[PH](../../habilidades/#pontos-de-habilidade-ph)** ao subir de nível. Em cada **[Quebra de Limite](../../personagem/criacao/#quebra-de-limite)**, ele recebe 7 [Pontos de Atributo](../../personagem/atributos/#distribuição-de-atributos) para distribuir, e usa [armadura](../../combate/equipamento/#armadura) como um personagem. Por isso, o Vinculador precisa gastar os próprios **PH** e recursos para investir nas habilidades do companion e construí-las. Além disso, os **[Slots de Sincronia](../../habilidades/#slots-de-sincronia)** são divididos entre os dois: a partir do nível 10, o companion precisa ter sempre pelo menos um **Slot Simples** e um **Slot Especial** próprios.
 
 Isso quer dizer que o jogador tem que gerenciar o loadout dividido, decidindo quantos slots dar para cada um, quem mais precisa de uma nova habilidade e quais habilidades os dois levam.
 

@@ -5,7 +5,7 @@ O Iniciador é um combatente de ritmo acelerado, que fica mais perigoso a cada g
 
 ## Progressão de Slots de Sincronia
 
-| Nível | Slots Comuns | Slots Especiais |
+| Nível | Slots Simples | Slots Especiais |
 | :---- | :---- | :---- |
 | 1 | 2 | 0 |
 | 10 | 4 | 0 |

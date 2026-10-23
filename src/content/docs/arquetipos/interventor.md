@@ -5,7 +5,7 @@ O Interventor é especialista em manipular o tempo no campo de batalha. Ele não
 
 ## Progressão de Slots de Sincronia
 
-| Nível | Slots Comuns | Slots Especiais |
+| Nível | Slots Simples | Slots Especiais |
 | :---- | :---- | :---- |
 | 1 | 2 | 0 |
 | 10 | 3 | 1 |
