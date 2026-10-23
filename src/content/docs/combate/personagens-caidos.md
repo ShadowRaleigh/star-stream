@@ -15,7 +15,7 @@ Ao fazer qualquer uma dessas ações, a vez do personagem acaba, porque ele est�
 
 ## Pontos de Exaustão
 
-Os Pontos de Exaustão se acumulam em quem está Morrendo: cada ponto dá **5%** a menos de chance de conseguir fazer uma ação. Um personagem que acumula **10** pontos morre na hora.
+Os Pontos de Exaustão se acumulam em quem está Morrendo: cada ponto dá **5%** de chance de qualquer ação dele falhar. Funciona como a chance de falha de um [teste de perícia](../../personagem/pericias/#uso) abaixo da dificuldade, mas vale até para o que seria sucesso garantido: com Pontos de Exaustão, o personagem sempre rola. Se falhar, a ação não sai como ele queria, e o que acontece depende da ação, como em qualquer teste. Um personagem que acumula **10** pontos morre na hora.
 
 Os pontos só saem com **[habilidades](../../habilidades/)** específicas, com o **[Pernoite](../../exploracao/descanso-e-provisoes/#pernoite)** (metade dos pontos) e com o **[Descanso Longo](../../exploracao/descanso-e-provisoes/#descanso-longo)** (todos).
 

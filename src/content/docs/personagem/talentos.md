@@ -1,7 +1,7 @@
 ---
 title: "Talentos"
 ---
-Talentos são habilidades **passivas** que o personagem ganha pelo [histórico](../../historicos/), por [títulos](../titulos/) ou ao subir de nível. Abaixo está a lista dos talentos mais comuns, que os jogadores escolhem a cada **[Quebra de Limite](../criacao/#quebra-de-limite)** ou ganham pelos históricos.
+Talentos são habilidades **passivas** que o personagem ganha pelo [histórico](../../historicos/), por [títulos](../titulos/) ou a cada Quebra de Limite. Abaixo está a lista dos talentos mais comuns, que os jogadores escolhem a cada **[Quebra de Limite](../criacao/#quebra-de-limite)** ou ganham pelos históricos.
 
 Ao escolher um talento numa Quebra de Limite, o jogador pode pegar um talento de nível igual ou menor que o do personagem naquele momento.
 
@@ -13,7 +13,7 @@ Ao escolher um talento numa Quebra de Limite, o jogador pode pegar um talento de
 * **Olhar Treinado:** a sua **[Percepção Passiva](../../exploracao/informacao/#percepção-passiva)** aumenta em **2**.
 * **Passa Fome:** você nem lembra quando está com fome e aguenta longos períodos sem comer. Você sobrevive **4** vezes o período normal sem comer (em geral, cerca de 1 mês).
 * **Dar nem Água:** você está acostumado à desidratação e nem liga mais pras dores de cabeça. Sobrevive **8** vezes o período normal sem água (em geral, cerca de 1 mês).
-* **Resiliência Térmica:** ao pegar o talento, decida se o personagem é aclimatado ao frio ou ao calor e ganhe **Resistência ao Frio** ou **Resistência ao Calor**, conforme a escolha. Essa resistência é aclimatação ao clima, não resistência a [dano](../../combate/ataque-e-dano/#tipos-de-dano) Congelante ou Queimante.
+* **Resiliência Térmica:** ao pegar o talento, decida se o personagem é aclimatado ao frio ou ao calor e ganhe **Aclimatação ao Frio** ou **Aclimatação ao Calor**, conforme a escolha. É uma adaptação ao clima, não uma [Resistência](../../racas/fatores/#resistência-x) a [dano](../../combate/ataque-e-dano/#tipos-de-dano) Congelante ou Queimante.
 * **Muralha:** ganhe a vantagem **[Peso Pesado](../../racas/fatores/#peso-pesado)**, qualquer que seja o seu peso. Mutuamente excludente com *Peninha*.
-* **Peninha:** ganhe a vantagem **Extremamente Leve**, qualquer que seja o seu peso. Mutuamente excludente com *Muralha*.
-* **Sommelier:** sua língua é muito boa no que faz. Ao provar alguma coisa, você pode pedir um teste com **20%** de chance de descobrir um ingrediente da receita. Pode trocar o **d20** por um **d100**, com **5%** de chance de descobrir **3** ingredientes e **1%** de chance de descobrir todos.
+* **Peninha:** ganhe a vantagem **[Extremamente Leve](../../racas/fatores/#extremamente-leve)**, qualquer que seja o seu peso. Mutuamente excludente com *Muralha*.
+* **Sommelier:** sua língua é muito boa no que faz. Ao provar alguma coisa, você pode pedir um [teste](../../regras/dados/#características) com **20%** de chance de descobrir um ingrediente da receita. Pode trocar o **d20** por um **d100**, com **5%** de chance de descobrir **3** ingredientes e **1%** de chance de descobrir todos.

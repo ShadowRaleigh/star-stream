@@ -32,11 +32,11 @@ Efeitos que causam dano ao longo do tempo (como **Sangrando**, **Queimando** e v
 ## Sentidos
 
 * <span id="surdez"></span>**Surdez:** o personagem não ouve nada: não escuta o que os aliados dizem nem percebe perigos pelo som. A **[PER](../../personagem/atributos/#percepção-per)** dele cai **2** até o fim do efeito.
-* <span id="cegueira"></span>**Cegueira:** o personagem não enxerga. Ele não sabe o estado do mapa em tempo real e depende das descrições dos companheiros. Em cada movimento, tem **30%** de chance de ir para uma direção diferente da pretendida, e, para acertar um ataque, precisa passar numa interação de **Percepção** de **20**. A PER dele cai **3** até o fim do efeito.
+* <span id="cegueira"></span>**Cegueira:** o personagem não enxerga. Ele não sabe o estado do mapa em tempo real e depende das descrições dos companheiros. Em cada movimento, tem **30%** de chance de ir para uma direção diferente da pretendida, e, para acertar um ataque, precisa passar num teste de **[PER](../../personagem/atributos/#percepção-per)** com dificuldade **20**. A PER dele cai **3** até o fim do efeito.
 
 ## Cansaço e sobrevivência
 
-* <span id="fadigado"></span>**Fadigado:** a velocidade de movimento e de deslocamento do personagem cai **50%** (fora de combate, a [Velocidade de Ação](../../personagem/stats/#velocidade-de-ação) também).
+* <span id="fadigado"></span>**Fadigado:** a [Movimentação](../rodadas-e-acoes/#movimentação) em combate e a velocidade de viagem no [Deslocamento](../../exploracao/deslocamento/) do personagem caem **50%** (fora de combate, a [Velocidade de Ação](../../personagem/stats/#velocidade-de-ação) também).
 * <span id="faminto"></span>**Faminto:** o personagem fica **Fadigado**, não recupera HP nem Energia em **[Descansos Curtos](../../exploracao/descanso-e-provisoes/#descanso-curto)**, e nos **[Pernoites](../../exploracao/descanso-e-provisoes/#pernoite)** recupera metade do HP e da Energia que recuperaria. O **[Descanso Longo](../../exploracao/descanso-e-provisoes/#descanso-longo)** funciona normalmente. O efeito acaba depois de um dia em que o personagem coma as rações do dia (ver [Provisões](../../exploracao/descanso-e-provisoes/#provisões)).
 * <span id="sedento"></span>**Sedento:** o personagem sofre os mesmos efeitos de **Faminto**. O efeito acaba depois de um dia em que ele beba água o bastante (as rações já incluem água).
 * <span id="fome-extrema"></span>**Fome Extrema:** o personagem sofre os efeitos de **Faminto** e tem **[desvantagem dupla](../../regras/dados/#vantagens-e-desvantagens)** em todas as rolagens. O efeito acaba como o de Faminto.
@@ -48,7 +48,7 @@ Efeitos que causam dano ao longo do tempo (como **Sangrando**, **Queimando** e v
 
 ## Efeitos especiais
 
-* <span id="reanimado"></span>**Reanimado:** o personagem foi trazido de volta à vida por necromancia ou por outro meio de ressurreição temporária. Todo o HP dele vira **Vida Temporária**, que cai **2d4** a cada rodada (5s).
+* <span id="reanimado"></span>**Reanimado:** o personagem foi trazido de volta à vida por necromancia ou por outro meio de ressurreição temporária. Todo o HP dele vira **Vida Temporária**: ele só vive enquanto o efeito dura, e essa vida cai **2d4** a cada rodada (5s). Não é o mesmo que [HP Temporário](../../personagem/stats/#hp-temporário).
 * <span id="abençoado"></span>**Abençoado:** efeito amplo que representa uma bênção de um ser superior. O que ele faz depende da habilidade que o causou ou das intenções de quem deu a bênção, mas uma bênção nunca é negativa.
 * <span id="amaldiçoado"></span>**Amaldiçoado:** efeito amplo que representa uma maldição. O que ele faz depende da habilidade que o causou ou das intenções de quem amaldiçoou, mas uma maldição nunca é positiva.
 * <span id="aprimorado"></span>**Aprimorado:** efeito amplo que indica que um [stat extrínseco](../../personagem/stats/#extrínsecos), um [atributo](../../personagem/atributos/) ou uma [perícia](../../personagem/pericias/) foi modificado.

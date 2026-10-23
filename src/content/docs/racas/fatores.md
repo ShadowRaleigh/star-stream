@@ -78,10 +78,11 @@ title: "Fatores de Raça"
 ## Vantagens
 
 * <span id="acumulador"></span>**Acumulador:** O personagem recupera o dobro de **Energia** em descansos curtos e pernoites  
-* <span id="especialista"></span>**Especialista:** O personagem ganha **+5** pontos de perícia que podem ser distribuídos livremente no **nível 1**  
+* <span id="extremamente-leve"></span>**Extremamente Leve:** O peso leve do seu personagem faz com que seja mais fácil de outra pessoa ou criatura mover ele. Em compensação, você toma menos dano de queda e ativa armadilhas de pressão com mais dificuldade  
 * <span id="fotossintético"></span>**Fotossintético:** Desde que seu personagem esteja exposto a luz do sol por 4 horas ou mais do dia, seu personagem consome metade das rações naquele dia. Caso fique exposto por 8 horas, ele não precisa comer naquele dia.  
 * <span id="linguista-ancião"></span>**Linguista Ancião:** Ele conhece uma língua morta adicional.  
 * <span id="longevo"></span>**Longevo:** Seu personagem pode viver por mais de 1000 anos!  
+* <span id="perito"></span>**Perito:** O personagem ganha **+5** pontos de perícia que podem ser distribuídos livremente no **nível 1**  
 * <span id="pés-ágeis"></span>**Pés Ágeis:** Ao ativar uma armadilha, ganha uma chance de tentar desviar do efeito. Role um d20, se você tirar 11 ou mais, o efeito da armadilha é reduzido pela metade, enquanto que se você tirar 18 ou mais você evita a armadilha completamente  
 * <span id="peso-pesado"></span>**Peso Pesado:** O peso massivo do seu personagem faz com que seja mais difícil de outra pessoa ou criatura mover ele. No entanto, você toma mais dano de queda e ativa armadilhas de pressão mais facilmente  
 * <span id="poliglota"></span>**Poliglota:** O seu personagem sabe falar pelo menos 4 línguas que não estejam mortas. Caso ele já não saiba esse número, escolha línguas adicionais até chegar nele  

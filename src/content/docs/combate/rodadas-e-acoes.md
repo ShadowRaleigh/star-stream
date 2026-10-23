@@ -70,11 +70,11 @@ Em combate, o personagem se move até um limite por rodada. Ações acrobáticas
 
 A Reação é uma das poucas coisas que o personagem faz em combate fora da sua vez. Ela depende de um gatilho: uma condição específica do combate que permite reagir. Sem gatilho, não há Reação.
 
-Quando o gatilho acontece, o personagem escolhe se usa a Reação ou deixa a oportunidade passar. Cada personagem tem só uma Reação por rodada.
+Quando o gatilho acontece, o personagem escolhe se usa a Reação ou deixa a oportunidade passar. Cada personagem tem uma Reação por vez: depois de usada, ela só volta quando chega a vez dele de novo.
 
 **Exemplos:**
 
-* Se um inimigo se afasta de você sem se desengajar, você pode fazer um [ataque de oportunidade](../posicionamento/#efeito) como Reação. Mas, se você já tiver usado a Reação naquela rodada, ele pode se afastar sem se desengajar, e você não consegue reagir.
+* Se um inimigo se afasta de você sem se desengajar, você pode fazer um [ataque de oportunidade](../posicionamento/#efeito) como Reação. Mas, se você já tiver usado a Reação desde a sua última vez, ele pode se afastar sem se desengajar, e você não consegue reagir.
 * Como os recursos só são descartados e recuperados quando chega a sua vez, você pode preparar uma ação na rodada 1 para um gatilho na rodada 2, antes da sua vez. Na sua vez, a Reação volta. Então, ainda na rodada 2, você pode atacar um inimigo que se afastou de você sem se desengajar, usando 2 Reações na rodada 2.
 * Reações podem responder a outras Reações. Se um mago pode lançar um feitiço como Reação toda vez que um inimigo causa dano a ele, o mago A, na sua vez, pode atacar o mago B, que reage com esse feitiço. Ao receber o dano da Reação do mago B, o mago A também pode usar a Reação dele. Assim, o mago A, na sua vez, atacou com a Ação Principal, fez algo com a Ação Bônus e usou a Reação contra a Reação do adversário.
 
@@ -88,4 +88,4 @@ Personagens importantes para o mundo, criaturas míticas e seres poderosos podem
 
 ## Resistências Lendárias
 
-Personagens importantes para o mundo, criaturas míticas e seres poderosos podem ter Resistências Lendárias, uma interação especial **exclusiva** de NPCs. Com elas, o NPC pode passar automaticamente num saving throw em que já falhou ou baixar em uma faixa o resultado de um ataque. A decisão vem depois de ver a rolagem e antes da rolagem de dano, e vale contra qualquer rolagem feita contra o NPC.
+Personagens importantes para o mundo, criaturas míticas e seres poderosos podem ter Resistências Lendárias, uma interação especial **exclusiva** de NPCs. Com elas, o NPC pode passar automaticamente num [saving throw](../../regras/dados/#saving-throw) em que já falhou ou baixar em uma faixa o resultado de um ataque. A decisão vem depois de ver a rolagem e antes da rolagem de dano, e vale contra qualquer rolagem feita contra o NPC.

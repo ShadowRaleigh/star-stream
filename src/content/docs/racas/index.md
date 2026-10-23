@@ -9,5 +9,5 @@ A raça do personagem define parte dos seus atributos, as habilidades raciais, a
 - [Emperor Beasts](emperor-beasts/): Raiju e Vanara.
 
 :::note[Em construção]
-Povos do Oceano, Daemon, Sub-Raças, Undead, Magi e licantropos.
+Povos do Oceano, Daemon, Sub-Raças, Undead, Magi, licantropos e as raças de anões (humanoides).
 :::

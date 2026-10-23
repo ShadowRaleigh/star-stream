@@ -12,7 +12,7 @@ title: "Raças Humanoides"
 Nativos do continente de Depan e com pele amarelada, prosperam mesmo com seus físicos abaixo da média e pequena expectativa de vida através da criatividade e inovação constantes. Ao longo da história, se tornaram a raça mais avançada cientificamente entre todas, desenvolvendo uma série de meios e caminhos pra se colocar em par ou negociar com as outras raças maiores, mais fortes ou mais rápidas. Essa raça é neutra ao lidar com as outras, visto que não estando tão alto na cadeia alimentar, diplomacia é uma ferramenta inestimável para evitar conflitos e conseguir aliados.  
 
 * **Habilidade:** [Diplomacia](../fatores/#diplomacia)  
-* **Vantagens: +1 [INT](../../personagem/atributos/#intelecto-int)**, **+1 [DET](../../personagem/atributos/#determinação-det)**, [Talento Nato](../fatores/#talento-nato), [Especialista](../fatores/#especialista)  
+* **Vantagens: +1 [INT](../../personagem/atributos/#intelecto-int)**, **+1 [DET](../../personagem/atributos/#determinação-det)**, [Talento Nato](../fatores/#talento-nato), [Perito](../fatores/#perito)  
 * **Desvantagens: -1 [RES](../../personagem/atributos/#resistência-res)**, [Fraqueza (Fogo)](../fatores/#fraqueza-x)  
 * **Línguas:** Humano  
 

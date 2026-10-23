@@ -12,10 +12,6 @@ Perícias são competências específicas que o personagem desenvolve, à parte 
 * O dado padrão dos testes de perícia é o **1d20**.
 * Quando uma ação não se encaixa em nenhuma perícia, o mestre escolhe o [atributo](../atributos/) mais adequado e define uma dificuldade. Daí em diante, o teste segue as regras das perícias.
 
-* **Bônus ou penalidade por nível de diferença:** **±5%**.
-* **Chance de falhar por nível a menos:** **+15%**.
-* **Recursos extras consumidos por nível a menos:** **+10%**.
-
 ## Características
 
 * As perícias se dividem em **2** grupos: **Conhecimento** e **Fabricação**.
@@ -56,3 +52,9 @@ Os Pontos de Perícia de Fabricação vêm dos pontos investidos em **[POD](../a
 * **Joalheria:** a capacidade de lapidar pedras preciosas e trabalhar metais nobres para produzir acessórios. Serve para criar ornamentos de alto valor e equipamentos fáceis de vestir.
 * **Manufatura:** a capacidade de construir objetos variados a partir de matérias-primas simples, como madeira, couro e tecidos. Vai da marcenaria e da alfaiataria à construção de ferramentas e estruturas básicas.
 * **Culinária:** a arte de preparar comidas e bebidas. Permite criar refeições que garantem a sobrevivência e podem dar benefícios temporários a quem as consome.
+
+Na fabricação, cada nível de diferença entre a perícia e a dificuldade muda o resultado assim:
+
+* **Bônus ou penalidade por nível de diferença:** **±5%**.
+* **Chance de falhar por nível a menos:** **+15%**.
+* **Recursos extras consumidos por nível a menos:** **+10%**.

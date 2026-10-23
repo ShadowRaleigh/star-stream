@@ -10,7 +10,7 @@ Descansos são uma das mecânicas mais importantes do sistema: é neles que o pe
 * Dura 1 hora.
 * Pode ser feito em praticamente qualquer lugar.
 * Não exige segurança.
-* Recupera vida: role **1d6** e recupere **10%** do HP máximo por ponto do dado, sem passar de **75%** do HP máximo.
+* Recupera vida: role **1d6** e recupere **10%** do HP máximo por ponto do dado, sem passar de **75%** do HP máximo. Quem já está com **75%** ou mais recupera **1 [HitDie](../../personagem/stats/#health-points-hp)**.
 * Recupera **[Energia](../../personagem/origens/#energia)**: role um **dado de Energia** para cada nível do personagem e divida o total por **10**.
 * Não dá bônus específicos de descanso.
 * Reduz a efetividade das [Rações](#rações).
@@ -20,7 +20,7 @@ Descansos são uma das mecânicas mais importantes do sistema: é neles que o pe
 * Dura 8 horas.
 * Precisa de pelo menos um acampamento temporário montado.
 * Exige segurança para começar.
-* Recupera metade do HP perdido, sem passar de **75%** do HP máximo.
+* Recupera metade do HP perdido, sem passar de **75%** do HP máximo. Quem já está com **75%** ou mais recupera **1 HitDie**.
 * Recupera **1/3** da Energia máxima.
 * Remove metade dos **[Pontos de Exaustão](../../combate/personagens-caidos/#pontos-de-exaustão)** (arredondado para cima).
 * Pode dar bônus específicos, dependendo da tenda.
@@ -45,7 +45,7 @@ Os personagens estão vivos dentro do universo de Ad Astra e têm necessidades b
 * Rações só podem ser consumidas durante [descansos](#descanso).
 * Consumir rações em [Descansos Curtos](#descanso-curto) reduz a efetividade delas: nesse caso, o personagem precisa de **3** por dia.
 * Rações não estragam.
-* No [inventário](../inventario/), até **10** rações não ocupam slot; de 11 a 20 rações, ocupam **1** slot. Acima de 20, cada slot extra leva mais 10 rações.
+* No [inventário](../inventario/), até **10** rações não ocupam slot; de 11 a 20 rações, ocupam **1** slot. Acima de 20, cada slot extra leva mais 10 rações. O limite é o espaço do inventário.
 * Uma ração custa **20C** avulsa, mas em lotes de mais de 10 o preço cai para **10C**.
 
 Nem sempre as rações vão durar a aventura toda, então pode ser preciso caçar ou achar comida e água na natureza.

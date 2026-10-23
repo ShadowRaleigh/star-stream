@@ -9,6 +9,11 @@ Muitas mecânicas do **Star Stream** deixam o sistema enxuto em rolagens, mas, q
 * Tirar o maior resultado num dado é um **Sucesso Crítico**. Nem sempre isso importa, mas muitas vezes tirar o valor máximo é motivo de comemoração e tem efeitos especiais.
 * Tirar o menor resultado num dado é uma **Falha Crítica**. Nem sempre isso importa, mas muitas vezes tirar o valor mínimo é motivo de medo e tem consequências.
 * Todo teste em 1d20 deve ter uma **Classe de Dificuldade** (**DC**). O valor da DC é o maior resultado com que você ainda falha. Ou seja, uma **DC16** exige pelo menos 17 no dado.
+* Quando uma regra pede um teste sem dizer o dado, ele é feito em **1d20**.
+
+## Saving Throw
+
+O saving throw é um teste de [atributo](../../personagem/atributos/) feito como reação a algo que acontece no mundo: em vez de o personagem agir, ele tenta evitar ou diminuir um efeito que caiu sobre ele. Desviar de algo fora de combate, resistir a um veneno ou aguentar um efeito mental são saving throws. O mestre escolhe o atributo que combina com a situação e define a DC, e o teste segue as regras dos testes em 1d20.
 
 ## Vantagens e Desvantagens
 
