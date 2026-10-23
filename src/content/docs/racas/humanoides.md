@@ -13,7 +13,7 @@ Nativos do continente de Depan, de pele amarelada, os humanos da montanha prospe
 
 * **Habilidades:** [Diplomacia](../fatores/#diplomacia).
 * **Vantagens:** **+1 [INT](../../personagem/atributos/#intelecto-int)**, **+1 [DET](../../personagem/atributos/#determinação-det)**, [Talento Nato](../fatores/#talento-nato), [Perito](../fatores/#perito).
-* **Desvantagens:** **−1 [RES](../../personagem/atributos/#resistência-res)**, [Fraqueza (Fogo)](../fatores/#fraqueza-x).
+* **Desvantagens:** **−1 [RES](../../personagem/atributos/#resistência-res)**, [Fraqueza (Queimante)](../fatores/#fraqueza-x).
 * **Línguas:** Humano.
 
 ## Humano da Planície
@@ -39,10 +39,10 @@ Originários do continente de Bravia, os humanos da planície têm a pele pálid
 
 </div>
 
-Uma raça de longevidade quase eterna, os aasimares são nativos de Depan e se parecem com os humanos do norte, mas sempre têm o cabelo completamente branco, independente da idade. Com uma afinidade natural extrema com a magia de luz, têm uma constituição anormalmente forte e uma grande vitalidade, que garante a eles resistência a venenos. No entanto, a raça tende a se isolar por ser alvo de comerciantes de escravos, e hoje em dia os aasimares são considerados apenas um mito na maioria das regiões. O metabolismo acelerado também exige um grande consumo de energia para se sustentar, e eles ficam cansados e com fome mais rápido que as outras raças.
+Uma raça de longevidade quase eterna, os aasimares são nativos de Depan e se parecem com os humanos do norte, mas sempre têm o cabelo completamente branco, independente da idade. Com uma afinidade natural extrema com a magia de luz, têm uma constituição anormalmente forte e uma grande vitalidade, que garante a eles resistência a venenos. Essa herança também se manifesta em asas de luz, que eles podem fazer surgir para voar. No entanto, a raça tende a se isolar por ser alvo de comerciantes de escravos, e hoje em dia os aasimares são considerados apenas um mito na maioria das regiões. O metabolismo acelerado também exige um grande consumo de energia para se sustentar, e eles ficam cansados e com fome mais rápido que as outras raças.
 
 * **Habilidades:** [Voar](../fatores/#voar).
-* **Vantagens:** **+2 [RES](../../personagem/atributos/#resistência-res)**, [Regeneração Natural](../fatores/#regeneração-natural), [Resistência (Venenos)](../fatores/#resistência-x), [Linguista Ancião](../fatores/#linguista-ancião), [Longevo](../fatores/#longevo).
+* **Vantagens:** **+2 [RES](../../personagem/atributos/#resistência-res)**, [Regeneração Natural](../fatores/#regeneração-natural), [Resistência (Venenoso)](../fatores/#resistência-x), [Linguista Ancião](../fatores/#linguista-ancião), [Longevo](../fatores/#longevo).
 * **Desvantagens:** [Cabeça a Prêmio](../fatores/#cabeça-a-prêmio), [Fraqueza (Escuridão, Luz)](../fatores/#fraqueza-x), [Fraqueza (Contundente)](../fatores/#fraqueza-x), [Alto Metabolismo](../fatores/#alto-metabolismo).
 * **Línguas:** Humano, Demônico.
 
@@ -54,9 +54,9 @@ Uma raça de longevidade quase eterna, os aasimares são nativos de Depan e se p
 
 </div>
 
-Filhos de gigantes com qualquer raça humanoide, os meio-gigantes costumam chegar a entre 4 e 6 metros de altura, com um máximo registrado de 7 metros. A maioria das civilizações os vê como algo entre párias e aberrações, dependendo do contato que tem com a raça dos gigantes. Na maioria das vezes, eles não têm nenhum dos pais: os gigantes não criam os filhos, e o pai ou a mãe da outra raça geralmente morre no parto ou durante a concepção. Rejeitados pela maioria das sociedades e sabendo que sempre vão chamar atenção (geralmente negativa) onde quer que estejam, os meio-gigantes compensam com uma força avassaladora, capaz de intimidar a maioria das raças com facilidade, e com parte das características da raça do pai não gigante.
+Filhos de gigantes com qualquer raça humanoide, os meio-gigantes costumam chegar a entre 4 e 6 metros de altura, com um máximo registrado de 7 metros. A maioria das civilizações os vê como algo entre párias e aberrações, dependendo do contato que tem com a raça dos gigantes. Na maioria das vezes, eles não têm nenhum dos pais: os gigantes não criam os filhos, e o pai ou a mãe da outra raça geralmente morre no parto ou durante a concepção. Rejeitados pela maioria das sociedades e sabendo que sempre vão chamar atenção (geralmente negativa) onde quer que estejam, os meio-gigantes compensam com uma força avassaladora, capaz de intimidar a maioria das raças com facilidade, e com as características da raça do pai ou da mãe que não é gigante.
 
-* **Habilidades:** as da outra raça do personagem (a do pai ou da mãe que não é gigante).
-* **Vantagens:** **+1 [RES](../../personagem/atributos/#resistência-res)**, **+1 [POD](../../personagem/atributos/#poder-pod)**, [Peso Pesado](../fatores/#peso-pesado).
-* **Desvantagens:** **−1 [INT](../../personagem/atributos/#intelecto-int)**, [Aberração](../fatores/#aberração).
+* **Habilidades:** todas as da outra raça do personagem (a do pai ou da mãe que não é gigante; quase sempre, a mãe).
+* **Vantagens:** **+1 [RES](../../personagem/atributos/#resistência-res)**, **+1 [POD](../../personagem/atributos/#poder-pod)**, [Peso Pesado](../fatores/#peso-pesado) e as vantagens da outra raça.
+* **Desvantagens:** **−1 [INT](../../personagem/atributos/#intelecto-int)**, [Aberração](../fatores/#aberração) e as desvantagens da outra raça.
 * **Línguas:** as da outra raça do personagem.

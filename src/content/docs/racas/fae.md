@@ -13,7 +13,7 @@ Uma das raras raças de espíritos, as dríades são fae que surgem do amálgama
 
 * **Habilidades:** [Local Vinculado](../fatores/#local-vinculado), [Onisciência Local](../fatores/#onisciência-local), [Onipresença Local](../fatores/#onipresença-local), [Zona Vinculada](../fatores/#zona-vinculada).
 * **Vantagens:** **+2 [DET](../../personagem/atributos/#determinação-det)**, **+2 [PER](../../personagem/atributos/#percepção-per)**, [Talento Nato](../fatores/#talento-nato), [Elemental](../fatores/#elemental), [Linguista Ancião](../fatores/#linguista-ancião), [Longevo](../fatores/#longevo).
-* **Desvantagens:** [Vínculo Local](../fatores/#vínculo-local), [Fraqueza (Fogo)](../fatores/#fraqueza-x), [Cabeça a Prêmio](../fatores/#cabeça-a-prêmio).
+* **Desvantagens:** [Vínculo Local](../fatores/#vínculo-local), [Fraqueza (Queimante)](../fatores/#fraqueza-x), [Cabeça a Prêmio](../fatores/#cabeça-a-prêmio).
 * **Línguas:** Bestial, Élfico, Humano.
 
 ## Rue
@@ -28,5 +28,5 @@ Os rues são uma variação de treant que se origina especificamente de plantas 
 
 * **Habilidades:** [Colheita Consistente](../fatores/#colheita-consistente), [Controle de Forma](../fatores/#controle-de-forma).
 * **Vantagens:** **+1 [INT](../../personagem/atributos/#intelecto-int)**, **+1 [DET](../../personagem/atributos/#determinação-det)**, [Regeneração Natural](../fatores/#regeneração-natural), [Fotossintético](../fatores/#fotossintético), [Resistência (Contundente)](../fatores/#resistência-x).
-* **Desvantagens:** [Fraqueza (Venenos)](../fatores/#fraqueza-x), [Fraqueza (Cortante)](../fatores/#fraqueza-x), [Enraizado](../fatores/#enraizado).
+* **Desvantagens:** [Fraqueza (Venenoso)](../fatores/#fraqueza-x), [Fraqueza (Cortante)](../fatores/#fraqueza-x), [Enraizado](../fatores/#enraizado).
 * **Línguas:** Bestial.
