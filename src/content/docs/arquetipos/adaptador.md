@@ -38,7 +38,7 @@ Ativa ao usar ou trocar o modo da [Sintonização de Forma](#habilidade-ativa-si
 * **Escalonamento (QL):**  
   **Nível 10:** bônus de 3 pontos.  
   **Nível 20:** bônus de 5 pontos.
-* **Penalidade:** o atributo oposto sofre um redutor de 60% do valor do bônus.
+* **Penalidade:** o atributo oposto sofre um redutor de 60% do valor do bônus, arredondado para o inteiro mais próximo.
 
 ### Estágio 2 (Níveis 30 - 59)
 
@@ -49,13 +49,13 @@ Ativa ao usar ou trocar o modo da [Sintonização de Forma](#habilidade-ativa-si
 ### Estágio 3 (Níveis 60 - 89)
 
 * **Efeito:** Suporte | **Alvo:** Self | **Duração:** Concentração.
-* **Descrição:** A troca de modo agora pode ser feita como **[Reação](../../combate/rodadas-e-acoes/#reação)** quando você é atingido por um ataque, depois da rolagem e antes do dano. O bônus de dano do modo Ofensivo e a RD do modo Defensivo sobem para 16%.
+* **Descrição:** A troca de modo agora pode ser feita como **[Reação](../../combate/rodadas-e-acoes/#reação)** quando você é atingido por um ataque (Raspão ou melhor), depois da rolagem e antes do dano. A troca como Reação respeita a Recarga. O bônus de dano do modo Ofensivo e a RD do modo Defensivo sobem para 16%.
 * **Penalidade:** o redutor no atributo oposto cai para 20% do valor do bônus.
 
 ### Estágio 4 (Níveis 90 - 100)
 
 * **Efeito:** Suporte | **Alvo:** Self | **Duração:** Concentração.
-* **Descrição:** Você ganha **[Resistência](../../personagem/stats/#resistências)** a um [tipo de dano](../../combate/ataque-e-dano/#tipos-de-dano) à sua escolha, e pode trocar o tipo ao reativar a habilidade. O bônus de dano do modo Ofensivo e a RD do modo Defensivo sobem para 18%.
+* **Descrição:** Você ganha **[Resistência](../../personagem/stats/#resistências)** a um [tipo de dano](../../combate/ataque-e-dano/#tipos-de-dano) à sua escolha, nos dois modos. Você pode trocar o tipo toda vez que usar a habilidade: ao ativá-la, escolhendo o modo, ou ao trocar para o modo oposto. O bônus de dano do modo Ofensivo e a RD do modo Defensivo sobem para 18%.
 * **Penalidade:** nenhuma.
 
 ## Defesas

@@ -31,7 +31,7 @@ O Artífice luta construindo. Ele grava as próprias habilidades em construtos q
   * Montar o construto custa a **Energia** da habilidade gravada mais uma **taxa** sobre esse custo, e consome 1 uso da habilidade. Os disparos do construto não consomem usos.
   * O construto começa a disparar na rodada seguinte à da montagem, uma vez por rodada. Na vez do Artífice, ele escolhe o alvo do disparo sem gastar ações.
   * O construto usa a **[Precisão](../../personagem/stats/#precisão)**, os **[atributos](../../personagem/atributos/)** e as **[Defesas](../../personagem/stats/#defesas)** do Artífice, e tem **[HP](../../personagem/stats/#health-points-hp)** igual a **3,5 × o estágio × o Nível** do Artífice (3,5; 7; 10,5 e 14 × o Nível nos estágios 1 a 4), onde o estágio é o da habilidade Construto.
-  * O construto é uma invocação temporária. Se chegar a **0** de HP, ele se dissipa, e a Energia gasta nele é perdida.
+  * O construto é uma invocação temporária. Se chegar a **0** de HP, ele se dissipa, e a Energia gasta nele é perdida. Ele também se dissipa depois do último disparo.
   * Habilidades de **[Concentração](../../habilidades/criacao/#duração)** ou de duração indefinida não podem ser gravadas. Habilidades de buff também não. Se o efeito de um disparo já estiver ativo no alvo, a duração é reiniciada, sem acumular.
 
 ### Estágio 1 (Níveis 1 - 29)
@@ -62,7 +62,7 @@ O Artífice luta construindo. Ele grava as próprias habilidades em construtos q
 ### Estágio 4 (Níveis 90 - 100)
 
 * **Cargas:** 3 por Combate.
-* **Descrição:** O construto dispara **4 vezes** e pode se mover até 8m por rodada.
+* **Descrição:** O construto dispara **4 vezes** e pode se mover até 8m por rodada. O alcance de construção sobe para **20m**, e a taxa cai para **0%**.
 
 ## Defesas
 

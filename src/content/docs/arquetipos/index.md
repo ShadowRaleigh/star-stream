@@ -23,7 +23,7 @@ Em primeiro lugar, o arquétipo define o seu **HitDie** e o seu crescimento ao l
 * **50**.
 * **80**.
 
-Além disso, cada arquétipo dá uma habilidade passiva e uma ativa, que escalam a cada **[Quebra de Limite](../personagem/criacao/#quebra-de-limite)**. A habilidade ativa ainda se transforma e ganha novos efeitos em níveis específicos. Por padrão, os níveis em que as habilidades ativas dos arquétipos evoluem são:
+Além disso, cada arquétipo dá habilidades passivas e ativas, em geral uma de cada (alguns arquétipos têm duas ativas ou duas passivas), que escalam a cada **[Quebra de Limite](../personagem/criacao/#quebra-de-limite)**. A habilidade ativa ainda se transforma e ganha novos efeitos em níveis específicos. Por padrão, os níveis em que as habilidades ativas dos arquétipos evoluem são:
 
 * **30**.
 * **60**.

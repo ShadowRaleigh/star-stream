@@ -31,7 +31,7 @@ O Vanguarda é um combatente de linha de frente que se fortalece ao atrair a ate
 
 * **Efeito:** Tática | **Alvo:** Target.
 * **[Alcance](../../habilidades/criacao/#alcance):** 10m | **Tempo:** 2s (**[Ação Bônus](../../combate/rodadas-e-acoes/#ação-bônus)**) | **Cargas:** 1 por Combate | **[Duração](../../habilidades/criacao/#duração):** 1d3 rodadas | **Tipo de Ataque:** [Mental](../../personagem/stats/#mental).
-* **Descrição:** Com um grito e uma postura desafiadora, o Vanguarda atrai a fúria de um inimigo, que passa a ter olhos só para ele.
+* **Descrição:** Com um grito e uma postura desafiadora, o Vanguarda atrai a fúria de um inimigo, que fica **[Provocado](../../combate/efeitos-de-status/#provocado)** e passa a ter olhos só para ele.
 * **Escalonamento (QL):**  
   **Nível 10:** +1 alvo ou +3m de alcance.  
   **Nível 20:** +1 alvo ou +3m de alcance.
@@ -49,7 +49,7 @@ O Vanguarda é um combatente de linha de frente que se fortalece ao atrair a ate
 ### Estágio 3 (Níveis 60 - 89)
 
 * **Efeito:** Tática | **Alvo:** AoE.
-* **Área:** Círculo (raio de 7m, centrado no usuário) | **Tempo:** 2s (Ação Bônus).
+* **Área:** Círculo (raio de 7m, centrado no usuário) | **Tempo:** 2s (Ação Bônus) | **Duração:** 1d3 rodadas | **Tipo de Ataque:** Mental.
 * **Cargas:** 2 por Combate.
 * **Descrição:** Além da provocação, o pulso dá **[HP Temporário](../../personagem/stats/#hp-temporário)** igual a **1,5% do HP Máximo** do usuário **por inimigo provocado**. Não acumula: vale sempre o maior valor.
 * **Escalonamento (QL):**  
@@ -59,9 +59,9 @@ O Vanguarda é um combatente de linha de frente que se fortalece ao atrair a ate
 ### Estágio 4 (Níveis 90 - 100)
 
 * **Efeito:** Tática | **Alvo:** AoE.
-* **Área:** Círculo (raio de 10m, centrado no usuário) | **Tempo:** 2s (Ação Bônus).
+* **Área:** Círculo (raio de 10m, centrado no usuário) | **Tempo:** 2s (Ação Bônus) | **Duração:** 1d3 rodadas | **Tipo de Ataque:** Mental.
 * **Cargas:** 2 por Combate.
-* **Descrição:** Além da provocação e do **HP Temporário**, caso o seu HP chegue a 0 depois de você usar o pulso neste combate, você continua consciente com 1 de HP por 2 rodadas (10s), independentemente do dano que receber.
+* **Descrição:** Além da provocação e do **HP Temporário**, caso o seu HP chegue a 0 depois de você usar o pulso neste combate, você continua consciente com 1 de HP por 2 rodadas (10s), independentemente do dano que receber. Depois dessas 2 rodadas, você volta a receber dano normalmente. Isso pode acontecer uma vez por ativação do pulso.
 
 ## Defesas
 
