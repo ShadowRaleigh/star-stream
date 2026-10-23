@@ -44,7 +44,7 @@ Ativa ao usar ou trocar o modo da [Sintonização de Forma](#habilidade-ativa-si
 
 * **Efeito:** Suporte | **Alvo:** Self | **Duração:** Concentração.
 * **Descrição:** Ao ativar ou trocar de modo, você ganha +5 de **[Precisão](../../personagem/stats/#precisão)** (Ofensivo) ou +5 de **[Deflexão](../../personagem/stats/#deflexão)** (Defensivo) por 1 rodada. O bônus de dano do modo Ofensivo e a RD do modo Defensivo sobem para 14%.
-* **Penalidade:** o redutor no atributo oposto cai para 40% do valor do bônus.
+* **Penalidade:** o redutor no atributo oposto cai para 40% do valor do bônus. O bônus de atributo continua em 5 pontos daqui em diante.
 
 ### Estágio 3 (Níveis 60 - 89)
 

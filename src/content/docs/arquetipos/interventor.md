@@ -29,7 +29,7 @@ O Interventor é especialista em manipular o tempo no campo de batalha. Ele não
 * **Efeito:** Suporte | **Alvo:** Target.
 * **[Alcance](../../habilidades/criacao/#alcance):** 10m | **Tempo:** 2s (**[Ação Bônus](../../combate/rodadas-e-acoes/#ação-bônus)**) | **Cargas:** 2 por Combate.
 * **Descrição:** O Interventor manipula qualquer contador de tempo ativo no alvo, como a duração de um efeito, a recarga de uma habilidade ou o tempo de preparo de uma habilidade longa. Contadores de duração indefinida não podem ser manipulados. Se não houver efeito para manipular, o Interventor ataca contra a **[Fortitude](../../personagem/stats/#fortitude)** do alvo e aplica **[Lentidão](../../combate/efeitos-de-status/#lentidão)** de **50%** por 1 rodada.
-* **Efeito:** aumenta ou reduz um contador do alvo em 1 rodada (5s). Também amplifica (multiplica por 1,25) ou atenua (divide por 1,25) a intensidade do efeito, e vale para todas as criaturas do mesmo lado com o mesmo efeito num raio de 5m do alvo.
+* **Efeito:** aumenta ou reduz um contador do alvo em 1 rodada (5s). Também amplifica (multiplica por 1,25) ou atenua (divide por 1,25) a intensidade do efeito.
 * **Escalonamento (QL):**  
   **Nível 10:** alcance de 13m.  
   **Nível 20:** alcance de 16m.

@@ -15,21 +15,21 @@ Ninguém passa sem deixar marca. Um galho quebrado, uma pegada mais funda de um 
 Num lugar por onde a presa passou, você lê os sinais que ela deixou e marca essa presa. Enquanto segue a trilha de uma presa marcada, você sabe quantos são, há quanto tempo passaram e para onde foram, e reconhece essa trilha onde a encontrar de novo. Você só lê, segue ou investiga uma trilha que não seja mais velha que a Idade do seu estágio.
 
 * **Presas:** pessoas, grupos ou criaturas. Marcar uma presa além do limite apaga a mais antiga. Se um grupo marcado se divide, você escolhe a parte que continua marcada.  
-* **Apagar rastros:** pessoas que apagam rastros só são seguidas se a sua Percepção for maior que o Disfarce delas. Criaturas não apagam rastros: a trilha delas só se perde em terreno que o seu estágio não lê.  
+* **Apagar rastros:** pessoas que apagam rastros só são seguidas se a sua [Percepção](../../personagem/atributos/#percepção-per) for maior que o [Disfarce](../../personagem/pericias/#conhecimento) delas. Criaturas não apagam rastros: a trilha delas só se perde em terreno que o seu estágio não lê.  
 * **Mudança de meio:** quando a presa embarca, voa ou cruza um portal, você sabe em que e para que lado ela partiu.  
-* **Limite:** a trilha nunca revela fraquezas, resistências, defesas ou HP da presa.  
+* **Limite:** a trilha nunca revela [fraquezas](../../personagem/stats/#fraquezas), [resistências](../../personagem/stats/#resistências), [defesas](../../personagem/stats/#defesas) ou [HP](../../personagem/stats/#health-points-hp) da presa.  
 
 #### Estágio 1 (Níveis 1 - 19): Fresco
 
 * **Tempo:** 10 min | **Presas:** 1 | **Idade:** até 1 dia  
-* **Descrição:** Você lê trilhas em terreno que guarda marcas: terra, lama, neve, mato. Nos dias em que você segue uma trilha por região com caça, você e um aliado comem do que você caça no caminho e não gastam rações.  
+* **Descrição:** Você lê trilhas em terreno que guarda marcas: terra, lama, neve, mato. Nos dias em que você segue uma trilha por região com [caça](../../exploracao/descanso-e-provisoes/#caça), você e um aliado comem do que você caça no caminho e não gastam [rações](../../exploracao/descanso-e-provisoes/#rações).  
 * **Escalonamento (QL):**  
   **Nível 10:** idade de até 2 dias  
 
 #### Estágio 2 (Níveis 20 - 49): Testemunhas
 
 * **Tempo:** 10 min | **Presas:** 2 | **Idade:** até 1 semana  
-* **Descrição:** Quando a trilha entra num povoado ou some, você pode passar 30 minutos ouvindo testemunhas e vasculhando o lugar para descobrir o próximo ponto onde a presa parou: onde dormiu, se escondeu, encontrou alguém ou trocou de transporte. Se ela estiver disfarçada ou apagando rastros e a sua Percepção não for maior que o Disfarce dela, a pista leva a um lugar por onde ela nunca passou, e você descobre o engano ao chegar lá.  
+* **Descrição:** Quando a trilha entra num povoado ou some, você pode passar 30 minutos ouvindo testemunhas e vasculhando o lugar para descobrir o próximo ponto onde a presa parou: onde dormiu, se escondeu, encontrou alguém ou trocou de transporte. Se ela estiver disfarçada ou apagando rastros e a sua [Percepção](../../personagem/atributos/#percepção-per) não for maior que o [Disfarce](../../personagem/pericias/#conhecimento) dela, a pista leva a um lugar por onde ela nunca passou, e você descobre o engano ao chegar lá.  
 * **Escalonamento (QL):**  
   **Nível 30:** idade de até 2 semanas  
   **Nível 40:** 3 presas  
@@ -51,7 +51,7 @@ Num lugar por onde a presa passou, você lê os sinais que ela deixou e marca es
 
 ### Licença (Passiva)
 
-Guildas de caça e escritórios de recompensa te reconhecem como um dos seus. O seu alvo é a pessoa ou criatura de um contrato aberto que você pegou e que não foi encomendado por você nem pelo seu grupo.
+Guildas de caça e escritórios de recompensa te reconhecem como um dos seus. O seu alvo é a pessoa ou criatura de um contrato aberto que você pegou e que não foi encomendado por você nem pelo seu [grupo](../../exploracao/party/).
 
 #### Estágio 1 (Níveis 1 - 19): Contrato
 

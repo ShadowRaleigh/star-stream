@@ -12,23 +12,23 @@ Mapas são para quem não conhece o caminho. Você lê o terreno e o céu, sobe 
 
 ### Rota (Ativa)
 
-Antes de partir, você traça o caminho do grupo até um lugar que sabe onde fica e escolhe um tipo de rota. Ela vale até o próximo pernoite.
+Antes de partir, você traça o caminho do [grupo](../../exploracao/party/) até um lugar que sabe onde fica e escolhe um tipo de rota. Ela vale até o próximo [pernoite](../../exploracao/descanso-e-provisoes/#pernoite).
 
-* **Uso:** uma rota por pernoite, para viagens ao ar livre e fora de assentamentos.  
+* **Uso:** uma rota por pernoite, para [viagens](../../exploracao/deslocamento/) ao ar livre e fora de assentamentos.  
 * **Grupo:** as pessoas que viajam com você, contando você, até o limite do estágio, com as montarias e a carga delas.  
-* **Limite:** a rota não afeta quem já encontrou o grupo, e acaba se uma luta começar. Nenhuma rota atravessa uma barreira de Magia Antiga.  
+* **Limite:** a rota não afeta quem já encontrou o grupo, e acaba se uma [luta](../../combate/) começar. Nenhuma rota atravessa uma barreira de Magia Antiga.  
 
 #### Estágio 1 (Níveis 1 - 19): Trilha
 
 * **Tempo:** 10 min | **Rápida:** 25% menos tempo | **Grupo:** até 10 pessoas  
-* **Descrição:** Você conhece dois tipos de rota. **Rápida:** o grupo segue pelo caminho mais direto, sem contornar nada. **Segura:** leva 25% mais tempo, contorna tudo o que o grupo já viu ou conhece no caminho (territórios, acampamentos, covis, postos de guarda) e, ao fim do dia, para num lugar abrigado no caminho onde o pernoite pode começar, a menos que alguém esteja caçando o grupo.  
+* **Descrição:** Você conhece dois tipos de rota. **Rápida:** o [grupo](../../exploracao/party/) segue pelo caminho mais direto, sem contornar nada. **Segura:** leva 25% mais tempo, contorna tudo o que o grupo já viu ou conhece no caminho (territórios, acampamentos, covis, postos de guarda) e, ao fim do dia, para num lugar abrigado no caminho onde o [pernoite](../../exploracao/descanso-e-provisoes/#pernoite) pode começar, a menos que alguém esteja caçando o grupo.  
 * **Escalonamento (QL):**  
   **Nível 10:** Rápida com 30% menos tempo  
 
 #### Estágio 2 (Níveis 20 - 49): Discreta
 
 * **Tempo:** 10 min | **Rápida:** 30% menos tempo | **Grupo:** até 10 pessoas  
-* **Descrição:** Você conhece mais um tipo de rota. **Discreta:** leva 50% mais tempo e passa longe de estradas e assentamentos, sem reabastecer nem pedir abrigo. Só quem tiver Percepção maior que o seu Disfarce consegue seguir o grupo.  
+* **Descrição:** Você conhece mais um tipo de rota. **Discreta:** leva 50% mais tempo e passa longe de estradas e assentamentos, sem reabastecer nem pedir abrigo. Só quem tiver [Percepção](../../personagem/atributos/#percepção-per) maior que o seu [Disfarce](../../personagem/pericias/#conhecimento) consegue seguir o [grupo](../../exploracao/party/).  
 * **Escalonamento (QL):**  
   **Nível 30:** grupo de até 20 pessoas  
   **Nível 40:** Rápida com 35% menos tempo  
@@ -36,7 +36,7 @@ Antes de partir, você traça o caminho do grupo até um lugar que sabe onde fic
 #### Estágio 3 (Níveis 50 - 79): Impossível
 
 * **Tempo:** 10 min | **Rápida:** 35% menos tempo | **Grupo:** até 20 pessoas  
-* **Descrição:** Qualquer rota pode atravessar terreno intransitável: o pântano mortal, a cordilheira sem passagem, o deserto sem água conhecida. Enquanto estiver nesse terreno, o grupo gasta o dobro de provisões.  
+* **Descrição:** Qualquer rota pode atravessar terreno intransitável: o pântano mortal, a cordilheira sem passagem, o deserto sem água conhecida. Enquanto estiver nesse terreno, o [grupo](../../exploracao/party/) gasta o dobro de [provisões](../../exploracao/descanso-e-provisoes/#provisões).  
 * **Escalonamento (QL):**  
   **Nível 60:** grupo de até 50 pessoas  
   **Nível 70:** Rápida com 40% menos tempo  
@@ -52,7 +52,7 @@ Antes de partir, você traça o caminho do grupo até um lugar que sabe onde fic
 
 Você entende o terreno ao seu redor.
 
-* **Vista:** o Mirante mostra só o que se vê do ponto alto, e o que foi escondido de propósito só aparece nele se a sua Percepção for maior que o Disfarce de quem escondeu.  
+* **Vista:** o Mirante mostra só o que se vê do ponto alto, e o que foi escondido de propósito só aparece nele se a sua [Percepção](../../personagem/atributos/#percepção-per) for maior que o [Disfarce](../../personagem/pericias/#conhecimento) de quem escondeu.  
 
 #### Estágio 1 (Níveis 1 - 19): Mirante
 
@@ -68,4 +68,4 @@ Você entende o terreno ao seu redor.
 
 #### Estágio 4 (Níveis 80 - 100): Horizonte
 
-* **Descrição:** O Mirante passa a 10km, e você também sabe o que o terreno e o clima vão fazer ali até o próximo pernoite: tempestade, cheia, avalanche, incêndio, maré.
+* **Descrição:** O Mirante passa a 10km, e você também sabe o que o terreno e o clima vão fazer ali até o próximo [pernoite](../../exploracao/descanso-e-provisoes/#pernoite): tempestade, cheia, avalanche, incêndio, maré.

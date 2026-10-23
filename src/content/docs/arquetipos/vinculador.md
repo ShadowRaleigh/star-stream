@@ -53,7 +53,7 @@ Caso o companion morra, o Vinculador pode criar um novo vínculo durante um **[D
 
 ### Estágio 2 (Níveis 30 - 59)
 
-* **Efeito:** Suporte | **Alvo:** Self (companion).
+* **Efeito:** Suporte | **Alvo:** Target (companion).
 * **Tempo:** 2s (**[Ação Bônus](../../combate/rodadas-e-acoes/#ação-bônus)**) | **[Alcance](../../habilidades/criacao/#alcance):** 5m | **Duração:** 2d4 rodadas.
 * **Cargas:** 2 por Combate.
 * **Descrição:** Além da transferência, o Vinculador e o companion podem se fundir em um único ser. O companion precisa estar dentro do alcance do vínculo no momento da ativação. Esta habilidade não exige **[Concentração](../../personagem/stats/#concentração)**. Durante a fusão:
@@ -78,7 +78,7 @@ Caso o companion morra, o Vinculador pode criar um novo vínculo durante um **[D
 
 * **Tempo:** 2s (Ação Bônus) | **Duração:** 3 rodadas (15s).
 * **Cargas:** 2 por Combate.
-* **Descrição:** Fora da fusão, o companion assume uma vez própria e independente na **[iniciativa](../../combate/rodadas-e-acoes/#iniciativa)**. Durante o efeito, os dois agem com ações próprias e separadas.
+* **Descrição:** Fora da fusão, durante o efeito, o companion e o Vinculador agem com ações próprias e separadas. O companion continua agindo na vez do Vinculador, sem lugar próprio na **[iniciativa](../../combate/rodadas-e-acoes/#iniciativa)**, e não conta como mais um personagem no cálculo dos turnos.
 
 ## Defesas
 

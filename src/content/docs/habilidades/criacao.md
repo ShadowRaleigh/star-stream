@@ -44,7 +44,7 @@ Uma habilidade pode ter os campos abaixo:
 
 * **Custo Final:** o valor em Energia efetivamente pago ao usar a habilidade: o custo base vezes o Fator de Custo total.
 
-* **Custo Material:** caso a habilidade tenha algum efeito especial, ela certamente terá um custo material, e o item consumido deve estar descrito aqui (ver [Custo Material](#custo-material)). Caso a habilidade não tenha um custo desses, o campo não precisa estar presente.
+* **Custo Material:** caso a habilidade consuma algum material, o item deve estar descrito aqui (ver [Custo Material](#custo-material)). Caso a habilidade não tenha um custo desses, o campo não precisa estar presente.
 
 * **Condições:** a habilidade pode ter condições específicas para ser ativada, como forma de compensar um efeito mais poderoso ou uma versão mais forte dela. Caso existam, elas ficam neste campo; caso não existam, o campo pode ser omitido.
 
@@ -187,7 +187,7 @@ Uma habilidade pode ter os campos abaixo:
 ### Duração
 
 * A duração vale para efeitos que continuam ao longo das rodadas (overtime), como um dano por rodada. Uma Instantânea dura 1 rodada.
-* Caso o seu feitiço tenha um efeito persistente, ele naturalmente já exige um sacrifício material para ser usado. Por isso, por padrão, os feitiços são de curta duração. Na criação da habilidade, você pode aumentar essa duração, recebendo uma penalidade no custo base final dela.
+* Por padrão, os feitiços são de curta duração. Na criação da habilidade, você pode aumentar essa duração, recebendo uma penalidade no custo base final dela.
 
 | Tier de Duração | Duração (Dados) | Média de Rodadas | Fator de Custo |
 | ----- | :---: | :---: | :---: |
