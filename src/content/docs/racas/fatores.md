@@ -5,102 +5,102 @@ title: "Fatores de Raça"
 
 ### Colheita Consistente
 
-* **Descrição:** Criaturas com essa habilidade concentram a mana do ambiente ao seu redor em frutos com propriedades especiais. As propriedades de cada fruto variam de indivíduo pra indivíduo e podem ser influenciadas por fatores ambientais
+* **Descrição:** criaturas com essa habilidade concentram a mana do ambiente ao redor em frutos com propriedades especiais. As propriedades de cada fruto variam de indivíduo para indivíduo e podem ser influenciadas por fatores ambientais.
 
-* **Efeito:** Todos os dias, produz de uma a 4 frutas com propriedades únicas. O número de frutas depende da força da fruta. A cada **[Quebra de Limite](../../personagem/criacao/#quebra-de-limite)**, o efeito da fruta pode ser aprimorado. As frutas produzidas com essa habilidade perdem o seu efeito em 24 horas.
+* **Efeito:** todos os dias, o personagem produz de **1** a **4** frutas com propriedades únicas. O número de frutas depende da força da fruta. A cada **[Quebra de Limite](../../personagem/criacao/#quebra-de-limite)**, o efeito da fruta pode ser aprimorado. As frutas produzidas com essa habilidade perdem o efeito em **24 horas**.
 
 ### Controle de Forma
 
-* **Descrição:** Essa habilidade permite que raças não humanoides mudem de forma pra se adequar aos muitos espaços do RPG que não foram feitos pra indivíduos de 4 patas ou com formatos não convencionais
+* **Descrição:** essa habilidade permite que raças não humanoides mudem de forma para se adequar aos muitos espaços do RPG que não foram feitos para indivíduos de 4 patas ou com formatos não convencionais.
 
-* **Efeito:** O personagem pode escolher uma de duas ou 3 formas totais, sendo uma sua forma original, e a(s) outra(s), transições entre a original e um humano, ou uma forma completamente humana. Cada transformação dura **5s** e não há limite de vezes que o usuário pode se transformar, no entanto, as formas são pré-definidas e não podem ser mudadas livremente
+* **Efeito:** o personagem tem **2** ou **3** formas no total e pode escolher entre elas: uma é a forma original, e a outra (ou as outras) é uma transição entre a forma original e um humano, ou uma forma completamente humana. Cada transformação dura **5s**, e não há limite de vezes que o personagem pode se transformar. No entanto, as formas são predefinidas e não podem ser mudadas livremente.
 
 ### Diplomacia
 
-* **Descrição:** Quem tiver essa habilidade já tem um talento natural com as palavras, mesmo que latente. Isso daqui só deixa você fazer o máximo uso dessa capacidade
+* **Descrição:** quem tem essa habilidade já tem um talento natural com as palavras, mesmo que latente. Ela só deixa você fazer o máximo uso dessa capacidade.
 
-* **Efeito:** Uma vez por **aventura**, pode pacificar **qualquer** conflito (combate, discussão, etc) com um ou mais alvos **racionais** e faz a situação desescalar pra uma que ainda pode ser resolvida por palavras (O conflito pode escalar de novo dependendo de como a situação se desenvolver.)
+* **Efeito:** uma vez por **[aventura](../../exploracao/#aventuras)**, você pode pacificar **qualquer** conflito (combate, discussão etc.) com um ou mais alvos **racionais** e fazer a situação desescalar para uma que ainda pode ser resolvida com palavras. O conflito pode voltar a escalar, dependendo de como a situação se desenvolver.
 
 ### Elemental
 
-* **Descrição:** O personagem é feito de energia natural e interage com as coisas físicas de forma diferente
+* **Descrição:** o personagem é feito de energia natural e interage com as coisas físicas de um jeito diferente.
 
-* **Efeito:** O personagem pode flutuar um pouco acima do solo, **não precisa comer** e pode interagir com outras criaturas elementais através de energia. Além disso, seus dados de energia são adicionados à sua vida ao invés da energia, sendo que ele deve usar pontos de vida pra ativar suas habilidades. Ele também toma **metade** **do dano** de todos os ataques **físicos** (Cortante, Perfurante e Contundente), mas recebe o **dobro de dano** de ataques **elementais**. Esses multiplicadores ficam à parte dos bônus externos da [Fórmula de Dano](../../combate/ataque-e-dano/#fórmula-de-dano) e não contam como Resistência ou Fraqueza
-
-### Local Vinculado
-
-* **Descrição:** O Local Vinculado é uma região delimitada que está vinculada à alma do personagem. Somente dentro dessa área a pessoa pode exercer seu potencial completo e utilizar suas habilidades locais
-
-* **Efeito:** Por padrão, o Local Vinculado é uma região esférica com raio de 20 metros ao redor do ponto do ritual que funciona como uma Zona Vinculada fixa. O raio cresce em 2m a cada **QL**.
+* **Efeito:** o personagem pode flutuar um pouco acima do solo, **não precisa comer** e pode interagir com outras criaturas elementais por meio de energia. Além disso, os dados de **[Energia](../../personagem/origens/#energia)** dele são somados à vida ([HP](../../personagem/stats/#health-points-hp)) em vez da Energia, e ele precisa gastar pontos de vida para ativar as suas habilidades. Ele também toma **metade do dano** de todos os ataques **físicos** (Cortante, Perfurante e Contundente), mas recebe o **dobro do dano** de ataques **elementais** (ver [Tipos de Dano](../../combate/ataque-e-dano/#tipos-de-dano)). Esses multiplicadores ficam à parte dos bônus externos da [Fórmula de Dano](../../combate/ataque-e-dano/#fórmula-de-dano) e não contam como [Resistência](../../personagem/stats/#resistências) nem como [Fraqueza](../../personagem/stats/#fraquezas).
 
 ### Interpretação
 
-* **Descrição:** Pessoas com esse traço são excelentes com línguas, e conseguem decifrar textos mesmo em línguas que eles não conheçam, dado tempo o bastante
+* **Descrição:** pessoas com esse traço são excelentes com línguas e conseguem decifrar textos mesmo em línguas que não conhecem, se tiverem tempo o bastante.
 
-* **Efeito:** Caso a party esteja em um lugar seguro, o intérprete pode gastar as próximas 3 horas pra decifrar um pequeno pedaço de texto em uma língua desconhecida, desde que ela não seja uma língua morta ou mais rara. Essa habilidade não possui limite de usos
+* **Efeito:** caso a [Party](../../exploracao/party/) esteja num lugar seguro, o intérprete pode gastar as próximas **3 horas** para decifrar um pequeno trecho de texto numa língua desconhecida, desde que ela não seja uma língua morta ou mais rara. Essa habilidade não tem limite de usos.
+
+### Local Vinculado
+
+* **Descrição:** o Local Vinculado é uma região delimitada que está vinculada à alma do personagem. Só dentro dessa área ele pode exercer todo o seu potencial e usar as suas habilidades locais.
+
+* **Efeito:** por padrão, o Local Vinculado é uma região esférica com raio de **20m** ao redor do ponto do ritual, que funciona como uma [Zona Vinculada](#zona-vinculada) fixa. O raio cresce **2m** a cada **QL**.
 
 ### Onisciência Local
 
-* **Descrição:** Essa habilidade permite que o usuário saiba de tudo que está acontecendo dentro do Local Vinculado, o que dá uma grande habilidade de previsão do que vai acontecer no futuro imediato
+* **Descrição:** essa habilidade permite que o personagem saiba de tudo o que está acontecendo dentro do [Local Vinculado](#local-vinculado), o que dá a ele uma grande capacidade de prever o que vai acontecer no futuro imediato.
 
-* **Efeito:** O personagem pode prever as ações imediatas futuras de todos os outros na área, além de poder monitorar o Local VInculado de qualquer distância, desde que ele esteja conectado
+* **Efeito:** o personagem pode prever as ações imediatas de todos os outros na área, além de poder monitorar o Local Vinculado de qualquer distância, desde que esteja conectado a ele.
 
 ### Onipresença Local
 
-* **Descrição:** Dentro do Local Vinculado, o usuário e as coisas que derivam dele estão presentes em todos os lugares ao mesmo tempo
+* **Descrição:** dentro do Local Vinculado, o personagem e as coisas que derivam dele estão presentes em todos os lugares ao mesmo tempo.
 
-* **Efeito:** No Local Vinculado, o usuário pode se mover instantaneamente. Em combate, ele pode se teleportar pra qualquer ponto da região instantaneamente uma vez por rodada como uma ação livre e uma como uma ação bônus. Além disso, todas as suas habilidades com alcance podem ser utilizadas em qualquer lugar da área, independente da distância
+* **Efeito:** no Local Vinculado, o personagem pode se mover instantaneamente. Em combate, ele pode se teleportar instantaneamente para qualquer ponto da região uma vez por rodada como **[Ação Livre](../../combate/rodadas-e-acoes/#ação-livre)** e mais uma vez como **[Ação Bônus](../../combate/rodadas-e-acoes/#ação-bônus)**. Além disso, todas as habilidades dele que têm alcance podem ser usadas em qualquer lugar da área, independente da distância.
 
 ### Raiva Primal
 
-* **Descrição:** Apenas em momentos de emergência, esse indivíduo pode encontrar a força escondida dentro de si. O corpo cresce em até 3x o seu tamanho normal e o usuário perde a razão, focando apenas em destruir o problema a sua frente que está ameaçando sua vida
+* **Descrição:** só em momentos de emergência, esse indivíduo consegue encontrar a força escondida dentro de si. O corpo cresce até **3×** o tamanho normal, e o personagem perde a razão, focado apenas em destruir o problema à sua frente que está ameaçando a vida dele.
 
-* **Efeito:** Ao ativar essa habilidade, o usuário fica **[Ensandecido](../../combate/efeitos-de-status/#ensandecido)** por 1d3 rodadas. Durante esse período, seu [Poder (POD)](../../personagem/atributos/#poder-pod) aumenta em 20%. Após o fim do efeito, ele recebe 10 de dano na sua **[Sanidade](../../personagem/stats/#sanidade-san)**. Essa habilidade pode ser usada quantas vezes você quiser, mas o usuário precisa ter menos de 40% de vida pra poder ativar essa habilidade
+* **Efeito:** ao ativar essa habilidade, o personagem fica **[Ensandecido](../../combate/efeitos-de-status/#ensandecido)** por **1d3 rodadas**. Durante esse período, o seu **[Poder (POD)](../../personagem/atributos/#poder-pod)** aumenta **20%**. Quando o efeito acaba, ele recebe **10** de dano na **[Sanidade](../../personagem/stats/#sanidade-san)**. A habilidade pode ser usada quantas vezes você quiser, mas o personagem precisa estar com menos de **40%** de vida para ativá-la.
 
 ### Sinergia
 
-* **Descrição:** O personagem é extremamente versátil e capaz em trabalhos em equipe. Sua participação ajuda qualquer um a ter um resultado melhor
+* **Descrição:** o personagem é extremamente versátil e capaz em trabalhos em equipe. A participação dele ajuda qualquer um a ter um resultado melhor.
 
-* **Efeito:** Até 2 vezes por sessão, ajude um aliado a executar qualquer um roll com vantagem.
+* **Efeito:** até **2** vezes por sessão, você ajuda um aliado a fazer qualquer roll com **[vantagem](../../regras/dados/#vantagens-e-desvantagens)**.
 
 ### Voar
 
-* **Descrição:** Seu personagem tem acesso a asas ou alguma forma de voo, mágico ou não. Isso te permite se movimentar de maneira não convencional pelo mapa
+* **Descrição:** o seu personagem tem asas ou alguma outra forma de voo, mágica ou não. Isso permite que ele se movimente de um jeito não convencional pelo mapa.
 
-* **Efeito:** Em combate, você pode se movimentar no ar com a mesma velocidade que você tem em solo e acessar locais inusitados, enquanto que fora de combate você tem uma velocidade de viagem 50% maior nos trechos onde você viajar voando
+* **Efeito:** em combate, você pode se mover no ar com a mesma velocidade que tem no solo e chegar a lugares inusitados (ver [Combate Aéreo](../../combate/combate-aereo/#voar)). Fora de combate, a sua velocidade de viagem no [Deslocamento](../../exploracao/deslocamento/) é **50%** maior nos trechos em que você viaja voando.
 
 ### Zona Vinculada
 
-* **Descrição:** O personagem preenche a área ao redor dele com mana/qi ou simplesmente mapeia bem a área ao redor, permitindo um uso avançado das suas habilidades
+* **Descrição:** o personagem preenche a área ao redor com mana ou Qi, ou simplesmente mapeia bem essa área, o que permite um uso avançado das suas habilidades.
 
-* **Efeito:** Até uma vez por descanso curto, pode criar uma Zona Vinculada ao redor de si mesmo, durando enquanto mantiver concentração. Dentro dessa área, todas as suas habilidades que não tenham o próprio usuário como alvo principal ou tenham alcance de **toque**, podem ser usadas em toda a região da Zona Vinculada. Por padrão, a Zona é uma área esférica ao redor do usuário, com um raio de 8m, o raio cresce em 2m a cada **QL**
+* **Efeito:** até uma vez por **[Descanso Curto](../../exploracao/descanso-e-provisoes/#descanso-curto)**, o personagem pode criar uma Zona Vinculada ao redor de si mesmo, que dura enquanto ele mantiver a [concentração](../../personagem/stats/#concentração). Dentro dessa área, todas as habilidades dele que não tenham o próprio personagem como alvo principal ou que tenham alcance de **toque** podem ser usadas em toda a região da Zona Vinculada. Por padrão, a Zona é uma área esférica ao redor do personagem, com raio de **8m**, e o raio cresce **2m** a cada **QL**.
 
 ## Vantagens
 
-* <span id="acumulador"></span>**Acumulador:** O personagem recupera o dobro de **Energia** em descansos curtos e pernoites  
-* <span id="extremamente-leve"></span>**Extremamente Leve:** O peso leve do seu personagem faz com que seja mais fácil de outra pessoa ou criatura mover ele. Em compensação, você toma menos dano de queda e ativa armadilhas de pressão com mais dificuldade  
-* <span id="fotossintético"></span>**Fotossintético:** Desde que seu personagem esteja exposto a luz do sol por 4 horas ou mais do dia, seu personagem consome metade das rações naquele dia. Caso fique exposto por 8 horas, ele não precisa comer naquele dia.  
-* <span id="linguista-ancião"></span>**Linguista Ancião:** Ele conhece uma língua morta adicional.  
-* <span id="longevo"></span>**Longevo:** Seu personagem pode viver por mais de 1000 anos!  
-* <span id="perito"></span>**Perito:** O personagem ganha **+5** pontos de perícia que podem ser distribuídos livremente no **nível 1**  
-* <span id="pés-ágeis"></span>**Pés Ágeis:** Ao ativar uma armadilha, ganha uma chance de tentar desviar do efeito. Role um d20, se você tirar 11 ou mais, o efeito da armadilha é reduzido pela metade, enquanto que se você tirar 18 ou mais você evita a armadilha completamente  
-* <span id="peso-pesado"></span>**Peso Pesado:** O peso massivo do seu personagem faz com que seja mais difícil de outra pessoa ou criatura mover ele. No entanto, você toma mais dano de queda e ativa armadilhas de pressão mais facilmente  
-* <span id="poliglota"></span>**Poliglota:** O seu personagem sabe falar pelo menos 4 línguas que não estejam mortas. Caso ele já não saiba esse número, escolha línguas adicionais até chegar nele  
-* <span id="pulos-altos"></span>**Pulos Altos:** Seu personagem pode pular o dobro da altura normal  
-* <span id="pulos-longos"></span>**Pulos Longos:** Seu personagem pode pular o dobro da distância que personagens normais  
-* <span id="regeneração-natural"></span>**Regeneração Natural:** Machucados que te deixariam debilitados permanentemente, como membros amputados ou órgãos danificados se regeneram em 2 semanas  
-* <span id="resistência-x"></span>**Resistência (X):** Seu personagem tem um recebe um fator de dano de -50% contra o tipo de resistência que ele tenha  
-* <span id="sentidos-apurados"></span>**Sentidos Apurados:** Caso você não atinja os requisitos pra uma interação de percepção, você tem vantagem ao rolar e pode tentar a interação **independente da diferença de nível**  
-* <span id="talento-nato"></span>**Talento Nato:** Ganha **5** **Pontos de Capacidade** extras no nível 1 e **+2** a cada **QL**. Pontos de Capacidade desbloqueiam efeitos nas árvores de habilidade (ver [Capacidades](../../habilidades/capacidades/))
+* <span id="acumulador"></span>**Acumulador:** o personagem recupera o dobro de **[Energia](../../personagem/origens/#energia)** em **[Descansos Curtos](../../exploracao/descanso-e-provisoes/#descanso-curto)** e **[Pernoites](../../exploracao/descanso-e-provisoes/#pernoite)**.
+* <span id="extremamente-leve"></span>**Extremamente Leve:** o seu personagem é tão leve que fica mais fácil para outra pessoa ou criatura movê-lo. Em compensação, você toma menos [dano de queda](../../combate/combate-aereo/#quedas) e tem mais dificuldade para ativar [armadilhas](../../exploracao/salas-armadilhas-e-quebra-cabecas/#armadilhas) de pressão.
+* <span id="fotossintético"></span>**Fotossintético:** desde que o seu personagem fique exposto à luz do sol por **4 horas** ou mais num dia, ele consome metade das [rações](../../exploracao/descanso-e-provisoes/#rações) naquele dia. Caso fique exposto por **8 horas**, ele não precisa comer naquele dia.
+* <span id="linguista-ancião"></span>**Linguista Ancião:** o personagem conhece uma língua morta adicional.
+* <span id="longevo"></span>**Longevo:** o seu personagem pode viver por mais de **1000 anos**!
+* <span id="perito"></span>**Perito:** o personagem ganha **+5** [Pontos de Perícia](../../personagem/pericias/#características) no **nível 1**, que podem ser distribuídos livremente.
+* <span id="pés-ágeis"></span>**Pés Ágeis:** ao ativar uma armadilha, você ganha uma chance de desviar do efeito. Role **1d20**: com **11** ou mais, o efeito da armadilha cai pela metade; com **18** ou mais, você evita a armadilha completamente.
+* <span id="peso-pesado"></span>**Peso Pesado:** o peso massivo do seu personagem faz com que seja mais difícil para outra pessoa ou criatura movê-lo. No entanto, você toma mais dano de queda e ativa armadilhas de pressão com mais facilidade.
+* <span id="poliglota"></span>**Poliglota:** o seu personagem sabe falar pelo menos **4** línguas que não estejam mortas. Caso ele ainda não saiba esse número de línguas, escolha línguas adicionais até chegar nele.
+* <span id="pulos-altos"></span>**Pulos Altos:** o seu personagem pode pular o dobro da altura normal.
+* <span id="pulos-longos"></span>**Pulos Longos:** o seu personagem pode pular o dobro da distância que personagens normais pulam.
+* <span id="regeneração-natural"></span>**Regeneração Natural:** ferimentos que deixariam você debilitado permanentemente, como membros amputados ou órgãos danificados, se regeneram em **2 semanas**.
+* <span id="resistência-x"></span>**Resistência (X):** o seu personagem recebe um fator de dano de **−50%** contra o [tipo de dano](../../combate/ataque-e-dano/#tipos-de-dano) da resistência que ele tem (ver [Resistências](../../personagem/stats/#resistências)).
+* <span id="sentidos-apurados"></span>**Sentidos Apurados:** caso você não atinja os requisitos para uma interação de percepção, você tem **[vantagem](../../regras/dados/#vantagens-e-desvantagens)** ao rolar e pode tentar a interação **independente da diferença de nível**.
+* <span id="talento-nato"></span>**Talento Nato:** você ganha **5** **[Pontos de Capacidade](../../habilidades/capacidades/#pontos-de-capacidade)** extras no nível 1 e **+2** a cada **[QL](../../personagem/criacao/#quebra-de-limite)**. Pontos de Capacidade desbloqueiam efeitos nas árvores de habilidade (ver [Capacidades](../../habilidades/capacidades/)).
 
 ## Desvantagens
 
-* <span id="aberração"></span>**Aberração:** As pessoas se sentem naturalmente intimidadas por você e são menos favoráveis em interações  
-* <span id="alto-metabolismo"></span>**Alto Metabolismo:** Você consome o dobro de rações por dia  
-* <span id="cabeça-a-prêmio"></span>**Cabeça a Prêmio:** Se a sua identidade real for descoberta pelo público, você corre risco de caçadores de recompensa ou mercenários aparecerem tentando te raptar ou matar você  
-* <span id="desconfortável-em-armaduras"></span>**Desconfortável em Armaduras:** Por motivos culturais ou físicos, personagens com essa característica ficam desconfortáveis demais e armaduras para poder usá-las. Você só pode equipar 3 de 5 peças de armadura, mas pode equipar um acessório extra  
-* <span id="enraizado"></span>**Enraizado:** Uma vez por dia, por pelo menos uma hora por dia, esse personagem precisa ficar plantado no solo para absorver nutrientes. Falhar em cumprir com isso vai te deixar **fadigado**. Se você passar mais de duas semanas sem se nutrir na terra, você **morre** de fome  
-* <span id="fraqueza-x"></span>**Fraqueza (X):** Se você tomar dano do tipo especificado da sua fraqueza, você recebe um fator de dano de +50% contra aquele dano  
-* <span id="mental-frágil"></span>**Mental Frágil:** Você toma 1.5x o dano total de ataques que afetem a sua sanidade  
-* <span id="pseudo-demônio"></span>**Pseudo-Demônio:** Você tem uma aparência demoníaca, caçadores de demônios podem se confundir e atacar você ao ser avistado e a sua passagem cria rumores de que um demônio esteve nas redondezas  
-* <span id="vínculo-local"></span>**Vínculo Local:** Se o personagem sair da área onde sua alma está vinculada, todos os seus atributos, vida e efeitos de habilidades caem em **30%**
+* <span id="aberração"></span>**Aberração:** as pessoas se sentem naturalmente intimidadas por você e ficam menos favoráveis nas interações.
+* <span id="alto-metabolismo"></span>**Alto Metabolismo:** você consome o dobro de [rações](../../exploracao/descanso-e-provisoes/#rações) por dia.
+* <span id="cabeça-a-prêmio"></span>**Cabeça a Prêmio:** se a sua identidade real for descoberta pelo público, você corre o risco de caçadores de recompensa ou mercenários aparecerem tentando raptar ou matar você.
+* <span id="desconfortável-em-armaduras"></span>**Desconfortável em Armaduras:** por motivos culturais ou físicos, personagens com essa característica ficam desconfortáveis demais em armaduras para conseguir usá-las. Você só pode equipar **3** das **5** peças de [armadura](../../combate/equipamento/#armadura), mas pode equipar um acessório extra.
+* <span id="enraizado"></span>**Enraizado:** uma vez por dia, por pelo menos **1 hora**, o personagem precisa ficar plantado no solo para absorver nutrientes. Se não cumprir isso, você fica **[Fadigado](../../combate/efeitos-de-status/#fadigado)**. Se passar mais de **2 semanas** sem se nutrir na terra, você **morre** de fome.
+* <span id="fraqueza-x"></span>**Fraqueza (X):** se você tomar dano do tipo da sua fraqueza, você recebe um fator de dano de **+50%** contra aquele dano (ver [Fraquezas](../../personagem/stats/#fraquezas)).
+* <span id="mental-frágil"></span>**Mental Frágil:** você toma **1,5×** o dano total de ataques que afetam a sua **[Sanidade](../../personagem/stats/#sanidade-san)**.
+* <span id="pseudo-demônio"></span>**Pseudo-Demônio:** você tem uma aparência demoníaca. Caçadores de demônios podem se confundir e atacar você quando o avistam, e a sua passagem cria rumores de que um demônio esteve nas redondezas.
+* <span id="vínculo-local"></span>**Vínculo Local:** se o personagem sair da área onde a alma dele está vinculada (o [Local Vinculado](#local-vinculado)), todos os seus [atributos](../../personagem/atributos/), a vida ([HP](../../personagem/stats/#health-points-hp)) e os efeitos das suas habilidades caem **30%**.
