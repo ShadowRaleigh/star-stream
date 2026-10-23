@@ -4,6 +4,7 @@ import starlight from '@astrojs/starlight';
 import fs from 'node:fs';
 import { FONTES_DO_TEMA, TEMAS } from './src/temas.mjs';
 import { CORES } from './src/cores.mjs';
+import editorDoLivro from './tools/editor/integracao.mjs';
 
 // O script do seletor recebe a família e as paletas de cada tema a partir das listas únicas em src/temas.mjs e src/cores.mjs.
 const seletorTema = fs
@@ -158,5 +159,7 @@ export default defineConfig({
 				},
 			],
 		}),
+		// Editor local do livro (npm run editor): só existe no astro dev, nunca no site publicado.
+		editorDoLivro(),
 	],
 });

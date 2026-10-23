@@ -14,6 +14,21 @@ Este repositório é a **fonte oficial das regras**. O antigo Google Doc "System
 
 ## Editar
 
+### Pelo editor do livro (o jeito mais fácil)
+
+Dê dois cliques em `Editar o livro.cmd` (ou rode `npm run editor`). O navegador abre o editor em `http://127.0.0.1:4321/__editor`:
+
+- à esquerda fica o Markdown da página; à direita, a página real do site, que se atualiza enquanto você digita;
+- clicar num trecho da página leva o editor até a linha dele, e o bloco onde está o cursor fica destacado na página;
+- com o cursor numa tabela, o botão **Editar tabela em grade** abre a tabela como planilha (com botões para pôr e tirar linhas e colunas);
+- **Ctrl+S** (ou **Salvar e publicar**) salva, faz o commit ("Edita <página>") e o push, e o site publicado se atualiza em cerca de 1 minuto. **Descartar alterações** volta a página para a última versão publicada.
+
+O que você digita já fica gravado no arquivo, mesmo sem salvar; a página com alterações não publicadas aparece com ● na lista. Feche a janela preta para parar o editor.
+
+O editor só existe no servidor local (`astro dev`, só em 127.0.0.1) e nunca vai para o site publicado. Ele só aceita pedidos vindos da própria página do editor e só escreve nas páginas de `src/content/docs/`. O push usa o login do Git desta máquina. O código fica em `tools/editor/`.
+
+### Direto no Markdown
+
 1. Abra o arquivo da página em `src/content/docs/` e edite o Markdown.
 2. Para ver o resultado: `npm install` (só na primeira vez) e depois `npm run dev`, e abra `http://localhost:4321/`.
 3. Faça o commit e envie. O GitHub Actions publica o site sozinho em alguns minutos.
