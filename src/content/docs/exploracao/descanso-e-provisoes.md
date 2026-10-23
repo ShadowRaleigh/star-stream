@@ -66,4 +66,4 @@ Nem sempre as rações vão durar a aventura toda, então pode ser preciso caça
 
 * Um personagem que viaja grandes distâncias num dia precisa de pelo menos um Pernoite ao fim de cada dia (ver [Deslocamento](../deslocamento/)).
 * Em lugares perigosos, a adrenalina deixa o personagem passar mais tempo sem dormir: basta um Descanso Curto por dia.
-* Quem não descansa o suficiente fica **[Fadigado](../../combate/efeitos-de-status/#fadigado)**.
+* Quem não descansa o suficiente fica **[Fadigado](../../combate/efeitos-de-status/#fadigado)** até o próximo [Pernoite](#pernoite).
