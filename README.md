@@ -21,9 +21,11 @@ Dê dois cliques em `Editar o livro.cmd` (ou rode `npm run editor`). O navegador
 - à esquerda fica o Markdown da página; à direita, a página real do site, que se atualiza enquanto você digita;
 - clicar num trecho da página leva o editor até a linha dele, e o bloco onde está o cursor fica destacado na página;
 - com o cursor numa tabela, o botão **Editar tabela em grade** abre a tabela como planilha (com botões para pôr e tirar linhas e colunas);
-- **Ctrl+S** (ou **Salvar e publicar**) salva, faz o commit ("Edita <página>") e o push, e o site publicado se atualiza em cerca de 1 minuto. **Descartar alterações** volta a página para a última versão publicada.
+- **links:** Ctrl+K (ou digitar `](`) abre uma lista com todas as páginas e seções do livro; digite parte do nome e escolha, e o caminho relativo sai certo. Ctrl+clique num link da prévia abre a página dele no editor;
+- **Ctrl+S** (ou **Salvar e publicar**) confere os links da página, salva, faz o commit ("Edita <página>") e o push, e o site publicado se atualiza em cerca de 1 minuto. Se houver link quebrado, ele avisa antes e leva à linha. Se o envio falhar (sem internet, por exemplo), o commit fica salvo e o próximo Ctrl+S tenta de novo;
+- **Descartar alterações** volta a página para a última versão publicada; **Esconder menus** tira o menu lateral e o índice da prévia; **Atalhos** mostra os atalhos (Ctrl+B, Ctrl+I, Ctrl+P para trocar de página, Ctrl+F para procurar). O corretor ortográfico do navegador funciona em português.
 
-O que você digita já fica gravado no arquivo, mesmo sem salvar; a página com alterações não publicadas aparece com ● na lista. Feche a janela preta para parar o editor.
+Ao abrir, o editor traz a versão mais nova do GitHub. O que você digita já fica gravado no arquivo, mesmo sem publicar; a página com alterações não publicadas aparece com ● na lista. Feche a janela preta para parar o editor.
 
 O editor só existe no servidor local (`astro dev`, só em 127.0.0.1) e nunca vai para o site publicado. Ele só aceita pedidos vindos da própria página do editor e só escreve nas páginas de `src/content/docs/`. O push usa o login do Git desta máquina. O código fica em `tools/editor/`.
 

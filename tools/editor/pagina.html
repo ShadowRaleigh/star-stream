@@ -16,6 +16,20 @@
 			<span id="estado" class="estado" role="status" aria-live="polite"></span>
 			<span class="espaco"></span>
 			<button id="tabela" type="button" hidden>Editar tabela em grade</button>
+			<button id="menus" type="button" title="Esconde o menu lateral e o índice do site na prévia, para sobrar mais espaço para o texto">Esconder menus</button>
+			<details class="atalhos">
+				<summary>Atalhos</summary>
+				<dl>
+					<dt>Ctrl+S</dt><dd>Salvar e publicar</dd>
+					<dt>Ctrl+P</dt><dd>Trocar de página</dd>
+					<dt>Ctrl+B / Ctrl+I</dt><dd>Negrito / itálico</dd>
+					<dt>Ctrl+K</dt><dd>Link: comece a digitar o nome da página ou da seção e escolha na lista (também funciona ao digitar <code>](</code>)</dd>
+					<dt>Ctrl+F</dt><dd>Procurar e substituir</dd>
+					<dt>Ctrl+Z</dt><dd>Desfazer</dd>
+					<dt>Clique na prévia</dt><dd>Leva o editor até aquele trecho</dd>
+					<dt>Ctrl+clique num link</dt><dd>Abre a página do link</dd>
+				</dl>
+			</details>
 			<button id="descartar" type="button" disabled>Descartar alterações</button>
 			<a id="abrir" target="_blank" rel="noopener">Abrir no site</a>
 			<button id="salvar" type="button" class="principal" disabled>Salvar e publicar <kbd>Ctrl+S</kbd></button>
@@ -79,7 +93,14 @@
 			button:disabled { opacity: 0.45; cursor: default; }
 			button.principal { background: var(--destaque); color: #fff; border-color: transparent; font-weight: 600; }
 			kbd { font-size: 0.75em; opacity: 0.8; margin-left: 0.3em; }
-			.estado { font-size: 0.85rem; color: var(--suave); }
+			.estado { font-size: 0.85rem; color: var(--suave); max-width: 38rem; }
+			button[aria-pressed='true'] { background: color-mix(in srgb, var(--destaque) 18%, var(--fundo)); border-color: var(--destaque); }
+			.atalhos { position: relative; font-size: 0.9rem; }
+			.atalhos summary { cursor: pointer; list-style: none; border: 1px solid var(--borda); border-radius: 6px; padding: 0.35rem 0.7rem; }
+			.atalhos summary::-webkit-details-marker { display: none; }
+			.atalhos dl { position: absolute; right: 0; top: 2.4rem; z-index: 10; width: 24rem; margin: 0; padding: 0.8rem 1rem; display: grid; grid-template-columns: auto 1fr; gap: 0.35rem 0.9rem; background: var(--painel); border: 1px solid var(--borda); border-radius: 8px; box-shadow: 0 8px 24px rgb(0 0 0 / 0.25); }
+			.atalhos dt { font-weight: 600; white-space: nowrap; }
+			.atalhos dd { margin: 0; color: var(--suave); }
 			.estado.erro { color: var(--erro); }
 			.estado.ok { color: var(--ok); }
 			.area { flex: 1; display: flex; min-height: 0; }

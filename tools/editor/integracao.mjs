@@ -8,6 +8,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 import { execFile } from 'node:child_process';
 import { fileURLToPath } from 'node:url';
+import GithubSlugger from 'github-slugger';
 
 const RAIZ_REPO = path.resolve('.');
 const RAIZ_DOCS = path.resolve('src/content/docs');
@@ -66,9 +67,10 @@ async function api(req, res) {
 	const url = new URL(req.url, 'http://local');
 	const acao = url.pathname.replace(/^\/+/, '');
 	if (req.method === 'GET' && acao === 'paginas') return responder(res, 200, await listarPaginas());
+	if (req.method === 'GET' && acao === 'ancoras') return responder(res, 200, listarAncoras());
 	if (req.method === 'GET' && acao === 'ler') {
 		const arquivo = caminhoSeguro(url.searchParams.get('arquivo'));
-		return responder(res, 200, { conteudo: fs.readFileSync(arquivo, 'utf8'), alterado: await alterado(arquivo) });
+		return responder(res, 200, { conteudo: fs.readFileSync(arquivo, 'utf8'), alterado: await alterado(arquivo), pendentes: await naoEnviados() });
 	}
 	if (req.method !== 'POST' || !(req.headers['content-type'] ?? '').startsWith('application/json'))
 		return responder(res, 405, { erro: 'Método não aceito.' });
@@ -78,6 +80,7 @@ async function api(req, res) {
 		escrever(arquivo, corpo.conteudo);
 		return responder(res, 200, { ok: true });
 	}
+	if (acao === 'conferir') return responder(res, 200, { quebrados: conferirLinks(arquivo, corpo.conteudo) });
 	if (acao === 'salvar') {
 		escrever(arquivo, corpo.conteudo);
 		return responder(res, 200, await publicar(arquivo));
@@ -142,12 +145,12 @@ async function listarPaginas() {
 			if (fs.statSync(completo).isDirectory()) andar(completo);
 			else if (/\.mdx?$/.test(nome)) {
 				const arquivo = path.relative(RAIZ_DOCS, completo).replaceAll('\\', '/');
-				const slug = arquivo.replace(/\.mdx?$/, '').replace(/(^|\/)index$/, '');
+				const url = urlDoArquivo(arquivo);
 				paginas.push({
 					arquivo,
-					titulo: titulo(fs.readFileSync(completo, 'utf8'), slug || 'Início'),
-					secao: slug.includes('/') ? slug.split('/')[0] : '',
-					url: slug ? `/${slug}/` : '/',
+					titulo: titulo(fs.readFileSync(completo, 'utf8'), url.slice(1, -1) || 'Início'),
+					secao: url.split('/').length > 3 ? url.split('/')[1] : '',
+					url,
 				});
 			}
 		}
@@ -159,18 +162,93 @@ async function listarPaginas() {
 	return paginas.sort((a, b) => a.arquivo.localeCompare(b.arquivo, 'pt-BR'));
 }
 
+async function naoEnviados() {
+	try {
+		return Number(await git(['rev-list', '--count', '@{u}..HEAD']));
+	} catch {
+		return 0;
+	}
+}
+
 async function publicar(arquivo) {
 	const rel = relativo(arquivo);
-	if (!(await alterado(arquivo))) return { ok: true, mensagem: 'Nada mudou desde a última publicação.' };
-	const nome = titulo(fs.readFileSync(arquivo, 'utf8'), path.basename(rel));
-	await git(['add', '--', rel]);
-	await git(['commit', '-m', `Edita ${nome}`, '--', rel]);
+	const mudou = await alterado(arquivo);
+	// Um push que falhou antes (sem internet, por exemplo) deixa commits só aqui: o próximo Ctrl+S tenta de novo.
+	if (!mudou && !(await naoEnviados())) return { ok: true, mensagem: 'Nada mudou desde a última publicação.' };
+	if (mudou) {
+		const nome = titulo(fs.readFileSync(arquivo, 'utf8'), path.basename(rel));
+		await git(['add', '--', rel]);
+		await git(['commit', '-m', `Edita ${nome}`, '--', rel]);
+	}
 	const commit = await git(['rev-parse', '--short', 'HEAD']);
 	try {
 		await git(['pull', '--rebase', '--autostash']);
 		await git(['push']);
 	} catch (erro) {
-		return { ok: false, commit, erro: `O commit ${commit} foi feito, mas o push falhou: ${erro.message}` };
+		return { ok: false, commit, erro: `O commit ${commit} ficou salvo neste computador, mas o envio falhou (${erro.message.split('\n')[0]}). Aperte Ctrl+S de novo para tentar outra vez.` };
 	}
 	return { ok: true, commit, mensagem: `Publicado (commit ${commit}). O site atualiza em cerca de 1 minuto.` };
+}
+
+// ---------- âncoras e links ----------
+// O Starlight gera a âncora do título com o github-slugger; os fatores e outras âncoras usam <span id="...">.
+
+function ancorasDe(texto) {
+	const slugger = new GithubSlugger();
+	const ancoras = [];
+	let emCodigo = false;
+	for (const linha of texto.split('\n')) {
+		if (/^\s*```/.test(linha)) emCodigo = !emCodigo;
+		if (emCodigo) continue;
+		const titulo = linha.match(/^(#{2,6})\s+(.+?)\s*#*\s*$/);
+		if (titulo) {
+			const limpo = titulo[2].replace(/\[([^\]]*)\]\([^)]*\)/g, '$1').replace(/[*_`]/g, '').replace(/<[^>]+>/g, '').trim();
+			ancoras.push({ id: slugger.slug(limpo), texto: limpo });
+		}
+		for (const span of linha.matchAll(/<span id="([^"]+)"><\/span>\s*\**([^*:<]*)/g))
+			ancoras.push({ id: span[1], texto: span[2].trim() || span[1] });
+	}
+	return ancoras;
+}
+
+function urlDoArquivo(arquivo) {
+	const slug = arquivo.replace(/\.mdx?$/, '').replace(/(^|\/)index$/, '');
+	return slug ? `/${slug}/` : '/';
+}
+
+function listarAncoras() {
+	const lista = [];
+	const andar = (pasta) => {
+		for (const nome of fs.readdirSync(pasta)) {
+			const completo = path.join(pasta, nome);
+			if (fs.statSync(completo).isDirectory()) andar(completo);
+			else if (/\.mdx?$/.test(nome)) {
+				const arquivo = path.relative(RAIZ_DOCS, completo).replaceAll('\\', '/');
+				const texto = fs.readFileSync(completo, 'utf8');
+				lista.push({ arquivo, url: urlDoArquivo(arquivo), titulo: titulo(texto, arquivo), ancoras: ancorasDe(texto) });
+			}
+		}
+	};
+	andar(RAIZ_DOCS);
+	return lista;
+}
+
+function conferirLinks(arquivo, conteudo) {
+	const paginas = new Map(listarAncoras().map((p) => [p.url, p]));
+	const aqui = urlDoArquivo(path.relative(RAIZ_DOCS, arquivo).replaceAll('\\', '/'));
+	paginas.set(aqui, { ...paginas.get(aqui), ancoras: ancorasDe(conteudo) });
+	const quebrados = [];
+	conteudo.split('\n').forEach((linha, i) => {
+		for (const m of linha.matchAll(/\]\(([^)\s]+)\)/g)) {
+			const alvo = m[1];
+			if (/^(https?:|mailto:|data:)/.test(alvo) || /\.(png|jpe?g|webp|svg|gif|pdf)$/i.test(alvo.split('#')[0])) continue;
+			const [caminho, ancora] = alvo.split('#');
+			const url = caminho ? new URL(caminho, `http://x${aqui}`).pathname.replace(/\/?$/, '/') : aqui;
+			const pagina = paginas.get(url);
+			if (!pagina) quebrados.push({ linha: i + 1, link: alvo, motivo: 'página não existe' });
+			else if (ancora && !pagina.ancoras.some((a) => a.id === decodeURIComponent(ancora)))
+				quebrados.push({ linha: i + 1, link: alvo, motivo: 'seção não existe nessa página' });
+		}
+	});
+	return quebrados;
 }
